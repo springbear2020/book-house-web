@@ -12,267 +12,181 @@ li {
 }
 
 .top-content {
-    height: 60px;
+    height: 1.2rem;
     background-color: skyblue;
 }
 
 .top-left {
+    margin: 0.3rem 0;
     float: left;
-    width: 120px;
+    width: 3rem;
 }
 
 .top-left-title {
     float: left;
-    font-size: 24px;
+    font-size: 0.4rem;
     font-family: 微软雅黑;
     color: brown;
 }
 
 .middle {
-    height: 600px;
+    height: 9rem;
     background-color: aqua;
 }
 
 .middle-container {
+    display: -webkit-flex;
+    display: flex;
+    /*弹性框*/
     position: relative;
-    top: 80px;
+    top: 0.5rem;
     left: 50%;
-    margin-left: -440px;
-    height: 480px;
-    width: 880px;
+    margin-left: -8rem;
+    height: 8rem;
+    width: 16rem;
     /*background-color: deepskyblue;*/
 }
 
 .middle-images {
     float: left;
-    height: 480px;
-    width: 480px;
+    /*height: 480px;*/
+    /*width: 480px;*/
 }
 
 .middle-pic {
-    height: 480px;
-    width: 480px;
+    /*height: 480px;*/
+    /*width: 480px;*/
 }
 
 .frame-login {
-    float: left;
-    margin-top: 40px;
-    height: 400px;
-    width: 320px;
-    margin-left: 80px;
+    /*float: left;*/
+    /*margin-top: 40px;*/
+    /*height: 400px;*/
+    /*width: 320px;*/
+    /*margin-left: 80px;*/
+    position: relative;
+    left: 50%;
+    margin-left: -3rem;
+    width: 6rem;
     background-color: white;
-    box-shadow: 0 0 30px deepskyblue;
+    box-shadow: 0 0 1rem deepskyblue;
     /*margin: 80px;*/
 }
 
 .login-title {
-    font-size: 24px;
+    font-size: 0.4rem;
     font-family: 微软雅黑;
     text-align: center;
-    margin-top: 24px;
-    height: 40px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 0.5rem;
 }
 
 .login-input {
-    margin-left: 48px;
-    margin-top: 20px;
-    height: 48px;
-    width: 240px;
+    margin-left: 1rem;
+    margin-top: 0.15rem;
+    height: 0.8rem;
+    width: 4rem;
     /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
 .login-text {
-    width: 220px;
-    height: 36px;
-    font-size: 16px;
+    width: 4rem;
+    height: 0.5rem;
+    font-size: 0.3rem;
     font-family: 微软雅黑;
-    color: grey;
+    /*color: grey;*/
     border: 1px solid rgba(0, 0, 0, 0.3);
     /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
-.login-littleText {
-    margin-left: 40px;
-    width: 240px;
-    margin-top: 2px;
-    height: 20px;
-}
-
-.login-error {
-    float: left;
-    margin-top: 4px;
-    font-size: 12px;
-    color: red;
+.little-tips{
+    margin-top: 0.05rem;
+    font-size: 0.15rem;
+    color: darkolivegreen;
     /*display: none;*/
 }
 
-.login-register {
-    float: right;
-}
-
-.login-re {
-    font-size: 12px;
-    color: grey;
-}
-
-.login-button {
-    margin-top: 20px;
-    height: 40px;
-}
-
-.login-btn {
-    width: 160px;
-    height: 48px;
-    margin-left: 80px;
-    font-size: 16px;
+.vercode{
+    /*float: left;*/
+    width: 2rem;
+    height: 0.5rem;
+    font-size: 0.25rem;
     font-family: 微软雅黑;
-    color: floralwhite;
-    border: 0;
-    background-color: deepskyblue;
-}
-
-.bottom-content {
-    height: 80px;
-    background-color: aliceblue;
-}
-
-
-#{
-    magrin: 0;
-    padding: 0;
-}
-ul {
-    list-style-type: none;
-}
-
-li {
-    list-style-type: none;
-    display: inline;
-}
-
-.top-content {
-    height: 60px;
-    background-color: skyblue;
-}
-
-.top-left {
-    float: left;
-    width: 120px;
-}
-
-.top-left-title {
-    float: left;
-    font-size: 24px;
-    font-family: 微软雅黑;
-    color: brown;
-}
-
-.middle {
-    height: 600px;
-    background-color: aqua;
-}
-
-.middle-container {
-    position: relative;
-    top: 80px;
-    left: 50%;
-    margin-left: -440px;
-    height: 480px;
-    width: 880px;
-    /*background-color: deepskyblue;*/
-}
-
-/*.middle-images{*/
-/*    float: left;*/
-/*    height: 480px;*/
-/*    width: 480px;*/
-/*}*/
-/*.middle-pic{*/
-/*    height: 480px;*/
-/*    width: 480px;*/
-/*}*/
-.frame-login {
-    float: left;
-    margin-top: -40px;
-    height: 480px;
-    width: 640px;
-    margin-left: 80px;
-    background-color: white;
-    /*margin: 80px;*/
-}
-
-.login-title {
-    font-size: 24px;
-    font-family: 微软雅黑;
-    text-align: center;
-    margin-top: 24px;
-    margin-bottom: 30px;
-    height: 40px;
-}
-
-.login-input {
-    /*margin-left: 48px;*/
-    margin: 0 auto;
-    /*margin-top: 20px;*/
-    height: 38px;
-    width: 375px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
-.login-text {
-    width: 360px;
-    height: 36px;
-    font-size: 16px;
-    font-family: 微软雅黑;
-    color: grey;
-    border-width: 0 0 0 10px;
-    border-color: rgba(0, 0, 0, 0);
-    /*border: 10px solid rgba(0,0,0,0);*/
-    /*border: 1px solid rgba(0,0,0,0,5);*/
+.email-btn{
+    /*float: right;*/
+    margin-left: 0.15rem;
+    margin-top: 0.05rem;
+    /*margin-right: 0.1rem;*/
+    height: 0.4rem;
+    width: 1.5rem;
+    background-color: lightskyblue;
+    border: 0;
 }
 
-.login-littleText {
-    margin: 2px auto 20px;
-    width: 360px;
-    height: 20px;
+.img-text{
+    /*margin-top: -0.2rem;*/
 }
 
-.login-error {
-    float: left;
-    margin-top: 4px;
-    font-size: 12px;
-    color: red;
+#imgVerifyCode{
+    float: right;
+    margin-right: 0.2rem;
+    width: 1.5rem;
+    height: 0.5rem;
+}
+
+#error_msg{
     display: none;
 }
+/*.login-littleText {*/
+/*    margin-left: 1rem;*/
+/*    width: 5rem;*/
+/*    margin-top: 0.05rem;*/
+/*    height: 1rem;*/
+/*    background-color: grey;*/
+/*}*/
 
-.login-register {
-    float: right;
-}
+/*.login-error {*/
+/*    float: left;*/
+/*    margin-top: 4px;*/
+/*    font-size: 12px;*/
+/*    color: red;*/
+/*    !*display: none;*!*/
+/*}*/
 
-.login-re {
-    font-size: 12px;
-    color: grey;
-}
+/*.login-register {*/
+/*    float: right;*/
+/*}*/
+
+/*.login-re {*/
+/*    font-size: 0.1rem;*/
+/*    color: grey;*/
+/*}*/
 
 .login-button {
-    margin: 40px auto;
-    width: 320px;
-    height: 40px;
+    margin-top: 0.5rem;
+    height: 1rem;
 }
 
 .login-btn {
-    width: 160px;
-    height: 48px;
-    margin-left: 80px;
-    font-size: 16px;
+    width: 2rem;
+    height: 0.8rem;
+    margin-left: 2rem;
+    font-size: 0.3rem;
     font-family: 微软雅黑;
     color: floralwhite;
     border: 0;
     background-color: deepskyblue;
 }
 
+.re-login{
+    margin-top: 1rem;
+}
+
 .bottom-content {
-    height: 80px;
+    height: 1.2rem;
     background-color: aliceblue;
 }

@@ -7,6 +7,7 @@
 
     <%@include file="/pages/common/header.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/user.css">
+    <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
 <div class="top-content">
