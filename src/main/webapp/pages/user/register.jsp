@@ -48,7 +48,7 @@
             <form class="login-box" action="userServlet" method="post">
                 <input type="hidden" name="action" value="register">
 
-                <span id="error_msg" style="color: red ">注册错误信息显示</span>
+                <span id="register_error_msg" style="color: red ">注册错误信息显示</span>
 
                 <!-- //TODO 给用户名输入框绑定失去焦点事件,发起 AJAX 请求请求服务器验证用户名是否可用 -->
                 <div class="login-input"><label>
@@ -67,11 +67,11 @@
                 </label></div>
 
                 <label>
-                    <input type="text" name="verifyCode" placeholder="邮箱验证码">
+                    <input type="text" name="emailVerifyCode" placeholder="邮箱验证码">
                 </label> <input type="button" id="emailVerifyCode" value="获取验证码"><br/>
 
                 <label>
-                    <input type="text" name="imgCode" placeholder="图片验证码">
+                    <input type="text" name="imgVerifyCode" placeholder="图片验证码">
                 </label>
                 <img id="imgVerifyCode" style="width: 120px;height: 40px" alt="验证码加载失败，请稍后重试" src="imgVerifyCode.jpg"/>
 
