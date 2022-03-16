@@ -1,7 +1,7 @@
 #{
     magrin: 0;
     padding: 0;
-}
+},
 ul {
     list-style-type: none;
 }
@@ -100,14 +100,14 @@ li {
     /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
-.little-tips{
+.little-tips {
     margin-top: 0.05rem;
     font-size: 0.15rem;
     color: darkolivegreen;
     /*display: none;*/
 }
 
-.vercode{
+.vercode {
     /*float: left;*/
     width: 2rem;
     height: 0.5rem;
@@ -116,7 +116,7 @@ li {
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.email-btn{
+.email-btn {
     /*float: right;*/
     margin-left: 0.15rem;
     margin-top: 0.05rem;
@@ -127,20 +127,21 @@ li {
     border: 0;
 }
 
-.img-text{
+.img-text {
     /*margin-top: -0.2rem;*/
 }
 
-#imgVerifyCode{
+#imgVerifyCode {
     float: right;
     margin-right: 0.2rem;
     width: 1.5rem;
     height: 0.5rem;
 }
 
-#error_msg{
+#error_msg {
     display: none;
 }
+
 /*.login-littleText {*/
 /*    margin-left: 1rem;*/
 /*    width: 5rem;*/
@@ -182,7 +183,7 @@ li {
     background-color: deepskyblue;
 }
 
-.re-login{
+.re-login {
     margin-top: 1rem;
 }
 

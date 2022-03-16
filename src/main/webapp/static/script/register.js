@@ -1,37 +1,40 @@
-window.onload = function (){
+window.onload = function () {
+    // 给用户名输入框绑定失去焦点事件，先使用正则表达式验证格式，后发起 AJAX 请求服务器验证用户名存在性
+    $(".login-text").first().blur(function () {
+        let username = this.value;
+        // TODO 使用正则表达式验证用户名格式正确性
+        $.ajax({
+            url: "userServlet",
+            data: "action=ajaxVerifyUsername&username=" + username,
+            type: "POST",
+            // function 函数中一定要有参数以接收来自服务器的数据
+            success: function (data) {
+                // TODO 此处应将服务器返回的 data 数据回显提示用户
+                alert(data)
+            },
+            dataType: "text"
+        });
+    });
+
+    // TODO 给密码输入框绑定失去焦点事件，使用正则表达式验证格式
+
+
+    // TODO 给获取邮箱验证码按钮绑定 ajax 请求事件
+    $("#emailVerifyCode").click(function () {
+        $.ajax({
+            url: "userServlet",
+            data: "action=ajaxGetVerifyCode",
+            type: "POST",
+            success: function (data) {
+                // TODO 友好用户验证码发送情况
+                alert(data)
+            }
+        });
+    });
+
+    // 图片验证码点击事件刷新验证码
     $("#imgVerifyCode").click(function () {
         // 用时间戳作参数以解决 Firefox 和 IE 的缓存问题
         this.src = "imgVerifyCode.jpg?date=" + new Date();
     });
-
-    // 给获取邮箱验证码按钮绑定单击事件
-    $("#emailVerifyCode").click(function () {
-        let emailBtnObj = document.getElementById("emailVerifyCode");
-        emailBtnObj.disabled = true;
-        //TODO 发起 AJAX 请求由服务器发送验证码到邮箱，并设置图片验证码 1 分钟后才可获取
-        alert("邮件已发送到您的邮箱,请注意查收!")
-    });
-
-    var loginText = document.getElementsByClassName("login-text");
-    var littleTips = document.getElementsByClassName("little-tips");
-
-    //用户名的相关事件
-    loginText[0].addEventListener('focus',function (){
-        littleTips[0].style.color = "darkolivegreen";
-        // console.log("我永远喜欢觉");
-    },false);
-    loginText[0].addEventListener('blur',function (){
-        var ajaxObject = {
-            type : "host";
-            url : "#";
-            data : loginText[0].value;
-            success : function (response){
-                console.log(response);
-            }
-        }
-        ajax(ajaxObject);
-        littleTips[0].style.color = "red";
-        // console.log("我永远喜欢恋恋");
-    },false);
-
 }

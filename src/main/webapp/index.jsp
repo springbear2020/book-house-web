@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>Book House</title>
-
     <%@include file="/pages/common/header.jsp" %>
 </head>
 <body>

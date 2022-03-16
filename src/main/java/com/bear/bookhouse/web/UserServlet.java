@@ -21,13 +21,22 @@ public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
 
     /**
+     * 用户登录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void login(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("已收到用户登录请求，处理中~~~");
+    }
+
+    /**
      * 用户注册
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
     protected void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         // 将注册表单中的各参数封装成 User
         User user = WebUtil.copyParamsToBean(new User(), req.getParameterMap());
         // 获取客户端输入的邮箱验证码和图片验证码
@@ -39,12 +48,12 @@ public class UserServlet extends BaseServlet {
         String emailVerifyCodeBySystem = "bear";
 
         if (!emailVerifyCodeBySystem.equals(emailVerifyCode)) {
-            req.setAttribute("errorMsg", "邮箱验证码有误，请检查后重新输入");
+            req.setAttribute("emailErrorMsg", "邮箱验证码有误，请检查后重新输入");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
-            req.setAttribute("errorMsg", "图片验证码有误，请检查后重新输入");
+            req.setAttribute("imgErrorMsg", "图片验证码有误，请检查后重新输入");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
@@ -57,12 +66,30 @@ public class UserServlet extends BaseServlet {
     }
 
     /**
-     * 用户登录
+     * AJAX 请求获取邮箱验证码
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) {
-        System.out.println("已收到用户登录请求，处理中~~~");
+    protected void ajaxGetVerifyCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String email = req.getParameter("email");
+        System.out.println(email);
+        resp.getWriter().write("验证码已成功发送到您的邮箱，请注意查收哦！");
+    }
+
+    /**
+     * AJAX 请求验证用户名是否存在
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void ajaxVerifyUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String username = req.getParameter("username");
+        User user = userService.queryUserByUsername(username);
+        if (user != null) {
+            resp.getWriter().write("用户名已存在，请重新输入");
+        } else {
+            resp.getWriter().write("用户名可用");
+        }
     }
 }

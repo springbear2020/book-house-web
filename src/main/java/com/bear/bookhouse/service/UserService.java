@@ -14,4 +14,12 @@ public interface UserService {
      * @return true - 保存成功
      */
     boolean saveUser(User user);
+
+    /**
+     * 根据用户名查询用户信息
+     *
+     * @param username 用户名
+     * @return User or null
+     */
+    User queryUserByUsername(String username);
 }

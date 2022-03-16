@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService {
         }
         return userDao.saveUser(user) == 1;
     }
+
+    @Override
+    public User queryUserByUsername(String username) {
+        return userDao.queryUserByUsername(username);
+    }
 }
