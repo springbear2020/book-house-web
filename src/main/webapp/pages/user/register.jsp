@@ -11,7 +11,7 @@
     <script type="text/javascript">
         // 页面加载完成之后
         $(function () {
-            // 使用正则表达式验证各表单项信息是否合法
+            // TODO 使用正则表达式验证各表单项信息是否合法
 
             // 给验证码图片绑定单击事件
             $("#imgVerifyCode").click(function () {
@@ -23,7 +23,7 @@
             $("#emailVerifyCode").click(function () {
                 let emailBtnObj = document.getElementById("emailVerifyCode");
                 emailBtnObj.disabled = true;
-                // 发起 AJAX 请求由服务器发送验证码到邮箱
+                //TODO 发起 AJAX 请求由服务器发送验证码到邮箱，并设置图片验证码 1 分钟后才可获取
                 alert("邮件已发送到您的邮箱,请注意查收!")
             });
         })
@@ -50,13 +50,13 @@
 
                 <span id="error_msg" style="color: red ">注册错误信息显示</span>
 
-                <!-- 给用户名输入框绑定失去焦点事件,发起 AJAX 请求请求服务器验证用户名是否可用 -->
+                <!-- //TODO 给用户名输入框绑定失去焦点事件,发起 AJAX 请求请求服务器验证用户名是否可用 -->
                 <div class="login-input"><label>
                     <input type="text" name="username" placeholder="可使用数字、字母、下划线，但要以字母开头"
                            class="login-username login-text">
                 </label></div>
 
-                <!-- 此处应添加一只小眼睛以提供密码隐藏与显示功能-->
+                <!-- // TODO 此处应添加一只小眼睛以提供密码隐藏与显示功能-->
                 <div class="login-input"><label>
                     <input type="text" name="password" placeholder="由长度为5到15位的字母、数字或下划线组成"
                            class="login-password login-text">
@@ -66,7 +66,6 @@
                     <input type="email" name="email" placeholder="邮箱地址" class="login-password login-text">
                 </label></div>
 
-                <!--  此处应设置 1 分钟后才能再次获取邮箱验证码 -->
                 <label>
                     <input type="text" name="verifyCode" placeholder="邮箱验证码">
                 </label> <input type="button" id="emailVerifyCode" value="获取验证码"><br/>
@@ -80,7 +79,6 @@
                     <button type="submit" class="login-btn">立即注册</button>
                     <a href="pages/user/login.jsp">返回登录</a>
                 </div>
-                <!-- 留点空位 说不定能塞点啥 -->
             </form>
         </div>
     </div>
