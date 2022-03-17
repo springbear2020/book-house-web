@@ -32,6 +32,7 @@ li {
 .middle {
     height: 9rem;
     background-color: aqua;
+    background-image: url("https://pixabay.com/get/ge170a2ee682863f7d5b8c6de245b6fae217e34e3af22c04d55d5d972751f730bca21941a9ba0a7d376c7a5a21f95644dc27b639f43b8ecfdb5ddb0fd97327983_1280.jpg");
 }
 
 .middle-container {
@@ -65,7 +66,7 @@ li {
 
 .register-input {
     margin-left: 1rem;
-    margin-top: 0.15rem;
+    margin-top: 0.3rem;
     height: 0.8rem;
     width: 4rem;
 }
@@ -82,6 +83,18 @@ li {
     margin-top: 0.05rem;
     font-size: 0.15rem;
     color: darkolivegreen;
+}
+
+.tips-imgver{
+    display: none;
+}
+
+.password-eye{
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.3rem;
+    float: right;
+    z-index: auto;
 }
 
 /* 验证码输入框 */
@@ -101,8 +114,15 @@ li {
 }
 
 .register-button {
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     height: 1rem;
+}
+
+.registerErrorMsg{
+    width: 4rem;
+    margin-left: 1rem;
+    color: red;
+    display: none;
 }
 
 .register-btn {
@@ -120,4 +140,63 @@ li {
     height: 0;
     background-color: aliceblue;
     child-align: middle;
+}
+
+
+
+/*———————————————————— 登录页面 ————————————————————*/
+
+.frame-login {
+    position: relative;
+    left: 50%;
+    margin-left: -3rem;
+    width: 6rem;
+    height: 6rem;
+    background-color: white;
+    box-shadow: 0 0 1rem deepskyblue;
+}
+
+.login-title {
+    font-size: 0.4rem;
+    font-family: 微软雅黑, serif;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 0.5rem;
+}
+
+.login-input {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    height: 0.8rem;
+    width: 4rem;
+}
+
+.login-text {
+    width: 4rem;
+    height: 0.5rem;
+    font-size: 0.3rem;
+    font-family: 微软雅黑, serif;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.login-btn {
+    width: 1.6rem;
+    height: 0.8rem;
+    margin-left: 2.2rem;
+    margin-top: 0.2rem;
+    border-radius: 0.05rem;
+    font-size: 0.4rem;
+    color: aliceblue;
+    /*font-family: 微软雅黑, serif;*/
+    background-color: deepskyblue;
+    border: 0;
+}
+
+.login-littleText {
+    width: 4rem;
+    height: 0.5rem;
+    margin-left: 1rem;
+    margin-top: 0.1rem;
+    text-align: center;
 }

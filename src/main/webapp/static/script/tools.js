@@ -50,7 +50,7 @@
             doc.body.style.fontSize = "16px";
         }, false);
     }
-})(2160, 1440);
+})(2160, 4320);
 
 
 
