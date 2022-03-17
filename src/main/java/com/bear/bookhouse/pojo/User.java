@@ -11,16 +11,18 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private Integer score;
     private Date registerDate;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Date registerDate) {
+    public User(Integer id, String username, String password, String email, Integer score, Date registerDate) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.score = score;
         this.registerDate = registerDate;
     }
 
@@ -56,6 +58,14 @@ public class User {
         this.email = email;
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
     public Date getRegisterDate() {
         return registerDate;
     }
@@ -71,6 +81,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", score=" + score +
                 ", registerDate=" + registerDate +
                 '}';
     }

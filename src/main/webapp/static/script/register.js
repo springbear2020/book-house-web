@@ -1,40 +1,64 @@
 window.onload = function () {
     // 给用户名输入框绑定失去焦点事件，先使用正则表达式验证格式，后发起 AJAX 请求服务器验证用户名存在性
-    $(".login-text").first().blur(function () {
-        let username = this.value;
-        // TODO 使用正则表达式验证用户名格式正确性
+    $(".register-username").blur(function () {
+        let username = this.value
+        let regExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,15}$");
+        if (!regExp.test(username)) {
+            $("span.registerErrorMsg").text("用户名格式不正确")
+            return false;
+        } else {
+            $("span.registerErrorMsg").text("")
+        }
         $.ajax({
             url: "userServlet",
             data: "action=ajaxVerifyUsername&username=" + username,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
             success: function (data) {
-                // TODO 此处应将服务器返回的 data 数据回显提示用户
-                alert(data)
+                $("span.registerErrorMsg").text(data)
             },
             dataType: "text"
         });
     });
 
-    // TODO 给密码输入框绑定失去焦点事件，使用正则表达式验证格式
-
-
-    // TODO 给获取邮箱验证码按钮绑定 ajax 请求事件
-    $("#emailVerifyCode").click(function () {
-        $.ajax({
-            url: "userServlet",
-            data: "action=ajaxGetVerifyCode",
-            type: "POST",
-            success: function (data) {
-                // TODO 友好用户验证码发送情况
-                alert(data)
-            }
-        });
-    });
-
-    // 图片验证码点击事件刷新验证码
-    $("#imgVerifyCode").click(function () {
-        // 用时间戳作参数以解决 Firefox 和 IE 的缓存问题
-        this.src = "imgVerifyCode.jpg?date=" + new Date();
+    // 注册按钮单击事件，验证表单项格式
+    $(".register-btn").click(function () {
+        // 验证用户名格式
+        let username = $(".register-username").val();
+        let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,15}$");
+        if (!usernameExp.test(username)) {
+            $("span.registerErrorMsg").text("用户名格式不正确")
+            return false;
+        } else {
+            $("span.registerErrorMsg").text("")
+        }
+        // 验证密码格式
+        let password = $(".register-password").val();
+        let pwdReg = new RegExp("^.*(?=.{6,})(?=.*\\d)(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$");
+        if (!pwdReg.test(password)) {
+            $("span.registerErrorMsg").text("密码格式不正确");
+            return false;
+        } else {
+            $("span.registerErrorMsg").text("")
+        }
+        // 验证邮箱格式
+        let email = $(".register-email").val();
+        let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
+        if (!emailReg.test(email)) {
+            $("span.registerErrorMsg").text("邮箱格式不正确");
+            return false;
+        } else {
+            $("span.registerErrorMsg").text("")
+        }
+        // 验证验证码格式
+        let verifyCode = $(".verifyCode").val()
+        console.log(verifyCode === "")
+        if (!verifyCode.length > 0) {
+            $("span.registerErrorMsg").text("验证码不能为空");
+            return false;
+        } else {
+            $("span.registerErrorMsg").text("")
+        }
+        return true;
     });
 }

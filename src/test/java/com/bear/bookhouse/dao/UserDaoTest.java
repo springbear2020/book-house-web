@@ -16,14 +16,14 @@ class UserDaoTest {
 
     @Test
     void queryUserByUsername() {
-        String username = "admin";
+        String username = "admin2";
         User user = userDao.queryUserByUsername(username);
         System.out.println(user);
     }
 
     @Test
     void queryUserByUsernameAndPassword() {
-        String username = "admin";
+        String username = "admin2";
         String password = "admin";
         User user = userDao.queryUserByUsernameAndPassword(username, password);
         System.out.println(user);
@@ -31,7 +31,7 @@ class UserDaoTest {
 
     @Test
     void saveUser() {
-        User user = new User(null, "admin", "admin", "admin@admin.com", new Date());
+        User user = new User(null, "admin2", "admin", "admin@admin.com", 100, new Date());
         int i = userDao.saveUser(user);
         System.out.println(i);
     }

@@ -25,7 +25,7 @@ li {
 .top-left-title {
     float: left;
     font-size: 0.4rem;
-    font-family: 微软雅黑;
+    font-family: 微软雅黑, serif;
     color: brown;
 }
 
@@ -37,100 +37,62 @@ li {
 .middle-container {
     display: -webkit-flex;
     display: flex;
-    /*弹性框*/
     position: relative;
     top: 0.5rem;
     left: 50%;
     margin-left: -8rem;
     height: 8rem;
     width: 16rem;
-    /*background-color: deepskyblue;*/
 }
 
-.middle-images {
-    float: left;
-    /*height: 480px;*/
-    /*width: 480px;*/
-}
-
-.middle-pic {
-    /*height: 480px;*/
-    /*width: 480px;*/
-}
-
-.frame-login {
-    /*float: left;*/
-    /*margin-top: 40px;*/
-    /*height: 400px;*/
-    /*width: 320px;*/
-    /*margin-left: 80px;*/
+.frame-register {
     position: relative;
     left: 50%;
     margin-left: -3rem;
     width: 6rem;
     background-color: white;
     box-shadow: 0 0 1rem deepskyblue;
-    /*margin: 80px;*/
 }
 
-.login-title {
+.register-title {
     font-size: 0.4rem;
-    font-family: 微软雅黑;
+    font-family: 微软雅黑, serif;
     text-align: center;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     height: 0.5rem;
 }
 
-.login-input {
+.register-input {
     margin-left: 1rem;
     margin-top: 0.15rem;
     height: 0.8rem;
     width: 4rem;
-    /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
-.login-text {
+.register-text {
     width: 4rem;
     height: 0.5rem;
     font-size: 0.3rem;
-    font-family: 微软雅黑;
-    /*color: grey;*/
+    font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    /*border: 1px solid rgba(0,0,0,0,5);*/
 }
 
 .little-tips {
     margin-top: 0.05rem;
     font-size: 0.15rem;
     color: darkolivegreen;
-    /*display: none;*/
 }
 
-.vercode {
-    /*float: left;*/
+/* 验证码输入框 */
+.verifyCode {
     width: 2rem;
     height: 0.5rem;
     font-size: 0.25rem;
-    font-family: 微软雅黑;
+    font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
-
-.email-btn {
-    /*float: right;*/
-    margin-left: 0.15rem;
-    margin-top: 0.05rem;
-    /*margin-right: 0.1rem;*/
-    height: 0.4rem;
-    width: 1.5rem;
-    background-color: lightskyblue;
-    border: 0;
-}
-
-.img-text {
-    /*margin-top: -0.2rem;*/
-}
-
+/* 验证码图片 */
 #imgVerifyCode {
     float: right;
     margin-right: 0.2rem;
@@ -138,56 +100,24 @@ li {
     height: 0.5rem;
 }
 
-#error_msg {
-    display: none;
-}
-
-/*.login-littleText {*/
-/*    margin-left: 1rem;*/
-/*    width: 5rem;*/
-/*    margin-top: 0.05rem;*/
-/*    height: 1rem;*/
-/*    background-color: grey;*/
-/*}*/
-
-/*.login-error {*/
-/*    float: left;*/
-/*    margin-top: 4px;*/
-/*    font-size: 12px;*/
-/*    color: red;*/
-/*    !*display: none;*!*/
-/*}*/
-
-/*.login-register {*/
-/*    float: right;*/
-/*}*/
-
-/*.login-re {*/
-/*    font-size: 0.1rem;*/
-/*    color: grey;*/
-/*}*/
-
-.login-button {
+.register-button {
     margin-top: 0.5rem;
     height: 1rem;
 }
 
-.login-btn {
+.register-btn {
     width: 2rem;
     height: 0.8rem;
     margin-left: 2rem;
     font-size: 0.3rem;
-    font-family: 微软雅黑;
+    font-family: 微软雅黑, serif;
     color: floralwhite;
     border: 0;
     background-color: deepskyblue;
 }
 
-.re-login {
-    margin-top: 1rem;
-}
-
 .bottom-content {
-    height: 1.2rem;
+    height: 0;
     background-color: aliceblue;
+    child-align: middle;
 }

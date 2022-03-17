@@ -31,7 +31,7 @@ public class WebUtil {
      * @param defaultValue 转换失败时返回的默认值
      * @return Integer
      */
-    public static int objectToString(Object obj, int defaultValue) {
+    public static int objectToInteger(Object obj, int defaultValue) {
         try {
             return Integer.parseInt(String.valueOf(obj));
         } catch (NumberFormatException e) {

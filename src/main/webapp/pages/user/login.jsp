@@ -4,20 +4,15 @@
 <head>
     <meta charset="utf-8">
     <title>欢迎登录</title>
-    <%@include file="/pages/common/header.jsp" %>
-    <link rel="stylesheet" type="text/css" href="static/css/user.css">
+    <%@include file="/pages/common/head.jsp" %>
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
-<div class="top-content">
-    <ul class="top-left">
-        <li class="top-left-title">Book&nbsp;House</li>
-    </ul>
-</div>
+<%@include file="/pages/common/header.jsp"%>
 <div class="middle">
     <div class="middle-container">
         <div class="frame-login">
-            <div class="login-title">欢&nbsp&nbsp迎&nbsp&nbsp登&nbsp&nbsp录</div>
+            <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
             <form class="login-box" action="userServlet" method="post">
                 <input type="hidden" name="action" value="login">
 
@@ -34,8 +29,8 @@
                 <div class="login-littleText">
                     <div class="login-error"></div>
                     <div class="login-register"><a class="login-re" href="pages/user/register.jsp"
-                                                   target="_self">忘记密码?</a> |
-                        <a class="login-re" href="pages/user/register.jsp" target="_self">没有账号?</a></div>
+                                                   target="_blank">忘记密码?</a> |
+                        <a class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
                 </div>
 
                 <div class="login-button">
@@ -45,6 +40,6 @@
         </div>
     </div>
 </div>
-<div class="bottom-content"></div>
+<%@include file="/pages/common/footer.jsp"%>
 </body>
 </html>
