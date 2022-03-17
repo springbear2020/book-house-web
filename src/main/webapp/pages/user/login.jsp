@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>欢迎登录</title>
+    <title>用户登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/head.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/register.css">

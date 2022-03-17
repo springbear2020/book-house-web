@@ -7,6 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div class="bottom-content">
-<%--    // TODO 写个 css 将 footer.jsp 布局--%>
+<%--    // TODO 写个 css 调整 footer.jsp 布局--%>
     <div align="center"><a href="#">免责声明</a> | <a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a></div>
 </div>

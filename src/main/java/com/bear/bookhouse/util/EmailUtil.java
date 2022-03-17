@@ -113,7 +113,7 @@ public class EmailUtil {
      *
      * @return 6 位数验证码字符串
      */
-    private String randomGenerateCode() {
+    public String randomGenerateCode() {
         StringBuilder builder = new StringBuilder();
         for (int j = 1; j <= VERIFY_CODE_LEN; j++) {
             int randomNum = new Random().nextInt(36);

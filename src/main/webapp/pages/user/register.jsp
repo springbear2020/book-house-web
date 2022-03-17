@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh_CN">
@@ -14,12 +15,13 @@
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-container">
-        <%--   // TODO 背景图片    --%>
         <div class="frame-register">
             <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
+
             <form class="register-box" action="userServlet" method="post">
                 <input type="hidden" name="action" value="register">
-
+                <!-- // TODO 此处添加 span 样式 -->
+                <span style="color: red">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
                 <div class="register-input"><label>
                     <input type="text" name="username" placeholder="&nbsp;用户名" class="register-username register-text"
                            value="${ empty requestScope.user.username? "" : requestScope.user.username}">
@@ -40,14 +42,20 @@
                 </label></div>
 
                 <div class="register-input"><label>
-                    <input type="text" name="imgVerifyCode" placeholder="&nbsp;图片验证码" class="verifyCode img-text">
-                    <img id="imgVerifyCode" alt="验证码加载失败，请稍后重试" src="imgVerifyCode.jpg"/>
-                    <div class="little-tips tips-imgver">* 恋恋世界第一</div>
+                    <input type="text" name="emailVerifyCode" placeholder="&nbsp;邮箱验证码"
+                           class="emailVerifyCode verifyCode img-text">
+                    <input type="button" name="emailCodeBtn" id="emailCodeBtn" value="获取验证码"/>
+                    <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空</div>
                 </label>
                 </div>
 
-                <%--                // TODO 将此 span 标签右对齐，红色--%>
-                <span class="registerErrorMsg">Msg:一起来起舞吧${empty requestScope.registerErrorMsg ? "" : requestScope.registerErrorMsg}</span>
+                <div class="register-input"><label>
+                    <input type="text" name="imgVerifyCode" placeholder="&nbsp;图片验证码"
+                           class="imgVerifyCode verifyCode img-text">
+                    <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
+                    <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不能为空</div>
+                </label>
+                </div>
 
                 <div class="register-button">
                     <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
