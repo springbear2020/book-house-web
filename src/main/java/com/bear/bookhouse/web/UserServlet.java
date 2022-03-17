@@ -84,20 +84,15 @@ public class UserServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void ajaxSendEmailCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.getWriter().write("true");
-        this.verifyCodeBySystem = EmailUtil.getInstance().randomGenerateCode();
-        System.out.println(this.verifyCodeBySystem);
-//        String email = req.getParameter("email");
-//        EmailUtil instance = EmailUtil.getInstance();
-//        String verifyCodeBySystem;
-//        try {
-//            instance.sendEmail(email);
-//            verifyCodeBySystem = instance.getVerifyCode();
-//            this.verifyCodeBySystem = verifyCodeBySystem;
-//            resp.getWriter().write("true");
-//        } catch (Exception e) {
-//            resp.getWriter().write("false");
-//            e.printStackTrace();
-//        }
+        String email = req.getParameter("email");
+        EmailUtil instance = EmailUtil.getInstance();
+        try {
+            instance.sendEmail(email);
+            this.verifyCodeBySystem = instance.getVerifyCode();
+            resp.getWriter().write("true");
+        } catch (Exception e) {
+            resp.getWriter().write("false");
+            e.printStackTrace();
+        }
     }
 }

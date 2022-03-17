@@ -20,8 +20,7 @@
 
             <form class="register-box" action="userServlet" method="post">
                 <input type="hidden" name="action" value="register">
-                <!-- // TODO 此处添加 span 样式 -->
-                <span style="color: red">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
+
                 <div class="register-input"><label>
                     <input type="text" name="username" placeholder="用户名" class="register-username register-text"
                            value="${ empty requestScope.user.username? "" : requestScope.user.username}">
@@ -31,8 +30,8 @@
                 <div class="register-input"><label>
                     <input type="password" name="password" placeholder="密码"
                            class="register-password register-text">
-                    <img class="pas-eye" src="static/pic/eye.png">
-                    <div class="little-tips tips-password">* 由字母、数字、特殊字符组成，长度为 6~16</div>
+                    <img class="pas-eye" src="static/img/eye_closed.png" alt="图片加载失败">
+                    <div class="little-tips tips-password">* 由字母、数字、字符(!@#$%^&*)组成，长度为 6~16</div>
                 </label></div>
 
                 <div class="register-input"><label>
@@ -56,6 +55,9 @@
                     <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不能为空</div>
                 </label>
                 </div>
+
+                <!-- // TODO 此处添加 span 样式 -->
+                <span style="color: red">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
 
                 <div class="register-button">
                     <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
