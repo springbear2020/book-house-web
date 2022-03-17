@@ -31,7 +31,7 @@ li {
 }
 
 .middle {
-    height: 8rem;
+    height: 10rem;
     background-color: aqua;
     background-image: url("https://pixabay.com/get/g16f5a7096fb35bf8af8af622b794c6a4b60ef6fdc5ef5d03233bad0e7d65e36f0145fcfeb812e38edfda62ab8a0cf45486f9b4a19203aabb23408fcbc75c0d37_1280.jpg");
 }
@@ -73,12 +73,29 @@ li {
 }
 
 .register-text {
-    width: 4rem;
+    width: 3.6rem;
     height: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
+    /*opacity: 0.1;*/
 }
+
+.register-password {
+    width: 3.2rem;
+    padding-right: 0.6rem;
+}
+
+.pas-eye {
+    position: absolute;
+    left: 4.5rem;
+    top: 2.7rem;
+    width: 0.4rem;
+    height: 0.4rem;
+}
+
 
 .little-tips {
     margin-top: 0.05rem;
@@ -86,18 +103,12 @@ li {
     color: darkolivegreen;
 }
 
-.password-eye{
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-top: -0.3rem;
-    float: right;
-    z-index: auto;
-}
-
 /* 验证码输入框 */
 .verifyCode {
-    width: 2.2rem;
+    width: 1.8rem;
     height: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     font-size: 0.25rem;
     font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -106,17 +117,20 @@ li {
 /* 邮箱验证码按钮 */
 .emailCodeBtn{
     float: right;
-    margin-right: 0.2rem;
+    /*margin-right: 0.2rem;*/
     width: 1.5rem;
-    height: 0.5rem;
+    height: 0.55rem;
+    background-color: cyan;
+    border: 0;
+    border-radius: 0.1rem;
 }
 
 /* 图片验证码图片 */
 #imgCodeBtn {
     float: right;
-    margin-right: 0.2rem;
+    /*margin-right: 0.2rem;*/
     width: 1.5rem;
-    height: 0.5rem;
+    height: 0.55rem;
 }
 
 .register-button {

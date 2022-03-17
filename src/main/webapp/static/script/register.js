@@ -84,39 +84,87 @@ $(function () {
         }
     });
 
+    // 辅助参数
+    let emailLocked = false;
     // 获取邮箱验证码按钮单击事件
     $("#emailCodeBtn").click(function () {
-        // 邮箱地址无效则不允许获取验证码
-        let email = $(".register-email").val();
-        let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
-        let obj = $(".tips-email");
-        if (!emailReg.test(email)) {
-            obj.css("color", "red");
+        if(emailLocked){
             return false;
-        } else {
-            obj.css("color", "darkolivegreen");
         }
+        else{
+            // 邮箱地址无效则不允许获取验证码
+            let email = $(".register-email").val();
+            let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
+            let obj = $(".tips-email");
+            if (!emailReg.test(email)) {
+                obj.css("color", "red");
+                return false;
+            } else {
+                obj.css("color", "darkolivegreen");
+            }
 
-        // 发起 ajax 请求让服务器发送随机验证码
-        $.ajax({
-            url: "userServlet",
-            data: "action=ajaxSendEmailCode&email=" + email,
-            type: "POST",
-            dataType: "text",
-            // TODO 此处应设置获取验证码按钮点击后需 1 分钟后才能再次点击，并显示倒计时信息
-            success: function (data) {
-                if (data === "true") {
-                    alert("验证码已成功发送到您的邮箱，请注意查收哦！")
-                } else {
+            // 发起 ajax 请求让服务器发送随机验证码
+            $.ajax({
+                url: "userServlet",
+                data: "action=ajaxSendEmailCode&email=" + email,
+                type: "POST",
+                dataType: "text",
+
+
+
+
+
+                success: function (data) {
+                    if (data === "true") {
+                        alert("验证码已成功发送到您的邮箱，请注意查收哦！")
+                        // 将这个事件锁起来
+                        emailLocked = true;
+                        let secondsNode = 60;
+                        let time = setInterval(function (){
+                            secondsNode--;
+                            $("#emailCodeBtn").val("已发送（"+secondsNode+")");
+                            $("#emailCodeBtn").css("background-color","grey")
+                            if(secondsNode <= 0){
+                                $("#emailCodeBtn").val("获取验证码");
+                                $("#emailCodeBtn").css("background-color","cyan")
+                                emailLocked = false;
+                                clearInterval(time);
+                            }
+                        },1000)
+                    } else {
+                        alert("验证码发送失败，请稍后重试！")
+                    }
+                },
+                error: function () {
                     alert("验证码发送失败，请稍后重试！")
                 }
-            },
-            error: function () {
-                alert("验证码发送失败，请稍后重试！")
-            }
-        });
+            });
+        }
+
 
     });
+
+    //眼睛图片单击事件
+    //辅助参数
+    let eyeClosed = false;
+    $(".pas-eye").click(function (){
+        if(eyeClosed){
+            //如果闭眼 则睁眼
+            //由可见变为不可见
+            this.src = "static/pic/eye.png"
+            // $(".register-password").type = "text";
+            $(".register-password").prop('type','password');
+            eyeClosed = false;
+        }
+        else{
+            //如果睁眼 则闭眼
+            //由不可见变为可见
+            this.src = "static/pic/eye_closed.png"
+            // $(".register-password").type = "text";
+            $(".register-password").prop('type','text');
+            eyeClosed = true;
+        }
+    })
 
     // 注册按钮单击事件
     $(".register-btn").click(function () {

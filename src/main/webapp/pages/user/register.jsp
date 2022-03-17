@@ -23,34 +23,34 @@
                 <!-- // TODO 此处添加 span 样式 -->
                 <span style="color: red">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
                 <div class="register-input"><label>
-                    <input type="text" name="username" placeholder="&nbsp;用户名" class="register-username register-text"
+                    <input type="text" name="username" placeholder="用户名" class="register-username register-text"
                            value="${ empty requestScope.user.username? "" : requestScope.user.username}">
                     <div class="little-tips tips-username">* 由字母、数字、下划线组成，长度为 1~15 且以字母开头</div>
                 </label></div>
 
-                <!-- // TODO 此处应添加一只小眼睛以提供密码隐藏与显示功能-->
                 <div class="register-input"><label>
-                    <input type="password" name="password" placeholder="&nbsp;密码"
+                    <input type="password" name="password" placeholder="密码"
                            class="register-password register-text">
+                    <img class="pas-eye" src="static/pic/eye.png">
                     <div class="little-tips tips-password">* 由字母、数字、特殊字符组成，长度为 6~16</div>
                 </label></div>
 
                 <div class="register-input"><label>
-                    <input type="email" name="email" placeholder="&nbsp;邮箱" class="register-email register-text"
+                    <input type="email" name="email" placeholder="邮箱" class="register-email register-text"
                            value="${ empty requestScope.user.email? "" : requestScope.user.email}">
                     <div class="little-tips tips-email">* e.g bookhouse@bookhouse.com</div>
                 </label></div>
 
                 <div class="register-input"><label>
-                    <input type="text" name="emailVerifyCode" placeholder="&nbsp;邮箱验证码"
+                    <input type="text" name="emailVerifyCode" placeholder="邮箱验证码"
                            class="emailVerifyCode verifyCode img-text">
-                    <input type="button" name="emailCodeBtn" id="emailCodeBtn" value="获取验证码"/>
+                    <input type="button" class="emailCodeBtn" id="emailCodeBtn" value="获取验证码"/>
                     <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空</div>
                 </label>
                 </div>
 
                 <div class="register-input"><label>
-                    <input type="text" name="imgVerifyCode" placeholder="&nbsp;图片验证码"
+                    <input type="text" name="imgVerifyCode" placeholder="图片验证码"
                            class="imgVerifyCode verifyCode img-text">
                     <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
                     <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不能为空</div>
