@@ -6,7 +6,7 @@
     <title>用户登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/head.jsp" %>
-    <link rel="stylesheet" type="text/css" href="static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>

@@ -31,7 +31,7 @@
                     <input type="password" name="password" placeholder="密码"
                            class="register-password register-text">
                     <img class="pas-eye" src="static/img/eye_closed.png" alt="图片加载失败">
-                    <div class="little-tips tips-password">* 由字母、数字、字符(!@#$%^&*)组成，长度为 6~16</div>
+                    <div class="little-tips tips-password">* 由任意字符组成，长度为 6~16</div>
                 </label></div>
 
                 <div class="register-input"><label>
@@ -43,8 +43,8 @@
                 <div class="register-input"><label>
                     <input type="text" name="emailVerifyCode" placeholder="邮箱验证码"
                            class="emailVerifyCode verifyCode img-text">
-                    <input type="button" class="emailCodeBtn" id="emailCodeBtn" value="获取验证码"/>
-                    <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空</div>
+                    <input type="button" class="emailCodeBtn" id="emailCodeBtn" value="获取"/>
+                    <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空，点击获取</div>
                 </label>
                 </div>
 
@@ -52,7 +52,7 @@
                     <input type="text" name="imgVerifyCode" placeholder="图片验证码"
                            class="imgVerifyCode verifyCode img-text">
                     <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
-                    <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不能为空</div>
+                    <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不区分大小写</div>
                 </label>
                 </div>
 

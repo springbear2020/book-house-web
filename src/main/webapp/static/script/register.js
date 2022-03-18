@@ -31,15 +31,13 @@ $(function () {
 
     // 密码输入框的失焦事件
     $(".register-password").blur(function () {
-        // 验证密码格式
+        // 验证密码长度
         let password = $(".register-password").val();
-        // TODO 密码正则表达式
-        let pwdReg = new RegExp("");
-        let obj = $(".tips-password");
-        if (!pwdReg.test(password)) {
-            obj.css("color", "red");
+        let pwdObj = $(".tips-password");
+        if (password < 6 || password > 16) {
+            pwdObj.css("color", "red");
         } else {
-            obj.css("color", "darkolivegreen");
+            pwdObj.css("color", "darkolivegreen");
         }
     });
 
@@ -89,20 +87,20 @@ $(function () {
     // 获取邮箱验证码按钮单击事件
     let emailLocked = false;
     $("#emailCodeBtn").click(function () {
+        // 邮箱地址无效则不允许获取验证码
+        let email = $(".register-email").val();
+        let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
+        let tipsObj = $(".tips-email");
+        if (!emailReg.test(email)) {
+            tipsObj.css("color", "red");
+            return false;
+        } else {
+            tipsObj.css("color", "darkolivegreen");
+        }
+
         if (emailLocked) {
             return false;
         } else {
-            // 邮箱地址无效则不允许获取验证码
-            let email = $(".register-email").val();
-            let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
-            let tipsObj = $(".tips-email");
-            if (!emailReg.test(email)) {
-                tipsObj.css("color", "red");
-                return false;
-            } else {
-                tipsObj.css("color", "darkolivegreen");
-            }
-
             // 发起 ajax 请求让服务器发送随机验证码
             $.ajax({
                 url: "userServlet",
@@ -164,13 +162,11 @@ $(function () {
             usernameObj.css("color", "red");
             return false;
         }
-        // 验证密码格式
+        // 验证密码长度
         let password = $(".register-password").val();
-        let pwdReg = new RegExp("");
         let pwdObj = $(".tips-password");
-        if (!pwdReg.test(password)) {
+        if (password < 6 || password > 16) {
             pwdObj.css("color", "red");
-            return false;
         } else {
             pwdObj.css("color", "darkolivegreen");
         }

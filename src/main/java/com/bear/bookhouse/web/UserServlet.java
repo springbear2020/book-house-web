@@ -39,7 +39,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
-        if (!this.verifyCodeBySystem.equals(emailVerifyCode)) {
+        if (!this.verifyCodeBySystem.equalsIgnoreCase(emailVerifyCode)) {
             req.setAttribute("errorMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
@@ -84,15 +84,16 @@ public class UserServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void ajaxSendEmailCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String email = req.getParameter("email");
-        EmailUtil instance = EmailUtil.getInstance();
-        try {
-            instance.sendEmail(email);
-            this.verifyCodeBySystem = instance.getVerifyCode();
-            resp.getWriter().write("true");
-        } catch (Exception e) {
-            resp.getWriter().write("false");
-            e.printStackTrace();
-        }
+        resp.getWriter().write("true");
+//        String email = req.getParameter("email");
+//        EmailUtil instance = EmailUtil.getInstance();
+//        try {
+//            instance.sendEmail(email);
+//            this.verifyCodeBySystem = instance.getVerifyCode();
+//            resp.getWriter().write("true");
+//        } catch (Exception e) {
+//            resp.getWriter().write("false");
+//            e.printStackTrace();
+//        }
     }
 }
