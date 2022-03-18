@@ -33,7 +33,7 @@ li {
 .middle {
     height: 10rem;
     background-color: aqua;
-    background-image: url("https://pixabay.com/get/g16f5a7096fb35bf8af8af622b794c6a4b60ef6fdc5ef5d03233bad0e7d65e36f0145fcfeb812e38edfda62ab8a0cf45486f9b4a19203aabb23408fcbc75c0d37_1280.jpg");
+    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
 }
 
 .middle-container {
@@ -169,5 +169,5 @@ li {
     padding-left: 0.1rem;
     padding-right: 0.1rem;
     background-color: aliceblue;
-    display: none;
+    /*display: none;*/
 }

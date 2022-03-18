@@ -24,18 +24,4 @@ public class WebUtil {
         return bean;
     }
 
-    /**
-     * 将 Object 类型转换为 Integer
-     *
-     * @param obj          Object
-     * @param defaultValue 转换失败时返回的默认值
-     * @return Integer
-     */
-    public static int objectToInteger(Object obj, int defaultValue) {
-        try {
-            return Integer.parseInt(String.valueOf(obj));
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
-    }
 }

@@ -1,5 +1,4 @@
 $(function () {
-
     // 用户名输入框失焦事件
     $(".register-username").blur(function () {
         // 验证用户名格式
@@ -34,7 +33,7 @@ $(function () {
         // 验证密码长度
         let password = $(".register-password").val();
         let pwdObj = $(".tips-password");
-        if (password < 6 || password > 16) {
+        if (password.length < 6 || password.length > 16) {
             pwdObj.css("color", "red");
         } else {
             pwdObj.css("color", "darkolivegreen");
@@ -171,10 +170,11 @@ $(function () {
             usernameObj.css("color", "red");
             return false;
         }
+
         // 验证密码长度
         let password = $(".register-password").val();
         let pwdObj = $(".tips-password");
-        if (password < 6 || password > 16) {
+        if (password.length < 6 || password.length > 16) {
             // 淡入淡出
             // $notice.css("top","2.7rem");
             // $notice.fadeIn();
@@ -184,6 +184,7 @@ $(function () {
         } else {
             pwdObj.css("color", "darkolivegreen");
         }
+
         // 验证邮箱格式
         let email = $(".register-email").val();
         let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
@@ -198,6 +199,7 @@ $(function () {
         } else {
             emailObj.css("color", "darkolivegreen");
         }
+
         // 验证邮箱验证码格式
         let emailCode = $(".emailVerifyCode").val()
         let emailCodeObj = $(".tips-emailCode");
@@ -211,6 +213,7 @@ $(function () {
         } else {
             emailCodeObj.css("color", "darkolivegreen");
         }
+
         // 验证图片验证码格式
         let imgCode = $(".imgVerifyCode").val()
         let imgCodeObj = $(".tips-imgCode");

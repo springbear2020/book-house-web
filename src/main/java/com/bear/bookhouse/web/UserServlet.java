@@ -20,7 +20,7 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private String verifyCodeBySystem = "bear";
+    private String verifyCodeBySystem  = "bear";
 
     /**
      * 用户注册
