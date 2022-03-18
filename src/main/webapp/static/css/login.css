@@ -12,9 +12,13 @@ li {
     display: inline;
 }
 
+body {
+    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
+}
+
 .top-content {
     height: 1.2rem;
-    background-color: skyblue;
+    /*background-color: skyblue;*/
 }
 
 .top-left {
@@ -30,17 +34,17 @@ li {
     color: brown;
 }
 
-.middle {
-    height: 10rem;
-    background-color: aqua;
-    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
-}
+/*.middle {*/
+/*    height: 10rem;*/
+/*    background-color: aqua;*/
+/*    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");*/
+/*}*/
 
 .middle-container {
     display: -webkit-flex;
     display: flex;
     position: relative;
-    top: 1rem;
+    top: 1.5rem;
     left: 50%;
     margin-left: -8rem;
     height: 8rem;
@@ -48,13 +52,15 @@ li {
 }
 
 .frame-login {
-    position: relative;
-    left: 50%;
-    margin-left: -3rem;
+    position: absolute;
+    left: 11rem;
+    /*margin-left: -3rem;*/
     width: 6rem;
     height: 6rem;
     background-color: white;
-    box-shadow: 0 0 1rem deepskyblue;
+    border-radius: 1rem;
+    opacity: 0.9;
+    /*box-shadow: 0 0 1rem deepskyblue;*/
 }
 
 .login-title {
@@ -87,20 +93,21 @@ li {
     width: 1.6rem;
     height: 0.8rem;
     margin-left: 2.2rem;
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
     border-radius: 0.05rem;
-    font-size: 0.4rem;
+    font-size: 0.35rem;
     color: aliceblue;
     /*font-family: 微软雅黑, serif;*/
     background-color: deepskyblue;
     border: 0;
+    border-radius: 0.2rem;
 }
 
 .login-littleText {
     width: 4rem;
     height: 0.5rem;
     margin-left: 1rem;
-    margin-top: 0.1rem;
+    margin-top: 0.4rem;
     text-align: center;
 }
 
@@ -110,4 +117,7 @@ li {
     top: 2.65rem;
     width: 0.5rem;
     height: 0.5rem;
+}
+.bottom-content {
+    margin-top: 1.5rem;
 }

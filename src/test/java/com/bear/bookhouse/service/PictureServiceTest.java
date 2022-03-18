@@ -16,6 +16,8 @@ public class PictureServiceTest {
     public void getPicturesUrlById() {
         Integer[] integers = new Integer[]{1, 5, 2, 4};
         List<String> resList = pictureService.getPicturesUrlById(integers);
-        System.out.println(resList);
+        for (String s : resList) {
+            System.out.println(s);
+        }
     }
 }

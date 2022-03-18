@@ -120,7 +120,7 @@ $(function () {
                             emailBtnObj.css("background-color", "grey")
                             if (secondsNode <= 0) {
                                 emailBtnObj.val("获取验证码");
-                                emailBtnObj.css("background-color", "cyan")
+                                emailBtnObj.css("background-color", "lightskyblue")
                                 emailLocked = false;
                                 clearInterval(time);
                             }

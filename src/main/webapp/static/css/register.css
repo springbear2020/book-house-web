@@ -11,10 +11,12 @@ li {
     list-style-type: none;
     display: inline;
 }
-
+body{
+    background-image: url("https://pixabay.com/get/g6008993a5716b23a2c2f59b9661e7e9b74f53a194ce7b35b2f34457a7ddf8a2510555eb710bda9f9fae4dd21259eba2be2f1025bf8c0405d1afb65031c544c70_1280.jpg");
+}
 .top-content {
     height: 1.2rem;
-    background-color: skyblue;
+    /*background-color: skyblue;*/
 }
 
 .top-left {
@@ -30,30 +32,43 @@ li {
     color: brown;
 }
 
-.middle {
-    height: 10rem;
-    background-color: aqua;
-    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
-}
+/*.middle {*/
+/*    height: 10rem;*/
+/*    !*width: 13rem;*!*/
+/*    background-color: aqua;*/
+/*    background-repeat: no-repeat;*/
+/*    !*background-position: center;*!*/
+/*    background-image: url("https://pixabay.com/get/g6008993a5716b23a2c2f59b9661e7e9b74f53a194ce7b35b2f34457a7ddf8a2510555eb710bda9f9fae4dd21259eba2be2f1025bf8c0405d1afb65031c544c70_1280.jpg");*/
+/*}*/
 
 .middle-container {
-    display: -webkit-flex;
-    display: flex;
-    position: relative;
-    top: 0.5rem;
+    position: absolute;
     left: 50%;
-    margin-left: -8rem;
-    height: 8rem;
-    width: 16rem;
+    top: 6rem;
+    /*top: 50%;*/
+    /*margin-left: -8rem;*/
+    margin-top: -4rem;
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*position: relative;*/
+    /*top: 0.5rem;*/
+    /*left: 50%;*/
+    /*margin-left: -8rem;*/
+    /*height: 8rem;*/
+    /*width: 16rem;*/
 }
 
 .frame-register {
-    position: relative;
-    left: 50%;
-    margin-left: -3rem;
+    position: absolute;
+    left: 3rem;
+    /*margin-left: -3rem;*/
+    margin-top: -0.5rem;
+    height: 9rem;
     width: 6rem;
     background-color: white;
-    box-shadow: 0 0 1rem deepskyblue;
+    border-radius: 1rem;
+    /*box-shadow: 0 0 1rem deepskyblue;*/
+    opacity: 0.9;
 }
 
 .register-title {
@@ -120,7 +135,7 @@ li {
     /*margin-right: 0.2rem;*/
     width: 1.5rem;
     height: 0.55rem;
-    background-color: cyan;
+    background-color: lightskyblue;
     border: 0;
     border-radius: 0.1rem;
 }
@@ -141,16 +156,19 @@ li {
 .register-btn {
     width: 2rem;
     height: 0.8rem;
+    margin-top: 0.3rem;
     margin-left: 2rem;
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     color: floralwhite;
     border: 0;
     background-color: deepskyblue;
+    border-radius: 0.3rem;
 }
 
 .bottom-content {
     height: 0;
+    font-size: 0.3rem;
     background-color: aliceblue;
     child-align: middle;
 }
@@ -170,4 +188,12 @@ li {
     padding-right: 0.1rem;
     background-color: aliceblue;
     /*display: none;*/
+}
+
+.bottom-content{
+    position: absolute;
+    top: 5.6rem;
+    left: 50%;
+    margin-left: -5rem;
+    width: 10rem;
 }

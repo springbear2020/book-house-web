@@ -14,56 +14,57 @@
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-    <div class="middle-container">
-        <div class="frame-register">
-            <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
 
-            <form class="register-box" action="userServlet" method="post">
-                <input type="hidden" name="action" value="register">
+</div>
+<div class="middle-container">
+    <div class="frame-register">
+        <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
 
-                <div class="register-input"><label>
-                    <input type="text" name="username" placeholder="用户名" class="register-username register-text"
-                           value="${ empty requestScope.user.username? "" : requestScope.user.username}">
-                    <div class="little-tips tips-username">* 由字母、数字、下划线组成，长度为 1~15 且以字母开头</div>
-                </label></div>
+        <form class="register-box" action="userServlet" method="post">
+            <input type="hidden" name="action" value="register">
 
-                <div class="register-input"><label>
-                    <input type="password" name="password" placeholder="密码"
-                           class="register-password register-text">
-                    <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
-                    <div class="little-tips tips-password">* 由任意字符组成，长度为 6~16</div>
-                </label></div>
+            <div class="register-input"><label>
+                <input type="text" name="username" placeholder="用户名" class="register-username register-text"
+                       value="${ empty requestScope.user.username? "" : requestScope.user.username}">
+                <div class="little-tips tips-username">* 由字母、数字、下划线组成，长度为 1~15 且以字母开头</div>
+            </label></div>
 
-                <div class="register-input"><label>
-                    <input type="email" name="email" placeholder="邮箱" class="register-email register-text"
-                           value="${ empty requestScope.user.email? "" : requestScope.user.email}">
-                    <div class="little-tips tips-email">* e.g bookhouse@bookhouse.com</div>
-                </label></div>
+            <div class="register-input"><label>
+                <input type="password" name="password" placeholder="密码"
+                       class="register-password register-text">
+                <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
+                <div class="little-tips tips-password">* 由任意字符组成，长度为 6~16</div>
+            </label></div>
 
-                <div class="register-input"><label>
-                    <input type="text" name="emailVerifyCode" placeholder="邮箱验证码"
-                           class="emailVerifyCode verifyCode img-text">
-                    <input type="button" class="emailCodeBtn" id="emailCodeBtn" value="获取"/>
-                    <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空，点击获取</div>
-                </label>
-                </div>
+            <div class="register-input"><label>
+                <input type="email" name="email" placeholder="邮箱" class="register-email register-text"
+                       value="${ empty requestScope.user.email? "" : requestScope.user.email}">
+                <div class="little-tips tips-email">* e.g bookhouse@bookhouse.com</div>
+            </label></div>
 
-                <div class="register-input"><label>
-                    <input type="text" name="imgVerifyCode" placeholder="图片验证码"
-                           class="imgVerifyCode verifyCode img-text">
-                    <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
-                    <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不区分大小写</div>
-                </label>
-                </div>
+            <div class="register-input"><label>
+                <input type="text" name="emailVerifyCode" placeholder="邮箱验证码"
+                       class="emailVerifyCode verifyCode img-text">
+                <input type="button" class="emailCodeBtn" id="emailCodeBtn" value="获取"/>
+                <div class="little-tips tips-verifyCode tips-emailCode">* 邮箱验证码不能为空，点击获取</div>
+            </label>
+            </div>
 
-                <!-- // TODO 此处添加 span 样式 -->
-                <span style="color: red" class="notice">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
+            <div class="register-input"><label>
+                <input type="text" name="imgVerifyCode" placeholder="图片验证码"
+                       class="imgVerifyCode verifyCode img-text">
+                <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
+                <div class="little-tips tips-verifyCode tips-imgCode">* 图片验证码不区分大小写</div>
+            </label>
+            </div>
 
-                <div class="register-button">
-                    <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
-                </div>
-            </form>
-        </div>
+            <!-- // TODO 此处添加 span 样式 -->
+            <span style="color: red" class="notice">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
+
+            <div class="register-button">
+                <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
+            </div>
+        </form>
     </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>
