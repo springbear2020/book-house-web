@@ -30,7 +30,7 @@
                 <div class="register-input"><label>
                     <input type="password" name="password" placeholder="密码"
                            class="register-password register-text">
-                    <img class="pas-eye" src="static/img/eye_closed.png" alt="图片加载失败">
+                    <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
                     <div class="little-tips tips-password">* 由任意字符组成，长度为 6~16</div>
                 </label></div>
 
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- // TODO 此处添加 span 样式 -->
-                <span style="color: red">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
+                <span style="color: red" class="notice">${ empty requestScope.errorMsg ? "" : requestScope.errorMsg}</span>
 
                 <div class="register-button">
                     <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>

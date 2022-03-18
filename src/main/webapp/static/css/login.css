@@ -1,3 +1,52 @@
+#{
+    magrin: 0;
+    padding: 0;
+},
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+}
+
+.top-content {
+    height: 1.2rem;
+    background-color: skyblue;
+}
+
+.top-left {
+    margin: 0.3rem 0;
+    float: left;
+    width: 3rem;
+}
+
+.top-left-title {
+    float: left;
+    font-size: 0.4rem;
+    font-family: 微软雅黑, serif;
+    color: brown;
+}
+
+.middle {
+    height: 10rem;
+    background-color: aqua;
+    background-image: url("https://pixabay.com/get/g16f5a7096fb35bf8af8af622b794c6a4b60ef6fdc5ef5d03233bad0e7d65e36f0145fcfeb812e38edfda62ab8a0cf45486f9b4a19203aabb23408fcbc75c0d37_1280.jpg");
+}
+
+.middle-container {
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    top: 1rem;
+    left: 50%;
+    margin-left: -8rem;
+    height: 8rem;
+    width: 16rem;
+}
+
 .frame-login {
     position: relative;
     left: 50%;
@@ -25,8 +74,10 @@
 }
 
 .login-text {
-    width: 4rem;
+    width: 3.6rem;
     height: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -36,7 +87,7 @@
     width: 1.6rem;
     height: 0.8rem;
     margin-left: 2.2rem;
-    margin-top: 0.2rem;
+    margin-top: 0.4rem;
     border-radius: 0.05rem;
     font-size: 0.4rem;
     color: aliceblue;
@@ -51,4 +102,12 @@
     margin-left: 1rem;
     margin-top: 0.1rem;
     text-align: center;
+}
+
+.pas-eye{
+    position: absolute;
+    left: 4.4rem;
+    top: 2.65rem;
+    width: 0.5rem;
+    height: 0.5rem;
 }

@@ -154,3 +154,20 @@ li {
     background-color: aliceblue;
     child-align: middle;
 }
+
+.notice {
+    left: 1.2rem;
+    /*top: 50%;*/
+    /*top: 1.6rem;*/
+    /*top: 2.7rem;*/
+    /*top: 3.8rem;*/
+    /*top: 4.9rem;*/
+    /*top: 6rem;*/
+    position: absolute;
+    border: 1px solid black;
+    box-shadow: 0 0 0.2rem black;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    background-color: aliceblue;
+    display: none;
+}

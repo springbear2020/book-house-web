@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 <head>
     <meta charset="utf-8">
     <title>用户登录</title>
@@ -8,6 +8,7 @@
     <%@include file="/pages/common/head.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/login.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/login.js"></script>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp"%>
@@ -19,13 +20,14 @@
                 <input type="hidden" name="action" value="login">
 
                 <div class="login-input"><label>
-                    <input type="text" name="username" placeholder="&nbsp&nbsp请输入用户名"
+                    <input type="text" name="username" placeholder="请输入用户名"
                            class="login-username login-text">
                 </label></div>
 
                 <div class="login-input"><label>
-                    <input type="password" name="password" placeholder="&nbsp&nbsp请输入密码"
+                    <input type="password" name="password" placeholder="请输入密码"
                            class="login-password login-text">
+                    <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
                 </label></div>
 
                 <div class="login-button">

@@ -101,6 +101,8 @@ $(function () {
         if (emailLocked) {
             return false;
         } else {
+            // 防止多次点击
+            emailLocked = true;
             // 发起 ajax 请求让服务器发送随机验证码
             $.ajax({
                 url: "userServlet",
@@ -125,28 +127,30 @@ $(function () {
                             }
                         }, 1000)
                     } else {
-                        alert("验证码发送失败，请稍后重试！")
+                        alert("验证码发送失败，请稍后重试！");
+                        emailLocked = false;
                     }
                 },
                 error: function () {
-                    alert("验证码发送失败，请稍后重试！")
+                    alert("验证码发送失败，请稍后重试！");
+                    emailLocked = false;
                 }
             });
         }
     });
 
     // 密码框眼睛图片单击事件
-    let eyeClosed = true;
+    let eyeClosed = false;
     $(".pas-eye").click(function () {
         if (eyeClosed) {
             // 如果闭眼 则睁眼，由可见变为不可见
             this.src = "static/img/eye.png"
-            $(".register-password").prop('type', 'text');
+            $(".register-password").prop('type', 'password');
             eyeClosed = false;
         } else {
-            // 如果睁眼 则闭眼,由不可见变为可见
+            // 如果睁眼 则闭眼，由不可见变为可见
             this.src = "static/img/eye_closed.png"
-            $(".register-password").prop('type', 'password');
+            $(".register-password").prop('type', 'text');
             eyeClosed = true;
         }
     })
@@ -158,7 +162,12 @@ $(function () {
         let username = $(".register-username").val();
         let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,15}$");
         let usernameObj = $(".tips-username");
+        let $notice = $(".notice");
         if (!usernameExp.test(username)) {
+            // 淡入淡出
+            // $notice.css("top","1.6rem");
+            // $notice.fadeIn();
+            // $notice.fadeOut();
             usernameObj.css("color", "red");
             return false;
         }
@@ -166,7 +175,12 @@ $(function () {
         let password = $(".register-password").val();
         let pwdObj = $(".tips-password");
         if (password < 6 || password > 16) {
+            // 淡入淡出
+            // $notice.css("top","2.7rem");
+            // $notice.fadeIn();
+            // $notice.fadeOut();
             pwdObj.css("color", "red");
+            return false;
         } else {
             pwdObj.css("color", "darkolivegreen");
         }
@@ -175,6 +189,10 @@ $(function () {
         let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
         let emailObj = $(".tips-email");
         if (!emailReg.test(email)) {
+            // 淡入淡出
+            // $notice.css("top","3.8rem");
+            // $notice.fadeIn();
+            // $notice.fadeOut();
             emailObj.css("color", "red");
             return false;
         } else {
@@ -184,6 +202,10 @@ $(function () {
         let emailCode = $(".emailVerifyCode").val()
         let emailCodeObj = $(".tips-emailCode");
         if (!emailCode.length > 0) {
+            // 淡入淡出
+            $notice.css("top","4.9rem");
+            $notice.fadeIn();
+            $notice.fadeOut();
             emailCodeObj.css("color", "red");
             return false;
         } else {
@@ -193,6 +215,10 @@ $(function () {
         let imgCode = $(".imgVerifyCode").val()
         let imgCodeObj = $(".tips-imgCode");
         if (!imgCode.length > 0) {
+            // 淡入淡出
+            $notice.css("top","6rem");
+            $notice.fadeIn();
+            $notice.fadeOut();
             imgCodeObj.css("color", "red");
             return false;
         } else {
