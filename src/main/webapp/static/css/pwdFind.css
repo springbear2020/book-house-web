@@ -1,0 +1,157 @@
+#{
+    margin: 0;
+    padding: 0;
+},
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+}
+
+body{
+    background-color: #ddd;
+}
+
+.top-content{
+    height: 1rem;
+}
+
+.title{
+    width: 3rem;
+    height: 1rem;
+    margin: 0.1rem auto;
+}
+
+.盗版{
+    width: 3rem;
+    margin-top: 0.8rem;
+}
+
+.container{
+    position: relative;
+    left: 50%;
+    margin-left: -4.5rem;
+    top: 1.8rem;
+    width: 9rem;
+    height: 9rem;
+    background-color: #fff;
+    border-radius: 0.1rem;
+}
+
+.frame-title{
+    width: 5rem;
+    height: 0.6rem;
+    margin: 0rem auto;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+    border: 0;
+    border-bottom: 0.05rem solid #4ea4dc;
+    /*background-color: aqua;*/
+    /*padding-top: 0.6rem;*/
+}
+
+.title-pwdFind{
+    /*background-color: lightskyblue;*/
+    margin-left: 1.2rem;
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #4ea4dc;
+}
+
+.pwdFind {
+    width: 5.6rem;
+    margin: 0.5rem auto;
+}
+
+.input-text{
+    width: 5.2rem;
+    height: 0.6rem;
+    margin-top: 0.4rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    font-size: 0.4rem;
+}
+
+.little-tips{
+    color: red;
+    margin-top: 0.2rem;
+}
+
+.btn-next{
+    width: 5.6rem;
+    height: 1rem;
+    margin-top: 1.2rem;
+    border-radius: 0.05rem;
+    text-align: center;
+    font-size: 0.35rem;
+    color: white;
+    background-color: #4ea4dc;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn-next:hover{
+    background-color: lightskyblue;
+}
+
+.btn-back{
+    width: 5.6rem;
+    height: 1rem;
+    margin-top: 0.4rem;
+    border-radius: 0.05rem;
+    text-align: center;
+    font-size: 0.35rem;
+    color: #4ea4dc;
+    background-color: white;
+    border: 1px solid #4ea4dc;
+    cursor: pointer;
+}
+
+.btn-back:hover{
+    background-color: lightskyblue;
+    color: white;
+}
+
+/* 修改密码页面 */
+.ver-tips{
+    padding-left: 0.1rem;
+    border-left: 0.05rem solid grey;
+}
+
+.input-ver{
+    margin-top: 0.5rem;
+    width: 5.6rem;
+    height: 1rem;
+}
+
+.input-text-ver{
+    padding-left: 0.1rem;
+    width: 3.6rem;
+    height: 0.6rem;
+    font-size: 0.25rem;
+}
+
+.btn-ver{
+    color: deepskyblue;
+    width: 1.7rem;
+    height: 0.6rem;
+    font-size: 0.25rem;
+    background-color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+/*密码设置页面*/
+.input-text-set{
+    width: 5.2rem;
+    height: 0.6rem;
+    margin-top: 0.4rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    font-size: 0.25rem;
+}

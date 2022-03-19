@@ -16,7 +16,18 @@
 </head>
 <body>
 <div class="top-content">
-    <span class="top-left-title">Book&nbsp;House</span>
+    <div class="top-left">
+        <span class="top-left-title">Book&nbsp;House</span>
+    </div>
+    <ul class="top-center">
+        <li class="example">举个</li>
+        <li class="example">例子</li>
+    </ul>
+    <ul class="top-right">
+        <li class="example">阿伟</li>
+        <li class="example">杰哥</li>
+        <li class="example">彬彬</li>
+    </ul>
 </div>
 <div class="middle">
     <div class="middle-container">
@@ -38,13 +49,13 @@
                     <button type="submit" class="login-btn">登&nbsp;录</button>
                 </div>
                 <div class="login-littleText">
-                    <div><a class="login-re" href="#" target="_blank">忘记密码?</a> | <a class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
+                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_blank">忘记密码?</a> | <a class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
                     <div></div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<%--<%@include file="/pages/common/footer.jsp" %>--%>
 </body>
 </html>

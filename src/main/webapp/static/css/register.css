@@ -1,53 +1,92 @@
 #{
     magrin: 0;
     padding: 0;
-},
+}
 
-/* // TODO I can't understand why this pictures not display normally. Save to the login.css */
-body {
-    background-image: url("https://pixabay.com/get/g97ddc7014e1d68648479453729dbfc2456ea2ce771d17d83f0f179596abd6177d95eb94debc364b5962a4fc58796b8fb62159b483c386d113c656422414ad798_1280.jpg");
+ul {
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
 }
 
 .top-content {
-    height: 0.5rem;
+    height: 1rem;
+    /*background-color: deepskyblue;*/
 }
 
 .top-left {
-    margin: 0.3rem;
+    margin-left: 0.3rem;
     float: left;
     width: 3rem;
+    /*background-color: #4ea4dc;*/
 }
 
 .top-left-title {
+    display: block;
     float: left;
+    padding-top: 0.2rem;
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     color: brown;
 }
 
+.top-center{
+    float: left;
+}
+
+.top-right{
+    float: right;
+    margin-right: 0.2rem;
+}
+
+.example{
+    padding: 0.05rem 0.3rem;
+    font-size: 0.3rem;
+    color: #111;
+    font-weight: bold;
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    border-radius: 0.25rem;
+}
+.example:hover{
+    background-color: #4ea4dc;
+    color: darkred;
+}
+
+.middle{
+    height: 11rem;
+    background-color: lightskyblue;
+}
+
 .middle-container {
-    position: absolute;
-    left: 50%;
-    top: 6rem;
-    margin-top: -4rem;
+    /*position: absolute;*/
+    /*!*left: 50%;*!*/
+    /*!*margin-left: -3rem;*!*/
+    /*top: 6rem;*/
+    /*margin-top: -4rem;*/
 }
 
 .frame-register {
-    position: absolute;
-    left: 3rem;
-    margin-top: -1rem;
+    position: relative;
+    left: 50%;
+    top: 1rem;
+    margin-left: -3rem;
     height: 8.5rem;
     width: 6rem;
-    background-color: white;
+    background-color: aliceblue;
     border-radius: 1rem;
-    opacity: 0.9;
+    /*opacity: 0.9;*/
 }
 
 .register-title {
     font-size: 0.4rem;
     font-family: 微软雅黑, serif;
     text-align: center;
-    margin-top: 0.5rem;
+    padding-top: 0.5rem;
     margin-bottom: 0.5rem;
     height: 0.5rem;
 }
@@ -107,6 +146,7 @@ body {
     float: right;
     width: 1.5rem;
     height: 0.55rem;
+    font-weight: bold;
     background-color: lightskyblue;
     border: 0;
     border-radius: 0.3rem;
@@ -129,7 +169,8 @@ body {
     height: 0.8rem;
     margin-left: 2.2rem;
     margin-top: 0.3rem;
-    font-size: 0.35rem;
+    font-size: 0.3rem;
+    font-weight: bold;
     color: aliceblue;
     background-color: deepskyblue;
     border: 0;

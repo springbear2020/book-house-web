@@ -1,41 +1,79 @@
 #{
     magrin: 0;
     padding: 0;
-},
+}
+ul {
+    list-style-type: none;
+}
 
-body {
-    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
+li {
+    list-style-type: none;
+    display: inline;
 }
 
 .top-content {
-    height: 0.5rem;
+    height: 1rem;
+    /*background-color: deepskyblue;*/
 }
 
 .top-left {
-    margin: 0.3rem 0;
+    margin-left: 0.3rem;
     float: left;
     width: 3rem;
+    /*background-color: #4ea4dc;*/
 }
 
 .top-left-title {
+    display: block;
     float: left;
+    padding-top: 0.2rem;
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     color: brown;
 }
 
+.top-center{
+    float: left;
+}
+
+.top-right{
+    float: right;
+    margin-right: 0.2rem;
+}
+
+.example{
+    padding: 0.05rem 0.3rem;
+    font-size: 0.3rem;
+    color: #111;
+    font-weight: bold;
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    border-radius: 0.25rem;
+}
+.example:hover{
+    background-color: #4ea4dc;
+    color: darkred;
+}
+
+.middle{
+    background-color: lightskyblue;
+    height: 12rem;
+}
+
 .middle-container {
-    position: absolute;
-    left: 50%;
-    top: 6rem;
-    margin-top: -4rem;
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 6rem;*/
+    /*margin-top: -4rem;*/
 }
 
 .frame-login {
     position: absolute;
-    left: 3rem;
-    margin-top: -0.5rem;
-    height: 8.5rem;
+    left: 50%;
+    margin-top: 1rem;
+    margin-left: -3rem;
+    height: 7rem;
     width: 6rem;
     background-color: white;
     border-radius: 1rem;
@@ -75,6 +113,7 @@ body {
     margin-left: 2.2rem;
     margin-top: 0.3rem;
     font-size: 0.35rem;
+    font-weight: bold;
     color: aliceblue;
     background-color: deepskyblue;
     border: 0;
