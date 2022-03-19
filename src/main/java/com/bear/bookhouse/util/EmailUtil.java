@@ -84,7 +84,7 @@ public class EmailUtil {
         // 邮件正文
         verifyCode = NumberUtil.randomGenerateCode(VERIFY_CODE_LEN);
         Date date = new Date();
-        message.setContent("您好！您的验证码是：" + verifyCode + " ，您正在进行身份验证，打死都不要告诉别人哦！发送时间：" + date, "text/html;charset=UTF-8");
+        message.setContent("您好！您的验证码是：" + verifyCode + "，您正在进行身份验证，打死都不要告诉别人哦！发送时间：" + date, "text/html;charset=UTF-8");
         // 设置发件时间
         message.setSentDate(new Date());
         // 保存设置
@@ -98,7 +98,7 @@ public class EmailUtil {
      * @param dstEmail 收件人邮箱地址
      * @throws Exception exception
      */
-    public void sendEmail(String dstEmail) throws Exception {
+    public synchronized void sendEmail(String dstEmail) throws Exception {
         Transport transport = session.getTransport();
         transport.connect(FROM_EMAIL, FROM_EMAIL_PW);
         // 生成邮件内容并发送

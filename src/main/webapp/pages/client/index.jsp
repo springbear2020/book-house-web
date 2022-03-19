@@ -11,6 +11,6 @@
     <title>Wait</title>
 </head>
 <body>
-欢迎您${requestScope.username} 登录
+欢迎您 ${requestScope.username}
 </body>
 </html>

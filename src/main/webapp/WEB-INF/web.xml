@@ -20,4 +20,12 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/userServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>EmailServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.web.EmailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmailServlet</servlet-name>
+        <url-pattern>/emailServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

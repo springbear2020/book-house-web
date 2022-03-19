@@ -31,4 +31,21 @@ public interface UserService {
      * @return User or null
      */
     User queryUserByUsernameAndPassword(String username, String password);
+
+    /**
+     * 验证邮箱地址是否已存在
+     *
+     * @param email 邮箱地址
+     * @return User or null
+     */
+    User queryUserByEmail(String email);
+
+    /**
+     * 通过用户邮箱信息更新用户密码
+     *
+     * @param email    邮箱
+     * @param password 密码
+     * @return true - 更新成功
+     */
+    boolean updateUserPasswordByEmail(String email, String password);
 }

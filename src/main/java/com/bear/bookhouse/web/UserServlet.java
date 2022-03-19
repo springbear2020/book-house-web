@@ -3,7 +3,6 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
-import com.bear.bookhouse.util.EmailUtil;
 import com.bear.bookhouse.util.WebUtil;
 import com.google.code.kaptcha.Constants;
 
@@ -20,7 +19,40 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private String verifyCodeBySystem;
+    private static String registerEmailCode;
+    private static String passwordFindEmailCode;
+
+    public static void setRegisterEmailCode(String registerEmailCode) {
+        UserServlet.registerEmailCode = registerEmailCode;
+    }
+
+    public static void setPasswordFindEmailCode(String passwordFindEmailCode) {
+        UserServlet.passwordFindEmailCode = passwordFindEmailCode;
+    }
+
+    /**
+     * 修改用户密码
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void updateUserPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String email = req.getParameter("email");
+        String emailVerifyCode = req.getParameter("emailVerifyCode");
+        String password = req.getParameter("password");
+        // 用户输入的邮箱验证码错误，返回修改界面
+        if (!UserServlet.passwordFindEmailCode.equalsIgnoreCase(emailVerifyCode)) {
+            req.setAttribute("updatePwdErrorMsg", "邮箱验证码错误");
+            req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
+            return;
+        }
+
+        // TODO 解决密码更新失败 bug
+        if (userService.updateUserPasswordByEmail(email, password)) {
+            resp.getWriter().write("密码修改成功");
+            resp.sendRedirect("/pages/user/login.jsp");
+        }
+    }
 
     /**
      * 用户登录
@@ -58,8 +90,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
-        System.out.println(this.verifyCodeBySystem);
-        if (!this.verifyCodeBySystem.equalsIgnoreCase(emailVerifyCode)) {
+        if (!registerEmailCode.equalsIgnoreCase(emailVerifyCode)) {
             req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
@@ -78,7 +109,7 @@ public class UserServlet extends BaseServlet {
         user.setRegisterDate(new Date());
         user.setScore(100);
         if (userService.saveUser(user)) {
-            req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
+            resp.sendRedirect(("/pages/user/login.jsp"));
         }
     }
 
@@ -99,21 +130,17 @@ public class UserServlet extends BaseServlet {
     }
 
     /**
-     * AJAX 请求发送随机验证码到指定邮箱
+     * AJAX 请求验证邮箱地址存在性
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void ajaxSendEmailCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void ajaxVerifyEmail(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
-        EmailUtil instance = EmailUtil.getInstance();
-        try {
-            instance.sendEmail(email);
-            this.verifyCodeBySystem = instance.getVerifyCode();
+        if (userService.queryUserByEmail(email) != null) {
             resp.getWriter().write("true");
-        } catch (Exception e) {
+        } else {
             resp.getWriter().write("false");
-            e.printStackTrace();
         }
     }
 }

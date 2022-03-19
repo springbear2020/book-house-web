@@ -1,8 +1,7 @@
 #{
     magrin: 0;
     padding: 0;
-}
-
+},
 ul {
     list-style-type: none;
 }
@@ -14,14 +13,12 @@ li {
 
 .top-content {
     height: 1rem;
-    /*background-color: deepskyblue;*/
 }
 
 .top-left {
     margin-left: 0.3rem;
     float: left;
     width: 3rem;
-    /*background-color: #4ea4dc;*/
 }
 
 .top-left-title {
@@ -52,34 +49,26 @@ li {
     margin-right: 0.1rem;
     border-radius: 0.25rem;
 }
+
 .example:hover{
     background-color: #4ea4dc;
     color: darkred;
 }
 
 .middle{
-    height: 11rem;
+    height: 10rem;
     background-color: lightskyblue;
-}
-
-.middle-container {
-    /*position: absolute;*/
-    /*!*left: 50%;*!*/
-    /*!*margin-left: -3rem;*!*/
-    /*top: 6rem;*/
-    /*margin-top: -4rem;*/
 }
 
 .frame-register {
     position: relative;
     left: 50%;
-    top: 1rem;
+    top: 0.5rem;
     margin-left: -3rem;
     height: 8.5rem;
     width: 6rem;
     background-color: aliceblue;
     border-radius: 1rem;
-    /*opacity: 0.9;*/
 }
 
 .register-title {
@@ -179,8 +168,32 @@ li {
 
 .bottom-content {
     position: absolute;
-    top: 9.3rem;
-    left: 60%;
+    top: 12rem;
+    left: 70%;
     margin-left: -5rem;
     width: 10rem;
+}
+
+.alert{
+    position: absolute;
+    z-index: 101;
+    left: 50%;
+    top: 1.2rem;
+    color: red;
+    margin-left: -1rem;
+    padding: 0.05rem 0.1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    border: 0.03rem solid black;
+}
+
+.grey{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
 }

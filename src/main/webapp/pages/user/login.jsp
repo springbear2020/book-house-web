@@ -10,27 +10,14 @@
     <link rel="stylesheet" type="text/css" href="static/css/login.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/login.js"></script>
-    <c:if test="${ not empty requestScope.loginErrorMsg}">
-        <script> alert("${requestScope.loginErrorMsg}");</script>
-    </c:if>
 </head>
 <body>
-<div class="top-content">
-    <div class="top-left">
-        <span class="top-left-title">Book&nbsp;House</span>
-    </div>
-    <ul class="top-center">
-        <li class="example">举个</li>
-        <li class="example">例子</li>
-    </ul>
-    <ul class="top-right">
-        <li class="example">阿伟</li>
-        <li class="example">杰哥</li>
-        <li class="example">彬彬</li>
-    </ul>
-</div>
+<%@include file="/pages/common/header.jsp" %>
+<c:if test="${ not empty requestScope.loginErrorMsg}">
+    <div class="alert">${requestScope.loginErrorMsg}</div>
+    <div class="grey"></div>
+</c:if>
 <div class="middle">
-    <div class="middle-container">
         <div class="frame-login">
             <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
             <%--  登录表单 --%>
@@ -49,13 +36,13 @@
                     <button type="submit" class="login-btn">登&nbsp;录</button>
                 </div>
                 <div class="login-littleText">
-                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_blank">忘记密码?</a> | <a class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
+                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_self">忘记密码?</a> | <a
+                            class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
                     <div></div>
                 </div>
             </form>
         </div>
-    </div>
 </div>
-<%--<%@include file="/pages/common/footer.jsp" %>--%>
+<%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>

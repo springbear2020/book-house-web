@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
     public User queryUserByUsernameAndPassword(String username, String password) {
         return userDao.queryUserByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User queryUserByEmail(String email) {
+        return userDao.queryUserByEmail(email);
+    }
+
+    @Override
+    public boolean updateUserPasswordByEmail(String email, String password) {
+        return userDao.updateUserPasswordByEmail(email, password) == 1;
+    }
 }

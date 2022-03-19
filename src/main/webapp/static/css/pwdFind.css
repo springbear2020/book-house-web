@@ -45,17 +45,14 @@ body{
 .frame-title{
     width: 5rem;
     height: 0.6rem;
-    margin: 0rem auto;
+    margin: 0 auto;
     padding-top: 1rem;
     padding-bottom: 0.2rem;
     border: 0;
     border-bottom: 0.05rem solid #4ea4dc;
-    /*background-color: aqua;*/
-    /*padding-top: 0.6rem;*/
 }
 
 .title-pwdFind{
-    /*background-color: lightskyblue;*/
     margin-left: 1.2rem;
     font-size: 0.5rem;
     font-weight: bold;
@@ -78,7 +75,7 @@ body{
 }
 
 .little-tips{
-    color: red;
+    color: grey;
     margin-top: 0.2rem;
 }
 

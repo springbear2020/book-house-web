@@ -28,4 +28,18 @@ public class UserDaoImpl extends BaseDao implements com.bear.bookhouse.dao.UserD
         Object[] params = new Object[]{user.getUsername(), user.getPassword(), user.getEmail(), user.getScore(), user.getRegisterDate()};
         return update(sql, params);
     }
+
+    @Override
+    public User queryUserByEmail(String email) {
+        String sql = "SELECT `id`,`username`,`password`,`email`,`score`,`register_date` registerDate FROM `t_user` WHERE `email` = ?;";
+        Object[] params = new Object[]{email};
+        return getRecord(User.class, sql, params);
+    }
+
+    @Override
+    public int updateUserPasswordByEmail(String email, String password) {
+        String sql = "UPDATE `t_user` SET `password` = ? WHERE `email` = ?;";
+        Object[] params = new Object[]{email, password};
+        return update(sql, params);
+    }
 }

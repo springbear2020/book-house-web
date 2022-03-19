@@ -31,4 +31,21 @@ public interface UserDao {
      * @return -1 - 保存失败； 1 - 保存成功
      */
     int saveUser(User user);
+
+    /**
+     * 通过邮箱地址查询用户信息
+     *
+     * @param email 邮箱地址
+     * @return User or null
+     */
+    User queryUserByEmail(String email);
+
+    /**
+     * 通过用户邮箱信息更新用户密码
+     *
+     * @param email    邮箱
+     * @param password 密码
+     * @return 1 - 更新成功
+     */
+    int updateUserPasswordByEmail(String email, String password);
 }
