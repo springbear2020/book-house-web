@@ -3,7 +3,7 @@ $(function () {
     $(".register-username").blur(function () {
         // 验证用户名格式
         let username = $(".register-username").val();
-        let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,15}$");
+        let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,16}$");
         let obj = $(".tips-username");
         if (!usernameExp.test(username)) {
             obj.css("color", "red");
@@ -30,9 +30,10 @@ $(function () {
 
     // 密码输入框的失焦事件
     $(".register-password").blur(function () {
-        // 验证密码长度
+        // 验证密码
         let password = $(".register-password").val();
         let pwdObj = $(".tips-password");
+        // let pwdReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&]){6,16}$")
         if (password.length < 6 || password.length > 16) {
             pwdObj.css("color", "red");
         } else {
@@ -82,6 +83,22 @@ $(function () {
         // 加上时间戳作为参数以解决 Firefox、IE 等浏览器缓存导致不能刷新问题
         this.src = "imgVerifyCode.jpg?date=" + new Date();
     });
+
+    // 密码框眼睛图片单击事件
+    let eyeClosed = false;
+    $(".pas-eye").click(function () {
+        if (eyeClosed) {
+            // 如果闭眼 则睁眼，由可见变为不可见
+            this.src = "static/img/eye.png"
+            $(".register-password").prop('type', 'password');
+            eyeClosed = false;
+        } else {
+            // 如果睁眼 则闭眼，由不可见变为可见
+            this.src = "static/img/eye_closed.png"
+            $(".register-password").prop('type', 'text');
+            eyeClosed = true;
+        }
+    })
 
     // 获取邮箱验证码按钮单击事件
     let emailLocked = false;
@@ -138,49 +155,23 @@ $(function () {
         }
     });
 
-    // 密码框眼睛图片单击事件
-    let eyeClosed = false;
-    $(".pas-eye").click(function () {
-        if (eyeClosed) {
-            // 如果闭眼 则睁眼，由可见变为不可见
-            this.src = "static/img/eye.png"
-            $(".register-password").prop('type', 'password');
-            eyeClosed = false;
-        } else {
-            // 如果睁眼 则闭眼，由不可见变为可见
-            this.src = "static/img/eye_closed.png"
-            $(".register-password").prop('type', 'text');
-            eyeClosed = true;
-        }
-    })
-
     // 注册按钮单击事件
     $(".register-btn").click(function () {
         /* 再次验证各表单项数据格式，不符合格式则阻止表单提交 */
         // 验证用户名格式
         let username = $(".register-username").val();
-        let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,15}$");
+        let usernameExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{0,16}$");
         let usernameObj = $(".tips-username");
-        let $notice = $(".notice");
         if (!usernameExp.test(username)) {
-            // 淡入淡出
-            // $notice.css("top","1.6rem");
-            // $notice.fadeIn();
-            // $notice.fadeOut();
             usernameObj.css("color", "red");
             return false;
         }
-
-        // 验证密码长度
+        // 验证密码
         let password = $(".register-password").val();
         let pwdObj = $(".tips-password");
+        // let pwdReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&]){6,16}$")
         if (password.length < 6 || password.length > 16) {
-            // 淡入淡出
-            // $notice.css("top","2.7rem");
-            // $notice.fadeIn();
-            // $notice.fadeOut();
             pwdObj.css("color", "red");
-            return false;
         } else {
             pwdObj.css("color", "darkolivegreen");
         }
@@ -190,10 +181,6 @@ $(function () {
         let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
         let emailObj = $(".tips-email");
         if (!emailReg.test(email)) {
-            // 淡入淡出
-            // $notice.css("top","3.8rem");
-            // $notice.fadeIn();
-            // $notice.fadeOut();
             emailObj.css("color", "red");
             return false;
         } else {
@@ -204,10 +191,6 @@ $(function () {
         let emailCode = $(".emailVerifyCode").val()
         let emailCodeObj = $(".tips-emailCode");
         if (!emailCode.length > 0) {
-            // 淡入淡出
-            $notice.css("top","4.9rem");
-            $notice.fadeIn();
-            $notice.fadeOut();
             emailCodeObj.css("color", "red");
             return false;
         } else {
@@ -218,16 +201,11 @@ $(function () {
         let imgCode = $(".imgVerifyCode").val()
         let imgCodeObj = $(".tips-imgCode");
         if (!imgCode.length > 0) {
-            // 淡入淡出
-            $notice.css("top","6rem");
-            $notice.fadeIn();
-            $notice.fadeOut();
             imgCodeObj.css("color", "red");
             return false;
         } else {
             imgCodeObj.css("color", "darkolivegreen");
         }
-
         return true;
     });
 });

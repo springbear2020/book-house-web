@@ -6,7 +6,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
-import java.util.Random;
 
 /**
  * @author Spring-_-Bear
@@ -83,7 +82,7 @@ public class EmailUtil {
         // 邮件主题
         message.setSubject("欢迎使用 Book House 身份验证系统", "UTF-8");
         // 邮件正文
-        verifyCode = randomGenerateCode();
+        verifyCode = NumberUtil.randomGenerateCode(VERIFY_CODE_LEN);
         Date date = new Date();
         message.setContent("您好！您的验证码是：" + verifyCode + " ，您正在进行身份验证，打死都不要告诉别人哦！发送时间：" + date, "text/html;charset=UTF-8");
         // 设置发件时间
@@ -106,20 +105,6 @@ public class EmailUtil {
         MimeMessage message = createMailContent(dstEmail);
         transport.sendMessage(message, message.getAllRecipients());
         transport.close();
-    }
-
-    /**
-     * 随机生成验证码
-     *
-     * @return 6 位数验证码字符串
-     */
-    public String randomGenerateCode() {
-        StringBuilder builder = new StringBuilder();
-        for (int j = 1; j <= VERIFY_CODE_LEN; j++) {
-            int randomNum = new Random().nextInt(36);
-            builder.append("1QAZ2WSX3EDC4RFV5TGB6YHN7UJM8IK9OL0P".charAt(randomNum));
-        }
-        return builder.toString();
     }
 }
 

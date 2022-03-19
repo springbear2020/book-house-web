@@ -3,22 +3,12 @@
     padding: 0;
 },
 
-ul {
-    list-style-type: none;
-}
-
-li {
-    list-style-type: none;
-    display: inline;
-}
-
 body {
     background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");
 }
 
 .top-content {
-    height: 1.2rem;
-    /*background-color: skyblue;*/
+    height: 0.5rem;
 }
 
 .top-left {
@@ -29,38 +19,27 @@ body {
 
 .top-left-title {
     float: left;
-    font-size: 0.4rem;
+    font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     color: brown;
 }
 
-/*.middle {*/
-/*    height: 10rem;*/
-/*    background-color: aqua;*/
-/*    background-image: url("https://pixabay.com/get/g0c45cfc93b2c4b129a4238ae632aa8ffa3ad57234ad02ca2ad77be3822c4a81937a246fbeafad0a43289a9cee317e34068d48acda6c51ec87b31dcc0c54d0c85_1280.jpg");*/
-/*}*/
-
 .middle-container {
-    display: -webkit-flex;
-    display: flex;
-    position: relative;
-    top: 1.5rem;
+    position: absolute;
     left: 50%;
-    margin-left: -8rem;
-    height: 8rem;
-    width: 16rem;
+    top: 6rem;
+    margin-top: -4rem;
 }
 
 .frame-login {
     position: absolute;
-    left: 11rem;
-    /*margin-left: -3rem;*/
+    left: 3rem;
+    margin-top: -0.5rem;
+    height: 8.5rem;
     width: 6rem;
-    height: 6rem;
     background-color: white;
     border-radius: 1rem;
     opacity: 0.9;
-    /*box-shadow: 0 0 1rem deepskyblue;*/
 }
 
 .login-title {
@@ -87,6 +66,7 @@ body {
     font-size: 0.3rem;
     font-family: 微软雅黑, serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.3rem;
 }
 
 .login-btn {
@@ -94,13 +74,11 @@ body {
     height: 0.8rem;
     margin-left: 2.2rem;
     margin-top: 0.3rem;
-    border-radius: 0.05rem;
     font-size: 0.35rem;
     color: aliceblue;
-    /*font-family: 微软雅黑, serif;*/
     background-color: deepskyblue;
     border: 0;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
 }
 
 .login-littleText {
@@ -118,6 +96,11 @@ body {
     width: 0.5rem;
     height: 0.5rem;
 }
+
 .bottom-content {
-    margin-top: 1.5rem;
+    position: absolute;
+    top: 9.3rem;
+    left: 60%;
+    margin-left: -5rem;
+    width: 10rem;
 }

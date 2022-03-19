@@ -30,7 +30,7 @@ public class NumberUtil {
      * @param counts 随机数个数
      * @return 随机数数组 或 null
      */
-    public Integer[] generateIntegers(int bound, int counts) {
+    public static Integer[] generateIntegers(int bound, int counts) {
         if (bound <= 0 || counts <= 0) {
             return null;
         }
@@ -40,5 +40,19 @@ public class NumberUtil {
             res[i] = random.nextInt(bound);
         }
         return res;
+    }
+
+    /**
+     * 随机生成验证码
+     *
+     * @return 指定位数验证码字符串
+     */
+    public static String randomGenerateCode(int len) {
+        StringBuilder builder = new StringBuilder();
+        for (int j = 1; j <= len; j++) {
+            int randomNum = new Random().nextInt(36);
+            builder.append("1QAZ2WSX3EDC4RFV5TGB6YHN7UJM8IK9OL0P".charAt(randomNum));
+        }
+        return builder.toString();
     }
 }

@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
     public User queryUserByUsername(String username) {
         return userDao.queryUserByUsername(username);
     }
+
+    @Override
+    public User queryUserByUsernameAndPassword(String username, String password) {
+        return userDao.queryUserByUsernameAndPassword(username, password);
+    }
 }

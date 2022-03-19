@@ -9,9 +9,10 @@
 <html>
 <head>
     <title>Book House</title>
-    <%@include file="/pages/common/head.jsp" %>
+    <%@include file="/pages/common/base.jsp" %>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
 </head>
 <body>
-<a href="pages/user/login.jsp" target="_blank">登录</a> | <a href="pages/user/register.jsp" target="_blank">注册</a>
+<div class="top-right-content">Welcome to Book House, a place share the e-book resource <a href="pages/user/login.jsp" target="_blank">登录</a> | <a href="pages/user/register.jsp" target="_blank">注册</a></div>
 </body>
 </html>

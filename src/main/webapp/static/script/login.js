@@ -3,7 +3,7 @@ window.onload = function (){
     let eyeClosed = false;
     $(".pas-eye").click(function () {
         if (eyeClosed) {
-            // 如果闭眼 则睁眼，由可见变为不可见
+            // 如果闭眼则睁眼，由可见变为不可见
             this.src = "static/img/eye.png"
             $(".login-password").prop('type', 'password');
             eyeClosed = false;

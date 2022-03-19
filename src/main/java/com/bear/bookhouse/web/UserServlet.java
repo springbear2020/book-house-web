@@ -20,7 +20,26 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private String verifyCodeBySystem  = "bear";
+    private String verifyCodeBySystem;
+
+    /**
+     * 用户登录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        if (userService.queryUserByUsernameAndPassword(username, password) != null) {
+            req.setAttribute("username", username);
+            req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("loginErrorMsg", "用户名或密码错误");
+            req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
+        }
+    }
 
     /**
      * 用户注册
@@ -39,16 +58,18 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
+        System.out.println(this.verifyCodeBySystem);
         if (!this.verifyCodeBySystem.equalsIgnoreCase(emailVerifyCode)) {
-            req.setAttribute("errorMsg", "邮箱验证码有误");
+            req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
 
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
-            req.setAttribute("errorMsg", "图片验证码有误");
+            req.setAttribute("registerErrorMsg", "图片验证码有误");
             req.setAttribute("user", user);
+            req.setAttribute("emailCode", emailVerifyCode);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
@@ -84,16 +105,15 @@ public class UserServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void ajaxSendEmailCode(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.getWriter().write("true");
-//        String email = req.getParameter("email");
-//        EmailUtil instance = EmailUtil.getInstance();
-//        try {
-//            instance.sendEmail(email);
-//            this.verifyCodeBySystem = instance.getVerifyCode();
-//            resp.getWriter().write("true");
-//        } catch (Exception e) {
-//            resp.getWriter().write("false");
-//            e.printStackTrace();
-//        }
+        String email = req.getParameter("email");
+        EmailUtil instance = EmailUtil.getInstance();
+        try {
+            instance.sendEmail(email);
+            this.verifyCodeBySystem = instance.getVerifyCode();
+            resp.getWriter().write("true");
+        } catch (Exception e) {
+            resp.getWriter().write("false");
+            e.printStackTrace();
+        }
     }
 }
