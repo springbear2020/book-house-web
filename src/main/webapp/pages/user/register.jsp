@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/register.js"></script>
 </head>

@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/pwdFind.css">
+    <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
 </head>
@@ -46,11 +47,10 @@
                     <div class="input-ver">
                         <label><input class="input-text-ver pwdFind-emailVerifyCode" placeholder="邮箱验证码"
                                       name="emailVerifyCode"></label>
-                        <input type="button" id="pwdFind-code-btn" class="btn" value="获取验证码">
+                        <input type="button" id="pwdFind-code-btn" class="btn btn-ver" value="获取验证码">
                         <div class="little-tips tips-pwdFind">* 点击获取验证码，邮件会发送至您的邮箱</div>
                     </div>
                     <label>
-                        <!-- // TODO Add a eye to display the password here, adjust the css style of this page -->
                         <input type="password" name="password" placeholder="请输入新密码" class="input-text reset-pwd">
                         <input type="password" name="password" placeholder="请再次输入密码" class="input-text re-reset-pwd">
                         <div class="little-tips tips-password">* 至少一个数字、字母、字符（@#$%&），长度为 6~16</div>

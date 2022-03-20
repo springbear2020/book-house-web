@@ -11,51 +11,10 @@ li {
     display: inline;
 }
 
-.top-content {
-    height: 1rem;
-}
-
-.top-left {
-    margin-left: 0.3rem;
-    float: left;
-    width: 3rem;
-}
-
-.top-left-title {
-    display: block;
-    float: left;
-    padding-top: 0.2rem;
-    font-size: 0.3rem;
-    font-family: 微软雅黑, serif;
-    color: brown;
-}
-
-.top-center{
-    float: left;
-}
-
-.top-right{
-    float: right;
-    margin-right: 0.2rem;
-}
-
-.example{
-    padding: 0.05rem 0.3rem;
-    font-size: 0.3rem;
-    color: #111;
-    font-weight: bold;
-    margin-top: 0.1rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
-    border-radius: 0.25rem;
-}
-.example:hover{
-    background-color: #4ea4dc;
-    color: darkred;
-}
 
 .middle{
     background-color: lightskyblue;
+    background-image: linear-gradient(to bottom right,blue,lightskyblue,deepskyblue);
     height: 8rem;
 }
 
@@ -109,6 +68,10 @@ li {
     background-color: deepskyblue;
     border: 0;
     border-radius: 0.3rem;
+    cursor: pointer;
+}
+.login-btn:hover{
+    background-color: #4ea4dc;
 }
 
 .login-littleText {
@@ -125,14 +88,7 @@ li {
     top: 2.65rem;
     width: 0.5rem;
     height: 0.5rem;
-}
-
-.bottom-content {
-    position: absolute;
-    top: 9.3rem;
-    left: 60%;
-    margin-left: -5rem;
-    width: 10rem;
+    cursor: pointer;
 }
 
 .alert{

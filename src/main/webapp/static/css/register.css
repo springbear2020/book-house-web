@@ -11,53 +11,12 @@ li {
     display: inline;
 }
 
-.top-content {
-    height: 1rem;
-}
 
-.top-left {
-    margin-left: 0.3rem;
-    float: left;
-    width: 3rem;
-}
-
-.top-left-title {
-    display: block;
-    float: left;
-    padding-top: 0.2rem;
-    font-size: 0.3rem;
-    font-family: 微软雅黑, serif;
-    color: brown;
-}
-
-.top-center{
-    float: left;
-}
-
-.top-right{
-    float: right;
-    margin-right: 0.2rem;
-}
-
-.example{
-    padding: 0.05rem 0.3rem;
-    font-size: 0.3rem;
-    color: #111;
-    font-weight: bold;
-    margin-top: 0.1rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
-    border-radius: 0.25rem;
-}
-
-.example:hover{
-    background-color: #4ea4dc;
-    color: darkred;
-}
 
 .middle{
     height: 10rem;
     background-color: lightskyblue;
+    background-image: linear-gradient(to bottom right,blue,lightskyblue,deepskyblue);
 }
 
 .frame-register {
@@ -109,6 +68,7 @@ li {
     top: 2.7rem;
     width: 0.4rem;
     height: 0.4rem;
+    cursor: pointer;
 }
 
 
@@ -139,6 +99,11 @@ li {
     background-color: lightskyblue;
     border: 0;
     border-radius: 0.3rem;
+    cursor: pointer;
+}
+.emailCodeBtn:hover{
+    background-color: #4ea4dc;
+    color: #dddddd;
 }
 
 /* 图片验证码图片 */
@@ -146,6 +111,7 @@ li {
     float: right;
     width: 1.5rem;
     height: 0.55rem;
+    cursor: pointer;
 }
 
 .register-button {
@@ -164,15 +130,12 @@ li {
     background-color: deepskyblue;
     border: 0;
     border-radius: 0.3rem;
+    cursor: pointer;
+}
+.register-btn:hover{
+    background-color: #4ea4dc;
 }
 
-.bottom-content {
-    position: absolute;
-    top: 12rem;
-    left: 70%;
-    margin-left: -5rem;
-    width: 10rem;
-}
 
 .alert{
     position: absolute;
@@ -198,6 +161,3 @@ li {
     background-color: rgba(0,0,0,0.5);
 }
 
-a{
-    text-decoration: none;
-}
