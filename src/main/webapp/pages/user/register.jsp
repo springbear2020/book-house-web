@@ -15,7 +15,7 @@
 <body>
 <%@include file="/pages/common/title.jsp" %>
 <c:if test="${ not empty requestScope.registerErrorMsg}">
-    <%-- // TODO 在提示信息后添加小叉，点击时此 div 元素消失，login.jsp, pwdFind.jsp 同时修改 --%>
+    <%-- // TODO 在提示信息后添加小叉，点击时此 div 元素消失，login.jsp, pwdFind.jsp, upload.jsp 同时修改 --%>
     <div class="alert">${requestScope.registerErrorMsg}</div>
 </c:if>
 <div class="middle">

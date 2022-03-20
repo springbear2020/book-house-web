@@ -9,7 +9,6 @@ import com.google.code.kaptcha.Constants;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
@@ -53,7 +52,7 @@ public class UserServlet extends BaseServlet {
 
         if (userService.isUsernameAndPasswordCorrect(username, password)) {
             req.getSession().setAttribute("user", userService.queryUserByUsername(username));
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             req.setAttribute("loginErrorMsg", "用户名或密码错误");
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
@@ -72,8 +71,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的图片验证码
         String imgVerifyCode = req.getParameter("imgVerifyCode");
         // 获取由系统生成的图片验证码
-        HttpSession session = req.getSession();
-        Object imgVerifyCodeByGoogle = session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        Object imgVerifyCodeByGoogle = req.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
@@ -83,7 +81,6 @@ public class UserServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
-
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
             req.setAttribute("registerErrorMsg", "图片验证码有误");
             req.setAttribute("user", user);
@@ -96,7 +93,7 @@ public class UserServlet extends BaseServlet {
         user.setRegisterDate(new Date());
         user.setScore(100);
         if (userService.saveUser(user)) {
-            resp.sendRedirect(("/pages/user/login.jsp"));
+            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
         }
     }
 
