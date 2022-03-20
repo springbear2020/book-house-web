@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
 </head>
 <body>
-<div><a href="pages/user/login.jsp" target="_blank">登录</a> | <a
-        href="pages/user/register.jsp" target="_blank">注册</a></div>
+<div><a href="pages/user/login.jsp" target="_self">登录</a> | <a
+        href="pages/user/register.jsp" target="_self">注册</a></div>
 </body>
 </html>

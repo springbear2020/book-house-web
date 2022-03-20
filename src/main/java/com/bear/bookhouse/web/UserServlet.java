@@ -41,7 +41,7 @@ public class UserServlet extends BaseServlet {
         String emailVerifyCode = req.getParameter("emailVerifyCode");
         String password = req.getParameter("password");
         // 用户输入的邮箱验证码错误，返回修改界面
-        if (!UserServlet.passwordFindEmailCode.equalsIgnoreCase(emailVerifyCode)) {
+        if (!emailVerifyCode.equalsIgnoreCase(UserServlet.passwordFindEmailCode)) {
             req.setAttribute("updatePwdMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
@@ -87,7 +87,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
-        if (!registerEmailCode.equalsIgnoreCase(emailVerifyCode)) {
+        if (!emailVerifyCode.equalsIgnoreCase(registerEmailCode)) {
             req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);

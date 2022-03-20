@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: accelerater
@@ -19,6 +20,10 @@
 </head>
 <body>
 <%@include file="/pages/common/header.jsp"%>
+<c:if test="${ not empty requestScope.updatePwdMsg}">
+    <div class="alert">${requestScope.updatePwdMsg}</div>
+    <div class="grey"></div>
+</c:if>
 <div class="top-content">
 <%--    <div class="title"><img class="盗版"--%>
 <%--                            src="https://user.mihoyo.com/t_1646801180130/src/resources/images/miHoYo_Logo_451cbfd2.png"--%>
@@ -45,7 +50,7 @@
                         <div class="little-tips tips-pwdFind">* 点击获取验证码，邮件会发送至您的邮箱</div>
                     </div>
                     <label>
-                        <!-- // TODO Add a eye to display the password here -->
+                        <!-- // TODO Add a eye to display the password here, adjust the css style of this page -->
                         <input type="password" name="password" placeholder="请输入新密码" class="input-text reset-pwd">
                         <input type="password" name="password" placeholder="请再次输入密码" class="input-text re-reset-pwd">
                         <div class="little-tips tips-password">* 至少一个数字、字母、字符（@#$%&），长度为 6~16</div>
@@ -57,5 +62,6 @@
         </div>
     </div>
 </div>
+<%@include file="/pages/common/footer.jsp"%>
 </body>
 </html>

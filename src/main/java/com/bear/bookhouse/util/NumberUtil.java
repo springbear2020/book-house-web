@@ -50,8 +50,8 @@ public class NumberUtil {
     public static String randomGenerateCode(int len) {
         StringBuilder builder = new StringBuilder();
         for (int j = 1; j <= len; j++) {
-            int randomNum = new Random().nextInt(36);
-            builder.append("1QAZ2WSX3EDC4RFV5TGB6YHN7UJM8IK9OL0P".charAt(randomNum));
+            int randomNum = new Random().nextInt(10);
+            builder.append("0123456789".charAt(randomNum));
         }
         return builder.toString();
     }

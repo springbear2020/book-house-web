@@ -36,8 +36,8 @@
                     <button type="submit" class="login-btn">登&nbsp;录</button>
                 </div>
                 <div class="login-littleText">
-                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_self">忘记密码?</a> | <a
-                            class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
+                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_self">忘记密码?</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
+                            class="login-re" href="pages/user/register.jsp" target="_self">没有账号?</a></div>
                     <div></div>
                 </div>
             </form>

@@ -9,7 +9,7 @@ public class EmailUtilTest {
     public static void main(String[] args) {
         try {
             EmailUtil instance = EmailUtil.getInstance();
-            instance.sendEmail("394987816@qq.com");
+            instance.sendEmail("springbear2020@163.com");
             String verifyCode = instance.getVerifyCode();
             System.out.println(verifyCode);
         } catch (Exception e) {

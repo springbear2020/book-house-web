@@ -15,15 +15,15 @@ public class EmailUtil {
     /**
      * 发件人邮箱账号
      */
-    private static final String FROM_EMAIL = "springbear2020@163.com";
+    private static final String FROM_EMAIL = "BookHouse2022@126.com";
     /**
      * 发件人邮箱授权码
      */
-    private static final String FROM_EMAIL_PW = "DEPHWPTNAEKRBOFG";
+    private static final String FROM_EMAIL_PW = "BFNYSVIQKAZGEHSS";
     /**
      * 发件人邮箱服务器
      */
-    private static final String MY_EMAIL_SMTP_HOST = "smtp.163.com";
+    private static final String MY_EMAIL_SMTP_HOST = "smtp.126.com";
 
     /**
      * 验证码长度
