@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public boolean updateUserPasswordByEmail(String password, String email) {
         return userDao.updateUserByEmail(password, email) == 1;
     }
+
+    @Override
+    public User queryUserByUsername(String username) {
+        return userDao.queryUserByUsername(username);
+    }
 }

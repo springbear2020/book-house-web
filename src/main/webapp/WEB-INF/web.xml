@@ -14,7 +14,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.web.UserServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>EmailServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.web.EmailServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.servlet.EmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EmailServlet</servlet-name>

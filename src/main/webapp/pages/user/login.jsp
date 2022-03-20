@@ -13,36 +13,36 @@
     <script type="text/javascript" src="static/script/login.js"></script>
 </head>
 <body>
-<%@include file="/pages/common/header.jsp" %>
+<%@include file="/pages/common/title.jsp" %>
 <c:if test="${ not empty requestScope.loginErrorMsg}">
     <div class="alert">${requestScope.loginErrorMsg}</div>
-    <div class="grey"></div>
 </c:if>
 <div class="middle">
-        <div class="frame-login">
-            <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
-            <%--  登录表单 --%>
-            <form class="login-box" action="userServlet" method="post">
-                <input type="hidden" name="action" value="login">
-                <div class="login-input"><label>
-                    <input type="text" name="username" placeholder="请输入用户名"
-                           class="login-username login-text">
-                </label></div>
-                <div class="login-input"><label>
-                    <input type="password" name="password" placeholder="请输入密码"
-                           class="login-password login-text">
-                    <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
-                </label></div>
-                <div class="login-button">
-                    <button type="submit" class="login-btn">登&nbsp;录</button>
-                </div>
-                <div class="login-littleText">
-                    <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_self">忘记密码?</a><span class="separator login-sep">|</span><a
-                            class="login-re" href="pages/user/register.jsp" target="_self">没有账号?</a></div>
-                    <div></div>
-                </div>
-            </form>
-        </div>
+    <div class="frame-login">
+        <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
+        <%--  登录表单 --%>
+        <form class="login-box" action="userServlet" method="post">
+            <input type="hidden" name="action" value="login">
+            <div class="login-input"><label>
+                <input type="text" name="username" placeholder="请输入用户名"
+                       class="login-username login-text">
+            </label></div>
+            <div class="login-input"><label>
+                <input type="password" name="password" placeholder="请输入密码"
+                       class="login-password login-text">
+                <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
+            </label></div>
+            <div class="login-button">
+                <button type="submit" class="login-btn">登&nbsp;录</button>
+            </div>
+            <div class="login-littleText">
+                <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_blank">忘记密码?</a><span
+                        class="separator login-sep">|</span><a
+                        class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
+                <div></div>
+            </div>
+        </form>
+    </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>
 </body>

@@ -1,4 +1,4 @@
-package com.bear.bookhouse.web;
+package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.util.EmailUtil;
 
@@ -11,6 +11,16 @@ import java.io.IOException;
  * @datetime 2022/3/19 21:28
  */
 public class EmailServlet extends BaseServlet {
+    private static String registerEmailCode;
+    private static String passwordFindEmailCode;
+
+    public static String getRegisterEmailCode() {
+        return registerEmailCode;
+    }
+
+    public static String getPasswordFindEmailCode() {
+        return passwordFindEmailCode;
+    }
 
     /**
      * AJAX 注册请求发送随机验证码到指定邮箱
@@ -23,7 +33,7 @@ public class EmailServlet extends BaseServlet {
         EmailUtil instance = EmailUtil.getInstance();
         try {
             instance.sendEmail(email);
-            UserServlet.setRegisterEmailCode(instance.getVerifyCode());
+            EmailServlet.registerEmailCode = instance.getVerifyCode();
             resp.getWriter().write("true");
         } catch (Exception e) {
             resp.getWriter().write("false");
@@ -42,7 +52,7 @@ public class EmailServlet extends BaseServlet {
         EmailUtil instance = EmailUtil.getInstance();
         try {
             instance.sendEmail(email);
-            UserServlet.setPasswordFindEmailCode(instance.getVerifyCode());
+            EmailServlet.passwordFindEmailCode = instance.getVerifyCode();
             resp.getWriter().write("true");
         } catch (Exception e) {
             resp.getWriter().write("false");

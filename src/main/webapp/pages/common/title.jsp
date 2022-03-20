@@ -1,16 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: SpringBear
-  Date: 2022/3/19
-  Time: 9:12
+  Date: 2022/3/20
+  Time: 16:17
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <title>Wait</title>
-</head>
-<body>
-欢迎 ${requestScope.username} 登录
-</body>
-</html>
+<div class="top-content">
+  <div class="top-left">
+    <span class="top-left-title">Book House</span>
+  </div>
+</div>

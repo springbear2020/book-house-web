@@ -1,4 +1,4 @@
-package com.bear.bookhouse.web;
+package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.UserService;
@@ -19,16 +19,6 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private static String registerEmailCode;
-    private static String passwordFindEmailCode;
-
-    public static void setRegisterEmailCode(String registerEmailCode) {
-        UserServlet.registerEmailCode = registerEmailCode;
-    }
-
-    public static void setPasswordFindEmailCode(String passwordFindEmailCode) {
-        UserServlet.passwordFindEmailCode = passwordFindEmailCode;
-    }
 
     /**
      * 修改用户密码
@@ -41,7 +31,7 @@ public class UserServlet extends BaseServlet {
         String emailVerifyCode = req.getParameter("emailVerifyCode");
         String password = req.getParameter("password");
         // 用户输入的邮箱验证码错误，返回修改界面
-        if (!emailVerifyCode.equalsIgnoreCase(UserServlet.passwordFindEmailCode)) {
+        if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getPasswordFindEmailCode())) {
             req.setAttribute("updatePwdMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
@@ -62,8 +52,8 @@ public class UserServlet extends BaseServlet {
         String password = req.getParameter("password");
 
         if (userService.isUsernameAndPasswordCorrect(username, password)) {
-            req.setAttribute("username", username);
-            req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
+            req.getSession().setAttribute("user", userService.queryUserByUsername(username));
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } else {
             req.setAttribute("loginErrorMsg", "用户名或密码错误");
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
@@ -87,7 +77,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
-        if (!emailVerifyCode.equalsIgnoreCase(registerEmailCode)) {
+        if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getRegisterEmailCode())) {
             req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
@@ -133,7 +123,7 @@ public class UserServlet extends BaseServlet {
      */
     protected void ajaxVerifyEmail(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
-        if (userService.isEmailExists(email) ) {
+        if (userService.isEmailExists(email)) {
             resp.getWriter().write("true");
         } else {
             resp.getWriter().write("false");
