@@ -47,5 +47,5 @@ public interface UserDao {
      * @param password 密码
      * @return 1 - 更新成功
      */
-    int updateUserPasswordByEmail(String email, String password);
+    int updateUserPasswordByEmail(String password, String email);
 }

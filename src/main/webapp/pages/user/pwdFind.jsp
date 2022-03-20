@@ -18,11 +18,12 @@
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
 </head>
 <body>
+<%@include file="/pages/common/header.jsp"%>
 <div class="top-content">
-    <div class="title"><img class="盗版"
-                            src="https://user.mihoyo.com/t_1646801180130/src/resources/images/miHoYo_Logo_451cbfd2.png"
-                            alt="图片加载失败">
-    </div>
+<%--    <div class="title"><img class="盗版"--%>
+<%--                            src="https://user.mihoyo.com/t_1646801180130/src/resources/images/miHoYo_Logo_451cbfd2.png"--%>
+<%--                            alt="图片加载失败">--%>
+<%--    </div>--%>
 </div>
 <div class="middle">
     <div class="container">

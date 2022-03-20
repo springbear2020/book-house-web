@@ -42,15 +42,12 @@ public class UserServlet extends BaseServlet {
         String password = req.getParameter("password");
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!UserServlet.passwordFindEmailCode.equalsIgnoreCase(emailVerifyCode)) {
-            req.setAttribute("updatePwdErrorMsg", "邮箱验证码错误");
+            req.setAttribute("updatePwdMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
-
-        // TODO 解决密码更新失败 bug
-        if (userService.updateUserPasswordByEmail(email, password)) {
-            resp.getWriter().write("密码修改成功");
-            resp.sendRedirect("/pages/user/login.jsp");
+        if (userService.updateUserPasswordByEmail(password, email)) {
+            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
         }
     }
 

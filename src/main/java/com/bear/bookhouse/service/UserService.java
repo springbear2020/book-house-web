@@ -47,5 +47,5 @@ public interface UserService {
      * @param password 密码
      * @return true - 更新成功
      */
-    boolean updateUserPasswordByEmail(String email, String password);
+    boolean updateUserPasswordByEmail(String password, String email);
 }
