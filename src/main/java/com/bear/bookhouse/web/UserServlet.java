@@ -61,7 +61,7 @@ public class UserServlet extends BaseServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (userService.queryUserByUsernameAndPassword(username, password) != null) {
+        if (userService.isUsernameAndPasswordCorrect(username, password)) {
             req.setAttribute("username", username);
             req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
         } else {
@@ -118,8 +118,7 @@ public class UserServlet extends BaseServlet {
      */
     protected void ajaxVerifyUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
-        User user = userService.queryUserByUsername(username);
-        if (user != null) {
+        if (userService.isUsernameExists(username)) {
             resp.getWriter().write("true");
         } else {
             resp.getWriter().write("false");
@@ -134,7 +133,7 @@ public class UserServlet extends BaseServlet {
      */
     protected void ajaxVerifyEmail(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
-        if (userService.queryUserByEmail(email) != null) {
+        if (userService.isEmailExists(email) ) {
             resp.getWriter().write("true");
         } else {
             resp.getWriter().write("false");

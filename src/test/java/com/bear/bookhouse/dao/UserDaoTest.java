@@ -38,7 +38,7 @@ class UserDaoTest {
 
     @Test
     public void updateUserPasswordByEmail() {
-        int i = userDao.updateUserPasswordByEmail("123", "springbear2020@163.com");
+        int i = userDao.updateUserByEmail("123", "springbear2020@163.com");
         System.out.println(i);
     }
 }

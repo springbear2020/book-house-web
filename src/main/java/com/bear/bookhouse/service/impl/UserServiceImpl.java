@@ -21,22 +21,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryUserByUsername(String username) {
-        return userDao.queryUserByUsername(username);
+    public boolean isUsernameExists(String username) {
+        return userDao.queryUserByUsername(username) != null;
     }
 
     @Override
-    public User queryUserByUsernameAndPassword(String username, String password) {
-        return userDao.queryUserByUsernameAndPassword(username, password);
+    public boolean isUsernameAndPasswordCorrect(String username, String password) {
+        return userDao.queryUserByUsernameAndPassword(username, password) != null;
     }
 
     @Override
-    public User queryUserByEmail(String email) {
-        return userDao.queryUserByEmail(email);
+    public boolean isEmailExists(String email) {
+        return userDao.queryUserByEmail(email) != null;
     }
 
     @Override
     public boolean updateUserPasswordByEmail(String password, String email) {
-        return userDao.updateUserPasswordByEmail(password, email) == 1;
+        return userDao.updateUserByEmail(password, email) == 1;
     }
 }

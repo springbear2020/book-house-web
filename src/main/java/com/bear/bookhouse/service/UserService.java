@@ -19,26 +19,26 @@ public interface UserService {
      * 根据用户名查询用户信息
      *
      * @param username 用户名
-     * @return User or null
+     * @return true - exists
      */
-    User queryUserByUsername(String username);
+    boolean isUsernameExists(String username);
 
     /**
      * 根据用户名和密码查询用户信息
      *
      * @param username 用户名
      * @param password 密码
-     * @return User or null
+     * @return true - exists
      */
-    User queryUserByUsernameAndPassword(String username, String password);
+    boolean isUsernameAndPasswordCorrect(String username, String password);
 
     /**
      * 验证邮箱地址是否已存在
      *
      * @param email 邮箱地址
-     * @return User or null
+     * @return true - exists
      */
-    User queryUserByEmail(String email);
+    boolean isEmailExists(String email);
 
     /**
      * 通过用户邮箱信息更新用户密码

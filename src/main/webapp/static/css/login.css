@@ -75,11 +75,16 @@ li {
 }
 
 .login-littleText {
+    font-size: 0.25rem;
     width: 4rem;
     height: 0.5rem;
     margin-left: 1rem;
     margin-top: 0.4rem;
     text-align: center;
+}
+.login-sep{
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
 }
 
 .pas-eye{

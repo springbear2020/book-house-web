@@ -1,0 +1,103 @@
+.middle{
+    background-color: #ccffff;
+}
+
+
+.search{
+    height: 1.2rem;
+    padding-top: 0.2rem;
+}
+.search-container{
+    margin: 0rem auto;
+    width: 7rem;
+    height: 0.8rem;
+    /*border: 1px solid blue;*/
+}
+.search-text{
+    width: 5rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    height: 0.6rem;
+    font-size: 0.3rem;
+    /*border: 1px solid black;*/
+}
+.search-btn{
+    width: 1rem;
+    height: 0.6rem;
+    font-size: 0.25rem;
+    font-weight: bold;
+}
+.search-list{
+    display: none;
+}
+
+
+.row{
+    width: 18rem;
+    height: 11rem;
+    margin: 0rem auto;
+    border: 1px solid blue;
+}
+.col-md-4{
+    float: left;
+    border: 1px solid black;
+    margin: 0.2rem 0.28rem;
+    width: 3rem;
+    height: 4.85rem;
+    text-align: center;
+}
+.img-books{
+    margin-top: 0.2rem;
+    width: 1.854rem;
+    height: 3rem;
+}
+.bk-p{
+    margin: 0rem auto;
+    width: 2.4rem;
+    height: 0.3rem;
+    font-size: 0.2rem;
+    /*border: 1px solid black;*/
+}
+
+.p-l{
+    /*position: relative;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    margin: 0;
+    width: 0.8rem;
+    height: 0.3rem;
+}
+.p-r{
+    float: right;
+    margin: -0.3rem 0 0;
+    width: 1.6rem;
+    height: 0.3rem;
+}
+
+.pag-chs{
+    margin: 0.2rem auto;
+    padding-bottom: 0.2rem;
+    width: 8.4rem;
+    height: 0.6rem;
+    text-align: center;
+}
+.pagination{
+    height: 0.4rem;
+}
+.pag-num{
+    display: block;
+    float: left;
+    margin: 0 0.1rem;
+    padding-top: 0.08rem;
+    width: 0.5rem;
+    height: 0.42rem;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    border-radius: 20%;
+}
+.pag-fl{
+    width: 0.8rem;
+}
+.pag-num:hover{
+    background-color: rgba(200,200,200,0.5);
+}

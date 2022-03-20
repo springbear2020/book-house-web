@@ -37,7 +37,7 @@ public class UserDaoImpl extends BaseDao implements com.bear.bookhouse.dao.UserD
     }
 
     @Override
-    public int updateUserPasswordByEmail(String password, String email) {
+    public int updateUserByEmail(String password, String email) {
         String sql = "UPDATE `t_user` SET `password` = ? WHERE `email` = ?;";
         Object[] params = new Object[]{password, email};
         return update(sql, params);
