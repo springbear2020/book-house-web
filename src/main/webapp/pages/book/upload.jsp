@@ -26,6 +26,7 @@
 <%-- 图书文件上传表单 // TODO 调整此页面样式 --%>
 <div class="middle">
     <div class="middle-container">
+        <h2 class="up-title">上传图书</h2>
         <form action="bookServlet?action=uploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
             <label class="upload-label">
