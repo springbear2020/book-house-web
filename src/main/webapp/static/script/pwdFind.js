@@ -8,10 +8,12 @@ $(function () {
         let $tipsEmailObj = $(".tips-email");
         if (!emailReg.test($email) || $email.length <= 0) {
             $tipsEmailObj.css("color", "red");
+            $tipsEmailObj.css("font-weight", "bold");
             $tipsEmailObj.text("* 邮箱格式不正确");
             return false;
         } else {
             $tipsEmailObj.css("color", "darkolivegreen");
+            $tipsEmailObj.css("font-weight", "normal");
             $tipsEmailObj.text("* 邮箱格式正确");
         }
 
@@ -24,11 +26,13 @@ $(function () {
             success: function (data) {
                 if (data === "false") {
                     $tipsEmailObj.css("color", "red");
+                    $tipsEmailObj.css("font-weight", "bold");
                     $tipsEmailObj.text("* 邮箱地址未注册账号，请重新输入")
                     emailExists = false;
                     return false;
                 } else {
                     $tipsEmailObj.css("color", "darkolivegreen");
+                    $tipsEmailObj.css("font-weight", "normal");
                     $tipsEmailObj.text("* 邮箱地址正确")
                     emailExists = true;
                 }
@@ -43,10 +47,12 @@ $(function () {
         let $tipsObj = $(".tips-pwdFind");
         if ($verifyCode.length !== 6) {
             $tipsObj.css("color", "red");
+            $tipsObj.css("font-weight", "bold");
             $tipsObj.text("* 验证码长度为 6 位字符");
             return false;
         } else {
             $tipsObj.css("color", "darkolivegreen");
+            $tipsObj.css("font-weight", "normal");
             $tipsObj.text("* 点击获取验证码，邮件会发送至您的邮箱");
         }
     });
@@ -59,14 +65,17 @@ $(function () {
         let tipsObj = $(".tips-email");
         if (!emailReg.test($email) || $email.length <= 0) {
             tipsObj.css("color", "red");
+            tipsObj.css("font-weight", "bold");
             tipsObj.text("* 请输入您注册账号时使用的邮箱地址")
             return false;
         } else if (!emailExists) {
             tipsObj.css("color", "red");
+            tipsObj.css("font-weight", "bold");
             tipsObj.text("* 邮箱地址未注册账号，请重新输入")
             return false;
         } else if (emailExists) {
             tipsObj.css("color", "darkolivegreen");
+            tipsObj.css("font-weight", "normal");
         }
 
         let $btn = $("#pwdFind-code-btn");
@@ -111,10 +120,12 @@ $(function () {
         let $tipsEmailObj = $(".tips-email");
         if (!emailReg.test($email) || $email.length <= 0) {
             $tipsEmailObj.css("color", "red");
+            $tipsEmailObj.css("font-weight", "bold");
             $tipsEmailObj.text("* 邮箱格式不正确");
             return false;
         } else {
             $tipsEmailObj.css("color", "darkolivegreen");
+            $tipsEmailObj.css("font-weight", "normal");
             $tipsEmailObj.text("* 邮箱格式正确");
         }
         // 验证邮箱验证码
@@ -137,10 +148,12 @@ $(function () {
             return false;
         } else if ($pwd !== $rePwd) {
             $pwdTips.css("color", "red");
+            $pwdTips.css("font-weight", "bold");
             $pwdTips.text("两次输入的密码不一致，请重新输入")
             return false;
         } else {
             $pwdTips.css("color", "darkolivegreen");
+            $pwdTips.css("font-weight", "normal");
             $pwdTips.text("* 至少一个数字、字母、字符（@#$%&），长度为 6~16");
         }
 

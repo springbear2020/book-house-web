@@ -40,16 +40,54 @@
     height: 0.5rem;
 }
 
+.bookFile-true{
+    display: block;
+    overflow: hidden;
+    padding-top: 0.2rem;
+    margin-left: -0.3rem;
+    width: 1.4rem;
+    height: 0.55rem;
+    background-color: lightskyblue;
+    font-size: 0.25rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20%;
+    cursor: pointer;
+}
+.bookFile-true:hover{
+    color: white;
+    background-color: #4ea4dc;
+}
+.fileInf{
+    float: left;
+    margin-top: -0.6rem;
+    margin-left: 1.6rem;
+    font-size: 0.25rem;
+}
+.chooseFile{
+    height: 0;
+}
+
 .bookCover{
     height: 3rem;
 }
 
 .bookCover-img{
     /*display: inline-block;*/
-    float: right;
-    margin-right: 0.4rem;
+    /*float: right;*/
+    /*margin-right: 0.4rem;*/
+    display: none;
     width: 1.854rem;
     height: 3rem;
+}
+.img-border{
+    border: 1px solid blue;
+    float: right;
+    margin-right: 0.4rem;
+    font-size: 0.25rem;
+    width: 1.854rem;
+    height: 3rem;
+    text-align: center;
 }
 .bookCover-sp{
     display: inline-block;
@@ -63,8 +101,8 @@
     display: block;
     overflow: hidden;
     padding-top: 0.2rem;
-    margin-top: 0.7rem;
-    margin-left: 0.1rem;
+    margin-top: 0.9rem;
+    margin-left: -0.3rem;
     width: 1.4rem;
     height: 0.55rem;
     background-color: lightskyblue;
@@ -79,7 +117,7 @@
     background-color: #4ea4dc;
 }
 .chooseImg{
-    display: block;
+    text-align: center;
     height: 0;
 }
 .bookCover-left{

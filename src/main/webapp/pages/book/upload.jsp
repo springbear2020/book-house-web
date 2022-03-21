@@ -41,18 +41,24 @@
                 <span>关键词：</span>
                 <input type="text" name="keywords" class="up-input">
             </label>
-            <label class="bookFile upload-label">
-                <span>图书文件：</span>
-                <input type="file" name="book" accept="application/pdf">
-            </label>
+            <div class="bookFile upload-label">
+                <label class="bookFile-true">
+                    <span>上传图书</span>
+                    <input type="file" name="book" accept="application/pdf" class="chooseFile" style="display:block;opacity: 0">
+                </label>
+                <div class="fileInf"></div>
+            </div>
             <div class="bookCover upload-label">
                 <div class="bookCover-left">
                     <label class="chooseImg-true">
                         <div>上传封面</div>
-                        <input type="file" name="bookCover" accept="image/jpeg,image/png" class="chooseImg" style="opacity: 0">
+                        <input type="file" name="bookCover" accept="image/jpeg,image/png" class="chooseImg" style="display:block;opacity: 0">
                     </label>
                 </div>
-                <img class="bookCover-img" alt="封面加载失败">
+                <div class="img-border">
+                    <div>封&nbsp;面</div>
+                    <img class="bookCover-img" alt="封面加载失败">
+                </div>
             </div>
             <label><input type="submit" value="立即上传" class="upload-btn"></label>
         </form>

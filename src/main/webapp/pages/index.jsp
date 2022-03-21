@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/index.js"></script>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
@@ -26,9 +27,9 @@
                 <label><input class="search-text" placeholder="请输入书名"></label>
                 <button type="submit" class="search-btn">搜索</button>
                 <ul class="search-list">
-                    <li class="search-li">...</li>
-                    <li class="search-li">...</li>
-                    <li class="search-li">...</li>
+                    <li class="search-li">我永远喜欢恋恋！</li>
+                    <li class="search-li">世一恋！</li>
+                    <li class="search-li">恋恋世界第一！</li>
                 </ul>
             </form>
         </div>
@@ -52,6 +53,7 @@
                 </div>
             </div>
         </c:forEach>
+        <div style="clear:both"></div>
     </div>
 
     <nav aria-label="Page navigation" class="pag-chs">
