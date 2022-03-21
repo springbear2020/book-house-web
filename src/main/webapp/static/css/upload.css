@@ -95,3 +95,17 @@
     background-color: #dddddd;
     color: blue;
 }
+
+.alert{
+    position: absolute;
+    z-index: 101;
+    left: 50%;
+    top: 1.4rem;
+    color: red;
+    margin-left: -1rem;
+    padding: 0.05rem 0.1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    border: 0.03rem solid black;
+}

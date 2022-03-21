@@ -23,7 +23,7 @@
 <c:if test="${ not empty requestScope.uploadMsg}">
     <div>${requestScope.uploadMsg}</div>
 </c:if>
-<%-- 图书文件上传表单 // TODO 调整此页面样式 --%>
+<%-- 图书文件上传表单 --%>
 <div class="middle">
     <div class="middle-container">
         <form action="bookServlet?action=uploadBook" method="post" enctype="multipart/form-data">
@@ -41,18 +41,16 @@
                 <input type="text" name="keywords" class="up-input">
             </label>
             <label class="bookFile upload-label">
-                <span>图书文件：</span>
-                <input type="file" name="book" accept="application/pdf">
+                <span>图书文件：<input type="file" name="book" accept="application/pdf"></span>
             </label>
             <div class="bookCover upload-label">
                 <div class="bookCover-left">
-                    <span class="bookCover-sp">图书封面：</span>
                     <label class="chooseImg-true">
-                        <div>上传图片</div>
+                        <div>上传封面</div>
                         <input type="file" name="bookCover" accept="image/jpeg,image/png" class="chooseImg" style="opacity: 0">
                     </label>
                 </div>
-                <img class="bookCover-img">
+                <img class="bookCover-img" alt="封面加载失败">
             </div>
             <label><input type="submit" value="立即上传" class="upload-btn"></label>
         </form>

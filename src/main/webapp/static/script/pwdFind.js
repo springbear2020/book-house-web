@@ -52,7 +52,6 @@ $(function () {
     });
 
     // 获取邮箱验证码按钮单击事件
-    let emailLocked = false;
     $("#pwdFind-code-btn").click(function () {
         // 邮箱地址无效则不允许获取验证码
         let $email = $(".pwdFind-email").val();
@@ -70,50 +69,37 @@ $(function () {
             tipsObj.css("color", "darkolivegreen");
         }
 
-        // 设置按钮不可点击
         let $btn = $("#pwdFind-code-btn");
-        $btn.val("获取中");
+        // 设置按钮不可点击
         $btn.attr('disabled', true);
-
-        if (emailLocked) {
-            return false;
-        } else {
-            // 防止多次点击
-            emailLocked = true;
-            // 发起 ajax 请求让服务器发送随机验证码
-            $.ajax({
-                url: "emailServlet",
-                data: "action=ajaxSendPasswordFindEmailCode&email=" + $email,
-                type: "POST",
-                dataType: "text",
-                success: function (data) {
-                    if (data === "true") {
-                        // 获取验证码按钮倒计时，将这个事件锁起来
-                        emailLocked = true;
-                        let secondsNode = 60;
-                        let time = setInterval(function () {
-                            secondsNode--;
-                            $btn.val("重新获取（" + secondsNode + ")");
-                            $btn.css("background-color", "grey")
-                            if (secondsNode <= 0) {
-                                $btn.attr('disabled', false);
-                                $btn.val("获取验证码");
-                                $btn.css("background-color", "lightskyblue")
-                                emailLocked = false;
-                                clearInterval(time);
-                            }
-                        }, 1000)
-                    } else {
-                        alert("验证码发送失败，请稍后重试！");
-                        emailLocked = false;
-                    }
-                },
-                error: function () {
-                    alert("验证码发送失败，请稍后重试！");
-                    emailLocked = false;
-                }
-            });
-        }
+        // 发起 ajax 请求让服务器发送随机验证码
+        // $.ajax({
+        //     url: "emailServlet",
+        //     data: "action=ajaxSendPasswordFindEmailCode&email=" + $email,
+        //     type: "POST",
+        //     dataType: "text",
+        //     success: function (data) {
+        //         if (data === "false") {
+        //             alert("验证码发送失败，请稍后重试！");
+        //         }
+        //     },
+        //     error: function () {
+        //         alert("验证码发送失败，请稍后重试！");
+        //     }
+        // });
+        // 获取验证码按钮倒计时，将这个事件锁起来
+        let secondsNode = 60;
+        let time = setInterval(function () {
+            secondsNode--;
+            $btn.val("重新获取（" + secondsNode + ")");
+            $btn.css("background-color", "grey")
+            if (secondsNode <= 0) {
+                $btn.attr('disabled', false);
+                $btn.val("获取验证码");
+                $btn.css("background-color", "lightskyblue")
+                clearInterval(time);
+            }
+        }, 1000)
     });
 
     // 给重置密码按钮绑定单击事件
