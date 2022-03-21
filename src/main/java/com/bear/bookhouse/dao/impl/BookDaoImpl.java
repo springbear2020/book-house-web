@@ -3,6 +3,7 @@ package com.bear.bookhouse.dao.impl;
 import com.bear.bookhouse.dao.BaseDao;
 import com.bear.bookhouse.dao.BookDao;
 import com.bear.bookhouse.pojo.Book;
+import com.bear.bookhouse.util.NumberUtil;
 
 import java.util.List;
 
@@ -22,5 +23,11 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     public List<Book> listBooksByBeginAndOffset(int begin, int offset) {
         String sql = "SELECT `id`,`title`,`author`,`keywords`,`downloads`,`collections`,`book_path` bookPath,`book_cover_path` bookCoverPath,`upload_username` uploadUsername,`upload_time` uploadTime FROM `t_book` LIMIT ?,?;";
         return listRecord(Book.class, sql, begin, offset);
+    }
+
+    @Override
+    public int getBooksRecordTotalCount() {
+        String sql = "SELECT COUNT(id) FROM `t_book`;";
+        return NumberUtil.objectToInteger(getSingleValue(sql), 0);
     }
 }

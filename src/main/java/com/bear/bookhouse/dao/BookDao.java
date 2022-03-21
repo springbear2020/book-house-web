@@ -25,4 +25,11 @@ public interface BookDao {
      * @return Books or null
      */
     List<Book> listBooksByBeginAndOffset(int begin, int offset);
+
+    /**
+     * 获得图书总记录数
+     *
+     * @return 图书总记录数
+     */
+    int getBooksRecordTotalCount();
 }

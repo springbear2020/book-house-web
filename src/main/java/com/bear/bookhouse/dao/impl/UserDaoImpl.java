@@ -1,25 +1,24 @@
 package com.bear.bookhouse.dao.impl;
 
 import com.bear.bookhouse.dao.BaseDao;
+import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.pojo.User;
 
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/16 19:15
  */
-public class UserDaoImpl extends BaseDao implements com.bear.bookhouse.dao.UserDao {
+public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
     public User queryUserByUsername(String username) {
         String sql = "SELECT `id`,`username`,`password`,`email`,`score`,`register_date` registerDate FROM `t_user` WHERE `username` = ?;";
-        Object[] params = new Object[]{username};
-        return getRecord(User.class, sql, params);
+        return getRecord(User.class, sql, username);
     }
 
     @Override
     public User queryUserByUsernameAndPassword(String username, String password) {
         String sql = "SELECT `id`,`username`,`password`,`email`,`score`,`register_date` registerDate FROM `t_user` WHERE `username` = ? AND `password` = ?;";
-        Object[] params = new Object[]{username, password};
-        return getRecord(User.class, sql, params);
+        return getRecord(User.class, sql, username, password);
     }
 
     @Override
@@ -32,14 +31,12 @@ public class UserDaoImpl extends BaseDao implements com.bear.bookhouse.dao.UserD
     @Override
     public User queryUserByEmail(String email) {
         String sql = "SELECT `id`,`username`,`password`,`email`,`score`,`register_date` registerDate FROM `t_user` WHERE `email` = ?;";
-        Object[] params = new Object[]{email};
-        return getRecord(User.class, sql, params);
+        return getRecord(User.class, sql, email);
     }
 
     @Override
     public int updateUserByEmail(String password, String email) {
         String sql = "UPDATE `t_user` SET `password` = ? WHERE `email` = ?;";
-        Object[] params = new Object[]{password, email};
-        return update(sql, params);
+        return update(sql, password, email);
     }
 }
