@@ -11,19 +11,23 @@ public class Book {
     private String title;
     private String author;
     private String keywords;
-    private String bookPath = "D:/Book/book/";
-    private String bookCoverPath = "D:/Book/cover/";
+    private Integer downloads;
+    private Integer collections;
+    private String bookPath;
+    private String bookCoverPath;
     private String uploadUsername;
     private Date uploadTime;
 
     public Book() {
     }
 
-    public Book(Integer id, String title, String author, String keywords, String bookPath, String bookCoverPath, String uploadUsername, Date uploadTime) {
+    public Book(Integer id, String title, String author, String keywords, Integer downloads, Integer collections, String bookPath, String bookCoverPath, String uploadUsername, Date uploadTime) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.keywords = keywords;
+        this.downloads = downloads;
+        this.collections = collections;
         this.bookPath = bookPath;
         this.bookCoverPath = bookCoverPath;
         this.uploadUsername = uploadUsername;
@@ -60,6 +64,22 @@ public class Book {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public Integer getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(Integer downloads) {
+        this.downloads = downloads;
+    }
+
+    public Integer getCollections() {
+        return collections;
+    }
+
+    public void setCollections(Integer collections) {
+        this.collections = collections;
     }
 
     public String getBookPath() {
@@ -101,6 +121,8 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", keywords='" + keywords + '\'' +
+                ", downloads=" + downloads +
+                ", collections=" + collections +
                 ", bookPath='" + bookPath + '\'' +
                 ", bookCoverPath='" + bookCoverPath + '\'' +
                 ", uploadUsername='" + uploadUsername + '\'' +

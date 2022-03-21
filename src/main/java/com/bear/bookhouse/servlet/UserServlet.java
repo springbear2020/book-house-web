@@ -52,7 +52,7 @@ public class UserServlet extends BaseServlet {
 
         if (userService.isUsernameAndPasswordCorrect(username, password)) {
             req.getSession().setAttribute("user", userService.queryUserByUsername(username));
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            resp.sendRedirect(req.getContextPath() + "/pages/index.jsp");
         } else {
             req.setAttribute("loginErrorMsg", "用户名或密码错误");
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
