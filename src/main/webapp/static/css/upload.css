@@ -1,0 +1,97 @@
+.middle{
+    background-color: lightskyblue;
+    background-image: linear-gradient(to bottom right,blue,lightskyblue,deepskyblue);
+}
+.middle-container{
+    padding-top: 0.2rem;
+    width: 6rem;
+    height: 9rem;
+    margin: 0 auto;
+    /*border: 1px solid black;*/
+    background-color: rgba(240, 248, 255, 0.8);
+}
+
+.upload-label{
+    display: block;
+    width: 4rem;
+    height: 1rem;
+    margin: 0 auto;
+    /*border: 1px solid grey;*/
+}
+.upload-label>span{
+    display: inline-block;
+    padding-top: 0.1rem;
+    font-size: 0.25rem;
+    font-weight: bold;
+}
+.up-input{
+    float: right;
+    padding: 0 0.2rem;
+    font-size: 0.25rem;
+    width: 3rem;
+    height: 0.5rem;
+}
+
+.bookCover{
+    height: 3rem;
+}
+
+.bookCover-img{
+    /*display: inline-block;*/
+    float: right;
+    margin-right: 0.4rem;
+    width: 1.854rem;
+    height: 3rem;
+}
+.bookCover-sp{
+    display: inline-block;
+    padding-top: 0.1rem;
+    font-size: 0.25rem;
+    font-weight: bold;
+    width: 2rem;
+}
+.chooseImg-true{
+    /*display: inline-block;*/
+    display: block;
+    overflow: hidden;
+    padding-top: 0.1rem;
+    margin-top: 0.7rem;
+    margin-left: 0.1rem;
+    width: 1.2rem;
+    height: 0.45rem;
+    background-color: lightskyblue;
+    font-size: 0.25rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 15%;
+    cursor: pointer;
+}
+.chooseImg-true:hover{
+    color: white;
+    background-color: #4ea4dc;
+}
+.chooseImg{
+    display: block;
+    height: 0;
+}
+.bookCover-left{
+    float: left;
+    width: 1rem;
+    height: 3rem;
+}
+
+.upload-btn{
+    margin: 0.4rem 2rem;
+    width: 2rem;
+    height: 1rem;
+    font-size: 0.3rem;
+    font-weight: bold;
+    background-color: aliceblue;
+    border: 0;
+    border-radius: 20%;
+    cursor: pointer;
+}
+.upload-btn:hover{
+    background-color: #dddddd;
+    color: blue;
+}
