@@ -1,6 +1,5 @@
 package com.bear.bookhouse.dao;
 
-import com.bear.bookhouse.dao.BookDao;
 import com.bear.bookhouse.dao.impl.BookDaoImpl;
 import com.bear.bookhouse.pojo.Book;
 import org.junit.Test;
@@ -20,7 +19,7 @@ public class BookDaoTest {
     public void saveBook() {
         Book book = new Book(null, "Java编程思想(第4版)", "Burce Eckel", "Java 编程语言", 0, 0, "Java编程思想(第4版).pdf", "http://localhost:8080/bookhouse/static/img/cover/Java编程思想(第4版).jpeg", "Bear", new Date());
         System.out.println(book);
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 100; i++) {
             System.out.println(bookDao.saveBook(book));
         }
     }
@@ -34,5 +33,11 @@ public class BookDaoTest {
         for (Book book : books) {
             System.out.println(book);
         }
+    }
+
+    @Test
+    public void getBooksRecordTotalCount() {
+        int booksRecordTotalCount = bookDao.getBooksRecordTotalCount();
+        System.out.println(booksRecordTotalCount);
     }
 }

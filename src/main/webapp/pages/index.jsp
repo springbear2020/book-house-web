@@ -35,11 +35,12 @@
     </div>
 
     <div class="row">
-        <c:forEach items="${requestScope.books}" var="book">
+        <c:forEach items="${requestScope.bookPageData.curPageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
                     <img class="img-books" src="${book.bookCoverPath}" alt="封面加载失败">
                     <div class="caption">
+                        <div><span>${book.id}</span></div>
                         <div><span>${book.title}</span></div>
                         <div><span>${book.author}</span></div>
                         <div><span>${book.keywords}</span></div>
@@ -55,15 +56,58 @@
 
     <nav aria-label="Page navigation" class="pag-chs">
         <ul class="pagination">
-            <li><a href="#" class="pag-num pag-fl">首页</a></li>
-            <li><a href="#" aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
-            <li><a href="#" class="pag-num">1</a></li>
-            <li><a href="#" class="pag-num">2</a></li>
-            <li><a href="#" class="pag-num">3</a></li>
-            <li><a href="#" class="pag-num">4</a></li>
-            <li><a href="#" class="pag-num">5</a></li>
-            <li><a href="#" aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
-            <li><a href="#" class="pag-num pag-fl">尾页</a></li>
+            <%-- 总页数大于 1 才显示首页和上一页 --%>
+            <c:if test="${requestScope.bookPageData.pageTotal > 1 && requestScope.bookPageData.pageNum != 1}">
+                <li><a href="bookServlet?action=listBooksByPageNum" class="pag-num pag-fl">首页</a></li>
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum - 1}" aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
+            </c:if>
+            <%-- 设置页码显示范围 --%>
+            <c:choose>
+                <%-- 情况 1：总页码小于 5，显示范围为 1 ~ 总页码 --%>
+                <c:when test="${requestScope.bookPageData.pageTotal <= 5}">
+                    <c:set var="begin" value="1"/>
+                    <c:set var="end" value="${requestScope.bookPageData.pageTotal}"/>
+                </c:when>
+                <%-- 情况 2：总页码数大于 5 --%>
+                <c:when test="${requestScope.bookPageData.pageTotal > 5}">
+                    <c:choose>
+                        <%-- 子情况 2.1：当前页码为前 3 页，则页码显示范围为 1-5 页 --%>
+                        <c:when test="${requestScope.bookPageData.pageNum <= 3}">
+                            <c:set var="begin" value="1"/>
+                            <c:set var="end" value="5"/>
+                        </c:when>
+                        <%-- 子情况 2.2：当前页码为末 3 页，则页码显示范围为末 5 页 --%>
+                        <c:when test="${requestScope.bookPageData.pageNum >= requestScope.bookPageData.pageTotal - 2}">
+                            <c:set var="begin" value="${requestScope.bookPageData.pageTotal - 4}"/>
+                            <c:set var="end" value="${requestScope.bookPageData.pageTotal}"/>
+                        </c:when>
+                        <%-- 其余情况：页码显示范围为 pageTotal-2 到 pageTotal+2 --%>
+                        <c:otherwise>
+                            <c:set var="begin" value="${requestScope.bookPageData.pageNum - 2}"/>
+                            <c:set var="end" value="${requestScope.bookPageData.pageNum + 2}"/>
+                        </c:otherwise>
+                    </c:choose>
+                </c:when>
+            </c:choose>
+
+            <%-- 逐个输出页码 --%>
+            <c:forEach begin="${begin}" end="${end}" var="i">
+                <%-- 设置当前页码不可点击 --%>
+                <c:if test="${i == requestScope.bookPageData.pageNum}">
+                    <li><a class="pag-num" style="color: red">${i}</a></li>
+                </c:if>
+                <c:if test="${i != requestScope.bookPageData.pageNum}">
+                    <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${i}" class="pag-num">${i}</a></li>
+                </c:if>
+            </c:forEach>
+
+            <%-- 显示下一页和尾页 --%>
+            <c:if test="${requestScope.bookPageData.pageNum < requestScope.bookPageData.pageTotal}">
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum + 1}"
+                       aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}"
+                       class="pag-num pag-fl">尾页</a></li>
+            </c:if>
         </ul>
     </nav>
 </div>

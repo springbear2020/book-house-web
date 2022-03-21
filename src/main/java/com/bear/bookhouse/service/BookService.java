@@ -1,8 +1,8 @@
 package com.bear.bookhouse.service;
 
 import com.bear.bookhouse.pojo.Book;
+import com.bear.bookhouse.pojo.Page;
 
-import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -20,9 +20,16 @@ public interface BookService {
     /**
      * 根据指定页码和偏移量获取图书数据
      *
-     * @param pageNum 页码
-     * @param offset  偏移量
-     * @return Books or null
+     * @param pageNum  页码
+     * @param pageSize 每页显示的数量
+     * @return 图书分页对象
      */
-    List<Book> getPageBookItemsByPageNum(int pageNum, int offset);
+    Page<Book> getBookPageData(int pageNum, int pageSize);
+
+    /**
+     * 获取图书记录总数量
+     *
+     * @return 图书记录总数量
+     */
+    int getBooksRecordTotalCount();
 }

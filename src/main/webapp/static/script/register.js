@@ -131,7 +131,6 @@ $(function () {
     })
 
     // 获取邮箱验证码按钮单击事件
-    let emailLocked = false;
     $("#emailCodeBtn").click(function () {
         // 邮箱地址无效则不允许获取验证码
         let email = $(".register-email").val();
@@ -149,51 +148,38 @@ $(function () {
             tipsObj.css("color", "darkolivegreen");
         }
 
-        // 将获取验证码按钮禁用
         let $btn = $(this);
-        $btn.val("获取中");
+        // 将获取验证码按钮禁用
         $btn.attr('disabled', true);
-
-        if (emailLocked) {
-            return false;
-        } else {
-            // 防止多次点击
-            emailLocked = true;
-            // 发起 ajax 请求让服务器发送随机验证码
-            $.ajax({
-                url: "emailServlet",
-                data: "action=ajaxSendRegisterEmailCode&email=" + email,
-                type: "POST",
-                dataType: "text",
-                success: function (data) {
-                    if (data === "true") {
-                        // 获取验证码按钮倒计时，将这个事件锁起来
-                        emailLocked = true;
-                        let secondsNode = 60;
-                        let emailBtnObj = $("#emailCodeBtn");
-                        let time = setInterval(function () {
-                            secondsNode--;
-                            emailBtnObj.val("重新获取（" + secondsNode + ")");
-                            emailBtnObj.css("background-color", "grey")
-                            if (secondsNode <= 0) {
-                                $btn.attr('disabled', false);
-                                emailBtnObj.val("获取验证码");
-                                emailBtnObj.css("background-color", "lightskyblue")
-                                emailLocked = false;
-                                clearInterval(time);
-                            }
-                        }, 1000)
-                    } else {
-                        alert("验证码发送失败，请稍后重试！");
-                        emailLocked = false;
-                    }
-                },
-                error: function () {
+        // 发起 ajax 请求让服务器发送随机验证码
+        $.ajax({
+            url: "emailServlet",
+            data: "action=ajaxSendRegisterEmailCode&email=" + email,
+            type: "POST",
+            dataType: "text",
+            success: function (data) {
+                if (data === "false") {
                     alert("验证码发送失败，请稍后重试！");
-                    emailLocked = false;
                 }
-            });
-        }
+            },
+            error: function () {
+                alert("验证码发送失败，请稍后重试！");
+            }
+        });
+        // 获取验证码按钮倒计时，将这个事件锁起来
+        let secondsNode = 60;
+        let emailBtnObj = $("#emailCodeBtn");
+        let time = setInterval(function () {
+            secondsNode--;
+            emailBtnObj.val("重新获取（" + secondsNode + ")");
+            emailBtnObj.css("background-color", "grey")
+            if (secondsNode <= 0) {
+                $btn.attr('disabled', false);
+                emailBtnObj.val("获取验证码");
+                emailBtnObj.css("background-color", "lightskyblue")
+                clearInterval(time);
+            }
+        }, 1000)
     });
 
     // 注册按钮单击事件
