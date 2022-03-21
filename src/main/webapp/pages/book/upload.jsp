@@ -42,7 +42,8 @@
                 <input type="text" name="keywords" class="up-input">
             </label>
             <label class="bookFile upload-label">
-                <span>图书文件：<input type="file" name="book" accept="application/pdf"></span>
+                <span>图书文件：</span>
+                <input type="file" name="book" accept="application/pdf">
             </label>
             <div class="bookCover upload-label">
                 <div class="bookCover-left">
