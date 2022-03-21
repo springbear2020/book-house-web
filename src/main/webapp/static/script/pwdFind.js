@@ -82,20 +82,20 @@ $(function () {
         // 设置按钮不可点击
         $btn.attr('disabled', true);
         // 发起 ajax 请求让服务器发送随机验证码
-        // $.ajax({
-        //     url: "emailServlet",
-        //     data: "action=ajaxSendPasswordFindEmailCode&email=" + $email,
-        //     type: "POST",
-        //     dataType: "text",
-        //     success: function (data) {
-        //         if (data === "false") {
-        //             alert("验证码发送失败，请稍后重试！");
-        //         }
-        //     },
-        //     error: function () {
-        //         alert("验证码发送失败，请稍后重试！");
-        //     }
-        // });
+        $.ajax({
+            url: "emailServlet",
+            data: "action=ajaxSendPasswordFindEmailCode&email=" + $email,
+            type: "POST",
+            dataType: "text",
+            success: function (data) {
+                if (data === "false") {
+                    alert("验证码发送失败，请稍后重试！");
+                }
+            },
+            error: function () {
+                alert("验证码发送失败，请稍后重试！");
+            }
+        });
         // 获取验证码按钮倒计时，将这个事件锁起来
         let secondsNode = 60;
         let time = setInterval(function () {

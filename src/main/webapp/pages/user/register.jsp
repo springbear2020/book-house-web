@@ -14,8 +14,8 @@
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.registerErrorMsg}">
-    <div class="alert">${requestScope.registerErrorMsg}</div>
+<c:if test="${ not empty requestScope.registerMsg}">
+    <div class="alert">${requestScope.registerMsg}</div>
 </c:if>
 <div class="middle">
     <div class="frame-register">

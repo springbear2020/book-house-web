@@ -36,7 +36,7 @@ $(function () {
         // 验证密码
         let password = $(".register-password").val();
         let $pwdTips = $(".tips-password");
-        // TODO Wait to add the correct password regular expression,same to the no 213 lines and 149 lines in the pwdFind.js
+        // TODO 密码验证正则表达式以及密码提示信息 tips 修改, same to the no 213 lines and 149 lines in the pwdFind.js
         // let pwdReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&]){6,16}$")
         if (password.length < 6 || password.length > 16) {
             $pwdTips.css("color", "red");

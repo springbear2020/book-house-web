@@ -17,18 +17,16 @@ public class BookDaoTest {
 
     @Test
     public void saveBook() {
-        Book book = new Book(null, "Java编程思想(第4版)", "Burce Eckel", "Java 编程语言", 0, 0, "Java编程思想(第4版).pdf", "http://localhost:8080/bookhouse/static/img/cover/Java编程思想(第4版).jpeg", "Bear", new Date());
-        System.out.println(book);
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(bookDao.saveBook(book));
-        }
+        Book book = new Book(null, "Java开发手册(嵩山版)", "阿里巴巴", "Bear", "Java 编程语言", 0, 0, "Java 届永远滴神", "WEB-INF/book/Java开发手册(嵩山版).pdf", "static/img/cover/Java开发手册(嵩山版).png", "Bear", new Date());
+        int i = bookDao.saveBook(book);
+        System.out.println(i);
     }
 
     @Test
     public void listBooksByBeginAndOffset() {
-        int pageNum = 1;
-        int offset = 5;
-        int begin = pageNum * offset;
+        int pageNum = 2;
+        int offset = 2;
+        int begin = (pageNum - 1) * offset;
         List<Book> books = bookDao.listBooksByBeginAndOffset(begin, offset);
         for (Book book : books) {
             System.out.println(book);
@@ -39,5 +37,11 @@ public class BookDaoTest {
     public void getBooksRecordTotalCount() {
         int booksRecordTotalCount = bookDao.getBooksRecordTotalCount();
         System.out.println(booksRecordTotalCount);
+    }
+
+    @Test
+    public void getBookById() {
+        Book bookById = bookDao.getBookById(1);
+        System.out.println(bookById);
     }
 }

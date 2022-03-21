@@ -26,7 +26,7 @@ public class Page<T> {
     /**
      * 当前页数据
      */
-    private List<T> curPageData;
+    private List<T> pageData;
 
     public Page() {
     }
@@ -63,12 +63,12 @@ public class Page<T> {
         this.recordTotal = recordTotal;
     }
 
-    public List<T> getCurPageData() {
-        return curPageData;
+    public List<T> getPageData() {
+        return pageData;
     }
 
-    public void setCurPageData(List<T> curPageData) {
-        this.curPageData = curPageData;
+    public void setPageData(List<T> pageData) {
+        this.pageData = pageData;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Page<T> {
                 ", pageSize=" + pageSize +
                 ", pageTotal=" + pageTotal +
                 ", recordTotal=" + recordTotal +
-                ", curPageData=" + curPageData +
+                ", pageData=" + pageData +
                 '}';
     }
 }

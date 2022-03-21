@@ -5,7 +5,7 @@ window.onload = function (){
     $srText.focus(function (){
         let value = $srText.val();
         // 如果框内没有输入东西就不显示下拉框
-        if(value != ''){
+        if(value !== ''){
             $srList.css('display','block');
         }
     })
@@ -14,7 +14,7 @@ window.onload = function (){
     $srText.bind('input porpertychange',function (){
         let value = $srText.val();
         // 如果框内变成了空的就不显示下拉框
-        if(value != ''){
+        if(value !== ''){
             $srList.css('display','block');
         }else{
             $srList.css('display','none');

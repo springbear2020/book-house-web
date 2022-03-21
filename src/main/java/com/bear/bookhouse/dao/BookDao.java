@@ -32,4 +32,12 @@ public interface BookDao {
      * @return 图书总记录数
      */
     int getBooksRecordTotalCount();
+
+    /**
+     * 通过 id 查询图书信息
+     *
+     * @param id 图书 id
+     * @return Book or null
+     */
+    Book getBookById(int id);
 }

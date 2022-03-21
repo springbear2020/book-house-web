@@ -6,7 +6,7 @@
 .middle-container{
     padding-top: 0.2rem;
     width: 6rem;
-    height: 10rem;
+    height: 12rem;
     margin: 0 auto;
     /*border: 1px solid black;*/
     background-color: rgba(240, 248, 255, 0.8);
@@ -150,8 +150,8 @@
 .alert{
     position: absolute;
     z-index: 101;
-    left: 50%;
-    top: 1.4rem;
+    left: 45%;
+    top: 0.4rem;
     color: red;
     margin-left: -1rem;
     padding: 0.05rem 0.1rem;

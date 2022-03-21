@@ -29,6 +29,7 @@ public class UserServlet extends BaseServlet {
         String email = req.getParameter("email");
         String emailVerifyCode = req.getParameter("emailVerifyCode");
         String password = req.getParameter("password");
+
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getPasswordFindEmailCode())) {
             req.setAttribute("updatePwdMsg", "邮箱验证码错误");
@@ -37,6 +38,8 @@ public class UserServlet extends BaseServlet {
         }
         if (userService.updateUserPasswordByEmail(password, email)) {
             resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
     }
 
@@ -51,10 +54,11 @@ public class UserServlet extends BaseServlet {
         String password = req.getParameter("password");
 
         if (userService.isUsernameAndPasswordCorrect(username, password)) {
+            // 用户名密码正确，跳转到主页
             req.getSession().setAttribute("user", userService.queryUserByUsername(username));
             resp.sendRedirect(req.getContextPath() + "/bookServlet?action=listBooksByPageNum");
         } else {
-            req.setAttribute("loginErrorMsg", "用户名或密码错误");
+            req.setAttribute("loginMsg", "用户名不存在或密码错误");
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
         }
     }
@@ -76,13 +80,13 @@ public class UserServlet extends BaseServlet {
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
         if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getRegisterEmailCode())) {
-            req.setAttribute("registerErrorMsg", "邮箱验证码有误");
+            req.setAttribute("registerMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
-            req.setAttribute("registerErrorMsg", "图片验证码有误");
+            req.setAttribute("registerMsg", "图片验证码有误");
             req.setAttribute("user", user);
             req.setAttribute("emailCode", emailVerifyCode);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
@@ -94,11 +98,13 @@ public class UserServlet extends BaseServlet {
         user.setScore(100);
         if (userService.saveUser(user)) {
             resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
     }
 
     /**
-     * AJAX 请求验证用户名是否存在
+     * AJAX 请求验证用户名是否已使用
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
@@ -113,7 +119,7 @@ public class UserServlet extends BaseServlet {
     }
 
     /**
-     * AJAX 请求验证邮箱地址存在性
+     * AJAX 请求验证邮箱地址是否已使用
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse

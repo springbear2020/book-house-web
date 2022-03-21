@@ -99,7 +99,7 @@ li {
 .alert{
     position: absolute;
     z-index: 101;
-    left: 50%;
+    left: 48%;
     top: 1.4rem;
     color: red;
     margin-left: -1rem;
@@ -108,16 +108,6 @@ li {
     font-weight: bold;
     background-color: white;
     border: 0.03rem solid black;
-}
-
-.grey{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
 }
 
 a{

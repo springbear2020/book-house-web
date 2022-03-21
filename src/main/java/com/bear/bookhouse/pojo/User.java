@@ -11,17 +11,19 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String portraitPath = "static/picture/portrait/default.jpg";
     private Integer score;
     private Date registerDate;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Integer score, Date registerDate) {
+    public User(Integer id, String username, String password, String email, String portraitPath, Integer score, Date registerDate) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.portraitPath = portraitPath;
         this.score = score;
         this.registerDate = registerDate;
     }
@@ -66,6 +68,14 @@ public class User {
         this.score = score;
     }
 
+    public String getPortraitPath() {
+        return portraitPath;
+    }
+
+    public void setPortraitPath(String portraitPath) {
+        this.portraitPath = portraitPath;
+    }
+
     public Date getRegisterDate() {
         return registerDate;
     }
@@ -82,6 +92,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", score=" + score +
+                ", portraitPath='" + portraitPath + '\'' +
                 ", registerDate=" + registerDate +
                 '}';
     }

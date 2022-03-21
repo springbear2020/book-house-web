@@ -32,11 +32,8 @@
     padding-top: 0.05rem;
     padding-bottom: 0.05rem;
     width: 3.8rem;
-    /*height: 2rem;*/
     background-color: white;
     border: 1px solid black;
-    /*border-top: 0;*/
-    /*display: none;*/
 }
 .search-li{
     display: block;
@@ -50,11 +47,8 @@
     background-color: #ddd;
 }
 .row{
-    /*float: left;*/
     display: block;;
     width: 18rem;
-    /*margin-left: 1.5rem;*/
-    /*height: 6rem;*/
     margin: 0 auto;
     border: 1px solid blue;
 }

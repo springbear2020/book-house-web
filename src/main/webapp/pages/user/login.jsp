@@ -14,8 +14,8 @@
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.loginErrorMsg}">
-    <div class="alert">${requestScope.loginErrorMsg}</div>
+<c:if test="${ not empty requestScope.loginMsg}">
+    <div class="alert">${requestScope.loginMsg}</div>
 </c:if>
 <div class="middle">
     <div class="frame-login">

@@ -18,7 +18,7 @@ public interface BookService {
     boolean saveBook(Book book);
 
     /**
-     * 根据指定页码和偏移量获取图书数据
+     * 图书数据分页显示
      *
      * @param pageNum  页码
      * @param pageSize 每页显示的数量
@@ -32,4 +32,12 @@ public interface BookService {
      * @return 图书记录总数量
      */
     int getBooksRecordTotalCount();
+
+    /**
+     * 通过图书 id 获取对应图书文件
+     *
+     * @param id 图书 id
+     * @return 图书保存路径
+     */
+    String getBookPathById(int id);
 }

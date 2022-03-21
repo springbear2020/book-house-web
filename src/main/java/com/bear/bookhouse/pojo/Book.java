@@ -10,26 +10,30 @@ public class Book {
     private Integer id;
     private String title;
     private String author;
+    private String translator;
     private String keywords;
     private Integer downloads;
     private Integer collections;
+    private String comment;
     private String bookPath;
-    private String bookCoverPath;
+    private String coverPath;
     private String uploadUsername;
     private Date uploadTime;
 
     public Book() {
     }
 
-    public Book(Integer id, String title, String author, String keywords, Integer downloads, Integer collections, String bookPath, String bookCoverPath, String uploadUsername, Date uploadTime) {
+    public Book(Integer id, String title, String author, String translator, String keywords, Integer downloads, Integer collections, String comment, String bookPath, String coverPath, String uploadUsername, Date uploadTime) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.translator = translator;
         this.keywords = keywords;
         this.downloads = downloads;
         this.collections = collections;
+        this.comment = comment;
         this.bookPath = bookPath;
-        this.bookCoverPath = bookCoverPath;
+        this.coverPath = coverPath;
         this.uploadUsername = uploadUsername;
         this.uploadTime = uploadTime;
     }
@@ -58,6 +62,14 @@ public class Book {
         this.author = author;
     }
 
+    public String getTranslator() {
+        return translator;
+    }
+
+    public void setTranslator(String translator) {
+        this.translator = translator;
+    }
+
     public String getKeywords() {
         return keywords;
     }
@@ -82,6 +94,14 @@ public class Book {
         this.collections = collections;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public String getBookPath() {
         return bookPath;
     }
@@ -90,12 +110,12 @@ public class Book {
         this.bookPath = bookPath;
     }
 
-    public String getBookCoverPath() {
-        return bookCoverPath;
+    public String getCoverPath() {
+        return coverPath;
     }
 
-    public void setBookCoverPath(String bookCoverPath) {
-        this.bookCoverPath = bookCoverPath;
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
     }
 
     public String getUploadUsername() {
@@ -120,11 +140,13 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", translator='" + translator + '\'' +
                 ", keywords='" + keywords + '\'' +
                 ", downloads=" + downloads +
                 ", collections=" + collections +
+                ", comment='" + comment + '\'' +
                 ", bookPath='" + bookPath + '\'' +
-                ", bookCoverPath='" + bookCoverPath + '\'' +
+                ", coverPath='" + coverPath + '\'' +
                 ", uploadUsername='" + uploadUsername + '\'' +
                 ", uploadTime=" + uploadTime +
                 '}';
