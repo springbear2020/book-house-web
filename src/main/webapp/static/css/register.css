@@ -161,3 +161,11 @@ li {
 .backArrow img:hover{
     content: url("../img/icon_back_deep.png");
 }
+
+.success-tips{
+    color: green;
+    font-size: 0.25rem;
+    margin-left: 2.1rem;
+    margin-top: 0.15rem;
+    font-weight: bold;
+}

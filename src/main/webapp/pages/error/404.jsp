@@ -9,9 +9,11 @@
 <html>
 <head>
     <title>404</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/error.css">
+    <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
-<%-- // TODO 内容待美化 --%>
+<%-- // TODO 内容已美化 待后端阅览 --%>
 <h1>404 NOT FOUND</h1>
 </body>
 </html>
