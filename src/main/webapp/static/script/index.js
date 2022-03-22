@@ -11,7 +11,7 @@ window.onload = function (){
     })
 
     // 监听搜索框内容的变化
-    // $srText.bind('input porpertychange',function (){
+    // $srText.bind('input property change',function (){
         // let value = $srText.val();
         // // 如果框内变成了空的就不显示下拉框
         // if(value !== ''){

@@ -19,7 +19,6 @@
 </c:if>
 <div class="middle">
     <div class="frame-register">
-<%--        // TODO 注册成功提示--%>
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
         <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%--  注册表单  --%>
@@ -60,6 +59,8 @@
                 <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
             </div>
         </form>
+<%--        // TODO 咋让它在注册成功后显示啊--%>
+        <div class="success-tips">恭喜注册成功！</div>
     </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>

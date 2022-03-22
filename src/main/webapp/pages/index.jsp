@@ -36,9 +36,10 @@
             <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="通知"></a></li>
             <li><a href="#" class="head_img"><img src="https://wx1.sinaimg.cn/mw1024/007uAMOWgy1gwpjx0ukanj30yu1d6qv5.jpg" alt="个人"></a></li>
             <ul class="self-frame">
-                <li>阿伟</li>
-                <li>彬彬</li>
-                <li>杰哥</li>
+                <li><a href="">个人信息</a></li>
+                <li><a href="">上传记录</a></li>
+                <li><a href="">下载记录</a></li>
+                <li><a href="">注销</a></li>
             </ul>
         </ul>
     </c:if>
@@ -77,13 +78,13 @@
             <div class="one-book">
                 <div class="thumbnail">
                         <%--          // TODO 点击图片跳转到图书详情页          --%>
-                    <a href=""><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
+                        <%--          // TODO 图书显示布局大改，等你哦，前端          --%>
+                    <a href="pages/book/detail.jsp"><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span>${book.title}</span></div>
                         <div><span>${book.author}</span></div>
                         <div><span>${book.keywords}</span></div>
                         <div><span>下载量:${book.downloads} 收藏数:${book.collections}</span></div>
-                            <%-- // TODO 调整这个两个 a 标签的位置 --%>
                         <a href="bookServlet?action=downloadBook&id=${book.id}">下载</a>
                         <a href="">收藏</a>
                     </div>

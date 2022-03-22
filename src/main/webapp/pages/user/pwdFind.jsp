@@ -31,8 +31,6 @@
         <ul class="frame-title">
             <li class="title-pwdFind">忘记密码</li>
         </ul>
-
-<%--        // TODO 密码重置成功提示--%>
         <div class="pwdFind">
             <%-- 找回密码表单 --%>
             <form action="userServlet" method="post">
@@ -54,6 +52,8 @@
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
             <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
+<%--                    // TODO 咋让它在注册成功后显示啊--%>
+            <div class="success-tips">密码重置成功！</div>
         </div>
     </div>
 </div>

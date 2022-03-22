@@ -1,0 +1,55 @@
+@font-face{
+    font-family: 汉仪文黑;
+    src: url(zh-cn.ttf);
+}
+
+
+.middle {
+    background-color: lightskyblue;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+.middle-frame{
+    width: 12rem;
+    height: 10rem;
+    margin: 0.2rem auto;
+    /*border: 1px solid blue;*/
+    background-color: #eee;
+    border-radius: 5%;
+}
+
+.inf-left{
+    margin: 0.4rem;
+    float: left;
+    border: 1px solid black;
+}
+
+.book_img{
+    width: 4.944rem;
+    height: 8rem;
+}
+
+.inf-right{
+    float: right;
+    width: 5rem;
+}
+.inf-right li{
+    display: block;
+    /*float: left;*/
+    width: 5rem;
+    margin: 0.3rem 0 0.3rem -0.5rem;
+}
+.inf-right li div{
+    font-size: 0.3rem;
+    font-weight: bold;
+    font-family: 汉仪文黑;
+    float: left;
+}
+.inf-right li p{
+    display: block;
+    margin-left: 1.5rem;
+    font-size: 0.25rem;
+    font-family: 汉仪文黑;
+    /*float: left;*/
+    /*float: right;*/
+}

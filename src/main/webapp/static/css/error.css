@@ -1,0 +1,13 @@
+body{
+    background-image: url("../img/Cirno.jpg");
+}
+h1{
+    position: absolute;
+    font-size: 3rem;
+    /*width: 10rem;*/
+    left: 50%;
+    top: 50%;
+    width: 26rem;
+    margin-left: -13rem;
+    margin-top: -1rem;
+}

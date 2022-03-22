@@ -22,18 +22,18 @@ body{
 .top-left {
     margin: 0 auto !important;
     float: none !important;
-    width: 6rem !important;
+    width: 5rem !important;
 }
 .top-left-title{
     float: none !important;
     font-size: 0.7rem !important;
 }
 
-.title{
-    width: 3rem;
-    height: 1rem;
-    margin: 0.1rem auto;
-}
+/*.title{*/
+/*    width: 3rem;*/
+/*    height: 1rem;*/
+/*    margin: 0.1rem auto;*/
+/*}*/
 
 .middle{
     margin-top: -0.5rem;
@@ -43,7 +43,7 @@ body{
 .container{
     position: relative;
     left: 50%;
-    margin-left: -4.5rem;
+    margin-left: -4rem;
     width: 8rem;
     height: 8.5rem;
     background-color: #fff;
@@ -62,7 +62,7 @@ body{
 }
 
 .title-pwdFind{
-    margin-left: 1.2rem;
+    margin-left: 1.5rem;
     font-size: 0.4rem;
     font-weight: bold;
     text-align: center;
@@ -169,4 +169,12 @@ body{
     font-weight: bold;
     background-color: white;
     border: 0.03rem solid black;
+}
+
+.success-tips{
+    color: green;
+    font-size: 0.25rem;
+    margin-left: 2.1rem;
+    margin-top: -1rem;
+    font-weight: bold;
 }
