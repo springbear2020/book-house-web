@@ -10,7 +10,8 @@
 <head>
     <title>Title</title>
     <%@include file="/pages/common/base.jsp" %>
-    <link rel="stylesheet" type="text/css" href="static/css/error.css">
+    <%--    // TODO 阿伟，人家也想要美美的样式，要嘛要嘛 --%>
+<%--    <link rel="stylesheet" type="text/css" href="static/css/error.css">--%>
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>

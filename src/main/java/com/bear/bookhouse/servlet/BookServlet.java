@@ -47,10 +47,22 @@ public class BookServlet extends BaseServlet {
     private File coverRealDiskPath;
 
     /**
+     * 用户上传图书文件
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void userUploadBook(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("已收到用户上传图书的请求，待处理");
+        // TODO 处理用户上传图书请求
+    }
+
+    /**
      * 通过图书 id 下载对应的图书数据
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
+     * @throws IOException exception
      */
     protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String idStr = req.getParameter("id");
@@ -83,7 +95,7 @@ public class BookServlet extends BaseServlet {
      * @param resp HttpServletResponse
      * @throws IOException exception
      */
-    protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void adminUploadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Book book = new Book();
         // 判断上传的文件是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {

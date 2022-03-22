@@ -19,38 +19,7 @@
     <script type="text/javascript" src="static/script/index.js"></script>
 </head>
 <body>
-<div class="top-content">
-    <div class="top-left">
-        <span class="top-left-title">Book House</span>
-    </div>
-    <ul class="top-center">
-        <%-- 用户登录后才显示首页、上传、收藏夹、通知、个人等入口 --%>
-        <c:if test="${ not empty sessionScope.user}">
-            <li><a href="index.jsp" class="example">首页</a></li>
-            <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
-            <li><a href="#" class="example">收藏夹</a></li>
-        </c:if>
-    </ul>
-    <c:if test="${ not empty sessionScope.user}">
-        <ul class="top-self">
-            <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="通知"></a></li>
-            <script type="text/javascript">${requestScope.user.portraitPath}</script>
-            <li><a href="#" class="head_img"><img src="${sessionScope.user.portraitPath}" alt="个人"></a></li>
-            <ul class="self-frame">
-                <a href="userServlet?action=logout">
-                    <li>注销</li>
-                </a>
-            </ul>
-        </ul>
-    </c:if>
-    <%-- 用户未登录才显示登录、注册入口 --%>
-    <c:if test="${empty sessionScope.user}">
-        <ul class="top-right">
-            <li><a href="pages/user/login.jsp" class="example">登录</a></li>
-            <li><a href="pages/user/register.jsp" class="example">注册</a></li>
-        </ul>
-    </c:if>
-</div>
+<%@include file="/pages/common/header.jsp"%>
 <div class="middle">
     <div class="search">
         <div class="search-container">
@@ -77,8 +46,8 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-<%--                    // TODO 等待处理跳转到详情页信息显示 --%>
-                    <a href="pages/book/detail.jsp"><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
+<%--                    // TODO 等待前端处理跳转到详情页信息显示 --%>
+                    <a href="pages/book/detail.jsp" target="_blank"><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span>${book.id}</span></div>
                         <div><h5>《${book.title}》</h5></div>
@@ -151,7 +120,6 @@
             </c:if>
             <div style="clear:both"></div>
         </ul>
-        <%--        <div style="clear:both"></div>--%>
     </nav>
 </div>
 <%@include file="/pages/common/footer.jsp" %>

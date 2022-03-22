@@ -10,7 +10,7 @@
 <head>
     <title>404</title>
     <%@include file="/pages/common/base.jsp"%>
-<%--    <link rel="stylesheet" type="text/css" href="static/css/error.css">--%>
+<%--    // TODO 阿伟，人家想要美美的样式 --%>
     <link rel="stylesheet" type="text/css" href="static/css/404.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
 

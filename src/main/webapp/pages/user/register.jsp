@@ -62,6 +62,7 @@
                 <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
             </div>
         </form>
+<%--        // TODO 前端，来给我挑一个醒目的位置，谢谢你--%>
         <div class="success-tips">${requestScope.registerSuccessMsg}</div>
     </div>
 </div>
