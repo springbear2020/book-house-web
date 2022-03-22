@@ -9,11 +9,20 @@
 <html>
 <head>
     <title>404</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/error.css">
+    <%@include file="/pages/common/base.jsp"%>
+<%--    <link rel="stylesheet" type="text/css" href="static/css/error.css">--%>
+    <link rel="stylesheet" type="text/css" href="static/css/404.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+
 </head>
 <body>
-<%-- // TODO 内容已美化 待后端阅览 --%>
-<h1>404 NOT FOUND</h1>
+<div class="notfound-img">
+    <div class="img1">
+        <img src="https://s3.bmp.ovh/imgs/2022/03/77ac85c51d6b0474.png" alt="">
+    </div>
+    <div class="img2">
+        <img src="https://s3.bmp.ovh/imgs/2022/03/680f45b2a7081010.png" alt="">
+    </div>
+</div>
 </body>
 </html>

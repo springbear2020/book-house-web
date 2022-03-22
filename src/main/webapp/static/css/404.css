@@ -1,0 +1,39 @@
+body{
+    background-color: #FDE4D4;
+}
+
+.notfound-img{
+    width: 1000px;
+    height: 450px;
+    /* background-color: red; */
+    /* overflow: hidden; */
+    margin: 500px auto;
+    position: relative;
+}
+
+/* 左图片 */
+.img1{
+    width: 450px;
+    height: 450px;
+    /* background-color: blue; */
+    position: absolute;
+
+}
+.img1 img{
+    width: 450px;
+}
+
+/* 右边图片 */
+.img2{
+    width: 550px;
+    height: 450px;
+    /* background-color: green; */
+    position: absolute;
+    left: 90px;
+    top:-255px;
+
+}
+
+.img2 img{
+    width: 1500px
+}
