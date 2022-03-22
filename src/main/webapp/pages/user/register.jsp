@@ -21,8 +21,7 @@
     <div class="frame-register">
 <%--        // TODO 注册成功提示--%>
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
-        <%--        // TODO CSS 你不能缺--%>
-        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="" alt="图片加载失败"></a>
+        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%--  注册表单  --%>
         <form class="register-box" action="userServlet" method="post">
             <input type="hidden" name="action" value="register">

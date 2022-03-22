@@ -149,3 +149,15 @@ li {
     background-color: white;
     border: 0.03rem solid black;
 }
+
+.backArrow {
+    margin-top: -1rem;
+    margin-right: 0.6rem;
+    float: right;
+}
+.backArrow img{
+    width: 0.6rem;
+}
+.backArrow img:hover{
+    content: url("../img/icon_back_deep.png");
+}

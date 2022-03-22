@@ -20,8 +20,7 @@
 <div class="middle">
     <div class="frame-login">
         <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
-<%--        // TODO CSS 你不能缺--%>
-        <a href="index.jsp" class="backArrow"><img src="" alt="图片加载失败"></a>
+        <a href="index.jsp" class="backArrow"><img src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%--  登录表单 --%>
         <form class="login-box" action="userServlet" method="post">
             <input type="hidden" name="action" value="login">

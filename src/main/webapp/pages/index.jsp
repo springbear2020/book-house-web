@@ -31,18 +31,24 @@
             <li><a href="#" class="example">收藏夹</a></li>
         </c:if>
     </ul>
-    <ul class="top-right">
-        <c:if test="${ not empty sessionScope.user}">
-            <%-- // TODO 通知换成一个小铃铛样式；个人 显示用户头像 --%>
-            <li><a href="#" class="example">通知</a></li>
-            <li><a href="#" class="example">头像</a></li>
-        </c:if>
+    <c:if test="${ not empty sessionScope.user}">
+        <ul class="top-self">
+            <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="通知"></a></li>
+            <li><a href="#" class="head_img"><img src="https://wx1.sinaimg.cn/mw1024/007uAMOWgy1gwpjx0ukanj30yu1d6qv5.jpg" alt="个人"></a></li>
+            <ul class="self-frame">
+                <li>阿伟</li>
+                <li>彬彬</li>
+                <li>杰哥</li>
+            </ul>
+        </ul>
+    </c:if>
         <%-- 用户未登录才显示登录、注册入口 --%>
-        <c:if test="${empty sessionScope.user}">
+    <c:if test="${empty sessionScope.user}">
+        <ul class="top-right">
             <li><a href="pages/user/login.jsp" class="example">登录</a></li>
             <li><a href="pages/user/register.jsp" class="example">注册</a></li>
-        </c:if>
-    </ul>
+        </ul>
+    </c:if>
 </div>
 <div class="middle">
     <div class="search">
@@ -51,11 +57,15 @@
             <form class="search-form" method="post" action="#">
                 <label><input class="search-text" placeholder="请输入检索内容"></label>
                 <button type="submit" class="search-btn">搜索</button>
-<%--                // TODO 下拉列表显示检索条件--%>
                 <ul class="search-list">
-                    <li class="search-li">书名</li>
-                    <li class="search-li">作者</li>
-                    <li class="search-li">关键词</li>
+                    <div class="search-choose">
+                        <li class="search-word">书名</li>
+                        <li class="search-word">作者</li>
+                        <li class="search-word">关键词</li>
+                    </div>
+                    <li class="search-li">搜出来的东西</li>
+                    <li class="search-li">就像搜索引擎那样</li>
+                    <li class="search-li">相信你可以的√</li>
                 </ul>
             </form>
         </div>
@@ -139,7 +149,9 @@
                 <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}"
                        class="pag-num pag-fl">尾页</a></li>
             </c:if>
+                <div style="clear:both"></div>
         </ul>
+<%--        <div style="clear:both"></div>--%>
     </nav>
 </div>
 <%@include file="/pages/common/footer.jsp" %>

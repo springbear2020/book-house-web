@@ -160,3 +160,15 @@
     background-color: white;
     border: 0.03rem solid black;
 }
+
+.toBack{
+    float: right;
+    margin-right: 0.5rem;
+    margin-top: -1rem;
+}
+.toBack img{
+    width: 0.6rem;
+}
+.toBack img:hover{
+    content: url("../img/icon_back_deep.png");
+}

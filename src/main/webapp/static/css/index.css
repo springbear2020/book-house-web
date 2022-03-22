@@ -1,3 +1,44 @@
+.top-self{
+    float: right;
+    margin-right: 0.2rem;
+    margin-top:0;
+}
+.bell{
+    width: 0.6rem;
+    margin: 0 0.2rem;
+}
+.bell:hover{
+    content: url("../img/icon_bell_op.png");
+}
+.head_img{
+    border: 1px;
+    margin: -0.2rem 0.2rem 0;
+}
+.head_img img{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+.self-frame{
+    display: none;
+    position: absolute;
+    right: 0.2rem;
+    width: 0.8rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.1rem;
+    background-color: white;
+}
+.self-frame li{
+    display: block;
+    text-align: center;
+    margin-left: -0.4rem;
+    padding: 0.05rem 0;
+    font-size: 0.25rem;
+    width: 1rem;
+}
+.self-frame li:hover{
+    background-color: #dddddd;
+}
+
 .middle{
     background-color: #ccffff;
 }
@@ -24,6 +65,16 @@
     font-weight: bold;
     border-radius: 0.3rem;
 }
+.search-choose{
+    margin: 0.1rem 0 0.1rem -0.3rem;
+}
+.search-word{
+    padding: 0.05rem 0.1rem;
+}
+/*.search-word:hover{*/
+/*    background-color: grey;*/
+/*    color: white;*/
+/*}*/
 .search-list{
     display: none;
     position: absolute;
@@ -67,13 +118,14 @@
 }
 
 .pag-chs{
+    display: table;
     margin: 0.2rem auto;
     padding-bottom: 0.2rem;
-    width: 8.4rem;
+    /*width: 8.4rem;*/
     height: 0.6rem;
     text-align: center;
 }
-.pagination{
+.pagination{;
     height: 0.4rem;
 }
 .pag-num{

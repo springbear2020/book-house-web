@@ -115,6 +115,13 @@ a{
 }
 
 .backArrow {
-    width: 0.2rem;
-    height: 0.2rem;
+    margin-top: -1rem;
+    margin-right: 0.6rem;
+    float: right;
+}
+.backArrow img{
+    width: 0.6rem;
+}
+.backArrow img:hover{
+    content: url("../img/icon_back_deep.png");
 }
