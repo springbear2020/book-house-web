@@ -44,4 +44,10 @@ public class BookDaoTest {
         Book bookById = bookDao.getBookById(1);
         System.out.println(bookById);
     }
+
+    @Test
+    public void updateBookDownloadsById() {
+        int i = bookDao.updateBookDownloadsById(99, 1);
+        System.out.println(i);
+    }
 }

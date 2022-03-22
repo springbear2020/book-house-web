@@ -51,24 +51,30 @@ public class BookServlet extends BaseServlet {
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
-     * @throws IOException exception
      */
     protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String idStr = req.getParameter("id");
         int id = NumberUtil.objectToInteger(idStr, 0);
-        String bookSavePath = bookService.getBookPathById(id);
+        Book book = bookService.getBookById(id);
+        if (book == null) {
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+            return;
+        }
         // 读取文件类型
-        String mimeType = getServletContext().getMimeType("/file/" + bookSavePath);
+        String mimeType = getServletContext().getMimeType("/file/" + book.getBookPath());
         // 通过响应头通知客户端返回的数据类型
         resp.setContentType(mimeType);
         // 告知客户端数据用于下载
         resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.fileNameFormat(new Date()) + ".pdf", "UTF-8"));
         // 从磁盘读取想要下载的字节数据到流中
-        InputStream inputStream = getServletContext().getResourceAsStream("/" + bookSavePath);
+        InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
         // 将文件字节流数据赋值给响应输出流
         IOUtils.copy(inputStream, resp.getOutputStream());
+        // 图书下载量自增 1，先获取原来的下载量
+        int downloads = book.getDownloads();
+        downloads += 1;
+        bookService.bookDownloadsIncreaseOne(downloads, book.getId());
     }
-
 
     /**
      * 图书上传

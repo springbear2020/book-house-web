@@ -55,7 +55,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String getBookPathById(int id) {
-        return bookDao.getBookById(id).getBookPath();
+    public Book getBookById(int id) {
+        return bookDao.getBookById(id);
+    }
+
+    @Override
+    public boolean bookDownloadsIncreaseOne(int oldDownloads, int id) {
+        return bookDao.updateBookDownloadsById(oldDownloads, id) == 1;
     }
 }

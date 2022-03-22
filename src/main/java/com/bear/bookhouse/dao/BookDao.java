@@ -40,4 +40,13 @@ public interface BookDao {
      * @return Book or null
      */
     Book getBookById(int id);
+
+    /**
+     * 通过图书 id 更新图书下载量
+     *
+     * @param downloads 下载量
+     * @param id        图书 id
+     * @return 1 - 更新成功
+     */
+    int updateBookDownloadsById(int downloads, int id);
 }

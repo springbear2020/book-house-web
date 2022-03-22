@@ -20,6 +20,17 @@ public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
 
     /**
+     * 注销登录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.getSession().removeAttribute("user");
+        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+    }
+
+    /**
      * 修改用户密码
      *
      * @param req  HttpServletRequest
@@ -56,7 +67,7 @@ public class UserServlet extends BaseServlet {
         if (userService.isUsernameAndPasswordCorrect(username, password)) {
             // 用户名密码正确，跳转到主页
             req.getSession().setAttribute("user", userService.queryUserByUsername(username));
-            resp.sendRedirect(req.getContextPath() + "/bookServlet?action=listBooksByPageNum");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             req.setAttribute("loginMsg", "用户名不存在或密码错误");
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);

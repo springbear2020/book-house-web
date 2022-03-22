@@ -34,15 +34,16 @@
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
             <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="通知"></a></li>
-            <li><a href="#" class="head_img"><img src="https://wx1.sinaimg.cn/mw1024/007uAMOWgy1gwpjx0ukanj30yu1d6qv5.jpg" alt="个人"></a></li>
+            <script type="text/javascript">${requestScope.user.portraitPath}</script>
+            <li><a href="#" class="head_img"><img src="${sessionScope.user.portraitPath}" alt="个人"></a></li>
             <ul class="self-frame">
-                <li>阿伟</li>
-                <li>彬彬</li>
-                <li>杰哥</li>
+                <a href="userServlet?action=logout">
+                    <li>注销</li>
+                </a>
             </ul>
         </ul>
     </c:if>
-        <%-- 用户未登录才显示登录、注册入口 --%>
+    <%-- 用户未登录才显示登录、注册入口 --%>
     <c:if test="${empty sessionScope.user}">
         <ul class="top-right">
             <li><a href="pages/user/login.jsp" class="example">登录</a></li>
@@ -79,10 +80,9 @@
                         <%--          // TODO 点击图片跳转到图书详情页          --%>
                     <a href=""><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
                     <div class="caption">
-                        <div><span>${book.title}</span></div>
-                        <div><span>${book.author}</span></div>
-                        <div><span>${book.keywords}</span></div>
-                        <div><span>下载量:${book.downloads} 收藏数:${book.collections}</span></div>
+                        <div><span>${book.id}</span></div>
+                        <div><h5>《${book.title}》</h5></div>
+                        <div><span>下载量:${book.downloads} 收藏量:${book.collections}</span></div>
                             <%-- // TODO 调整这个两个 a 标签的位置 --%>
                         <a href="bookServlet?action=downloadBook&id=${book.id}">下载</a>
                         <a href="">收藏</a>
@@ -149,9 +149,9 @@
                 <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}"
                        class="pag-num pag-fl">尾页</a></li>
             </c:if>
-                <div style="clear:both"></div>
+            <div style="clear:both"></div>
         </ul>
-<%--        <div style="clear:both"></div>--%>
+        <%--        <div style="clear:both"></div>--%>
     </nav>
 </div>
 <%@include file="/pages/common/footer.jsp" %>

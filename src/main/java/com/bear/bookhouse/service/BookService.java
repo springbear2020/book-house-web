@@ -34,10 +34,18 @@ public interface BookService {
     int getBooksRecordTotalCount();
 
     /**
-     * 通过图书 id 获取对应图书文件
+     * 通过图书 id 获取对应图书信息
      *
      * @param id 图书 id
-     * @return 图书保存路径
+     * @return 图书
      */
-    String getBookPathById(int id);
+    Book getBookById(int id);
+
+    /**
+     * 通过图书 id 将图书下载下载量自增 1
+     * @param downloads 原始下载量
+     * @param id 图书 id
+     * @return true - 自增成功
+     */
+    boolean bookDownloadsIncreaseOne(int downloads, int id);
 }

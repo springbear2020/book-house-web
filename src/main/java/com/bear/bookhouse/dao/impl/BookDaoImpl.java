@@ -36,4 +36,10 @@ public class BookDaoImpl extends BaseDao implements BookDao {
         String sql = "SELECT `id`,`title`,`author`,`translator`,`keywords`,`downloads`,`collections`,`comment`,`book_path` bookPath,`cover_path` coverPath,`upload_username` uploadUsername,`upload_time` uploadTime FROM `t_book` WHERE `id` = ?;";
         return getRecord(Book.class, sql, id);
     }
+
+    @Override
+    public int updateBookDownloadsById(int downloads, int id) {
+        String sql = "UPDATE `t_book` SET `downloads` = ? WHERE `id` = ?";
+        return update(sql, downloads, id);
+    }
 }
