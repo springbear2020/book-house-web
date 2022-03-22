@@ -1,5 +1,6 @@
 $(function () {
     // 用户名输入框失焦事件
+    let usernameExists = false;
     $(".register-username").blur(function () {
         // 验证用户名格式
         let username = $(".register-username").val();
@@ -21,11 +22,12 @@ $(function () {
                     $nameTips.css("color", "red");
                     $nameTips.css("font-weight", "bold");
                     $nameTips.text("* 用户名已被占用，请重新输入")
-                    return false;
+                    usernameExists = true;
                 } else {
                     $nameTips.css("color", "darkolivegreen");
                     $nameTips.css("font-weight", "normal");
                     $nameTips.text("* 用户名可用")
+                    usernameExists = false;
                 }
             },
             dataType: "text"
@@ -41,7 +43,6 @@ $(function () {
         if (!pwdReg.test(password)) {
             $pwdTips.css("color", "red");
             $pwdTips.css("font-weight", "bold");
-            return false;
         } else {
             $pwdTips.css("color", "darkolivegreen");
             $pwdTips.css("font-weight", "normal");
@@ -78,7 +79,6 @@ $(function () {
                     $emailTips.css("font-weight", "bold");
                     $emailTips.text("* 邮箱已被占用，请更换邮箱地址")
                     emailExists = true;
-                    return false;
                 } else {
                     $emailTips.css("color", "darkolivegreen");
                     $emailTips.css("font-weight", "normal");
@@ -99,7 +99,6 @@ $(function () {
             $emailCodeTips.css("color", "red");
             $emailCodeTips.css("font-weight", "bold");
             $emailCodeTips.text("* 邮箱验证码长度为 6 位字符")
-            return false;
         } else {
             $emailCodeTips.css("color", "darkolivegreen");
             $emailCodeTips.css("font-weight", "normal");
@@ -116,7 +115,6 @@ $(function () {
             $imgCodeTips.css("color", "red");
             $imgCodeTips.css("font-weight", "bold");
             $imgCodeTips.text("* 图片验证码长度为 5 位字符")
-            return false;
         } else {
             $imgCodeTips.css("color", "darkolivegreen");
             $imgCodeTips.css("font-weight", "normal");
@@ -156,14 +154,13 @@ $(function () {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 请您先填入邮箱后再获取验证码")
-            return false;
         } else if (emailExists) {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "normal");
             tipsObj.text("* 邮箱已被占用，请更换邮箱地址")
-            return false;
         } else {
             tipsObj.css("color", "darkolivegreen");
+            tipsObj.text("* 邮箱地址可用")
         }
 
         let $btn = $(this);
@@ -178,12 +175,10 @@ $(function () {
             success: function (data) {
                 if (data === "false") {
                     alert("验证码发送失败，请稍后重试！");
-                    return false;
                 }
             },
             error: function () {
                 alert("验证码发送失败，请稍后重试！");
-                return false;
             }
         });
         // 获取验证码按钮倒计时，将这个事件锁起来
@@ -213,9 +208,15 @@ $(function () {
             $nameTips.css("color", "red");
             $nameTips.css("font-weight", "bold");
             return false;
+        } else if (usernameExists) {
+            $nameTips.css("color", "red");
+            $nameTips.css("font-weight", "bold");
+            $nameTips.text("* 用户名已被占用，请重新输入")
+            usernameExists = true;
+            return false;
         }
-        // 验证密码
-        let password = $(".register-password").val();
+            // 验证密码
+            let password = $(".register-password").val();
         let $pwdTips = $(".tips-password");
         let pwdReg = new RegExp("^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$")
         if (!pwdReg.test(password)) {
@@ -235,13 +236,19 @@ $(function () {
             $emailTips.css("font-weight", "bold");
             $emailTips.text("* 邮箱格式不正确")
             return false;
-        } else if (emailExists === false) {
+        } else if (emailExists) {
+            $emailTips.css("color", "red");
+            $emailTips.css("font-weight", "normal");
+            $emailTips.text("* 邮箱已被占用，请更换邮箱地址")
+            return false;
+        } else if (!emailExists) {
             $emailTips.css("color", "darkolivegreen");
             $emailTips.css("font-weight", "normal");
             $emailTips.text("* e.g bookhouse@bookhouse.com")
         }
+
         // 验证邮箱验证码格式
-        let $emailCode = $(".emailVerifyCode").val()
+        let $emailCode = $(".emailVerifyCode").val();
         let $emailCodeTips = $(".tips-emailCode");
         if ($emailCode.length !== 6) {
             $emailCodeTips.css("color", "red");
@@ -262,6 +269,6 @@ $(function () {
             $imgCodeTips.css("color", "darkolivegreen");
             $imgCodeTips.css("font-weight", "normal");
         }
-        return true;
+        // return true;
     });
 });

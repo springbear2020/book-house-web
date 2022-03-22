@@ -77,13 +77,13 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-                        <%--          // TODO 点击图片跳转到图书详情页          --%>
-                    <a href=""><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
+<%--                    // TODO 等待处理跳转到详情页信息显示 --%>
+                    <a href="pages/book/detail.jsp"><img class="img-books" src="${book.coverPath}" alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span>${book.id}</span></div>
                         <div><h5>《${book.title}》</h5></div>
                         <div><span>下载量:${book.downloads} 收藏量:${book.collections}</span></div>
-                            <%-- // TODO 调整这个两个 a 标签的位置 --%>
+                            <%-- // TODO 图书信息显示大改啊，等你啊，前端--%>
                         <a href="bookServlet?action=downloadBook&id=${book.id}">下载</a>
                         <a href="">收藏</a>
                     </div>

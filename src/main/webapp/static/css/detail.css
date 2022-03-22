@@ -42,14 +42,14 @@
 .inf-right li div{
     font-size: 0.3rem;
     font-weight: bold;
-    font-family: 汉仪文黑;
+    font-family: 汉仪文黑, serif;
     float: left;
 }
 .inf-right li p{
     display: block;
     margin-left: 1.5rem;
     font-size: 0.25rem;
-    font-family: 汉仪文黑;
+    font-family: 汉仪文黑, serif;
     /*float: left;*/
     /*float: right;*/
 }

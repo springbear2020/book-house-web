@@ -11,16 +11,19 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/register.js"></script>
+    <script type="text/javascript">
+        <c:if test="${ not empty requestScope.registerErrorMsg}">
+            alert("${requestScope.registerErrorMsg}")
+        </c:if>
+    </script>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.registerMsg}">
-    <div class="alert">${requestScope.registerMsg}</div>
-</c:if>
 <div class="middle">
     <div class="frame-register">
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
-        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png" alt="图片加载失败"></a>
+        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png"
+                                                                             alt="图片加载失败"></a>
         <%--  注册表单  --%>
         <form class="register-box" action="userServlet" method="post">
             <input type="hidden" name="action" value="register">
@@ -59,8 +62,7 @@
                 <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
             </div>
         </form>
-<%--        // TODO 咋让它在注册成功后显示啊--%>
-        <div class="success-tips">恭喜注册成功！</div>
+        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
     </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>

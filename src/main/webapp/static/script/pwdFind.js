@@ -29,7 +29,6 @@ $(function () {
                     $tipsEmailObj.css("font-weight", "bold");
                     $tipsEmailObj.text("* 邮箱地址未注册账号，请重新输入")
                     emailExists = false;
-                    return false;
                 } else {
                     $tipsEmailObj.css("color", "darkolivegreen");
                     $tipsEmailObj.css("font-weight", "normal");
@@ -49,7 +48,6 @@ $(function () {
             $tipsObj.css("color", "red");
             $tipsObj.css("font-weight", "bold");
             $tipsObj.text("* 验证码长度为 6 位字符");
-            return false;
         } else {
             $tipsObj.css("color", "darkolivegreen");
             $tipsObj.css("font-weight", "normal");
@@ -67,15 +65,14 @@ $(function () {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 请输入您注册账号时使用的邮箱地址")
-            return false;
         } else if (!emailExists) {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 邮箱地址未注册账号，请重新输入")
-            return false;
         } else if (emailExists) {
             tipsObj.css("color", "darkolivegreen");
             tipsObj.css("font-weight", "normal");
+            tipsObj.text("* 请输入您注册账号时使用的邮箱地址")
         }
 
         let $btn = $("#pwdFind-code-btn");
@@ -91,11 +88,9 @@ $(function () {
                 if (data === "false") {
                     alert("验证码发送失败，请稍后重试！");
                 }
-                return false;
             },
             error: function () {
                 alert("验证码发送失败，请稍后重试！");
-                return false;
             }
         });
         // 获取验证码按钮倒计时，将这个事件锁起来
@@ -115,7 +110,7 @@ $(function () {
 
     // 给重置密码按钮绑定单击事件
     $("#resetPwdBtn").click(function () {
-        // 再次验证各表单项格式
+        // 验证各表单项格式
         // 验证邮箱格式
         let $email = $(".pwdFind-email").val();
         let emailReg = new RegExp("^([a-z0-9_-]+)@([\\da-z-]+)\\.([a-z]{2,6})$");
@@ -125,7 +120,12 @@ $(function () {
             $tipsEmailObj.css("font-weight", "bold");
             $tipsEmailObj.text("* 邮箱格式不正确");
             return false;
-        } else if (emailExists === true) {
+        } else if (!emailExists) {
+            $tipsEmailObj.css("color", "red");
+            $tipsEmailObj.css("font-weight", "bold");
+            $tipsEmailObj.text("* 邮箱地址未注册账号，请重新输入");
+            return false;
+        } else if (emailExists) {
             $tipsEmailObj.css("color", "darkolivegreen");
             $tipsEmailObj.css("font-weight", "normal");
         }
@@ -156,7 +156,7 @@ $(function () {
         } else {
             $pwdTips.css("color", "darkolivegreen");
             $pwdTips.css("font-weight", "normal");
-            $pwdTips.text("* 至少一个数字、字母、字符（@#$%&），长度为 6~16");
+            $pwdTips.text("* 至少包含一个数字、字母和特殊字符，长度为 6~16");
         }
         return true;
     });

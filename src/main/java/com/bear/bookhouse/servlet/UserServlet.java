@@ -43,12 +43,15 @@ public class UserServlet extends BaseServlet {
 
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getPasswordFindEmailCode())) {
-            req.setAttribute("updatePwdMsg", "邮箱验证码错误");
+            req.removeAttribute("updatePwdSuccessMsg");
+            req.setAttribute("updatePwdErrorMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
         if (userService.updateUserPasswordByEmail(password, email)) {
-            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
+            req.removeAttribute("updatePwdErrorMsg");
+            req.setAttribute("updatePwdSuccessMsg", "密码重置成功!");
+            req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
@@ -91,14 +94,14 @@ public class UserServlet extends BaseServlet {
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
         if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getRegisterEmailCode())) {
-            req.setAttribute("registerMsg", "邮箱验证码有误");
             req.setAttribute("user", user);
+            req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
-            req.setAttribute("registerMsg", "图片验证码有误");
             req.setAttribute("user", user);
+            req.setAttribute("registerErrorMsg", "图片验证码有误");
             req.setAttribute("emailCode", emailVerifyCode);
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
@@ -108,7 +111,10 @@ public class UserServlet extends BaseServlet {
         user.setRegisterDate(new Date());
         user.setScore(100);
         if (userService.saveUser(user)) {
-            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
+            req.removeAttribute("user");
+            req.removeAttribute("registerErrorMsg");
+            req.setAttribute("registerSuccessMsg", "恭喜您注册成功！");
+            req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }

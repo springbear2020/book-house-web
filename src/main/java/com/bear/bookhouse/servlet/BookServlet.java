@@ -191,12 +191,12 @@ public class BookServlet extends BaseServlet {
         this.coverRealDiskPath = new File(getServletContext().getRealPath("/") + "/" + this.coverWebRelativePath);
         if (!this.bookRealDiskPath.exists()) {
             if (bookRealDiskPath.mkdirs()) {
-                System.out.println("图书磁盘保存目录创建成功");
+                System.out.println("图书保存目录创建成功");
             }
         }
         if (!this.coverRealDiskPath.exists()) {
             if (coverRealDiskPath.mkdirs()) {
-                System.out.println("封面磁盘保存目录创建成功");
+                System.out.println("封面保存目录创建成功");
             }
         }
     }

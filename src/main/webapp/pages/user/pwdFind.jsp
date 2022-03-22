@@ -18,12 +18,15 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
+    <script type="text/javascript">
+        <c:if test="${ not empty requestScope.updatePwdErrorMsg}">
+            alert("${requestScope.updatePwdErrorMsg}")
+        </c:if>
+    </script>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.updatePwdMsg}">
-    <div class="alert">${requestScope.updatePwdMsg}</div>
-</c:if>
+
 <div class="top-content">
 </div>
 <div class="middle">
@@ -52,8 +55,7 @@
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
             <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
-<%--                    // TODO 咋让它在注册成功后显示啊--%>
-            <div class="success-tips">密码重置成功！</div>
+            <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
         </div>
     </div>
 </div>
