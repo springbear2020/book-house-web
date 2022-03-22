@@ -6,7 +6,6 @@ import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
 
-import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -38,9 +37,9 @@ public class BookServiceImpl implements BookService {
         page.setPageTotal(pageTotal);
 
         // 当前页码数据边界性检查
-        if (pageNum < 0) {
+        if (pageNum <= 0) {
             pageNum = 1;
-        } else if (pageNum > pageTotal) {
+        } else if (pageNum > pageTotal && pageTotal != 0) {
             pageNum = pageTotal;
         }
         page.setPageNum(pageNum);
