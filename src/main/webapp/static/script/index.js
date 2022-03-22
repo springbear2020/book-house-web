@@ -84,14 +84,14 @@ window.onload = function (){
         },100)
     })
 
-    // 头像的鼠标覆盖事件
-    $('.head_img').mouseover(function (){
-        //显示下拉框
-        $('.self-frame').css('display','block');
-    })
-    // 鼠标离开事件
-    $('.top-self').mouseleave(function (){
-        //隐藏下拉框
-        $('.self-frame').css('display','none');
-    })
+    // // 头像的鼠标覆盖事件
+    // $('.head_img').mouseover(function (){
+    //     //显示下拉框
+    //     $('.self-frame').css('display','block');
+    // })
+    // // 鼠标离开事件
+    // $('.top-self').mouseleave(function (){
+    //     //隐藏下拉框
+    //     $('.self-frame').css('display','none');
+    // })
 }

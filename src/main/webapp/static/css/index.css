@@ -1,23 +1,4 @@
-.top-self{
-    float: right;
-    margin-right: 0.2rem;
-    margin-top:0;
-}
-.bell{
-    width: 0.6rem;
-    margin: 0 0.2rem;
-}
-.bell:hover{
-    content: url("../img/icon_bell_op.png");
-}
-.head_img{
-    border: 1px;
-    margin: -0.2rem 0.2rem 0;
-}
-.head_img img{
-    width: 0.8rem;
-    height: 0.8rem;
-}
+
 .self-frame{
     display: none;
     position: absolute;
@@ -64,12 +45,20 @@
     font-size: 0.25rem;
     font-weight: bold;
     border-radius: 0.3rem;
+    cursor: pointer;
+}
+.search-btn:hover{
+    background-color: grey;
+    color: white;
 }
 .search-choose{
     margin: 0.1rem 0 0.1rem -0.3rem;
 }
 .search-word{
     padding: 0.05rem 0.1rem;
+    font-size:0.25rem;
+    border-radius: 10%;
+    cursor: pointer;
 }
 /*.search-word:hover{*/
 /*    background-color: grey;*/

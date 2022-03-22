@@ -26,7 +26,9 @@
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-
+<c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
+    <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
+</c:if>
 <div class="top-content">
 </div>
 <div class="middle">
@@ -55,8 +57,6 @@
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
             <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
-                <%--        // TODO 前端，我也需要一个醒目的位置，谢谢你--%>
-                <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
         </div>
     </div>
 </div>

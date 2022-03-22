@@ -1,7 +1,8 @@
-#{
+body{
     magrin: 0;
     padding: 0;
-},
+}
+
 ul {
     list-style-type: none;
 }
@@ -66,4 +67,56 @@ a{
 .separator{
     padding-left: 0.1rem;
     padding-right: 0.1rem;
+}
+
+.top-self{
+    float: right;
+    margin-right: 0.2rem;
+    margin-top:0;
+}
+.bell{
+    width: 0.6rem;
+    margin: 0.2rem 0.2rem;
+}
+.bell:hover{
+    content: url("../img/icon_bell_op.png");
+}
+.head_img{
+    /*border: 1px;*/
+    margin: -0.2rem 0.2rem 0;
+    border-radius: 50%;
+    overflow: hidden;
+    /*border: 0.1rem solid brown;*/
+}
+.head_img img{
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    border: 0.1rem solid seagreen;
+    /*border-width: 0.1rem;*/
+    /*-moz-border-bottom-colors: red orange yellow green cyan blue purple;*/
+    /*-moz-border-left-colors: red orange yellow green cyan blue purple;*/
+    /*-moz-border-right-colors: red orange yellow green cyan blue purple;*/
+    /*-moz-border-top-colors: red orange yellow green cyan blue purple;*/
+}
+
+.self-frame{
+    display: none;
+    position: absolute;
+    right: 0.2rem;
+    width: 0.8rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.1rem;
+    background-color: white;
+}
+.self-frame li{
+    display: block;
+    text-align: center;
+    margin-left: -0.4rem;
+    padding: 0.05rem 0;
+    font-size: 0.25rem;
+    width: 1rem;
+}
+.self-frame li:hover{
+    background-color: #dddddd;
 }

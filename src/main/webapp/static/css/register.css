@@ -136,20 +136,6 @@ li {
 }
 
 
-.alert{
-    position: absolute;
-    z-index: 101;
-    left: 50%;
-    top: 1.4rem;
-    color: red;
-    margin-left: -1rem;
-    padding: 0.05rem 0.1rem;
-    text-align: center;
-    font-weight: bold;
-    background-color: white;
-    border: 0.03rem solid black;
-}
-
 .backArrow {
     margin-top: -1rem;
     margin-right: 0.6rem;
@@ -162,10 +148,46 @@ li {
     content: url("../img/icon_back_deep.png");
 }
 
+/*.grey{*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: rgba(128, 128, 128, 0.8);*/
+/*    z-index: 100;*/
+/*}*/
+/*.alert{*/
+/*    position: absolute;*/
+/*    z-index: 101;*/
+/*    left: 50%;*/
+/*    top: 1.4rem;*/
+/*    color: red;*/
+/*    margin-left: -1rem;*/
+/*    padding: 0.05rem 0.1rem;*/
+/*    text-align: center;*/
+/*    font-weight: bold;*/
+/*    background-color: white;*/
+/*    border: 0.03rem solid black;*/
+/*}*/
+/*.alert-close{*/
+/*    font-size: 0.55rem;*/
+/*    border-radius: 50%;*/
+/*    background-color: white;*/
+/*    padding-top: 0;*/
+/*    width: 0.8rem;*/
+/*    height: 0.8rem;*/
+/*    border: 0.1rem solid red;*/
+/*}*/
 .success-tips{
+    position: absolute;
+    top: 1.4rem;
+    left: 50%;
     color: green;
     font-size: 0.25rem;
-    margin-left: 2.1rem;
-    margin-top: 0.15rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    margin-left: -1.1rem;
     font-weight: bold;
+    text-align: center;
+    border: 0.04rem solid black;
+    background-color: rgb(255, 255, 255);
 }

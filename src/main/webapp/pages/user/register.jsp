@@ -18,6 +18,14 @@
     </script>
 </head>
 <body>
+<%--<div class="grey">--%>
+<%--    <div class="alert">--%>
+<%--        <div class="alert-close">×</div>--%>
+<c:if test="${ not empty requestScope.registerSuccessMsgMsg}">
+        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
+</c:if>
+<%--    </div>--%>
+<%--</div>--%>
 <%@include file="/pages/common/title.jsp" %>
 <div class="middle">
     <div class="frame-register">
@@ -62,8 +70,6 @@
                 <button type="submit" class="register-btn">注&nbsp;&nbsp;册</button>
             </div>
         </form>
-<%--        // TODO 前端，来给我挑一个醒目的位置，谢谢你--%>
-        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
     </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>
