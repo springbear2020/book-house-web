@@ -26,7 +26,7 @@ public class DateUtil {
      * @return 格式化的时间
      */
     public static String timeFormat(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
         return dateFormat.format(date);
     }
 }

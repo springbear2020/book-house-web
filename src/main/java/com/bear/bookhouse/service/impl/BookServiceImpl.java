@@ -45,7 +45,6 @@ public class BookServiceImpl implements BookService {
         page.setPageNum(pageNum);
 
         // 获取当前页的图书数据
-        // TODO java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1 Query: SELECT `id`,`title`,`author`,`translator`,`keywords`,`downloads`,`collections`,`comment`,`book_path` bookPath,`cover_path` coverPath,`upload_username` uploadUsername,`upload_time` uploadTime FROM `t_book` LIMIT ?,?; Parameters: [-5, 5]
         page.setPageData(bookDao.listBooksByBeginAndOffset((pageNum - 1) * pageSize, pageSize));
         return page;
     }

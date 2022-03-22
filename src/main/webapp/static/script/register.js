@@ -21,6 +21,7 @@ $(function () {
                     $nameTips.css("color", "red");
                     $nameTips.css("font-weight", "bold");
                     $nameTips.text("* 用户名已被占用，请重新输入")
+                    return false;
                 } else {
                     $nameTips.css("color", "darkolivegreen");
                     $nameTips.css("font-weight", "normal");
@@ -36,9 +37,8 @@ $(function () {
         // 验证密码
         let password = $(".register-password").val();
         let $pwdTips = $(".tips-password");
-        // TODO 密码验证正则表达式以及密码提示信息 tips 修改, same to the no 213 lines and 149 lines in the pwdFind.js
-        // let pwdReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&]){6,16}$")
-        if (password.length < 6 || password.length > 16) {
+        let pwdReg = new RegExp("^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$")
+        if (!pwdReg.test(password)) {
             $pwdTips.css("color", "red");
             $pwdTips.css("font-weight", "bold");
             return false;
@@ -78,6 +78,7 @@ $(function () {
                     $emailTips.css("font-weight", "bold");
                     $emailTips.text("* 邮箱已被占用，请更换邮箱地址")
                     emailExists = true;
+                    return false;
                 } else {
                     $emailTips.css("color", "darkolivegreen");
                     $emailTips.css("font-weight", "normal");
@@ -98,6 +99,7 @@ $(function () {
             $emailCodeTips.css("color", "red");
             $emailCodeTips.css("font-weight", "bold");
             $emailCodeTips.text("* 邮箱验证码长度为 6 位字符")
+            return false;
         } else {
             $emailCodeTips.css("color", "darkolivegreen");
             $emailCodeTips.css("font-weight", "normal");
@@ -114,6 +116,7 @@ $(function () {
             $imgCodeTips.css("color", "red");
             $imgCodeTips.css("font-weight", "bold");
             $imgCodeTips.text("* 图片验证码长度为 5 位字符")
+            return false;
         } else {
             $imgCodeTips.css("color", "darkolivegreen");
             $imgCodeTips.css("font-weight", "normal");
@@ -175,10 +178,12 @@ $(function () {
             success: function (data) {
                 if (data === "false") {
                     alert("验证码发送失败，请稍后重试！");
+                    return false;
                 }
             },
             error: function () {
                 alert("验证码发送失败，请稍后重试！");
+                return false;
             }
         });
         // 获取验证码按钮倒计时，将这个事件锁起来
@@ -212,8 +217,8 @@ $(function () {
         // 验证密码
         let password = $(".register-password").val();
         let $pwdTips = $(".tips-password");
-        // let pwdReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%&]){6,16}$")
-        if (password.length < 6 || password.length > 16) {
+        let pwdReg = new RegExp("^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$")
+        if (!pwdReg.test(password)) {
             $pwdTips.css("color", "red");
             $pwdTips.css("font-weight", "bold");
             return false;
@@ -230,7 +235,7 @@ $(function () {
             $emailTips.css("font-weight", "bold");
             $emailTips.text("* 邮箱格式不正确")
             return false;
-        } else {
+        } else if (emailExists === false) {
             $emailTips.css("color", "darkolivegreen");
             $emailTips.css("font-weight", "normal");
             $emailTips.text("* e.g bookhouse@bookhouse.com")
@@ -241,6 +246,7 @@ $(function () {
         if ($emailCode.length !== 6) {
             $emailCodeTips.css("color", "red");
             $emailCodeTips.css("font-weight", "bold");
+            return false;
         } else {
             $emailCodeTips.css("color", "darkolivegreen");
             $emailCodeTips.css("font-weight", "normal");
@@ -251,6 +257,7 @@ $(function () {
         if ($imgCode.length !== 5) {
             $imgCodeTips.css("color", "red");
             $imgCodeTips.css("font-weight", "bold");
+            return false;
         } else {
             $imgCodeTips.css("color", "darkolivegreen");
             $imgCodeTips.css("font-weight", "normal");

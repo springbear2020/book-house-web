@@ -20,6 +20,8 @@
 <div class="middle">
     <div class="frame-login">
         <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
+<%--        // TODO CSS 你不能缺--%>
+        <a href="index.jsp" class="backArrow"><img src="" alt="图片加载失败"></a>
         <%--  登录表单 --%>
         <form class="login-box" action="userServlet" method="post">
             <input type="hidden" name="action" value="login">
@@ -36,9 +38,9 @@
                 <button type="submit" class="login-btn">登&nbsp;录</button>
             </div>
             <div class="login-littleText">
-                <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_blank">忘记密码?</a><span
+                <div><a class="login-re" href="pages/user/pwdFind.jsp" target="_self">忘记密码?</a><span
                         class="separator login-sep">|</span><a
-                        class="login-re" href="pages/user/register.jsp" target="_blank">没有账号?</a></div>
+                        class="login-re" href="pages/user/register.jsp" target="_self">没有账号?</a></div>
                 <div></div>
             </div>
         </form>

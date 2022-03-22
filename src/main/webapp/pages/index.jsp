@@ -33,7 +33,7 @@
     </ul>
     <ul class="top-right">
         <c:if test="${ not empty sessionScope.user}">
-            <%-- // TODO 通知换成一个小铃铛样式，个人显示用户头像 --%>
+            <%-- // TODO 通知换成一个小铃铛样式；个人 显示用户头像 --%>
             <li><a href="#" class="example">通知</a></li>
             <li><a href="#" class="example">头像</a></li>
         </c:if>
@@ -51,6 +51,7 @@
             <form class="search-form" method="post" action="#">
                 <label><input class="search-text" placeholder="请输入检索内容"></label>
                 <button type="submit" class="search-btn">搜索</button>
+<%--                // TODO 下拉列表显示检索条件--%>
                 <ul class="search-list">
                     <li class="search-li">书名</li>
                     <li class="search-li">作者</li>
@@ -82,7 +83,7 @@
         <div style="clear:both"></div>
     </div>
 
-    <%-- 设置分页条 --%>
+    <%-- 设置分页条页码显示范围 --%>
     <nav aria-label="Page navigation" class="pag-chs">
         <ul class="pagination">
             <%-- 总页数大于 1 才显示首页和上一页 --%>

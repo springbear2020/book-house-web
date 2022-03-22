@@ -27,7 +27,7 @@
     <div class="middle-container">
         <h2 class="up-title">上传图书</h2>
         <%-- // TODO 将此 a 标签以返回箭头的式样显示以返回主页 --%>
-        <a href="bookServlet?action=listBooksByPageNum" target="_self">返回主页</a>
+        <a href="bookServlet?action=listBooksByPageNum" target="_self"><img src="" alt="图片加载失败"></a>
 
         <%-- 图书文件上传表单 --%>
         <form action="bookServlet?action=uploadBook" method="post" enctype="multipart/form-data">

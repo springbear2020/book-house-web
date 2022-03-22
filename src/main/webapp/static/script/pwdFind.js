@@ -91,9 +91,11 @@ $(function () {
                 if (data === "false") {
                     alert("验证码发送失败，请稍后重试！");
                 }
+                return false;
             },
             error: function () {
                 alert("验证码发送失败，请稍后重试！");
+                return false;
             }
         });
         // 获取验证码按钮倒计时，将这个事件锁起来
@@ -123,10 +125,9 @@ $(function () {
             $tipsEmailObj.css("font-weight", "bold");
             $tipsEmailObj.text("* 邮箱格式不正确");
             return false;
-        } else {
+        } else if (emailExists === true) {
             $tipsEmailObj.css("color", "darkolivegreen");
             $tipsEmailObj.css("font-weight", "normal");
-            $tipsEmailObj.text("* 邮箱格式正确");
         }
         // 验证邮箱验证码
         let $verifyCode = $(".pwdFind-emailVerifyCode").val();
@@ -143,20 +144,20 @@ $(function () {
         let $pwd = $(".reset-pwd").val();
         let $rePwd = $(".re-reset-pwd").val();
         let $pwdTips = $(".tips-password");
-        if ($pwd.length < 6 || $pwd.length > 16) {
+        let pwdReg = new RegExp("^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$")
+        if (!pwdReg.test($pwd)) {
             $pwdTips.css("color", "red");
             return false;
         } else if ($pwd !== $rePwd) {
             $pwdTips.css("color", "red");
             $pwdTips.css("font-weight", "bold");
-            $pwdTips.text("两次输入的密码不一致，请重新输入")
+            $pwdTips.text("* 两次输入的密码不一致，请重新输入")
             return false;
         } else {
             $pwdTips.css("color", "darkolivegreen");
             $pwdTips.css("font-weight", "normal");
             $pwdTips.text("* 至少一个数字、字母、字符（@#$%&），长度为 6~16");
         }
-
         return true;
     });
 });

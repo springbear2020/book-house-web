@@ -160,8 +160,8 @@ body{
 .alert{
     position: absolute;
     z-index: 101;
-    left: 50%;
-    top: 1.4rem;
+    left: 48%;
+    top: 1.8rem;
     color: red;
     margin-left: -1rem;
     padding: 0.05rem 0.1rem;

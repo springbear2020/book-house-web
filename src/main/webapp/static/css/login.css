@@ -113,3 +113,8 @@ li {
 a{
     text-decoration: none;
 }
+
+.backArrow {
+    width: 0.2rem;
+    height: 0.2rem;
+}

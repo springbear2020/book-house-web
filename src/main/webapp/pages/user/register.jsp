@@ -19,7 +19,10 @@
 </c:if>
 <div class="middle">
     <div class="frame-register">
+<%--        // TODO 注册成功提示--%>
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
+        <%--        // TODO CSS 你不能缺--%>
+        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="" alt="图片加载失败"></a>
         <%--  注册表单  --%>
         <form class="register-box" action="userServlet" method="post">
             <input type="hidden" name="action" value="register">
@@ -32,7 +35,7 @@
                 <input type="password" name="password" placeholder="密码"
                        class="register-password register-text">
                 <img class="pas-eye" src="static/img/eye.png" alt="图片加载失败">
-                <div class="little-tips tips-password">* 至少一个数字、字母、字符（@#$%&），长度为 6~16</div>
+                <div class="little-tips tips-password">* 至少包含一个数字、字母和特殊字符，长度为 6~16</div>
             </label></div>
             <div class="register-input"><label>
                 <input type="email" name="email" placeholder="邮箱" class="register-email register-text"

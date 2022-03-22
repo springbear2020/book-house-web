@@ -31,6 +31,8 @@
         <ul class="frame-title">
             <li class="title-pwdFind">忘记密码</li>
         </ul>
+
+<%--        // TODO 密码重置成功提示--%>
         <div class="pwdFind">
             <%-- 找回密码表单 --%>
             <form action="userServlet" method="post">
@@ -47,7 +49,7 @@
                 <label>
                     <input type="password" name="password" placeholder="请输入新密码" class="input-text reset-pwd">
                     <input type="password" name="password" placeholder="请再次输入密码" class="input-text re-reset-pwd">
-                    <div class="little-tips tips-password">* 至少一个数字、字母、字符（@#$%&），长度为 6~16</div>
+                    <div class="little-tips tips-password">* 至少包含一个数字、字母和特殊字符，长度为 6~16</div>
                 </label>
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
