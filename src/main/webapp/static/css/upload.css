@@ -150,8 +150,8 @@
 .alert{
     position: absolute;
     z-index: 101;
-    left: 45%;
-    top: 0.4rem;
+    left: 48%;
+    top: 1.15rem;
     color: red;
     margin-left: -1rem;
     padding: 0.05rem 0.1rem;
