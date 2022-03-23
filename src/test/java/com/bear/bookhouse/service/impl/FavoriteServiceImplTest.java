@@ -17,7 +17,7 @@ public class FavoriteServiceImplTest {
 
     @Test
     public void addFavorite() {
-        boolean b = favoriteService.addFavorite(new Favorite(null, 1, 1, new Date()));
+        boolean b = favoriteService.addFavorite(new Favorite(null, 2,2,"浪潮之巅","吴军",null,new Date()));
         System.out.println(b);
     }
 }

@@ -51,21 +51,25 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-                        <%-- // TODO 等待前端处理跳转到详情页信息显示 --%>
-                        <%-- // TODO 等待后端处理跳转到详情页时查询信息 --%>
-                    <a href="bookServlet?action=showBookDetailsById&bookId=${book.id}" target="_blank"><img class="img-books" src="${book.coverPath}"
-                                                                         alt="封面加载失败"></a>
+                    <a href="bookServlet?action=showBookDetailsById&bookId=${book.id}" target="_blank"><img
+                            class="img-books" src="${book.coverPath}"
+                            alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span class="book-id">${book.id}</span></div>
                         <div><h5 class="book-title">《${book.title}》</h5></div>
                         <div class="book-data">
-                            <div class="book-download"><span>下载量</span><div>${book.downloads}</div></div>
-                            <div class="book-collect"><span>收藏量</span><div>${book.collections}</div></div>
+                            <div class="book-download"><span>下载量</span>
+                                <div>${book.downloads}</div>
+                            </div>
+                            <div class="book-collect"><span>收藏量</span>
+                                <div>${book.collections}</div>
+                            </div>
                         </div>
-                            <%-- // TODO 图书信息显示大改啊，等你啊，前端--%>
+                            <%-- // TODO 图书信息略改，等你啊，前端--%>
                         <div class="book-a">
                             <a href="bookServlet?action=downloadBook&id=${book.id}" class="a-download">下载</a>
-                            <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}" class="a-collect">收藏</a>
+                            <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
+                               class="a-collect">收藏</a>
                         </div>
 
                     </div>

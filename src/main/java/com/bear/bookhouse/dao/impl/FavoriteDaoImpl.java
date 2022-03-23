@@ -11,7 +11,13 @@ import com.bear.bookhouse.pojo.Favorite;
 public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
     @Override
     public int saveFavorite(Favorite favorite) {
-        String sql = "INSERT INTO `t_favorite`(`user_id`,`book_id`,`time`) VALUES (?,?,?);";
-        return update(sql, favorite.getUserId(), favorite.getBookId(), favorite.getTime());
+        String sql = "INSERT INTO `t_favorite`(`user_id`,`book_id`,`title`,`author`,`translator`,`collect_time`) VALUES (?,?,?,?,?,?);";
+        return update(sql, favorite.getUserId(), favorite.getBookId(),favorite.getTitle(),favorite.getAuthor(),favorite.getTranslator(), favorite.getCollectTime());
+    }
+
+    @Override
+    public Favorite queryFavoriteByBookId(int id) {
+        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `book_id` = ?;";
+        return getRecord(Favorite.class, sql, id);
     }
 }

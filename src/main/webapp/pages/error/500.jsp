@@ -10,11 +10,10 @@
 <head>
     <title>Title</title>
     <%@include file="/pages/common/base.jsp" %>
-    <%--    // TODO 阿伟，人家也想要美美的样式，要嘛要嘛 --%>
 <%--    <link rel="stylesheet" type="text/css" href="static/css/error.css">--%>
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
-<h1>500 服务器内部错误</h1>
+<h1>服务器已收到您的请求，但服务器开小差啦！</h1>
 </body>
 </html>

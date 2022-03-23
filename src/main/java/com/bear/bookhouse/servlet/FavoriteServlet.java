@@ -5,7 +5,6 @@ import com.bear.bookhouse.service.FavoriteService;
 import com.bear.bookhouse.service.impl.FavoriteServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,15 +27,26 @@ public class FavoriteServlet extends BaseServlet {
     protected void addFavoriteRecord(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
+        String title = req.getParameter("title");
+        String author = req.getParameter("author");
+        String translator = req.getParameter("translator");
+
         HttpSession session = req.getSession();
         if (userId == -1 || bookId == -1) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
-        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, new Date()))) {
+
+        // 查询用户图书收藏记录是否已经存在
+        if (favoriteService.isFavoriteExists(bookId)) {
+            session.setAttribute("addFavoriteMsg", "图书已收藏，不可重复收藏");
+            resp.sendRedirect(req.getHeader("Referer"));
+            return;
+        }
+        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            resp.sendRedirect(req.getHeader("Referer"));
         }
     }
 }

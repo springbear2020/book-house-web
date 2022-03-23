@@ -16,4 +16,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     public boolean addFavorite(Favorite favorite) {
         return favoriteDao.saveFavorite(favorite) == 1;
     }
+
+    @Override
+    public boolean isFavoriteExists(int booId) {
+        return favoriteDao.queryFavoriteByBookId(booId) != null;
+    }
 }

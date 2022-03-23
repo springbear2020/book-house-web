@@ -14,4 +14,12 @@ public interface FavoriteService {
      * @return true - 添加成功
      */
     boolean addFavorite(Favorite favorite);
+
+    /**
+     * 通过图书 id 判断收藏记录是否已存在
+     *
+     * @param booId 图书 id
+     * @return true - 收藏记录已存在
+     */
+    boolean isFavoriteExists(int booId);
 }

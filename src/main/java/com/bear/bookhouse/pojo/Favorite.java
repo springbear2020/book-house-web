@@ -7,31 +7,25 @@ import java.util.Date;
  * @datetime 2022/3/22 21:16
  */
 public class Favorite {
-    /**
-     * 收藏记录 id
-     */
     private Integer id;
-    /**
-     * 用户 id
-     */
     private Integer userId;
-    /**
-     * 收藏的图书 id
-     */
     private Integer bookId;
-    /**
-     * 收藏时间
-     */
-    private Date time;
+    private String title;
+    private String author;
+    private String translator;
+    private Date collectTime;
 
     public Favorite() {
     }
 
-    public Favorite(Integer id, Integer userId, Integer bookId, Date time) {
+    public Favorite(Integer id, Integer userId, Integer bookId, String title, String author, String translator, Date collectTime) {
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;
-        this.time = time;
+        this.title = title;
+        this.author = author;
+        this.translator = translator;
+        this.collectTime = collectTime;
     }
 
     public Integer getId() {
@@ -58,12 +52,36 @@ public class Favorite {
         this.bookId = bookId;
     }
 
-    public Date getTime() {
-        return time;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTranslator() {
+        return translator;
+    }
+
+    public void setTranslator(String translator) {
+        this.translator = translator;
+    }
+
+    public Date getCollectTime() {
+        return collectTime;
+    }
+
+    public void setCollectTime(Date collectTime) {
+        this.collectTime = collectTime;
     }
 
     @Override
@@ -72,7 +90,10 @@ public class Favorite {
                 "id=" + id +
                 ", userId=" + userId +
                 ", bookId=" + bookId +
-                ", time=" + time +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", translator='" + translator + '\'' +
+                ", collectTime=" + collectTime +
                 '}';
     }
 }

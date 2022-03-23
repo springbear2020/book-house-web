@@ -28,7 +28,7 @@
 <div class="middle">
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
-        <a href="bookServlet?action=listBooksByPageNum" target="_self" class="toBack"><img
+        <a href="pages/admin/admin.jsp" target="_self" class="toBack"><img
                 src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%-- 图书文件上传表单 --%>
         <form action="bookServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">

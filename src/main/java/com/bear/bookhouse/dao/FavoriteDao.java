@@ -14,4 +14,12 @@ public interface FavoriteDao {
      * @return 1 - 保存成功
      */
     int saveFavorite(Favorite favorite);
+
+    /**
+     * 通过图书 id 查询图书记录
+     *
+     * @param id 图书 id
+     * @return Favorite or null
+     */
+    Favorite queryFavoriteByBookId(int id);
 }
