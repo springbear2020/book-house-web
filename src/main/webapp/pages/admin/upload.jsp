@@ -31,7 +31,7 @@
         <a href="pages/admin/admin.jsp" target="_self" class="toBack"><img
                 src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%-- 图书文件上传表单 --%>
-        <form action="bookServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
+        <form action="transferServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
             <label class="upload-label"><span>书&nbsp;名：</span><input type="text" name="title" class="up-input"></label>
             <label class="upload-label"><span>作&nbsp;者：</span><input type="text" name="author" class="up-input"></label>

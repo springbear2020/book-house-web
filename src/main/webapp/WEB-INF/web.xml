@@ -44,6 +44,14 @@
         <servlet-name>FavoriteServlet</servlet-name>
         <url-pattern>/favoriteServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TransferServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.servlet.TransferServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TransferServlet</servlet-name>
+        <url-pattern>/transferServlet</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>404</error-code>

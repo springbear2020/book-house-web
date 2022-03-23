@@ -63,7 +63,7 @@
                     <div>上传时间</div>
                     <p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
                 <%-- // TODO 前端样式，快来呀 --%>
-                <a href="bookServlet?action=downloadBook&id=${requestScope.book.id}">前往下载</a>
+                <a href="transferServlet?action=downloadBook&id=${requestScope.book.id}">前往下载</a>
                 <a href="favoriteServlet?action=addFavoriteRecord&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
             </ul>
         </div>

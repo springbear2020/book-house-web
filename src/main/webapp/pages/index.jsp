@@ -67,7 +67,7 @@
                         </div>
                             <%-- // TODO 图书信息略改，等你啊，前端--%>
                         <div class="book-a">
-                            <a href="bookServlet?action=downloadBook&id=${book.id}" class="a-download">下载</a>
+                            <a href="transferServlet?action=downloadBook&id=${book.id}" class="a-download">下载</a>
                             <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
                                class="a-collect">收藏</a>
                         </div>
