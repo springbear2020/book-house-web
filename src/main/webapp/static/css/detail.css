@@ -10,8 +10,9 @@
     padding-bottom: 0.1rem;
 }
 .middle-frame{
+    display: table;
     width: 12rem;
-    height: 10rem;
+    /*height: 10rem;*/
     margin: 0.2rem auto;
     /*border: 1px solid blue;*/
     background-color: #eee;
@@ -31,7 +32,7 @@
 
 .inf-right{
     float: right;
-    width: 5rem;
+    width: 5.6rem;
 }
 .inf-right li{
     display: block;
@@ -47,9 +48,34 @@
 }
 .inf-right li p{
     display: block;
+    /*height: 0.9rem;*/
     margin-left: 1.5rem;
     font-size: 0.25rem;
     font-family: 汉仪文黑, serif;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    /*text-overflow: "哈哈";*/
+    overflow: hidden;
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 3;*/
+    /*-webkit-box-orient: vertical;*/
     /*float: left;*/
     /*float: right;*/
+}
+.inf-right li span{
+    float: right;
+    /*display: block;*/
+    /*position: relative;*/
+    margin-top: -0.6rem;
+    margin-right: -0.7rem;
+    font-size: 0.2rem;
+    font-weight: bold;
+    padding: 0.05rem 0.15rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    display: none;
+}
+.inf-right li span:hover{
+    background-color: #dddddd;
+    color: blue;
 }
