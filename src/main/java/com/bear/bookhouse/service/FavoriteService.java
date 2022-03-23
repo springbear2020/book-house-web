@@ -18,12 +18,13 @@ public interface FavoriteService {
     boolean addFavorite(Favorite favorite);
 
     /**
-     * 通过图书 id 判断收藏记录是否已存在
+     * 通过用户 id 和图书 id 判断收藏记录是否已存在
      *
-     * @param booId 图书 id
+     * @param userId 用户 id
+     * @param booId  图书 id
      * @return true - 收藏记录已存在
      */
-    boolean isFavoriteExists(int booId);
+    boolean isFavoriteExists(int userId, int booId);
 
     /**
      * 通过用户 id 查询用书收藏记录
@@ -32,4 +33,13 @@ public interface FavoriteService {
      * @return Favorites or null
      */
     List<Favorite> getUserFavoritesByUserId(int userId);
+
+    /**
+     * 删除用户图书收藏记录
+     *
+     * @param userId 用户 id
+     * @param bookId 图书 id
+     * @return true - 删除成功
+     */
+    boolean deleteUserFavorite(int userId, int bookId);
 }
