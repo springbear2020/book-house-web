@@ -21,14 +21,6 @@
         <url-pattern>/userServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>EmailServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.EmailServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EmailServlet</servlet-name>
-        <url-pattern>/emailServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>com.bear.bookhouse.servlet.BookServlet</servlet-class>
     </servlet>
@@ -51,6 +43,14 @@
     <servlet-mapping>
         <servlet-name>TransferServlet</servlet-name>
         <url-pattern>/transferServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AjaxServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.servlet.AjaxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjaxServlet</servlet-name>
+        <url-pattern>/ajaxServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>

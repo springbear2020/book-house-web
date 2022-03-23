@@ -13,7 +13,7 @@ $(function () {
         }
         // 发起 AJAX 请求服务器验证用户名存在性
         $.ajax({
-            url: "userServlet",
+            url: "ajaxServlet",
             data: "action=ajaxVerifyUsername&username=" + username,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
@@ -69,7 +69,7 @@ $(function () {
 
         // 发起 AJAX 请求服务器验证用户名存在性
         $.ajax({
-            url: "userServlet",
+            url: "ajaxServlet",
             data: "action=ajaxVerifyEmail&email=" + email,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
@@ -168,7 +168,7 @@ $(function () {
         $btn.attr('disabled', true);
         // 发起 ajax 请求让服务器发送随机验证码
         $.ajax({
-            url: "emailServlet",
+            url: "ajaxServlet",
             data: "action=ajaxSendRegisterEmailCode&email=" + email,
             type: "POST",
             dataType: "text",

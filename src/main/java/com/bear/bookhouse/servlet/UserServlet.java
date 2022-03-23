@@ -42,7 +42,7 @@ public class UserServlet extends BaseServlet {
         String password = req.getParameter("password");
 
         // 用户输入的邮箱验证码错误，返回修改界面
-        if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getPasswordFindEmailCode())) {
+        if (!emailVerifyCode.equalsIgnoreCase(AjaxServlet.getPasswordFindEmailCode())) {
             req.setAttribute("updatePwdErrorMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
@@ -91,7 +91,7 @@ public class UserServlet extends BaseServlet {
         // 获取客户端输入的邮箱验证码
         String emailVerifyCode = req.getParameter("emailVerifyCode");
 
-        if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getRegisterEmailCode())) {
+        if (!emailVerifyCode.equalsIgnoreCase(AjaxServlet.getRegisterEmailCode())) {
             req.setAttribute("user", user);
             req.setAttribute("registerErrorMsg", "邮箱验证码有误");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
@@ -113,36 +113,6 @@ public class UserServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
-        }
-    }
-
-    /**
-     * AJAX 请求验证用户名是否已使用
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void ajaxVerifyUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String username = req.getParameter("username");
-        if (userService.isUsernameExists(username)) {
-            resp.getWriter().write("true");
-        } else {
-            resp.getWriter().write("false");
-        }
-    }
-
-    /**
-     * AJAX 请求验证邮箱地址是否已使用
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void ajaxVerifyEmail(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String email = req.getParameter("email");
-        if (userService.isEmailExists(email)) {
-            resp.getWriter().write("true");
-        } else {
-            resp.getWriter().write("false");
         }
     }
 }

@@ -3,27 +3,14 @@ package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
-import com.bear.bookhouse.pojo.Upload;
 import com.bear.bookhouse.service.BookService;
-import com.bear.bookhouse.service.UploadService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
-import com.bear.bookhouse.service.impl.UploadServiceImpl;
-import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -31,7 +18,6 @@ import java.util.List;
  */
 public class BookServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
-    private final UploadService uploadService = new UploadServiceImpl();
 
     /**
      * 显示图书详情
@@ -46,7 +32,6 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("book", book);
         req.getRequestDispatcher("/pages/book/detail.jsp").forward(req, resp);
     }
-
 
     /**
      * 指定页码获取图书数据，每页默认 5 条数据
