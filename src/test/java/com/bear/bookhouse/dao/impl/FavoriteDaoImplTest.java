@@ -2,6 +2,7 @@ package com.bear.bookhouse.dao.impl;
 
 import com.bear.bookhouse.dao.FavoriteDao;
 import com.bear.bookhouse.pojo.Favorite;
+import com.bear.bookhouse.pojo.User;
 import org.junit.Test;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class FavoriteDaoImplTest {
 
     @Test
     public void queryFavoriteByBookId() {
-        Favorite favorite = favoriteDao.queryFavoriteByBookId(5);
+        Favorite favorite = favoriteDao.queryFavoriteByUserIdAndBookId(1, 5);
         System.out.println(favorite);
     }
 
@@ -27,5 +28,11 @@ public class FavoriteDaoImplTest {
         for (Favorite favorite : favorites) {
             System.out.println(favorite);
         }
+    }
+
+    @Test
+    public void deleteUserFavoriteByUserIdAndBookId() {
+        int i = favoriteDao.deleteUserFavoriteByUserIdAndBookId(1, 2);
+        System.out.println(i);
     }
 }

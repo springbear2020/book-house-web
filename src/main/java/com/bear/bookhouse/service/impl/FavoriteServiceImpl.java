@@ -20,12 +20,17 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
-    public boolean isFavoriteExists(int booId) {
-        return favoriteDao.queryFavoriteByBookId(booId) != null;
+    public boolean isFavoriteExists(int userId, int booId) {
+        return favoriteDao.queryFavoriteByUserIdAndBookId(userId, booId) != null;
     }
 
     @Override
     public List<Favorite> getUserFavoritesByUserId(int userId) {
         return favoriteDao.queryFavoritesByUserId(userId);
+    }
+
+    @Override
+    public boolean deleteUserFavorite(int userId, int bookId) {
+        return favoriteDao.deleteUserFavoriteByUserIdAndBookId(userId, bookId) == 1;
     }
 }

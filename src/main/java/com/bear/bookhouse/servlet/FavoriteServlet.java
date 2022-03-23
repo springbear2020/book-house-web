@@ -21,6 +21,31 @@ public class FavoriteServlet extends BaseServlet {
     private final FavoriteService favoriteService = new FavoriteServiceImpl();
 
     /**
+     * 删除收藏记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void deleteFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
+        HttpSession session = req.getSession();
+        if (userId == -1 || bookId == -1) {
+            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            return;
+        }
+
+        if (favoriteService.deleteUserFavorite(userId, bookId)) {
+            session.setAttribute("deleteFavoritesMsg", "图书取消收藏成功");
+            resp.sendRedirect(req.getHeader("Referer"));
+        } else {
+            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        }
+    }
+
+    /**
      * 添加收藏记录
      *
      * @param req  HttpServletRequest
@@ -41,7 +66,7 @@ public class FavoriteServlet extends BaseServlet {
         }
 
         // 查询用户图书收藏记录是否已经存在
-        if (favoriteService.isFavoriteExists(bookId)) {
+        if (favoriteService.isFavoriteExists(userId, bookId)) {
             session.setAttribute("addFavoriteMsg", "图书已收藏，不可重复收藏");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
@@ -72,7 +97,7 @@ public class FavoriteServlet extends BaseServlet {
         List<Favorite> userFavorites = favoriteService.getUserFavoritesByUserId(userId);
         if (userFavorites == null || userFavorites.size() == 0) {
             session.setAttribute("getFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
-            resp.sendRedirect(req.getHeader("Referer"));
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
 
