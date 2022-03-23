@@ -25,10 +25,11 @@
             <script type="text/javascript">${requestScope.user.portraitPath}</script>
             <li><a href="#" class="head_img"><img src="${sessionScope.user.portraitPath}" alt="个人"></a></li>
             <ul class="self-frame">
-                <a href="">
+                <li>积分:${sessionScope.user.score}</li>
+                <a href="bookServlet?action=showBookRecord&type=upload&userId=${sessionScope.user.id}">
                     <li>上传记录</li>
                 </a>
-                <a href="">
+                <a href="bookServlet?action=showBookRecord&type=download&userId=${sessionScope.user.id}">
                     <li>下载记录</li>
                 </a>
                 <a href="userServlet?action=logout">

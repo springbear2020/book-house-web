@@ -1,10 +1,13 @@
 package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.pojo.Book;
+import com.bear.bookhouse.pojo.Download;
 import com.bear.bookhouse.pojo.Upload;
 import com.bear.bookhouse.service.BookService;
+import com.bear.bookhouse.service.DownloadService;
 import com.bear.bookhouse.service.UploadService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
+import com.bear.bookhouse.service.impl.DownloadServiceImpl;
 import com.bear.bookhouse.service.impl.UploadServiceImpl;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
@@ -30,6 +33,7 @@ import java.util.List;
 public class TransferServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
     private final UploadService uploadService = new UploadServiceImpl();
+    private final DownloadService downloadService = new DownloadServiceImpl();
 
     /**
      * 通过图书 id 下载对应的图书数据
@@ -39,9 +43,10 @@ public class TransferServlet extends BaseServlet {
      * @throws IOException exception
      */
     protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String idStr = req.getParameter("id");
-        int id = NumberUtil.objectToInteger(idStr, 0);
-        Book book = bookService.getBookById(id);
+        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+
+        Book book = bookService.getBookById(bookId);
         if (book == null) {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
             return;
@@ -60,6 +65,7 @@ public class TransferServlet extends BaseServlet {
         int downloads = book.getDownloads();
         downloads += 1;
         bookService.bookDownloadsIncreaseOne(downloads, book.getId());
+        downloadService.addDownloadRecord(new Download(null, userId, bookId, new Date(), book.getTitle()));
     }
 
     /**
@@ -161,8 +167,8 @@ public class TransferServlet extends BaseServlet {
                     if (fileItem.isFormField()) {
                         String name = fileItem.getFieldName();
                         String value = fileItem.getString("UTF-8");
-                        if ("username".equals(name)) {
-                            upload.setUploadUsername(value);
+                        if ("userId".equals(name)) {
+                            upload.setUserId(NumberUtil.objectToInteger(value, -1));
                         }
                     } else {
                         String fieldName = fileItem.getFieldName();
@@ -171,6 +177,7 @@ public class TransferServlet extends BaseServlet {
                             // 将用户上传的图书文件写入本地磁盘
                             fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
                             upload.setBookPath("WEB-INF/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName);
+                            upload.setTitle(uploadFileName);
                         } else if ("cover".equals(fieldName)) {
                             // 将用户上传的图书封面文件写入本地磁盘
                             fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
@@ -181,7 +188,7 @@ public class TransferServlet extends BaseServlet {
 
                 upload.setUploadTime(new Date());
                 if (uploadService.addBookUploadRecord(upload)) {
-                    req.setAttribute("userUploadMsg", "图书上传成功，待管理员审核后发放对应积分到您的账号，感谢您的共享");
+                    req.setAttribute("userUploadMsg", "图书上传成功，感谢您的共享");
                 } else {
                     req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
                 }

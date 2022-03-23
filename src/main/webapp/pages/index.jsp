@@ -26,6 +26,10 @@
         <script type="text/javascript"> alert("${sessionScope.getFavoritesMsg}")</script>
         <% session.removeAttribute("getFavoritesMsg"); %>
     </c:if>
+    <c:if test="${not empty sessionScope.queryRecordMsg}">
+        <script type="text/javascript"> alert("${sessionScope.queryRecordMsg}")</script>
+        <% session.removeAttribute("queryRecordMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
@@ -42,9 +46,9 @@
                         <li class="search-word">作者</li>
                         <li class="search-word">关键词</li>
                     </div>
-                    <li class="search-li">搜出来的东西</li>
-                    <li class="search-li">就像搜索引擎那样</li>
-                    <li class="search-li">相信你可以的√</li>
+                    <%--                    <li class="search-li">搜出来的东西</li>--%>
+                    <%--                    <li class="search-li">就像搜索引擎那样</li>--%>
+                    <%--                    <li class="search-li">相信你可以的√</li>--%>
                 </ul>
             </form>
         </div>
@@ -71,7 +75,8 @@
                         </div>
                             <%-- // TODO 图书信息略改，等你啊，前端--%>
                         <div class="book-a">
-                            <a href="transferServlet?action=downloadBook&id=${book.id}" class="a-download">下载</a>
+                            <a href="transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}"
+                               class="a-download">下载</a>
                             <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
                                class="a-collect">收藏</a>
                         </div>
