@@ -8,13 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <%--// TODO 样式呐，阿伟--%>
+    <%--// TODO 我滴任务，完成了！！！！--%>
 
-    <title>Title</title>
+    <title>500</title>
     <%@include file="/pages/common/base.jsp" %>
+    <link rel="stylesheet" type="text/css" href="static/css/500.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+
 </head>
 <body>
-<h1>服务器已收到您的请求，但服务器开小差啦！</h1>
+    <div class="img-500">
+        <img src="static/img/500.png" alt="服务器开小差啦">
+    </div>
 </body>
 </html>

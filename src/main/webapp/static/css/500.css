@@ -1,0 +1,13 @@
+body{
+    background-color: #bfa;
+}
+.img-500{
+    width: 900px;
+    height: 450px;
+    margin: 50px auto;
+
+}
+
+.img-500 img{
+    width: 100%
+}

@@ -15,13 +15,10 @@
 
 </head>
 <body>
-<%--// TODO 样式呐，阿伟--%>
+<%--// TODO 完成了呢~--%>
 <div class="notfound-img">
-    <div class="img1">
-        <img src="https://s3.bmp.ovh/imgs/2022/03/77ac85c51d6b0474.png" alt="">
-    </div>
-    <div class="img2">
-        <img src="https://s3.bmp.ovh/imgs/2022/03/680f45b2a7081010.png" alt="">
+    <div class="notfound-img">
+        <img src="static/img/404.png" alt="404 not found">
     </div>
 </div>
 </body>
