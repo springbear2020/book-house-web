@@ -1,5 +1,5 @@
 body{
-    magrin: 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -92,7 +92,9 @@ a{
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 50%;
-    border: 0.1rem solid seagreen;
+    border: 0.05rem solid seagreen;
+    margin-top: -0.05rem;
+    margin-bottom: 0.05rem;
     /*border-width: 0.1rem;*/
     /*-moz-border-bottom-colors: red orange yellow green cyan blue purple;*/
     /*-moz-border-left-colors: red orange yellow green cyan blue purple;*/

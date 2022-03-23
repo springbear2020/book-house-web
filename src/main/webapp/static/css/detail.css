@@ -1,8 +1,3 @@
-@font-face{
-    font-family: 汉仪文黑;
-    src: url(zh-cn.ttf);
-}
-
 
 .middle {
     background-color: lightskyblue;
@@ -16,6 +11,7 @@
     margin: 0.2rem auto;
     /*border: 1px solid blue;*/
     background-color: #eee;
+    border: 0.2rem solid lightseagreen;
     border-radius: 5%;
 }
 
@@ -41,6 +37,7 @@
     margin: 0.3rem 0 0.3rem -0.5rem;
 }
 .inf-right li div{
+    margin-top: -0.05rem;
     font-size: 0.3rem;
     font-weight: bold;
     font-family: 微软雅黑, serif;
@@ -56,6 +53,8 @@
     text-overflow: ellipsis;
     /*text-overflow: "哈哈";*/
     overflow: hidden;
+    border-radius: 0.05rem;
+    border-bottom: 0.05rem solid deepskyblue;
     /*display: -webkit-box;*/
     /*-webkit-line-clamp: 3;*/
     /*-webkit-box-orient: vertical;*/
@@ -87,4 +86,52 @@
     padding: 0 0.1rem;
     margin-left: 1.3rem;
     margin-right: -0.1rem;
+}
+
+.button-a{
+    /*display: block;*/
+    float: left;
+    width: 1rem;
+    background-color: deepskyblue;
+    color: white;
+    font-size: 0.25rem;
+    font-weight: bold;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+}
+.button-a:hover{
+    background-color: #4ea4dc;
+}
+.btn-fav{
+    margin-left: 1rem;
+}
+
+.ToLeft{
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    margin-top: -1.2rem;
+    border-radius: 50%;
+    border: 0.2rem solid lightseagreen;
+}
+.ToLeft img{
+    width: 2rem;
+}
+.ToLeft img:hover{
+    content: url("../img/icon_left_d.png");
+}
+.ToRight{
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    margin-top: -1.2rem;
+    border-radius: 50%;
+    border: 0.2rem solid lightseagreen;
+}
+.ToRight img{
+    width: 2rem;
+}
+.ToRight img:hover{
+    content: url("../img/icon_right_d.png");
 }

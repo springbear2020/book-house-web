@@ -14,7 +14,7 @@ $(function (){
         for(i = 0; i < $textP.length; i++){
             thisHeight = $($textP[i]).height();
             // wordWidth = $textP[i].scrollHeight;
-            if(thisHeight > 0.9 * rem){
+            if(thisHeight > rem){
                 $($textP[i]).css('height','1rem');
                 $($textS[i]).css('display','block');
                 $($textS[i]).click(function (){
