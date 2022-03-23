@@ -17,14 +17,14 @@
     <link rel="stylesheet" type="text/css" href="static/css/upload.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/upload.js"></script>
+
+    <c:if test="${ not empty requestScope.adminUploadMsg}">
+        <div class="alert">${requestScope.adminUploadMsg}</div>
+        <% request.removeAttribute("uploadMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<%-- 上传图书提示信息 --%>
-<c:if test="${ not empty requestScope.uploadMsg}">
-    <div class="alert">${requestScope.uploadMsg}</div>
-    <% request.removeAttribute("uploadMsg"); %>
-</c:if>
 <div class="middle">
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>

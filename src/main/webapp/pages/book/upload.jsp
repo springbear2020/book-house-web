@@ -5,7 +5,8 @@
   Time: 20:33
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,7 +16,12 @@
     <link rel="stylesheet" type="text/css" href="static/css/upload.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
-        <script type="text/javascript" src="static/script/upload.js"></script>
+    <script type="text/javascript" src="static/script/upload.js"></script>
+
+    <c:if test="${not empty requestScope.userUploadMsg}">
+        <script type="text/javascript">alert("${requestScope.userUploadMsg}")</script>
+        <% request.removeAttribute("userUploadMsg");%>
+    </c:if>
 </head>
 <body>
 <%-- // TODO 后端觉得前端应该将 footer, herder, title jsp 页面的样式单独封装，免得每次都要新写 --%>
@@ -23,6 +29,7 @@
 <div class="middle">
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
+        <%-- 用户上传图书表单 --%>
         <form action="bookServlet?action=userUploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="username" value="${sessionScope.user.username}">
             <div class="bookFile upload-label"><label class="bookFile-true"><span>上传图书</span>

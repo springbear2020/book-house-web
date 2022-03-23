@@ -3,8 +3,11 @@ package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
+import com.bear.bookhouse.pojo.Upload;
 import com.bear.bookhouse.service.BookService;
+import com.bear.bookhouse.service.UploadService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
+import com.bear.bookhouse.service.impl.UploadServiceImpl;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
 import org.apache.commons.fileupload.FileItem;
@@ -12,7 +15,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,33 +31,7 @@ import java.util.List;
  */
 public class BookServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
-    /**
-     * 图书文件经服务器部署后的相对路径
-     */
-    private String bookWebRelativePath;
-    /**
-     * 封面文件经服务器部署后的相对路径
-     */
-    private String coverWebRelativePath;
-    /**
-     * 图书文件的磁盘绝对路径
-     */
-    private File bookRealDiskPath;
-    /**
-     * 封面文件的磁盘绝对路径
-     */
-    private File coverRealDiskPath;
-
-    /**
-     * 用户上传图书文件
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void userUploadBook(HttpServletRequest req, HttpServletResponse resp) {
-        System.out.println("已收到用户上传图书的请求，待处理");
-        // TODO 处理用户上传图书请求
-    }
+    private final UploadService uploadService = new UploadServiceImpl();
 
     /**
      * 通过图书 id 下载对应的图书数据
@@ -138,15 +114,15 @@ public class BookServlet extends BaseServlet {
                         // 获取上传的文件名
                         String uploadFileName = fileItem.getName();
                         if ("book".equals(fieldName)) {
-                            // 将图书文件保存到磁盘真实路径下目录下
-                            fileItem.write(new File(bookRealDiskPath + "/" + uploadFileName));
+                            // 将图书文件保存到磁盘真实路径下目录下 /WEB-INF/book/
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/book/" + uploadFileName));
                             // 设置图书文件经服务器部署后的相对路径为 bookWebPath
-                            book.setBookPath(bookWebRelativePath + uploadFileName);
+                            book.setBookPath("WEB-INF/book/" + uploadFileName);
                         } else if ("cover".equals(fieldName)) {
                             // 将封面文件保存到磁盘真实路径下
-                            fileItem.write(new File(coverRealDiskPath + "/" + uploadFileName));
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/cover/" + uploadFileName));
                             // 设置封面文件相对路径为 coverWebPath
-                            book.setCoverPath(coverWebRelativePath + uploadFileName);
+                            book.setCoverPath("static/picture/cover/" + uploadFileName);
                         }
                     }
                 }
@@ -157,15 +133,64 @@ public class BookServlet extends BaseServlet {
                 book.setUploadTime(new Date());
                 // 保存图书记录到数据库
                 if (bookService.saveBook(book)) {
-                    req.setAttribute("uploadMsg", "图书文件上传成功，感谢您的共享");
+                    req.setAttribute("adminUploadMsg", "图书文件上传成功，感谢您的共享");
                 } else {
-                    req.setAttribute("uploadMsg", "图书文件上传失败，请您稍后重试");
+                    req.setAttribute("adminUploadMsg", "图书文件上传失败，请您稍后重试");
+                }
+                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
+            } catch (Exception e) {
+                req.setAttribute("adminUploadMsg", "图书文件上传失败，请您稍后重试");
+                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 用户上传图书文件
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void userUploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Upload upload = new Upload();
+        if (ServletFileUpload.isMultipartContent(req)) {
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            try {
+                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
+                for (FileItem fileItem : fileItemList) {
+                    if (fileItem.isFormField()) {
+                        String name = fileItem.getFieldName();
+                        String value = fileItem.getString("UTF-8");
+                        if ("username".equals(name)) {
+                            upload.setUploadUsername(value);
+                        }
+                    } else {
+                        String fieldName = fileItem.getFieldName();
+                        String uploadFileName = fileItem.getName();
+                        if ("book".equals(fieldName)) {
+                            // 将用户上传的图书文件写入本地磁盘
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
+                            upload.setBookPath("WEB-INF/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName);
+                        } else if ("cover".equals(fieldName)) {
+                            // 将用户上传的图书封面文件写入本地磁盘
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
+                            upload.setCoverPath("static/picture/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName);
+                        }
+                    }
                 }
 
-                req.getRequestDispatcher("/pages/book/upload.jsp").forward(req, resp);
+                upload.setUploadTime(new Date());
+                if (uploadService.addBookUploadRecord(upload)) {
+                    req.setAttribute("userUploadMsg", "图书上传成功，待管理员审核后发放对应积分到您的账号，感谢您的共享");
+                } else {
+                    req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
+                }
+                req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
-                req.setAttribute("uploadMsg", "图书文件上传失败，请您稍后重试");
-                req.getRequestDispatcher("/pages/book/upload.jsp").forward(req, resp);
+                req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
+                req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
@@ -189,27 +214,6 @@ public class BookServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/index.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("/pages/error/500.jsp");
-        }
-    }
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        // 从 web.xml 中读取图书、封面文件经服务器部署后的自定义相对路径，例：http://ip:port/project/WEB-INF/book/
-        this.bookWebRelativePath = config.getInitParameter("bookPath");
-        this.coverWebRelativePath = config.getInitParameter("coverPath");
-        // 获取图书、封面文件在磁盘上的真实路径，若目录不存在则新建目录
-        this.bookRealDiskPath = new File(getServletContext().getRealPath("/") + "/" + this.bookWebRelativePath);
-        this.coverRealDiskPath = new File(getServletContext().getRealPath("/") + "/" + this.coverWebRelativePath);
-        if (!this.bookRealDiskPath.exists()) {
-            if (bookRealDiskPath.mkdirs()) {
-                System.out.println("图书保存目录创建成功");
-            }
-        }
-        if (!this.coverRealDiskPath.exists()) {
-            if (coverRealDiskPath.mkdirs()) {
-                System.out.println("封面保存目录创建成功");
-            }
         }
     }
 }

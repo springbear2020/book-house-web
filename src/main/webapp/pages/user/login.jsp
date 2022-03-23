@@ -11,13 +11,14 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/login.js"></script>
+
+    <c:if test="${ not empty requestScope.loginMsg}">
+        <div class="alert">${requestScope.loginMsg}</div>
+        <% request.removeAttribute("loginMsg");%>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.loginMsg}">
-    <div class="alert">${requestScope.loginMsg}</div>
-    <% request.removeAttribute("loginMsg");%>
-</c:if>
 <div class="middle">
     <div class="frame-login">
         <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>

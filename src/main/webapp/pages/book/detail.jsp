@@ -15,7 +15,6 @@
   <link rel="stylesheet" type="text/css" href="static/css/detail.css">
   <link rel="stylesheet" type="text/css" href="static/css/common.css">
   <script type="text/javascript" src="static/script/tools.js"></script>
-  <%--    <script type="text/javascript" src="static/script/login.js"></script>--%>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
@@ -23,7 +22,7 @@
   <div class="middle-frame">
     <div class="book-inf">
       <div class="inf-left">
-        <img src="static/img/Rushia.jpg" class="book_img">
+        <img src="static/img/Rushia.jpg" class="book_img" alt="图片加载失败">
       </div>
       <ul class="inf-right">
 <%--        // TODO 假如人家需要显示这些图书信息啦，怎么布局前端您看着办吧 --%>

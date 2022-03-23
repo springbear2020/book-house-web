@@ -11,21 +11,20 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/register.js"></script>
-    <script type="text/javascript">
-        <c:if test="${ not empty requestScope.registerErrorMsg}">
-        alert("${requestScope.registerErrorMsg}")
+
+    <c:if test="${ not empty requestScope.registerSuccessMsg}">
+        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
         <% request.removeAttribute("registerSuccessMsg"); %>
         <% request.removeAttribute("registerErrorMsg"); %>
-        </c:if>
-    </script>
+        <% request.removeAttribute("user"); %>
+    </c:if>
+    <c:if test="${ not empty requestScope.registerErrorMsg}">
+        <script type="text/javascript">alert("${requestScope.registerErrorMsg}")</script>
+        <% request.removeAttribute("registerSuccessMsg"); %>
+        <% request.removeAttribute("registerErrorMsg"); %>
+    </c:if>
 </head>
 <body>
-<c:if test="${ not empty requestScope.registerSuccessMsg}">
-    <div class="success-tips">${requestScope.registerSuccessMsg}</div>
-    <% request.removeAttribute("registerSuccessMsg"); %>
-    <% request.removeAttribute("registerErrorMsg"); %>
-    <% request.removeAttribute("user"); %>
-</c:if>
 <%@include file="/pages/common/title.jsp" %>
 <div class="middle">
     <div class="frame-register">

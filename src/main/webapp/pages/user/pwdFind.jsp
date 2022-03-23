@@ -18,20 +18,20 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
-    <script type="text/javascript">
-        <c:if test="${ not empty requestScope.updatePwdErrorMsg}">
+
+    <c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
+        <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
         <% request.removeAttribute("updatePwdErrorMsg"); %>
         <% request.removeAttribute("updatePwdErrorMsg"); %>
-        </c:if>
-    </script>
+    </c:if>
+    <c:if test="${ not empty requestScope.updatePwdErrorMsg}">
+        <script type="text/javascript">alert("${requestScope.updatePwdErrorMsg}")</script>
+        <% request.removeAttribute("updatePwdErrorMsg"); %>
+        <% request.removeAttribute("updatePwdErrorMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
-    <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
-    <% request.removeAttribute("updatePwdErrorMsg"); %>
-    <% request.removeAttribute("updatePwdErrorMsg"); %>
-</c:if>
 <div class="top-content">
 </div>
 <div class="middle">

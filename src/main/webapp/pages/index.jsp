@@ -17,12 +17,11 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/index.js"></script>
-    <script type="text/javascript">
-        <c:if test="${not empty sessionScope.addFavoriteMsg}">
-        alert("${sessionScope.addFavoriteMsg}")
+
+    <c:if test="${not empty sessionScope.addFavoriteMsg}">
+        <script type="text/javascript"> alert("${sessionScope.addFavoriteMsg}")</script>
         <% session.removeAttribute("addFavoriteMsg"); %>
-        </c:if>
-    </script>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
