@@ -16,7 +16,7 @@
         <c:if test="${ not empty sessionScope.user}">
             <li><a href="index.jsp" class="example">首页</a></li>
             <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
-            <li><a href="pages/book/favorite.jsp" class="example">收藏夹</a></li>
+            <li><a href="favoriteServlet?action=getFavoritesByUserId&userId=${sessionScope.user.id}" class="example">收藏夹</a></li>
         </c:if>
     </ul>
     <c:if test="${ not empty sessionScope.user}">

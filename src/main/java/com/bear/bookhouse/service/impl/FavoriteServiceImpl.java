@@ -5,6 +5,8 @@ import com.bear.bookhouse.dao.impl.FavoriteDaoImpl;
 import com.bear.bookhouse.pojo.Favorite;
 import com.bear.bookhouse.service.FavoriteService;
 
+import java.util.List;
+
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/22 21:31
@@ -20,5 +22,10 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public boolean isFavoriteExists(int booId) {
         return favoriteDao.queryFavoriteByBookId(booId) != null;
+    }
+
+    @Override
+    public List<Favorite> getUserFavoritesByUserId(int userId) {
+        return favoriteDao.queryFavoritesByUserId(userId);
     }
 }

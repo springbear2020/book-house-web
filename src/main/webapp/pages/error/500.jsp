@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <%--// TODO 样式呐，阿伟--%>
+
     <title>Title</title>
     <%@include file="/pages/common/base.jsp" %>
-<%--    <link rel="stylesheet" type="text/css" href="static/css/error.css">--%>
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>

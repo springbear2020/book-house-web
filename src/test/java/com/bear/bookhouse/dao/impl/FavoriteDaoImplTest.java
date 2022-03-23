@@ -4,6 +4,8 @@ import com.bear.bookhouse.dao.FavoriteDao;
 import com.bear.bookhouse.pojo.Favorite;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -17,5 +19,13 @@ public class FavoriteDaoImplTest {
     public void queryFavoriteByBookId() {
         Favorite favorite = favoriteDao.queryFavoriteByBookId(5);
         System.out.println(favorite);
+    }
+
+    @Test
+    public void queryFavoritesByUserId() {
+        List<Favorite> favorites = favoriteDao.queryFavoritesByUserId(1);
+        for (Favorite favorite : favorites) {
+            System.out.println(favorite);
+        }
     }
 }

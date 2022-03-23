@@ -5,11 +5,13 @@ import com.bear.bookhouse.service.FavoriteService;
 import com.bear.bookhouse.service.impl.FavoriteServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -48,5 +50,33 @@ public class FavoriteServlet extends BaseServlet {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
             resp.sendRedirect(req.getHeader("Referer"));
         }
+    }
+
+    /**
+     * 通过用户 id 查询用户收藏记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void getFavoritesByUserId(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String userIdStr = req.getParameter("userId");
+        int userId = NumberUtil.objectToInteger(userIdStr, -1);
+        HttpSession session = req.getSession();
+        if (userId == -1) {
+            session.setAttribute("getFavoritesMsg", "查询个人收藏夹失败，请稍后重试");
+            resp.sendRedirect(req.getHeader("Referer"));
+            return;
+        }
+
+        // 从数据库查询个人收藏记录
+        List<Favorite> userFavorites = favoriteService.getUserFavoritesByUserId(userId);
+        if (userFavorites == null || userFavorites.size() == 0) {
+            session.setAttribute("getFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+            resp.sendRedirect(req.getHeader("Referer"));
+            return;
+        }
+
+        req.setAttribute("userFavoritesList", userFavorites);
+        req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
     }
 }

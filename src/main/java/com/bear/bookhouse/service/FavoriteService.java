@@ -2,6 +2,8 @@ package com.bear.bookhouse.service;
 
 import com.bear.bookhouse.pojo.Favorite;
 
+import java.util.List;
+
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/22 21:30
@@ -22,4 +24,12 @@ public interface FavoriteService {
      * @return true - 收藏记录已存在
      */
     boolean isFavoriteExists(int booId);
+
+    /**
+     * 通过用户 id 查询用书收藏记录
+     *
+     * @param userId 用户 id
+     * @return Favorites or null
+     */
+    List<Favorite> getUserFavoritesByUserId(int userId);
 }
