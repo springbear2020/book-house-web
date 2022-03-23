@@ -12,6 +12,8 @@
     <title>${requestScope.title}</title>
 </head>
 <body>
+<%-- // TODO 前端，样式又不行了啦 --%>
+<%@include file="/pages/common/header.jsp"%>
 <%-- 用户图书下载记录 --%>
 <c:if test="${not empty requestScope.downloadList}">
     <table>
@@ -44,5 +46,6 @@
         </c:forEach>
     </table>
 </c:if>
+<%@include file="/pages/common/footer.jsp"%>
 </body>
 </html>

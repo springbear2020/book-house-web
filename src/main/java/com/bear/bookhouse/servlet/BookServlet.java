@@ -30,7 +30,7 @@ public class BookServlet extends BaseServlet {
     private final UploadService uploadService = new UploadServiceImpl();
 
     /**
-     * 显示图书下载记录
+     * 显示图书记录
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse

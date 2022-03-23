@@ -16,14 +16,17 @@
         <c:if test="${ not empty sessionScope.user}">
             <li><a href="index.jsp" class="example">首页</a></li>
             <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
-            <li><a href="favoriteServlet?action=getFavoritesByUserId&userId=${sessionScope.user.id}" class="example">收藏夹</a></li>
+            <li><a href="favoriteServlet?action=getFavoritesByUserId&userId=${sessionScope.user.id}"
+                   class="example">收藏夹</a></li>
         </c:if>
     </ul>
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
-            <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="通知"></a></li>
+            <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notification"></a>
+            </li>
             <script type="text/javascript">${requestScope.user.portraitPath}</script>
-            <li><a href="#" class="head_img"><img src="${sessionScope.user.portraitPath}" alt="个人"></a></li>
+            <li><a href="pages/user/update.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
+                                                                      alt="Personal"></a></li>
             <ul class="self-frame">
                 <li>积分:${sessionScope.user.score}</li>
                 <a href="bookServlet?action=showBookRecord&type=upload&userId=${sessionScope.user.id}">
