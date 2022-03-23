@@ -55,4 +55,16 @@ public class NumberUtil {
         }
         return builder.toString();
     }
+
+    /**
+     * 随机生成一个指定范围的随机数
+     *
+     * @param bound 上限
+     * @return 随机值
+     */
+    public static int randomGenerateNumber(int bound) {
+        Random random = new Random();
+        int number = random.nextInt(bound);
+        return number == 0 ? number + 1 : number;
+    }
 }

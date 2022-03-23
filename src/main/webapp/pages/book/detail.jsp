@@ -23,16 +23,15 @@
         <% session.removeAttribute("addFavoriteMsg"); %>
     </c:if>
     <c:if test="${not empty sessionScope.deleteFavoritesMsg}">
-    <script type="text/javascript"> alert("${sessionScope.deleteFavoritesMsg}")</script>
-    <% session.removeAttribute("deleteFavoritesMsg"); %>
-</c:if>
+        <script type="text/javascript"> alert("${sessionScope.deleteFavoritesMsg}")</script>
+        <% session.removeAttribute("deleteFavoritesMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-<%--    TODO 给后端整个活 需要功能：点这两个按钮跳转上一本书和下一本书--%>
-    <a class="ToLeft" href="#"><img src="static/img/icon_left.png"></a>
-    <a class="ToRight" href="#"><img src="static/img/icon_right.png"></a>
+    <a class="ToLeft" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_left.png" alt=""></a>
+    <a class="ToRight" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_right.png" alt=""></a>
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">
@@ -69,8 +68,10 @@
                 <li>
                     <div>上传时间</div>
                     <p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
-                <a class="button-a btn-down" href="transferServlet?action=downloadBook&id=${requestScope.book.id}">前往下载</a>
-                <a class="button-a btn-fav" href="favoriteServlet?action=addFavoriteRecord&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
+                <a class="button-a btn-down"
+                   href="transferServlet?action=downloadBook&id=${requestScope.book.id}">前往下载</a>
+                <a class="button-a btn-fav"
+                   href="favoriteServlet?action=addFavoriteRecord&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
             </ul>
         </div>
     </div>

@@ -15,7 +15,6 @@
 
 </head>
 <body>
-<%--// TODO 完成了呢~--%>
 <div class="notfound-img">
     <div class="notfound-img">
         <img src="static/img/404.png" alt="404 not found">

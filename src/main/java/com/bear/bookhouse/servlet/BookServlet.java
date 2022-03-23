@@ -30,6 +30,20 @@ public class BookServlet extends BaseServlet {
     private final UploadService uploadService = new UploadServiceImpl();
 
     /**
+     * 随机显示一本图书信息
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void randomShowOneBookDetail(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        int booksCount = bookService.getBooksRecordTotalCount();
+        int bookId = NumberUtil.randomGenerateNumber(booksCount);
+        Book book = bookService.getBookById(bookId);
+        req.setAttribute("book", book);
+        req.getRequestDispatcher("/pages/book/detail.jsp").forward(req, resp);
+    }
+
+    /**
      * 显示图书记录
      *
      * @param req  HttpServletRequest

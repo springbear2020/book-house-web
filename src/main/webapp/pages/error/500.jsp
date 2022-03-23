@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <%--// TODO 我滴任务，完成了！！！！--%>
 
     <title>500</title>
     <%@include file="/pages/common/base.jsp" %>
