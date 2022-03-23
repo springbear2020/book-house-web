@@ -32,10 +32,12 @@
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>com.bear.bookhouse.servlet.BookServlet</servlet-class>
         <init-param>
+            <!-- 配置管理员图书保存路径 -->
             <param-name>bookPath</param-name>
             <param-value>WEB-INF/book/</param-value>
         </init-param>
         <init-param>
+            <!-- 配置管理员封面保存路径 -->
             <param-name>coverPath</param-name>
             <param-value>static/picture/cover/</param-value>
         </init-param>
@@ -43,6 +45,14 @@
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/bookServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.servlet.FavoriteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <url-pattern>/favoriteServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>

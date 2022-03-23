@@ -43,13 +43,11 @@ public class UserServlet extends BaseServlet {
 
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(EmailServlet.getPasswordFindEmailCode())) {
-            req.removeAttribute("updatePwdSuccessMsg");
             req.setAttribute("updatePwdErrorMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
         if (userService.updateUserPasswordByEmail(password, email)) {
-            req.removeAttribute("updatePwdErrorMsg");
             req.setAttribute("updatePwdSuccessMsg", "密码重置成功!");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
@@ -111,8 +109,6 @@ public class UserServlet extends BaseServlet {
         user.setRegisterDate(new Date());
         user.setScore(100);
         if (userService.saveUser(user)) {
-            req.removeAttribute("user");
-            req.removeAttribute("registerErrorMsg");
             req.setAttribute("registerSuccessMsg", "恭喜您注册成功！");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {

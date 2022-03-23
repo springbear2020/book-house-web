@@ -16,6 +16,7 @@
 <%@include file="/pages/common/title.jsp" %>
 <c:if test="${ not empty requestScope.loginMsg}">
     <div class="alert">${requestScope.loginMsg}</div>
+    <% request.removeAttribute("loginMsg");%>
 </c:if>
 <div class="middle">
     <div class="frame-login">

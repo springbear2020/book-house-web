@@ -13,19 +13,19 @@
     <script type="text/javascript" src="static/script/register.js"></script>
     <script type="text/javascript">
         <c:if test="${ not empty requestScope.registerErrorMsg}">
-            alert("${requestScope.registerErrorMsg}")
+        alert("${requestScope.registerErrorMsg}")
+        <% request.removeAttribute("registerSuccessMsg"); %>
+        <% request.removeAttribute("registerErrorMsg"); %>
         </c:if>
     </script>
 </head>
 <body>
-<%--<div class="grey">--%>
-<%--    <div class="alert">--%>
-<%--        <div class="alert-close">×</div>--%>
-<c:if test="${ not empty requestScope.registerSuccessMsgMsg}">
-        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
+<c:if test="${ not empty requestScope.registerSuccessMsg}">
+    <div class="success-tips">${requestScope.registerSuccessMsg}</div>
+    <% request.removeAttribute("registerSuccessMsg"); %>
+    <% request.removeAttribute("registerErrorMsg"); %>
+    <% request.removeAttribute("user"); %>
 </c:if>
-<%--    </div>--%>
-<%--</div>--%>
 <%@include file="/pages/common/title.jsp" %>
 <div class="middle">
     <div class="frame-register">

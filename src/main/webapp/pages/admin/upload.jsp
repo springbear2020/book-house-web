@@ -20,13 +20,16 @@
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
+<%-- 上传图书提示信息 --%>
 <c:if test="${ not empty requestScope.uploadMsg}">
     <div class="alert">${requestScope.uploadMsg}</div>
+    <% request.removeAttribute("uploadMsg"); %>
 </c:if>
 <div class="middle">
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
-        <a href="bookServlet?action=listBooksByPageNum" target="_self" class="toBack"><img src="static/img/icon_back.png" alt="图片加载失败"></a>
+        <a href="bookServlet?action=listBooksByPageNum" target="_self" class="toBack"><img
+                src="static/img/icon_back.png" alt="图片加载失败"></a>
         <%-- 图书文件上传表单 --%>
         <form action="bookServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">

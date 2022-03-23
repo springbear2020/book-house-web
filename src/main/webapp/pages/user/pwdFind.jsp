@@ -20,7 +20,8 @@
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
     <script type="text/javascript">
         <c:if test="${ not empty requestScope.updatePwdErrorMsg}">
-            alert("${requestScope.updatePwdErrorMsg}")
+        <% request.removeAttribute("updatePwdErrorMsg"); %>
+        <% request.removeAttribute("updatePwdErrorMsg"); %>
         </c:if>
     </script>
 </head>
@@ -28,6 +29,8 @@
 <%@include file="/pages/common/title.jsp" %>
 <c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
     <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
+    <% request.removeAttribute("updatePwdErrorMsg"); %>
+    <% request.removeAttribute("updatePwdErrorMsg"); %>
 </c:if>
 <div class="top-content">
 </div>
