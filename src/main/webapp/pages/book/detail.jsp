@@ -22,6 +22,10 @@
         <script type="text/javascript"> alert("${sessionScope.addFavoriteMsg}")</script>
         <% session.removeAttribute("addFavoriteMsg"); %>
     </c:if>
+    <c:if test="${not empty sessionScope.deleteFavoritesMsg}">
+    <script type="text/javascript"> alert("${sessionScope.deleteFavoritesMsg}")</script>
+    <% session.removeAttribute("deleteFavoritesMsg"); %>
+</c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>

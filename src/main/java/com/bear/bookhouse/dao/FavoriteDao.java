@@ -18,12 +18,13 @@ public interface FavoriteDao {
     int saveFavorite(Favorite favorite);
 
     /**
-     * 通过图书 id 查询收藏记录
+     * 通过用户 id 和图书 id 查询收藏记录
      *
+     * @param userId 用户 id
      * @param bookId 图书 id
      * @return Favorite or null
      */
-    Favorite queryFavoriteByBookId(int bookId);
+    Favorite queryFavoriteByUserIdAndBookId(int userId, int bookId);
 
     /**
      * 通过用户 id 查询收藏记录
@@ -32,4 +33,13 @@ public interface FavoriteDao {
      * @return Favorites or null
      */
     List<Favorite> queryFavoritesByUserId(int userId);
+
+    /**
+     * 通过用户 id 和图书 id 删除用户对应的收藏记录
+     *
+     * @param userId 用户 id
+     * @param bookId 图书 id
+     * @return 1 - 删除成功
+     */
+    int deleteUserFavoriteByUserIdAndBookId(int userId, int bookId);
 }

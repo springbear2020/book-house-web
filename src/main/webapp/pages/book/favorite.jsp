@@ -32,7 +32,8 @@
             <td>${favorite.translator}</td>
             <td>${favorite.collectTime}</td>
             <td><a href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">查看详情</a></td>
-            <td><a>取消收藏</a></td>
+            <td><a href="favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}">取消收藏</a>
+            </td>
             <td><a href="transferServlet?action=downloadBook&id=${favorite.bookId}">立刻下载</a></td>
         </tr>
     </c:forEach>
