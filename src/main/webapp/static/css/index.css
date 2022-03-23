@@ -29,8 +29,11 @@
 }
 .search-container{
     margin: 0 auto;
-    width: 7rem;
+    width: 6.1rem;
 }
+/*.search-form{*/
+/*    width: 6.1rem;*/
+/*}*/
 .search-text{
     width: 5rem;
     padding-left: 0.3rem;
@@ -90,20 +93,123 @@
     display: block;;
     width: 18rem;
     margin: 0 auto;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
 }
 .one-book{
     float: left;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    background-color: #adf;
+    border-radius: 0.2rem;
     margin: 0.2rem 0.28rem;
     width: 3rem;
     height: 5.5rem;
     text-align: center;
+    font-size: 0.25rem;
 }
 .img-books{
     margin-top: 0.2rem;
     width: 1.854rem;
     height: 3rem;
+}
+
+.caption{
+    color: #000;
+}
+.book-id{
+    display: block;
+}
+.book-title{
+    display: block;
+    margin: 0;
+}
+.book-data{
+    position: relative;
+    width: 100%;
+    height: 0.3rem;
+    /*text-align: center;*/
+    margin-top: 0.2rem;
+    font-size: 0.15rem;
+    /*background-color: #4ea4dc;*/
+    /*color: blue;*/
+    /*font-weight: bold;*/
+    /*padding: 0.05rem 0.1rem;*/
+    /*border-radius: 0.2rem;*/
+}
+.book-download{
+    float: left;
+    margin-left: 0.3rem;
+    /*width: 1rem;*/
+    height: 0.3rem;
+    background-color: #4ea4dc;
+    color: blue;
+    font-weight: bold;
+    padding: 0.05rem 0.1rem;
+    border-radius: 0.2rem;
+}
+.book-collect{
+    /*width: 1rem;*/
+    position: absolute;
+    left: 50%;
+    height: 0.3rem;
+    background-color: #4ea4dc;
+    color: blue;
+    font-weight: bold;
+    padding: 0.05rem 0.1rem;
+    border-radius: 0.2rem;
+}
+.book-data span{
+    font-size: 0.1rem;
+    float: left;
+    /*margin-left: 0.1rem;*/
+    /*background-color: #4ea4dc;*/
+    /*color: blue;*/
+    /*font-weight: bold;*/
+    /*padding: 0.05rem 0.1rem;*/
+    /*border-radius: 0.2rem;*/
+}
+.book-download span{
+    /*margin-left: 0.3rem;*/
+}
+.book-download div{
+    float: left;
+    margin-left: 0.05rem;
+}
+.book-collect div{
+    float: left;
+    margin-left: 0.05rem;
+}
+/*.book-collect{*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*}*/
+.book-a{
+    position: relative;
+    /*text-align: left;*/
+    /*height: 1rem;*/
+}
+.book-a a{
+    /*display: block;*/
+    /*float: left;*/
+    position: absolute;
+    width: 0.6rem;
+    height: 0.3rem;
+    background-color: #4ea4dc;
+    font-weight: bold;
+    padding: 0.15rem;
+    border-radius: 0.1rem;
+    margin-top: 0.3rem;
+}
+.book-a a:hover{
+    background-color: blue;
+    color: #dddddd;
+}
+.a-download{
+    left: 0.4rem;
+    /*margin-left: -1rem;*/
+}
+.a-collect{
+    right: 0.4rem;
+    /*margin-left: 0.4rem;*/
 }
 
 .pag-chs{
@@ -112,9 +218,10 @@
     padding-bottom: 0.2rem;
     /*width: 8.4rem;*/
     height: 0.6rem;
-    text-align: center;
+    /*text-align: center;*/
 }
 .pagination{;
+    padding-left: 0;
     height: 0.4rem;
 }
 .pag-num{

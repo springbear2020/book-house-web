@@ -24,7 +24,6 @@
     </c:if>
 </head>
 <body>
-<%-- // TODO 后端觉得前端应该将 footer, herder, title jsp 页面的样式单独封装，免得每次都要新写 --%>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-container">

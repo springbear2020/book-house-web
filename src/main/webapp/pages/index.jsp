@@ -56,12 +56,18 @@
                     <a href="bookServlet?action=showBookDetailsById&bookId=${book.id}" target="_blank"><img class="img-books" src="${book.coverPath}"
                                                                          alt="封面加载失败"></a>
                     <div class="caption">
-                        <div><span>${book.id}</span></div>
-                        <div><h5>《${book.title}》</h5></div>
-                        <div><span>下载量:${book.downloads} 收藏量:${book.collections}</span></div>
+                        <div><span class="book-id">${book.id}</span></div>
+                        <div><h5 class="book-title">《${book.title}》</h5></div>
+                        <div class="book-data">
+                            <div class="book-download"><span>下载量</span><div>${book.downloads}</div></div>
+                            <div class="book-collect"><span>收藏量</span><div>${book.collections}</div></div>
+                        </div>
                             <%-- // TODO 图书信息显示大改啊，等你啊，前端--%>
-                        <a href="bookServlet?action=downloadBook&id=${book.id}">下载</a>
-                        <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}">收藏</a>
+                        <div class="book-a">
+                            <a href="bookServlet?action=downloadBook&id=${book.id}" class="a-download">下载</a>
+                            <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}" class="a-collect">收藏</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

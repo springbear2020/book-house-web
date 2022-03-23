@@ -15,7 +15,7 @@ $(function (){
             thisHeight = $($textP[i]).height();
             // wordWidth = $textP[i].scrollHeight;
             if(thisHeight > 0.9 * rem){
-                $($textP[i]).css('height','0.9rem');
+                $($textP[i]).css('height','1rem');
                 $($textS[i]).css('display','block');
                 $($textS[i]).click(function (){
                     if($(this).text() ==='显示'){
@@ -28,7 +28,7 @@ $(function (){
                         $(this).text('隐藏');
                     }else{
                         let $pre = $(this).prev();
-                        $($pre).css('height','0.9rem');
+                        $($pre).css('height','1rem');
                         $(this).text('显示');
                     }
                 })

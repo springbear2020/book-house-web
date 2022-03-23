@@ -43,7 +43,7 @@
 .inf-right li div{
     font-size: 0.3rem;
     font-weight: bold;
-    font-family: 汉仪文黑, serif;
+    font-family: 微软雅黑, serif;
     float: left;
 }
 .inf-right li p{
@@ -51,7 +51,7 @@
     /*height: 0.9rem;*/
     margin-left: 1.5rem;
     font-size: 0.25rem;
-    font-family: 汉仪文黑, serif;
+    font-family: 微软雅黑, serif;
     word-break: break-all;
     text-overflow: ellipsis;
     /*text-overflow: "哈哈";*/
@@ -78,4 +78,13 @@
 .inf-right li span:hover{
     background-color: #dddddd;
     color: blue;
+}
+
+#book-commit{
+    background-color: white;
+    border-radius: 0.2rem;
+    border: 0.05rem solid grey;
+    padding: 0 0.1rem;
+    margin-left: 1.3rem;
+    margin-right: -0.1rem;
 }
