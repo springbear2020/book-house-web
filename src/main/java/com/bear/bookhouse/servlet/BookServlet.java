@@ -34,6 +34,20 @@ public class BookServlet extends BaseServlet {
     private final UploadService uploadService = new UploadServiceImpl();
 
     /**
+     * 显示图书详情
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void showBookDetailsById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idStr = req.getParameter("bookId");
+        int id = NumberUtil.objectToInteger(idStr, -1);
+        Book book = bookService.getBookById(id);
+        req.setAttribute("book", book);
+        req.getRequestDispatcher("/pages/book/detail.jsp").forward(req, resp);
+    }
+
+    /**
      * 通过图书 id 下载对应的图书数据
      *
      * @param req  HttpServletRequest

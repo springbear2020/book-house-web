@@ -53,7 +53,7 @@
                 <div class="thumbnail">
                         <%-- // TODO 等待前端处理跳转到详情页信息显示 --%>
                         <%-- // TODO 等待后端处理跳转到详情页时查询信息 --%>
-                    <a href="pages/book/detail.jsp" target="_blank"><img class="img-books" src="${book.coverPath}"
+                    <a href="bookServlet?action=showBookDetailsById&bookId=${book.id}" target="_blank"><img class="img-books" src="${book.coverPath}"
                                                                          alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span>${book.id}</span></div>
