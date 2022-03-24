@@ -44,4 +44,14 @@ public class UserServiceImpl implements UserService {
     public User queryUserByUsername(String username) {
         return userDao.queryUserByUsername(username);
     }
+
+    @Override
+    public boolean addUserScore(int userId) {
+        return userDao.addUserScoreByUserId(10, userId) == 1;
+    }
+
+    @Override
+    public boolean subUserScore(int userId) {
+        return userDao.subUserScoreByUserId(10, userId) == 1;
+    }
 }

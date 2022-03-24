@@ -44,14 +44,6 @@ public interface BookService {
     Book getBookById(int id);
 
     /**
-     * 通过图书 id 将图书下载下载量自增 1
-     *
-     * @param downloads 原始下载量
-     * @param id        图书 id
-     */
-    void bookDownloadsIncreaseOne(int downloads, int id);
-
-    /**
      * 根据书名查询图书分页数据
      *
      * @param pageNum  页码
@@ -60,4 +52,20 @@ public interface BookService {
      * @return 图书分页对象
      */
     Page<Book> getBooksByTitlePageData(int pageNum, int pageSize, String title);
+
+    /**
+     * 增加图书下载量，默认增加 1
+     *
+     * @param bookId 图书 id
+     * @return true - 增加成功
+     */
+    boolean increaseBookDownloads(int bookId);
+
+    /**
+     * 增加图书收藏量，默认增加 1
+     *
+     * @param bookId 图书 id
+     * @return true - 增加成功
+     */
+    boolean increaseBookCollections(int bookId);
 }

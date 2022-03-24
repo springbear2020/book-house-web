@@ -3,6 +3,7 @@ package com.bear.bookhouse.dao.impl;
 import com.bear.bookhouse.dao.BaseDao;
 import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.pojo.User;
+import com.bear.bookhouse.util.NumberUtil;
 
 /**
  * @author Spring-_-Bear
@@ -38,5 +39,17 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     public int updateUserByEmail(String password, String email) {
         String sql = "UPDATE `t_user` SET `password` = ? WHERE `email` = ?;";
         return update(sql, password, email);
+    }
+
+    @Override
+    public int addUserScoreByUserId(int addScore, int userId) {
+        String sql = "UPDATE `t_user` SET `score` = `score` + ? WHERE `id` = ?;";
+        return update(sql, addScore, userId);
+    }
+
+    @Override
+    public int subUserScoreByUserId(int subScore, int userId) {
+        String sql = "UPDATE `t_user` SET `score` = `score` - ? WHERE `id` = ?;";
+        return update(sql, subScore, userId);
     }
 }

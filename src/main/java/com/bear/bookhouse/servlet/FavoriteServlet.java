@@ -1,7 +1,9 @@
 package com.bear.bookhouse.servlet;
 
 import com.bear.bookhouse.pojo.Favorite;
+import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.FavoriteService;
+import com.bear.bookhouse.service.impl.BookServiceImpl;
 import com.bear.bookhouse.service.impl.FavoriteServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
@@ -18,6 +20,7 @@ import java.util.List;
  * @datetime 2022/3/22 21:18
  */
 public class FavoriteServlet extends BaseServlet {
+    private final BookService bookService = new BookServiceImpl();
     private final FavoriteService favoriteService = new FavoriteServiceImpl();
 
     /**
@@ -73,6 +76,8 @@ public class FavoriteServlet extends BaseServlet {
         }
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
+            // 图书收藏量增加 1
+            bookService.increaseBookCollections(bookId);
             resp.sendRedirect(req.getHeader("Referer"));
         }
     }

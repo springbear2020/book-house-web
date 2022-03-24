@@ -48,4 +48,22 @@ public interface UserDao {
      * @return 1 - 更新成功
      */
     int updateUserByEmail(String password, String email);
+
+    /**
+     * 通过用户 id 增加用户积分
+     *
+     * @param addScore 增加的积分量
+     * @param userId   用户 id
+     * @return 1 - 增加成功
+     */
+    int addUserScoreByUserId(int addScore, int userId);
+
+    /**
+     * 通过用户 id 减少用户积分
+     *
+     * @param subScore 减少的积分量
+     * @param userId   用户 id
+     * @return 1 - 减少成功
+     */
+    int subUserScoreByUserId(int subScore, int userId);
 }

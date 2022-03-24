@@ -4,8 +4,10 @@ import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Record;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.RecordService;
+import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
+import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
 import org.apache.commons.fileupload.FileItem;
@@ -29,6 +31,7 @@ import java.util.List;
  */
 public class TransferServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
+    private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
 
     /**
@@ -57,14 +60,11 @@ public class TransferServlet extends BaseServlet {
         InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
         // 将文件字节流数据赋值给响应输出流
         IOUtils.copy(inputStream, resp.getOutputStream());
-        // 图书下载量自增 1，先获取原来的下载量
-        int downloads = book.getDownloads();
-        downloads += 1;
-        bookService.bookDownloadsIncreaseOne(downloads, book.getId());
-        recordService.addOperationRecord(new Record(null, userId, "下载图书", "-10", new Date(), book.getTitle()));
-        // TODO 用户积分减 10
-    }
 
+        // 图书下载量增加 1，用户积分减少 10
+        bookService.increaseBookDownloads(bookId);
+        userService.subUserScore(userId);
+    }
 
     /**
      * 用户上传图书文件
@@ -105,7 +105,8 @@ public class TransferServlet extends BaseServlet {
                 record.setScoreChange("+10");
                 if (recordService.addOperationRecord(record)) {
                     req.setAttribute("userUploadMsg", "图书上传成功，感谢您的共享");
-                    // TODO 用户积分 +10
+                    // 用户积分增加 10
+                    userService.addUserScore(record.getUserId());
                 } else {
                     req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
                 }
@@ -117,7 +118,6 @@ public class TransferServlet extends BaseServlet {
             }
         }
     }
-
 
     /**
      * 管理员图书上传

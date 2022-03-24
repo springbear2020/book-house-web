@@ -65,4 +65,14 @@ public class BookDaoTest {
         System.out.println(java);
     }
 
+    @Test
+    public void bookDownloadsIncrease() {
+        System.out.println(bookDao.bookDownloadsIncrease(10000, 2));
+    }
+
+    @Test
+    public void bookFavoritesIncrease() {
+        System.out.println(bookDao.bookFavoritesIncrease(10000, 2));
+
+    }
 }

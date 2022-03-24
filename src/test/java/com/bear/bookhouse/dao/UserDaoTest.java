@@ -47,4 +47,14 @@ class UserDaoTest {
         int i = userDao.updateUserByEmail("123", "springbear2020@163.com");
         System.out.println(i);
     }
+
+    @Test
+    public void subUserScoreByUserId() {
+        System.out.println(userDao.subUserScoreByUserId(100, 2));
+    }
+
+    @Test
+    public void addUserScoreByUserId() {
+        System.out.println(userDao.addUserScoreByUserId(1000, 3));
+    }
 }

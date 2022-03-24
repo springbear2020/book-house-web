@@ -68,4 +68,22 @@ public interface BookDao {
      * @return 总记录数
      */
     int getCountsByTitle(String title);
+
+    /**
+     * 通过图书 id 增加图书下载量
+     *
+     * @param addDownload 需要增加的下载量
+     * @param bookId      图书 id
+     * @return 1 - 增加成功
+     */
+    int bookDownloadsIncrease(int addDownload, int bookId);
+
+    /**
+     * 通过图书 id 增加图书收藏量
+     *
+     * @param addCollection 需要增加的收藏量
+     * @param bookId      图书 id
+     * @return 1 - 增加成功
+     */
+    int bookFavoritesIncrease(int addCollection, int bookId);
 }

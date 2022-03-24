@@ -90,7 +90,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void bookDownloadsIncreaseOne(int oldDownloads, int id) {
-        bookDao.updateBookDownloadsById(oldDownloads, id);
+    public boolean increaseBookDownloads(int bookId) {
+        return bookDao.bookDownloadsIncrease(1, bookId) == 1;
+    }
+
+    @Override
+    public boolean increaseBookCollections(int bookId) {
+        return bookDao.bookFavoritesIncrease(1, bookId) == 1;
     }
 }

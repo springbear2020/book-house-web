@@ -56,4 +56,16 @@ public class BookDaoImpl extends BaseDao implements BookDao {
         Object[] params = new Object[]{"%" + title + "%"};
         return NumberUtil.objectToInteger(getSingleValue(sql, params), 0);
     }
+
+    @Override
+    public int bookDownloadsIncrease(int addDownload, int bookId) {
+        String sql = "UPDATE `t_book` SET `downloads` = `downloads` + ? WHERE `id` = ?;";
+        return update(sql, addDownload, bookId);
+    }
+
+    @Override
+    public int bookFavoritesIncrease(int addCollection, int bookId) {
+        String sql = "UPDATE `t_book` SET `collections` = `collections` + ? WHERE `id` = ?;";
+        return update(sql, addCollection, bookId);
+    }
 }
