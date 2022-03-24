@@ -73,7 +73,7 @@
                 <a class="button-a btn-down"
                    href="transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
                 <a class="button-a btn-fav"
-                   href="favoriteServlet?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
+                   href="favoriteServlet?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&coverPath=${requestScope.book.coverPath}">收藏图书</a>
             </ul>
         </div>
     </div>

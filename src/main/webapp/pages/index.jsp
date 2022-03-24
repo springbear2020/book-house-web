@@ -81,7 +81,7 @@
                         <div class="book-a">
                             <a href="transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}"
                                class="a-download">下载</a>
-                            <a href="favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
+                            <a href="favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&coverPath=${book.coverPath}"
                                class="a-collect">收藏</a>
                         </div>
                     </div>

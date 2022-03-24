@@ -44,13 +44,12 @@
                         </a>
                         <div class="fav-data">
                             <a title="查看详情" href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">
-                                    <%--                                // TODO 等待修改 Favorite POJO 类，添加封面属性，删除译者属性 --%>
-                                <img class="fav-img" src="static/img/Cirno.jpg" alt="封面加载失败">
+                                <img class="fav-img" src="${favorite.coverPath}" alt="封面加载失败">
                             </a>
                             <p class="fav-bk-t">${favorite.title}</p>
                             <p class="fav-author">${favorite.author}</p>
                             <a title="立即下载" class="fav-download"
-                               href="transferServlet?action=downloadBook&id=${favorite.bookId}">立即下载</a>
+                               href="transferServlet?action=downloadBook&bookId=${favorite.bookId}&userId=${sessionScope.user.id}">立即下载</a>
                         </div>
                         <div class="fav-bottom">
                             <span>收藏于：</span>

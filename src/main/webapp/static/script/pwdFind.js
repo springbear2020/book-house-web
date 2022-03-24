@@ -65,10 +65,12 @@ $(function () {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 请输入您注册账号时使用的邮箱地址")
+            return false;
         } else if (!emailExists) {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 邮箱地址未注册账号，请重新输入")
+            return false;
         } else if (emailExists) {
             tipsObj.css("color", "darkolivegreen");
             tipsObj.css("font-weight", "normal");

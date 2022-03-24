@@ -12,19 +12,19 @@ public class Favorite {
     private Integer bookId;
     private String title;
     private String author;
-    private String translator;
+    private String coverPath;
     private Date collectTime;
 
     public Favorite() {
     }
 
-    public Favorite(Integer id, Integer userId, Integer bookId, String title, String author, String translator, Date collectTime) {
+    public Favorite(Integer id, Integer userId, Integer bookId, String title, String author, String coverPath, Date collectTime) {
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;
         this.title = title;
         this.author = author;
-        this.translator = translator;
+        this.coverPath = coverPath;
         this.collectTime = collectTime;
     }
 
@@ -68,12 +68,12 @@ public class Favorite {
         this.author = author;
     }
 
-    public String getTranslator() {
-        return translator;
+    public String getCoverPath() {
+        return coverPath;
     }
 
-    public void setTranslator(String translator) {
-        this.translator = translator;
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
     }
 
     public Date getCollectTime() {
@@ -92,7 +92,7 @@ public class Favorite {
                 ", bookId=" + bookId +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", translator='" + translator + '\'' +
+                ", coverPath='" + coverPath + '\'' +
                 ", collectTime=" + collectTime +
                 '}';
     }

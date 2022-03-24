@@ -38,7 +38,7 @@ public class FavoriteServlet extends BaseServlet {
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         String title = req.getParameter("title");
         String author = req.getParameter("author");
-        String translator = req.getParameter("translator");
+        String coverPath = req.getParameter("coverPath");
         HttpSession session = req.getSession();
 
         // 查询用户图书收藏记录是否已经存在
@@ -48,7 +48,7 @@ public class FavoriteServlet extends BaseServlet {
             return;
         }
         // 保存收藏记录
-        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
+        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date()))) {
             // 图书收藏量增加 1
             if (bookService.addBookFavorites(bookId)) {
                 session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");

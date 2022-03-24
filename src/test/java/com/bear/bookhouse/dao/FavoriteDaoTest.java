@@ -25,7 +25,7 @@ public class FavoriteDaoTest {
 
     @Test
     public void queryFavoritesByUserId() {
-        List<Favorite> favorites = favoriteDao.listFavoritesByUserId(1);
+        List<Favorite> favorites = favoriteDao.listFavoritesByUserId(2);
         for (Favorite favorite : favorites) {
             System.out.println(favorite);
         }

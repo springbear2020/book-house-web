@@ -69,9 +69,10 @@ public class TransferServlet extends BaseServlet {
         resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.fileNameFormat(new Date()) + ".pdf", "UTF-8"));
         // 从磁盘读取想要下载的字节数据到流中
         InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
-        // 图书下载量增加 1，用户积分减少 10，将文件字节流数据赋值给响应输出流
+        // 图书下载量增加 1，用户积分减少 10，添加用户下载记录，将文件字节流数据赋值给响应输出流
         bookService.addBookDownloads(bookId);
         userService.subUserScore(userId);
+        recordService.addRecord(new Record(null, userId, "下载图书", "-10", new Date(), book.getTitle()));
         IOUtils.copy(inputStream, resp.getOutputStream());
     }
 
@@ -117,7 +118,7 @@ public class TransferServlet extends BaseServlet {
                 record.setTime(new Date());
                 record.setOperation("上传图书");
                 record.setScoreChange("+10");
-                // 用户积分增加 10 分
+                // 用户积分增加 10 分 TODO 待管理员审核后下发积分
                 if (recordService.addRecord(record) && userService.addUserScore(record.getUserId())) {
                     session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后下发积分到您的账号，感谢您的共享");
                 } else {

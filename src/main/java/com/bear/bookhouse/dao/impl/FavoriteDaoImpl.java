@@ -13,19 +13,19 @@ import java.util.List;
 public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
     @Override
     public int saveFavorite(Favorite favorite) {
-        String sql = "INSERT INTO `t_favorite`(`user_id`,`book_id`,`title`,`author`,`translator`,`collect_time`) VALUES (?,?,?,?,?,?);";
-        return update(sql, favorite.getUserId(), favorite.getBookId(), favorite.getTitle(), favorite.getAuthor(), favorite.getTranslator(), favorite.getCollectTime());
+        String sql = "INSERT INTO `t_favorite`(`user_id`,`book_id`,`title`,`author`,`cover_path`,`collect_time`) VALUES (?,?,?,?,?,?);";
+        return update(sql, favorite.getUserId(), favorite.getBookId(), favorite.getTitle(), favorite.getAuthor(), favorite.getCoverPath(), favorite.getCollectTime());
     }
 
     @Override
     public Favorite getFavoriteByUserIdAndBookId(int userId, int bookId) {
-        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
+        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`cover_path` coverPath,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
         return getRecord(Favorite.class, sql, userId, bookId);
     }
 
     @Override
     public List<Favorite> listFavoritesByUserId(int userId) {
-        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ?;";
+        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`cover_path` coverPath,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ?;";
         return listRecord(Favorite.class, sql, userId);
     }
 

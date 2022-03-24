@@ -145,7 +145,6 @@ $(function () {
     })
 
     // 获取邮箱验证码按钮单击事件
-    // TODO 阻止获取，找密码处修改
     $("#emailCodeBtn").click(function () {
         // 邮箱地址无效则不允许获取验证码
         let email = $(".register-email").val();
@@ -155,10 +154,12 @@ $(function () {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "bold");
             tipsObj.text("* 请您先填入邮箱后再获取验证码")
+            return false;
         } else if (emailExists) {
             tipsObj.css("color", "red");
             tipsObj.css("font-weight", "normal");
             tipsObj.text("* 邮箱已被占用，请更换邮箱地址")
+            return false;
         } else {
             tipsObj.css("color", "darkolivegreen");
             tipsObj.text("* 邮箱地址可用")
@@ -216,8 +217,8 @@ $(function () {
             usernameExists = true;
             return false;
         }
-            // 验证密码
-            let password = $(".register-password").val();
+        // 验证密码
+        let password = $(".register-password").val();
         let $pwdTips = $(".tips-password");
         let pwdReg = new RegExp("^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,16}$")
         if (!pwdReg.test(password)) {
