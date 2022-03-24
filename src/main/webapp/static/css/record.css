@@ -1,0 +1,69 @@
+/*html {*/
+/*    font-family: sans-serif;*/
+/*    -ms-text-size-adjust: 100%;*/
+/*    -webkit-text-size-adjust: 100%;*/
+/*}*/
+
+/*body {*/
+/*    margin: 10px;*/
+/*}*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,th {
+    padding: 0;
+}
+
+.middle{
+    background-color: #4ea4dc;
+    padding: 0.4rem 0;
+}
+.middle-container{
+    width: 10rem;
+    margin: 0 auto;
+}
+.pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 0.02rem solid #cbcbcb;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td,.pure-table th {
+    border-left: 0.02rem solid #cbcbcb;
+    /*border-width: 0 0 0 1px;*/
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+    width: 3rem;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.pure-table td {
+    background-color: transparent;
+}
+
+.pure-table-odd td {
+    background-color: #f2f2f2;
+}
+
+.tb-title{
+    /*width: 2rem;*/
+    overflow: hidden;
+}

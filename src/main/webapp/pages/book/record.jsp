@@ -9,28 +9,43 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>图书记录</title>
-    <script type="text/javascript" src="static/script/tools.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <%@include file="/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="static/css/record.css">
+    <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/record.js"></script>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp"%>
-    <table>
-        <tr>
-            <th>操作类型</th>
-            <th>积分变化</th>
-            <th>操作时间</th>
-            <th>书名</th>
-        </tr>
-        <c:forEach items="${requestScope.recordList}" var="record">
+<div class="middle">
+    <div class="middle-container">
+        <table class="pure-table">
+            <thead>
             <tr>
-                <td>${record.operation}</td>
-                <td>${record.scoreChange}</td>
-                <td>${record.time}</td>
-                <td>${record.title}</td>
+                <th>操作类型</th>
+                <th>积分变化</th>
+                <th>操作时间</th>
+                <th>书名</th>
             </tr>
-        </c:forEach>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.recordList}" var="record">
+                <tr class="pure-table-odd">
+                    <td>${record.operation}</td>
+                    <td>${record.scoreChange}</td>
+                    <td>${record.time}</td>
+                    <td class="tb-title">${record.title}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 <%@include file="/pages/common/footer.jsp"%>
 </body>
 </html>
