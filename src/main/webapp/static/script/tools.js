@@ -1,4 +1,3 @@
-
 /*
  * 自适应宽度 根据网页调整 rem 的值
  * 这是个立即执行函数
@@ -54,15 +53,15 @@
     }
 })(2160, 4320);
 
-$(function (){
+$(function () {
     // 头像的鼠标覆盖事件
-    $('.head_img').mouseover(function (){
+    $('.head_img').mouseover(function () {
         //显示下拉框
-        $('.self-frame').css('display','block');
+        $('.self-frame').css('display', 'block');
     })
 // 鼠标离开事件
-    $('.top-self').mouseleave(function (){
+    $('.top-self').mouseleave(function () {
         //隐藏下拉框
-        $('.self-frame').css('display','none');
+        $('.self-frame').css('display', 'none');
     })
 });

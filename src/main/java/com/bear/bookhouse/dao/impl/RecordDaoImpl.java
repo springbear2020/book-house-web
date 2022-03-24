@@ -19,7 +19,7 @@ public class RecordDaoImpl extends BaseDao implements RecordDao {
 
     @Override
     public List<Record> listRecordByUserId(int userId) {
-        String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_record` WHERE `user_id` = ?;";
+        String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_record` WHERE `user_id` = ? ORDER BY `time` DESC;";
         return listRecord(Record.class, sql, userId);
     }
 }

@@ -14,4 +14,6 @@ window.onload = function (){
             eyeClosed = true;
         }
     })
+
+    // TODO 给登录按钮绑定单击事件，为空则不允许提交
 }
