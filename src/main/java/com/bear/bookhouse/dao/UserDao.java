@@ -13,7 +13,7 @@ public interface UserDao {
      * @param username 用户名
      * @return user or null
      */
-    User queryUserByUsername(String username);
+    User getUserByUsername(String username);
 
     /**
      * 根据用户名及密码查询用户信息
@@ -22,7 +22,7 @@ public interface UserDao {
      * @param password 密码
      * @return user or null
      */
-    User queryUserByUsernameAndPassword(String username, String password);
+    User getUserByUsernameAndPassword(String username, String password);
 
     /**
      * 保存用户信息
@@ -38,7 +38,7 @@ public interface UserDao {
      * @param email 邮箱地址
      * @return User or null
      */
-    User queryUserByEmail(String email);
+    User getUserByEmail(String email);
 
     /**
      * 通过用户邮箱信息更新用户密码
@@ -56,7 +56,7 @@ public interface UserDao {
      * @param userId   用户 id
      * @return 1 - 增加成功
      */
-    int addUserScoreByUserId(int addScore, int userId);
+    int addUserScoreById(int addScore, int userId);
 
     /**
      * 通过用户 id 减少用户积分
@@ -65,7 +65,7 @@ public interface UserDao {
      * @param userId   用户 id
      * @return 1 - 减少成功
      */
-    int subUserScoreByUserId(int subScore, int userId);
+    int subUserScoreByUser(int subScore, int userId);
 
     /**
      * 通过用户 id 查询用户积分
@@ -73,5 +73,5 @@ public interface UserDao {
      * @param userId 用户 id
      * @return 用户积分
      */
-    int queryUserScoreByUserId(int userId);
+    int getUserScoreById(int userId);
 }

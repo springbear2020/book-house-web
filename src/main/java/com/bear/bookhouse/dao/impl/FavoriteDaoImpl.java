@@ -18,19 +18,19 @@ public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
     }
 
     @Override
-    public Favorite queryFavoriteByUserIdAndBookId(int userId, int bookId) {
+    public Favorite getFavoriteByUserIdAndBookId(int userId, int bookId) {
         String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
         return getRecord(Favorite.class, sql, userId, bookId);
     }
 
     @Override
-    public List<Favorite> queryFavoritesByUserId(int userId) {
+    public List<Favorite> getFavoritesByUserId(int userId) {
         String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ?;";
         return listRecord(Favorite.class, sql, userId);
     }
 
     @Override
-    public int deleteUserFavoriteByUserIdAndBookId(int userId, int bookId) {
+    public int deleteFavoriteByUserIdAndBookId(int userId, int bookId) {
         String sql = "DELETE FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
         return update(sql, userId, bookId);
     }

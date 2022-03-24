@@ -10,18 +10,18 @@ import java.util.List;
  */
 public interface RecordDao {
     /**
-     * 保存操作记录
+     * 保存记录：上传或下载记录
      *
      * @param record 记录
      * @return 1 - 保存成功
      */
-    int saveOperationRecord(Record record);
+    int saveRecord(Record record);
 
     /**
-     * 通过用户 id 查询用户操作记录
+     * 通过用户 id 查询用户记录
      *
      * @param userId 用户 id
      * @return Record or null
      */
-    List<Record> queryRecordByUserId(int userId);
+    List<Record> getRecordByUserId(int userId);
 }

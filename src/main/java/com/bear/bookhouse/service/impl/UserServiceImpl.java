@@ -22,17 +22,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUsernameExists(String username) {
-        return userDao.queryUserByUsername(username) != null;
+        return userDao.getUserByUsername(username) != null;
     }
 
     @Override
     public boolean isUsernameAndPasswordCorrect(String username, String password) {
-        return userDao.queryUserByUsernameAndPassword(username, password) != null;
+        return userDao.getUserByUsernameAndPassword(username, password) != null;
     }
 
     @Override
     public boolean isEmailExists(String email) {
-        return userDao.queryUserByEmail(email) != null;
+        return userDao.getUserByEmail(email) != null;
     }
 
     @Override
@@ -42,21 +42,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryUserByUsername(String username) {
-        return userDao.queryUserByUsername(username);
+        return userDao.getUserByUsername(username);
     }
 
     @Override
     public boolean addUserScore(int userId) {
-        return userDao.addUserScoreByUserId(10, userId) == 1;
+        return userDao.addUserScoreById(10, userId) == 1;
     }
 
     @Override
     public boolean subUserScore(int userId) {
-        return userDao.subUserScoreByUserId(10, userId) == 1;
+        return userDao.subUserScoreByUser(10, userId) == 1;
     }
 
     @Override
     public int getUserScore(int userId) {
-        return userDao.queryUserScoreByUserId(userId);
+        return userDao.getUserScoreById(userId);
     }
 }

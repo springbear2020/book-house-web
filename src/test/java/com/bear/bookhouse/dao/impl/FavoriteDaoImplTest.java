@@ -18,13 +18,13 @@ public class FavoriteDaoImplTest {
 
     @Test
     public void queryFavoriteByBookId() {
-        Favorite favorite = favoriteDao.queryFavoriteByUserIdAndBookId(1, 5);
+        Favorite favorite = favoriteDao.getFavoriteByUserIdAndBookId(1, 5);
         System.out.println(favorite);
     }
 
     @Test
     public void queryFavoritesByUserId() {
-        List<Favorite> favorites = favoriteDao.queryFavoritesByUserId(1);
+        List<Favorite> favorites = favoriteDao.getFavoritesByUserId(1);
         for (Favorite favorite : favorites) {
             System.out.println(favorite);
         }
@@ -32,7 +32,7 @@ public class FavoriteDaoImplTest {
 
     @Test
     public void deleteUserFavoriteByUserIdAndBookId() {
-        int i = favoriteDao.deleteUserFavoriteByUserIdAndBookId(1, 2);
+        int i = favoriteDao.deleteFavoriteByUserIdAndBookId(1, 2);
         System.out.println(i);
     }
 }

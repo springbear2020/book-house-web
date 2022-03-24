@@ -15,8 +15,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     @Override
     public int saveBook(Book book) {
         String sql = "INSERT INTO `t_book`(`title`,`author`,`translator`,`keywords`,`downloads`,`collections`,`comment`,`book_path`,`cover_path`,`upload_username`,`upload_time`) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
-        Object[] params = new Object[]{book.getTitle(), book.getAuthor(), book.getTranslator(), book.getKeywords(), book.getDownloads(), book.getCollections(), book.getComment(), book.getBookPath(), book.getCoverPath(), book.getUploadUsername(), book.getUploadTime()};
-        return update(sql, params);
+        return update(sql, book.getTitle(), book.getAuthor(), book.getTranslator(), book.getKeywords(), book.getDownloads(), book.getCollections(), book.getComment(), book.getBookPath(), book.getCoverPath(), book.getUploadUsername(), book.getUploadTime());
     }
 
     @Override
@@ -26,9 +25,9 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     @Override
-    public int getBooksRecordTotalCount() {
+    public int getBooksTotalCount() {
         String sql = "SELECT COUNT(`id`) FROM `t_book`;";
-        return NumberUtil.objectToInteger(getSingleValue(sql), 0);
+        return NumberUtil.objectToInteger(getSingleValue(sql), -1);
     }
 
     @Override
@@ -38,33 +37,27 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     @Override
-    public int updateBookDownloadsById(int downloads, int id) {
-        String sql = "UPDATE `t_book` SET `downloads` = ? WHERE `id` = ?";
-        return update(sql, downloads, id);
-    }
-
-    @Override
-    public List<Book> getBooksByTitleAndOffset(int begin, int offset, String title) {
+    public List<Book> listBooksThoughTitleByBeginAndOffset(int begin, int offset, String title) {
         String sql = "SELECT `id`,`title`,`author`,`translator`,`keywords`,`downloads`,`collections`,`comment`,`book_path` bookPath,`cover_path` coverPath,`upload_username` uploadUsername,`upload_time` uploadTime FROM `t_book` WHERE `title` LIKE ? LIMIT ?,?;";
         Object[] params = new Object[]{"%" + title + "%", begin, offset};
         return listRecord(Book.class, sql, params);
     }
 
     @Override
-    public int getCountsByTitle(String title) {
+    public int getBooksTotalCountThoughTitle(String title) {
         String sql = "SELECT COUNT(`id`) FROM `t_book` WHERE `title` LIKE ?;";
         Object[] params = new Object[]{"%" + title + "%"};
-        return NumberUtil.objectToInteger(getSingleValue(sql, params), 0);
+        return NumberUtil.objectToInteger(getSingleValue(sql, params), -1);
     }
 
     @Override
-    public int bookDownloadsIncrease(int addDownload, int bookId) {
+    public int updateBookDownloads(int addDownload, int bookId) {
         String sql = "UPDATE `t_book` SET `downloads` = `downloads` + ? WHERE `id` = ?;";
         return update(sql, addDownload, bookId);
     }
 
     @Override
-    public int bookFavoritesIncrease(int addCollection, int bookId) {
+    public int updateBookFavorites(int addCollection, int bookId) {
         String sql = "UPDATE `t_book` SET `collections` = `collections` + ? WHERE `id` = ?;";
         return update(sql, addCollection, bookId);
     }

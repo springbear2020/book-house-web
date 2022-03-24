@@ -35,7 +35,7 @@ public class BookDaoTest {
 
     @Test
     public void getBooksRecordTotalCount() {
-        int booksRecordTotalCount = bookDao.getBooksRecordTotalCount();
+        int booksRecordTotalCount = bookDao.getBooksTotalCount();
         System.out.println(booksRecordTotalCount);
     }
 
@@ -46,14 +46,8 @@ public class BookDaoTest {
     }
 
     @Test
-    public void updateBookDownloadsById() {
-        int i = bookDao.updateBookDownloadsById(99, 1);
-        System.out.println(i);
-    }
-
-    @Test
     public void getBooksByTitle() {
-        List<Book> books = bookDao.getBooksByTitleAndOffset(1, 5, "Java");
+        List<Book> books = bookDao.listBooksThoughTitleByBeginAndOffset(1, 5, "Java");
         for (Book book : books) {
             System.out.println(book);
         }
@@ -61,18 +55,18 @@ public class BookDaoTest {
 
     @Test
     public void getCountsByTitle() {
-        int java = bookDao.getCountsByTitle("Java");
+        int java = bookDao.getBooksTotalCountThoughTitle("Java");
         System.out.println(java);
     }
 
     @Test
     public void bookDownloadsIncrease() {
-        System.out.println(bookDao.bookDownloadsIncrease(10000, 2));
+        System.out.println(bookDao.updateBookDownloads(10000, 2));
     }
 
     @Test
     public void bookFavoritesIncrease() {
-        System.out.println(bookDao.bookFavoritesIncrease(10000, 2));
+        System.out.println(bookDao.updateBookFavorites(10000, 2));
 
     }
 }

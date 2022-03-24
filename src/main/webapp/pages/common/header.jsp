@@ -25,8 +25,8 @@
             <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notification"></a>
             </li>
             <script type="text/javascript">${requestScope.user.portraitPath}</script>
-            <li><a href="pages/user/update.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
-                                                                      alt="Personal"></a></li>
+            <li><a href="pages/user/person.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
+                                                                   alt="Personal"></a></li>
             <ul class="self-frame">
                 <li>积分:${sessionScope.user.score}</li>
                 <a href="bookServlet?action=showBookRecord&userId=${sessionScope.user.id}">

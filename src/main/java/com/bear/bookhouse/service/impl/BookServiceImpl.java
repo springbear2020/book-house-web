@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
         // 设置每页显示的数量
         page.setPageSize(pageSize);
         // 获取图书总记录数
-        int booksRecordTotalCount = bookDao.getBooksRecordTotalCount();
+        int booksRecordTotalCount = bookDao.getBooksTotalCount();
         // 根据总记录数和每页显示的数量求解总页数
         int pageTotal = booksRecordTotalCount / pageSize;
         if (booksRecordTotalCount % pageSize != 0) {
@@ -58,7 +58,7 @@ public class BookServiceImpl implements BookService {
 
         bookPage.setPageSize(pageSize);
         // 获取符合书名的图书总记录数
-        int countsByTitle = bookDao.getCountsByTitle(title);
+        int countsByTitle = bookDao.getBooksTotalCountThoughTitle(title);
         // 根据每页显示的数量和总记录数计算总页数
         int pageTotal = countsByTitle / pageSize;
         if (countsByTitle % pageSize != 0) {
@@ -75,13 +75,13 @@ public class BookServiceImpl implements BookService {
         }
         bookPage.setPageNum(pageNum);
 
-        bookPage.setPageData(bookDao.getBooksByTitleAndOffset((pageNum - 1) * pageSize, pageSize, title));
+        bookPage.setPageData(bookDao.listBooksThoughTitleByBeginAndOffset((pageNum - 1) * pageSize, pageSize, title));
         return bookPage;
     }
 
     @Override
     public int getBooksRecordTotalCount() {
-        return bookDao.getBooksRecordTotalCount();
+        return bookDao.getBooksTotalCount();
     }
 
     @Override
@@ -91,11 +91,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean increaseBookDownloads(int bookId) {
-        return bookDao.bookDownloadsIncrease(1, bookId) == 1;
+        return bookDao.updateBookDownloads(1, bookId) == 1;
     }
 
     @Override
     public boolean increaseBookCollections(int bookId) {
-        return bookDao.bookFavoritesIncrease(1, bookId) == 1;
+        return bookDao.updateBookFavorites(1, bookId) == 1;
     }
 }

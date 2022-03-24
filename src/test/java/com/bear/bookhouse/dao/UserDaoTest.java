@@ -17,7 +17,7 @@ class UserDaoTest {
     @Test
     void queryUserByUsername() {
         String username = "admin";
-        User user = userDao.queryUserByUsername(username);
+        User user = userDao.getUserByUsername(username);
         System.out.println(user);
     }
 
@@ -25,7 +25,7 @@ class UserDaoTest {
     void queryUserByUsernameAndPassword() {
         String username = "admin";
         String password = "admin";
-        User user = userDao.queryUserByUsernameAndPassword(username, password);
+        User user = userDao.getUserByUsernameAndPassword(username, password);
         System.out.println(user);
     }
 
@@ -38,7 +38,7 @@ class UserDaoTest {
 
     @Test
     public void queryUserByEmail() {
-        User user = userDao.queryUserByEmail("admin@admin.com");
+        User user = userDao.getUserByEmail("admin@admin.com");
         System.out.println(user);
     }
 
@@ -50,16 +50,16 @@ class UserDaoTest {
 
     @Test
     public void subUserScoreByUserId() {
-        System.out.println(userDao.subUserScoreByUserId(100, 2));
+        System.out.println(userDao.subUserScoreByUser(100, 2));
     }
 
     @Test
     public void addUserScoreByUserId() {
-        System.out.println(userDao.addUserScoreByUserId(1000, 3));
+        System.out.println(userDao.addUserScoreById(1000, 3));
     }
 
     @Test
     public void queryUserScoreByUserId() {
-        System.out.println(userDao.queryUserScoreByUserId(2));
+        System.out.println(userDao.getUserScoreById(2));
     }
 }

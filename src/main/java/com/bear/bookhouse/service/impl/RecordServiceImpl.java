@@ -16,11 +16,11 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public boolean addOperationRecord(Record record) {
-        return recordDao.saveOperationRecord(record) == 1;
+        return recordDao.saveRecord(record) == 1;
     }
 
     @Override
     public List<Record> getRecordByUserId(int userId) {
-        return recordDao.queryRecordByUserId(userId);
+        return recordDao.getRecordByUserId(userId);
     }
 }

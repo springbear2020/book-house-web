@@ -18,12 +18,12 @@ public class RecordDaoImplTest {
 
     @Test
     public void saveOperationRecord() {
-        System.out.println(recordDao.saveOperationRecord(new Record(null, 2, "上传图书", "+10", new Date(), "浪潮之巅")));
+        System.out.println(recordDao.saveRecord(new Record(null, 2, "上传图书", "+10", new Date(), "浪潮之巅")));
     }
 
     @Test
     public void queryRecordByUserId() {
-        List<Record> records = recordDao.queryRecordByUserId(2);
+        List<Record> records = recordDao.getRecordByUserId(2);
         for (Record record : records) {
             System.out.println(record);
         }

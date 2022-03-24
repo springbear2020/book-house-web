@@ -18,6 +18,14 @@ public interface BookDao {
     int saveBook(Book book);
 
     /**
+     * 通过 id 查询图书信息
+     *
+     * @param id 图书 id
+     * @return Book or null
+     */
+    Book getBookById(int id);
+
+    /**
      * 通过指定 begin 和 offset 获取指定页的图书数据
      *
      * @param begin  起始位置
@@ -31,43 +39,25 @@ public interface BookDao {
      *
      * @return 图书总记录数
      */
-    int getBooksRecordTotalCount();
+    int getBooksTotalCount();
 
     /**
-     * 通过 id 查询图书信息
-     *
-     * @param id 图书 id
-     * @return Book or null
-     */
-    Book getBookById(int id);
-
-    /**
-     * 通过图书 id 更新图书下载量
-     *
-     * @param downloads 下载量
-     * @param id        图书 id
-     * @return 1 - 更新成功
-     */
-    int updateBookDownloadsById(int downloads, int id);
-
-    /**
-     * 通过书名获取图书信息
+     * 在指定书名作为过滤条件的基础上指定起始位置和偏移量查询图书数据
      *
      * @param begin  开始位置
      * @param offset 偏移量
      * @param title  书名
      * @return Books or null
      */
-    List<Book> getBooksByTitleAndOffset(int begin, int offset, String title);
-
+    List<Book> listBooksThoughTitleByBeginAndOffset(int begin, int offset, String title);
 
     /**
-     * 获取符合书名条件的图书总记录数
+     * 获取符合书名条件的图书记录数
      *
      * @param title 书名
-     * @return 总记录数
+     * @return 记录数
      */
-    int getCountsByTitle(String title);
+    int getBooksTotalCountThoughTitle(String title);
 
     /**
      * 通过图书 id 增加图书下载量
@@ -76,14 +66,14 @@ public interface BookDao {
      * @param bookId      图书 id
      * @return 1 - 增加成功
      */
-    int bookDownloadsIncrease(int addDownload, int bookId);
+    int updateBookDownloads(int addDownload, int bookId);
 
     /**
      * 通过图书 id 增加图书收藏量
      *
      * @param addCollection 需要增加的收藏量
-     * @param bookId      图书 id
+     * @param bookId        图书 id
      * @return 1 - 增加成功
      */
-    int bookFavoritesIncrease(int addCollection, int bookId);
+    int updateBookFavorites(int addCollection, int bookId);
 }
