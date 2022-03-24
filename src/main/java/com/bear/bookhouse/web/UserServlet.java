@@ -78,17 +78,22 @@ public class UserServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String usernameOrEmail = req.getParameter("usernameOrEmail");
         String password = req.getParameter("password");
-
-        if (userService.isUsernameAndPasswordCorrect(username, password)) {
+        HttpSession session = req.getSession();
+        User user;
+        if (userService.isUsernameAndPasswordCorrect(usernameOrEmail, password) || userService.isEmailAndPasswordCorrect(usernameOrEmail, password)) {
+            // 通过用户名或邮箱查询用户信息
+            if ((user = userService.getUserByEmail(usernameOrEmail)) == null) {
+                user = userService.getUserByUsername(usernameOrEmail);
+            }
             // 用户名密码正确，跳转到主页
-            req.getSession().setAttribute("user", userService.getUserByUsername(username));
+            session.setAttribute("user", user);
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
-            req.setAttribute("loginMsg", "用户名不存在或密码错误");
-            req.getRequestDispatcher("/pages/user/login.jsp").forward(req, resp);
+            session.setAttribute("loginMsg", "用户名不存在或密码错误");
+            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
         }
     }
 

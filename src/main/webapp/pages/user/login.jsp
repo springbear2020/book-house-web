@@ -13,13 +13,13 @@
     <script type="text/javascript" src="static/script/login.js"></script>
 
     <%-- 用户登录提示信息 --%>
-    <c:if test="${ not empty requestScope.loginMsg}">
-        <div class="alert">${requestScope.loginMsg}</div>
-        <% request.removeAttribute("loginMsg");%>
+    <c:if test="${ not empty sessionScope.loginMsg}">
+        <div class="alert">${sessionScope.loginMsg}</div>
+        <% session.removeAttribute("loginMsg");%>
     </c:if>
 </head>
 <body>
-<%@include file="/pages/common/title.jsp" %>
+<%@include file="/pages/common/header.jsp" %>
 <div class="middle">
     <div class="frame-login">
         <div class="login-title">欢&nbsp;迎&nbsp;登&nbsp;录</div>
@@ -29,7 +29,7 @@
             <input type="hidden" name="action" value="login">
             <div class="login-input">
                 <label>
-                  <input type="text" name="username" placeholder="请输入用户名" class="login-username login-text">
+                    <input type="text" name="usernameOrEmail" placeholder="请输入用户名或邮箱" class="login-username login-text">
                 </label>
             </div>
             <div class="login-input">
@@ -39,7 +39,7 @@
                 </label>
             </div>
             <div class="login-button">
-                <button type="submit" class="login-btn">登&nbsp;录</button>
+                <button type="submit" class="login-btn" id="loginBtn">登&nbsp;录</button>
             </div>
             <div class="login-littleText">
                 <div>

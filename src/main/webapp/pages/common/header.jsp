@@ -31,7 +31,7 @@
             <ul class="self-frame">
                 <li>积分:${sessionScope.user.score}</li>
                 <a href="userServlet?action=logout">
-                    <li>注销登录</li>
+                    <li>退出</li>
                 </a>
             </ul>
         </ul>

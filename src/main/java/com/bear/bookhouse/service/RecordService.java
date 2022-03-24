@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface RecordService {
     /**
-     * 保存用户操作记录
+     * 保存用户记录
      *
      * @param record 记录
      * @return true - 保存成功
@@ -18,7 +18,7 @@ public interface RecordService {
     boolean addRecord(Record record);
 
     /**
-     * 通过用户 id 查询用户操作记录
+     * 通过用户 id 查询用户记录
      *
      * @param userId 用户 id
      * @return 操作记录

@@ -64,4 +64,14 @@ public class UserServiceImpl implements UserService {
     public boolean isUserIdExists(int userId) {
         return userDao.getUserById(userId) == null;
     }
+
+    @Override
+    public boolean isEmailAndPasswordCorrect(String email, String password) {
+        return userDao.getUserByEmailAndPassword(email, password) != null;
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
+    }
 }

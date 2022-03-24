@@ -17,6 +17,11 @@ public class BookServiceTest {
     private final BookService bookService = new BookServiceImpl();
 
     @Test
+    public void saveBook() {
+        System.out.println(bookService.saveBook(new Book()));
+    }
+
+    @Test
     public void getBookPageData() {
         Page<Book> bookPageData = bookService.getBookPageData(1, 5);
         int booksRecordTotalCount = bookService.getBooksTotalCount();
@@ -32,5 +37,11 @@ public class BookServiceTest {
             System.out.println(book);
         }
         System.out.println(pages);
+    }
+
+    @Test
+    public void addBookDownloads() {
+        boolean b = bookService.addBookDownloads(2);
+        System.out.println(b);
     }
 }

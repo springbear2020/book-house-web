@@ -16,21 +16,30 @@ public interface UserService {
     boolean saveUser(User user);
 
     /**
-     * 根据用户名查询用户信息
+     * 验证用户名是否已存在
      *
      * @param username 用户名
-     * @return true - exists
+     * @return true - 已存在
      */
     boolean isUsernameExists(String username);
 
     /**
-     * 根据用户名和密码查询用户信息
+     * 验证用户名及密码是否正确
      *
      * @param username 用户名
      * @param password 密码
-     * @return true - exists
+     * @return true - 正确
      */
     boolean isUsernameAndPasswordCorrect(String username, String password);
+
+    /**
+     * 验证邮箱及密码是否正确
+     *
+     * @param email    邮箱
+     * @param password 密码
+     * @return true - 正确
+     */
+    boolean isEmailAndPasswordCorrect(String email, String password);
 
     /**
      * 验证邮箱地址是否已存在
@@ -56,6 +65,13 @@ public interface UserService {
      * @return User or null
      */
     User getUserByUsername(String username);
+
+    /**
+     * 通过邮箱查询用户信息
+     * @param email 邮箱
+     * @return User or null
+     */
+    User getUserByEmail(String email);
 
     /**
      * 增加用户积分，默认增加 10 分

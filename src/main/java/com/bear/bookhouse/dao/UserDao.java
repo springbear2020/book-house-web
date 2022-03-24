@@ -25,6 +25,15 @@ public interface UserDao {
     User getUserByUsernameAndPassword(String username, String password);
 
     /**
+     * 根据邮箱及密码查询用户信息
+     *
+     * @param email    邮箱
+     * @param password 密码
+     * @return User or null
+     */
+    User getUserByEmailAndPassword(String email, String password);
+
+    /**
      * 保存用户信息
      *
      * @param user User
