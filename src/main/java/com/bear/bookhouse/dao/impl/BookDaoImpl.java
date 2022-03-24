@@ -42,4 +42,18 @@ public class BookDaoImpl extends BaseDao implements BookDao {
         String sql = "UPDATE `t_book` SET `downloads` = ? WHERE `id` = ?";
         return update(sql, downloads, id);
     }
+
+    @Override
+    public List<Book> getBooksByTitleAndOffset(int begin, int offset, String title) {
+        String sql = "SELECT `id`,`title`,`author`,`translator`,`keywords`,`downloads`,`collections`,`comment`,`book_path` bookPath,`cover_path` coverPath,`upload_username` uploadUsername,`upload_time` uploadTime FROM `t_book` WHERE `title` LIKE ? LIMIT ?,?;";
+        Object[] params = new Object[]{"%" + title + "%", begin, offset};
+        return listRecord(Book.class, sql, params);
+    }
+
+    @Override
+    public int getCountsByTitle(String title) {
+        String sql = "SELECT COUNT(`id`) FROM `t_book` WHERE `title` LIKE ?;";
+        Object[] params = new Object[]{"%" + title + "%"};
+        return NumberUtil.objectToInteger(getSingleValue(sql, params), 0);
+    }
 }

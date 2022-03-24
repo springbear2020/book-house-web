@@ -3,6 +3,8 @@ package com.bear.bookhouse.service;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 
+import java.util.List;
+
 
 /**
  * @author Spring-_-Bear
@@ -43,9 +45,19 @@ public interface BookService {
 
     /**
      * 通过图书 id 将图书下载下载量自增 1
+     *
      * @param downloads 原始下载量
-     * @param id 图书 id
-     * @return true - 自增成功
+     * @param id        图书 id
      */
-    boolean bookDownloadsIncreaseOne(int downloads, int id);
+    void bookDownloadsIncreaseOne(int downloads, int id);
+
+    /**
+     * 根据书名查询图书分页数据
+     *
+     * @param pageNum  页码
+     * @param pageSize 每页显示的数量
+     * @param title    书名
+     * @return 图书分页对象
+     */
+    Page<Book> getBooksByTitlePageData(int pageNum, int pageSize, String title);
 }

@@ -30,6 +30,10 @@
         <script type="text/javascript"> alert("${sessionScope.queryRecordMsg}")</script>
         <% session.removeAttribute("queryRecordMsg"); %>
     </c:if>
+    <c:if test="${not empty sessionScope.getBooksByTitleMsg}">
+        <script type="text/javascript"> alert("${sessionScope.getBooksByTitleMsg}")</script>
+        <% session.removeAttribute("getBooksByTitleMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
@@ -37,19 +41,10 @@
     <div class="search">
         <div class="search-container">
             <%-- 搜索框表单 --%>
-            <form class="search-form" method="post" action="#">
-                <label><input class="search-text" placeholder="请输入检索内容"></label>
+            <form class="search-form" method="post" action="bookServlet">
+                <input type="hidden" name="action" value="listBooksByPageNum">
+                <label><input class="search-text" name="title" placeholder="请输入您要查找的书名" value="${sessionScope.title}"></label>
                 <button type="submit" class="search-btn">搜索</button>
-                <ul class="search-list">
-                    <div class="search-choose">
-                        <li class="search-word">书名</li>
-                        <li class="search-word">作者</li>
-                        <li class="search-word">关键词</li>
-                    </div>
-                    <%--                    <li class="search-li">搜出来的东西</li>--%>
-                    <%--                    <li class="search-li">就像搜索引擎那样</li>--%>
-                    <%--                    <li class="search-li">相信你可以的√</li>--%>
-                </ul>
             </form>
         </div>
     </div>
@@ -93,8 +88,8 @@
         <ul class="pagination">
             <%-- 总页数大于 1 才显示首页和上一页 --%>
             <c:if test="${requestScope.bookPageData.pageTotal > 1 && requestScope.bookPageData.pageNum != 1}">
-                <li><a href="bookServlet?action=listBooksByPageNum" class="pag-num pag-fl">首页</a></li>
-                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum - 1}"
+                <li><a href="bookServlet?action=listBooksByPageNum&title=${sessionScope.title}" class="pag-num pag-fl">首页</a></li>
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum - 1}&title=${sessionScope.title}"
                        aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
             </c:if>
             <%-- 设置页码显示范围 --%>
@@ -133,15 +128,15 @@
                     <li><a class="pag-num" style="color: red">${i}</a></li>
                 </c:if>
                 <c:if test="${i != requestScope.bookPageData.pageNum}">
-                    <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${i}" class="pag-num">${i}</a></li>
+                    <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${i}&title=${sessionScope.title}" class="pag-num">${i}</a></li>
                 </c:if>
             </c:forEach>
 
             <%-- 显示下一页和尾页 --%>
             <c:if test="${requestScope.bookPageData.pageNum < requestScope.bookPageData.pageTotal}">
-                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum + 1}"
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum + 1}&title=${sessionScope.title}"
                        aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
-                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}"
+                <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}&title=${sessionScope.title}"
                        class="pag-num pag-fl">尾页</a></li>
             </c:if>
             <div style="clear:both"></div>

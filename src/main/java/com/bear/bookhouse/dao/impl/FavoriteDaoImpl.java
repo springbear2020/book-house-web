@@ -19,7 +19,7 @@ public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
 
     @Override
     public Favorite queryFavoriteByUserIdAndBookId(int userId, int bookId) {
-        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ? && `book_id` = ?;";
+        String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
         return getRecord(Favorite.class, sql, userId, bookId);
     }
 
@@ -31,7 +31,7 @@ public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
 
     @Override
     public int deleteUserFavoriteByUserIdAndBookId(int userId, int bookId) {
-        String sql = "DELETE FROM `t_favorite` WHERE `user_id` = ? && `book_id` = ?;";
+        String sql = "DELETE FROM `t_favorite` WHERE `user_id` = ? AND `book_id` = ?;";
         return update(sql, userId, bookId);
     }
 }

@@ -5,6 +5,8 @@ import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -20,5 +22,15 @@ public class BookServiceTest {
         int booksRecordTotalCount = bookService.getBooksRecordTotalCount();
         System.out.println(booksRecordTotalCount);
         System.out.println(bookPageData);
+    }
+
+    @Test
+    public void getBooksByTitlePageData() {
+        Page<Book> pages = bookService.getBooksByTitlePageData(0, 5, "Java");
+        List<Book> pageData = pages.getPageData();
+        for (Book book : pageData) {
+            System.out.println(book);
+        }
+        System.out.println(pages);
     }
 }

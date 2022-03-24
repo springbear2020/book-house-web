@@ -101,16 +101,27 @@ public class BookServlet extends BaseServlet {
      * @throws IOException exception
      */
     protected void listBooksByPageNum(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String pageNumStr = req.getParameter("pageNum");
         // 页码错误则默认加载第 1 页
-        int pageNum = NumberUtil.objectToInteger(pageNumStr, 1);
-        // 获取图书分页数据
-        Page<Book> bookPageData = bookService.getBookPageData(pageNum, 5);
-        if (bookPageData != null) {
-            req.setAttribute("bookPageData", bookPageData);
-            req.getRequestDispatcher("/pages/index.jsp").forward(req, resp);
+        int pageNum = NumberUtil.objectToInteger(req.getParameter("pageNum"), 1);
+        String title = req.getParameter("title");
+        HttpSession session = req.getSession();
+        Page<Book> bookPageData;
+        if (title != null) {
+            // 根据书名查询图书数据
+            bookPageData = bookService.getBooksByTitlePageData(pageNum, 5, title);
+            session.setAttribute("title", title);
         } else {
-            resp.sendRedirect("/pages/error/500.jsp");
+            // 查询所有图书数据
+            session.removeAttribute("title");
+            bookPageData = bookService.getBookPageData(pageNum, 5);
         }
+        if (bookPageData == null || bookPageData.getPageData() == null || bookPageData.getPageData().size() == 0) {
+            session.setAttribute("getBooksByTitleMsg", "您查询的图书暂无数据");
+            resp.sendRedirect(req.getHeader("Referer"));
+            return;
+        }
+
+        req.setAttribute("bookPageData", bookPageData);
+        req.getRequestDispatcher("/pages/index.jsp").forward(req, resp);
     }
 }

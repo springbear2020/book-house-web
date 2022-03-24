@@ -9,11 +9,13 @@
 <html>
 <head>
     <title>用户信息</title>
-    <%@include file="/pages/common/base.jsp"%>
+    <%@include file="/pages/common/base.jsp" %>
+    <script type="text/javascript" src="static/script/tools.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/common.css">
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
-<h1>用户信息修改</h1>
+
 <%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>

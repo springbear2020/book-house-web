@@ -49,4 +49,23 @@ public interface BookDao {
      * @return 1 - 更新成功
      */
     int updateBookDownloadsById(int downloads, int id);
+
+    /**
+     * 通过书名获取图书信息
+     *
+     * @param begin  开始位置
+     * @param offset 偏移量
+     * @param title  书名
+     * @return Books or null
+     */
+    List<Book> getBooksByTitleAndOffset(int begin, int offset, String title);
+
+
+    /**
+     * 获取符合书名条件的图书总记录数
+     *
+     * @param title 书名
+     * @return 总记录数
+     */
+    int getCountsByTitle(String title);
 }

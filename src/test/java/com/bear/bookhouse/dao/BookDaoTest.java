@@ -50,4 +50,19 @@ public class BookDaoTest {
         int i = bookDao.updateBookDownloadsById(99, 1);
         System.out.println(i);
     }
+
+    @Test
+    public void getBooksByTitle() {
+        List<Book> books = bookDao.getBooksByTitleAndOffset(1, 5, "Java");
+        for (Book book : books) {
+            System.out.println(book);
+        }
+    }
+
+    @Test
+    public void getCountsByTitle() {
+        int java = bookDao.getCountsByTitle("Java");
+        System.out.println(java);
+    }
+
 }

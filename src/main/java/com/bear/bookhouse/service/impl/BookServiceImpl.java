@@ -1,10 +1,13 @@
 package com.bear.bookhouse.service.impl;
 
 import com.bear.bookhouse.dao.BookDao;
+import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.dao.impl.BookDaoImpl;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
+
+import java.util.List;
 
 
 /**
@@ -50,6 +53,33 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Page<Book> getBooksByTitlePageData(int pageNum, int pageSize, String title) {
+        Page<Book> bookPage = new Page<>();
+
+        bookPage.setPageSize(pageSize);
+        // 获取符合书名的图书总记录数
+        int countsByTitle = bookDao.getCountsByTitle(title);
+        // 根据每页显示的数量和总记录数计算总页数
+        int pageTotal = countsByTitle / pageSize;
+        if (countsByTitle % pageSize != 0) {
+            pageTotal++;
+        }
+        // 设置当前页总记录数和总页数
+        bookPage.setRecordTotal(countsByTitle);
+        bookPage.setPageTotal(pageTotal);
+        // 当前页码数据边界性检查
+        if (pageNum <= 0) {
+            pageNum = 1;
+        } else if (pageNum > pageTotal && pageTotal != 0) {
+            pageNum = pageTotal;
+        }
+        bookPage.setPageNum(pageNum);
+
+        bookPage.setPageData(bookDao.getBooksByTitleAndOffset((pageNum - 1) * pageSize, pageSize, title));
+        return bookPage;
+    }
+
+    @Override
     public int getBooksRecordTotalCount() {
         return bookDao.getBooksRecordTotalCount();
     }
@@ -60,7 +90,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean bookDownloadsIncreaseOne(int oldDownloads, int id) {
-        return bookDao.updateBookDownloadsById(oldDownloads, id) == 1;
+    public void bookDownloadsIncreaseOne(int oldDownloads, int id) {
+        bookDao.updateBookDownloadsById(oldDownloads, id);
     }
 }

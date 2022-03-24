@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>${requestScope.title}</title>
+    <script type="text/javascript" src="static/script/tools.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/common.css">
 </head>
 <body>
 <%-- // TODO 前端，样式又不行了啦 --%>
