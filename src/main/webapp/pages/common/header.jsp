@@ -29,11 +29,8 @@
                                                                       alt="Personal"></a></li>
             <ul class="self-frame">
                 <li>积分:${sessionScope.user.score}</li>
-                <a href="bookServlet?action=showBookRecord&type=upload&userId=${sessionScope.user.id}">
-                    <li>上传记录</li>
-                </a>
-                <a href="bookServlet?action=showBookRecord&type=download&userId=${sessionScope.user.id}">
-                    <li>下载记录</li>
+                <a href="bookServlet?action=showBookRecord&userId=${sessionScope.user.id}">
+                    <li>历史记录</li>
                 </a>
                 <a href="userServlet?action=logout">
                     <li>注销登录</li>

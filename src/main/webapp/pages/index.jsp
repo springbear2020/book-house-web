@@ -41,7 +41,7 @@
     <div class="search">
         <div class="search-container">
             <%-- 搜索框表单 --%>
-            <form class="search-form" method="post" action="bookServlet">
+            <form class="search-form" method="post" action="bookServlet" id="searchBookByTitle">
                 <input type="hidden" name="action" value="listBooksByPageNum">
                 <label><input class="search-text" name="title" placeholder="请输入您要查找的书名" value="${sessionScope.title}"></label>
                 <button type="submit" class="search-btn">搜索</button>
