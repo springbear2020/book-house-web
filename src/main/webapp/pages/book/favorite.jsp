@@ -25,47 +25,31 @@
         <div class="fav-frame">
             <div class="fav-title">收藏夹</div>
             <div class="fav-box">
-                <div class="fav-book">
-                    <div class="fav-data">
-                        <img class="fav-img">
-                        <p>恋恋世界第一！</p>
-                        <p>刘阿伟</p>
+                <c:forEach items="${requestScope.userFavoritesList}" var="favorite">
+                    <div class="fav-book">
+                        <a title="取消收藏" href="favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}" class="fav-close">
+                            <img class="fav-close-img" src="static/img/icon_close_d.png" alt="取消收藏">
+                        </a>
+                        <div class="fav-data">
+                            <a title="查看详情" href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">
+<%--                                // TODO 后端快来帮忙导入封面图片--%>
+                                <img class="fav-img" src="static/img/Cirno.jpg" alt="封面加载失败">
+                            </a>
+                            <p class="fav-bk-t">${favorite.title}</p>
+                            <p class="fav-author">${favorite.author}</p>
+                            <a title="立即下载" class="fav-download" href="transferServlet?action=downloadBook&id=${favorite.bookId}">立即下载</a>
+                        </div>
+                        <div class="fav-bottom">
+                            <span>收藏于：</span>
+                            <p>${favorite.collectTime}</p>
+                        </div>
                     </div>
-                    <div class="fav-bottom">
-                        <span>收藏于：</span>
-                        <p>2022-05-14</p>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
 </div>
 <%@include file="/pages/common/footer.jsp" %>
-<%--<table style="collapse: 0">--%>
-<%--    <tr>--%>
-<%--        <th>图书编号</th>--%>
-<%--        <th>书名</th>--%>
-<%--        <th>作者</th>--%>
-<%--        <th>译者</th>--%>
-<%--        <th>收藏时间</th>--%>
-<%--        <th>查看详情</th>--%>
-<%--        <th>取消收藏</th>--%>
-<%--        <th>立刻下载</th>--%>
-<%--    </tr>--%>
-    <%--    // TODO 样式呐，前端，快来--%>
-    <c:forEach items="${requestScope.userFavoritesList}" var="favorite">
-        <tr>
-            <td>${favorite.bookId}</td>
-            <td>${favorite.title}</td>
-            <td>${favorite.author}</td>
-            <td>${favorite.translator}</td>
-            <td>${favorite.collectTime}</td>
-            <td><a href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">查看详情</a></td>
-            <td><a href="favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}">取消收藏</a>
-            </td>
-            <td><a href="transferServlet?action=downloadBook&id=${favorite.bookId}">立刻下载</a></td>
-        </tr>
-    </c:forEach>
 <%--</table>--%>
 </body>
 </html>
