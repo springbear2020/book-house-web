@@ -32,7 +32,7 @@ public interface FavoriteService {
      * @param userId 用户 id
      * @return Favorites or null
      */
-    List<Favorite> getUserFavoritesByUserId(int userId);
+    List<Favorite> getFavorites(int userId);
 
     /**
      * 删除用户图书收藏记录
@@ -41,5 +41,5 @@ public interface FavoriteService {
      * @param bookId 图书 id
      * @return true - 删除成功
      */
-    boolean deleteUserFavorite(int userId, int bookId);
+    boolean deleteFavorite(int userId, int bookId);
 }

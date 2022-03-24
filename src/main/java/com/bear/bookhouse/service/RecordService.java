@@ -15,7 +15,7 @@ public interface RecordService {
      * @param record 记录
      * @return true - 保存成功
      */
-    boolean addOperationRecord(Record record);
+    boolean addRecord(Record record);
 
     /**
      * 通过用户 id 查询用户操作记录
@@ -23,5 +23,5 @@ public interface RecordService {
      * @param userId 用户 id
      * @return 操作记录
      */
-    List<Record> getRecordByUserId(int userId);
+    List<Record> getRecords(int userId);
 }

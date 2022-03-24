@@ -15,12 +15,12 @@ public class RecordServiceImpl implements RecordService {
     private final RecordDao recordDao = new RecordDaoImpl();
 
     @Override
-    public boolean addOperationRecord(Record record) {
+    public boolean addRecord(Record record) {
         return recordDao.saveRecord(record) == 1;
     }
 
     @Override
-    public List<Record> getRecordByUserId(int userId) {
+    public List<Record> getRecords(int userId) {
         return recordDao.getRecordByUserId(userId);
     }
 }

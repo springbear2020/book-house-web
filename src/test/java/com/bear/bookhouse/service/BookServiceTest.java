@@ -19,14 +19,14 @@ public class BookServiceTest {
     @Test
     public void getBookPageData() {
         Page<Book> bookPageData = bookService.getBookPageData(1, 5);
-        int booksRecordTotalCount = bookService.getBooksRecordTotalCount();
+        int booksRecordTotalCount = bookService.getBooksTotalCount();
         System.out.println(booksRecordTotalCount);
         System.out.println(bookPageData);
     }
 
     @Test
     public void getBooksByTitlePageData() {
-        Page<Book> pages = bookService.getBooksByTitlePageData(0, 5, "Java");
+        Page<Book> pages = bookService.getBookPageDateThoughTitle(0, 5, "Java");
         List<Book> pageData = pages.getPageData();
         for (Book book : pageData) {
             System.out.println(book);

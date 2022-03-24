@@ -73,7 +73,7 @@ public class TransferServlet extends BaseServlet {
         IOUtils.copy(inputStream, resp.getOutputStream());
 
         // 图书下载量增加 1，用户积分减少 10
-        bookService.increaseBookDownloads(bookId);
+        bookService.updateBookDownloads(bookId);
         userService.subUserScore(userId);
     }
 
@@ -114,7 +114,7 @@ public class TransferServlet extends BaseServlet {
                 record.setTime(new Date());
                 record.setOperation("上传图书");
                 record.setScoreChange("+10");
-                if (recordService.addOperationRecord(record)) {
+                if (recordService.addRecord(record)) {
                     req.setAttribute("userUploadMsg", "图书上传成功，感谢您的共享");
                     // 用户积分增加 10
                     userService.addUserScore(record.getUserId());

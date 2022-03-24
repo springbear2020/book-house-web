@@ -3,8 +3,6 @@ package com.bear.bookhouse.service;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 
-import java.util.List;
-
 
 /**
  * @author Spring-_-Bear
@@ -20,6 +18,14 @@ public interface BookService {
     boolean saveBook(Book book);
 
     /**
+     * 通过图书 id 获取对应图书信息
+     *
+     * @param id 图书 id
+     * @return 图书
+     */
+    Book getBookById(int id);
+
+    /**
      * 图书数据分页显示
      *
      * @param pageNum  页码
@@ -33,15 +39,7 @@ public interface BookService {
      *
      * @return 图书记录总数量
      */
-    int getBooksRecordTotalCount();
-
-    /**
-     * 通过图书 id 获取对应图书信息
-     *
-     * @param id 图书 id
-     * @return 图书
-     */
-    Book getBookById(int id);
+    int getBooksTotalCount();
 
     /**
      * 根据书名查询图书分页数据
@@ -51,21 +49,21 @@ public interface BookService {
      * @param title    书名
      * @return 图书分页对象
      */
-    Page<Book> getBooksByTitlePageData(int pageNum, int pageSize, String title);
+    Page<Book> getBookPageDateThoughTitle(int pageNum, int pageSize, String title);
 
     /**
      * 增加图书下载量，默认增加 1
-     *
+     * // TODO 返回值
      * @param bookId 图书 id
      * @return true - 增加成功
      */
-    boolean increaseBookDownloads(int bookId);
+    boolean updateBookDownloads(int bookId);
 
     /**
      * 增加图书收藏量，默认增加 1
-     *
+     * // TODO 返回值
      * @param bookId 图书 id
      * @return true - 增加成功
      */
-    boolean increaseBookCollections(int bookId);
+    boolean updateBookFavorites(int bookId);
 }

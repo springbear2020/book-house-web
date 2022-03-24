@@ -39,7 +39,7 @@ public class FavoriteServlet extends BaseServlet {
             return;
         }
 
-        if (favoriteService.deleteUserFavorite(userId, bookId)) {
+        if (favoriteService.deleteFavorite(userId, bookId)) {
             session.setAttribute("deleteFavoritesMsg", "图书取消收藏成功");
             resp.sendRedirect(req.getHeader("Referer"));
         } else {
@@ -77,7 +77,7 @@ public class FavoriteServlet extends BaseServlet {
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
             // 图书收藏量增加 1
-            bookService.increaseBookCollections(bookId);
+            bookService.updateBookFavorites(bookId);
             resp.sendRedirect(req.getHeader("Referer"));
         }
     }
@@ -99,7 +99,7 @@ public class FavoriteServlet extends BaseServlet {
         }
 
         // 从数据库查询个人收藏记录
-        List<Favorite> userFavorites = favoriteService.getUserFavoritesByUserId(userId);
+        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
         if (userFavorites == null || userFavorites.size() == 0) {
             session.setAttribute("getFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");

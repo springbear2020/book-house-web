@@ -32,7 +32,7 @@ public class BookServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void randomShowOneBookDetail(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        int booksCount = bookService.getBooksRecordTotalCount();
+        int booksCount = bookService.getBooksTotalCount();
         int bookId = NumberUtil.randomGenerateNumber(booksCount);
         Book book = bookService.getBookById(bookId);
         req.setAttribute("book", book);
@@ -49,7 +49,7 @@ public class BookServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         HttpSession session = req.getSession();
         // 图书下载记录
-        List<Record> recordList = recordService.getRecordByUserId(userId);
+        List<Record> recordList = recordService.getRecords(userId);
         if (recordList == null || recordList.size() == 0) {
             session.setAttribute("queryRecordMsg", "暂无记录，快去下载或上传图书吧");
             resp.sendRedirect(req.getHeader("Referer"));
@@ -88,7 +88,7 @@ public class BookServlet extends BaseServlet {
         Page<Book> bookPageData;
         if (title != null) {
             // 根据书名查询图书数据
-            bookPageData = bookService.getBooksByTitlePageData(pageNum, 5, title);
+            bookPageData = bookService.getBookPageDateThoughTitle(pageNum, 5, title);
             session.setAttribute("title", title);
         } else {
             // 查询所有图书数据
