@@ -47,7 +47,7 @@ public interface UserDao {
      * @param password 密码
      * @return 1 - 更新成功
      */
-    int updateUserByEmail(String password, String email);
+    int updatePasswordByEmail(String password, String email);
 
     /**
      * 通过用户 id 增加用户积分

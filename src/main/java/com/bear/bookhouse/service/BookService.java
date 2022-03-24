@@ -49,21 +49,21 @@ public interface BookService {
      * @param title    书名
      * @return 图书分页对象
      */
-    Page<Book> getBookPageDateThoughTitle(int pageNum, int pageSize, String title);
+    Page<Book> getBookPageDataThoughTitle(int pageNum, int pageSize, String title);
 
     /**
      * 增加图书下载量，默认增加 1
-     * // TODO 返回值
+     *
      * @param bookId 图书 id
      * @return true - 增加成功
      */
-    boolean updateBookDownloads(int bookId);
+    boolean addBookDownloads(int bookId);
 
     /**
      * 增加图书收藏量，默认增加 1
-     * // TODO 返回值
+     *
      * @param bookId 图书 id
      * @return true - 增加成功
      */
-    boolean updateBookFavorites(int bookId);
+    boolean addBookFavorites(int bookId);
 }

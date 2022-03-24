@@ -26,7 +26,7 @@ public class BookServiceTest {
 
     @Test
     public void getBooksByTitlePageData() {
-        Page<Book> pages = bookService.getBookPageDateThoughTitle(0, 5, "Java");
+        Page<Book> pages = bookService.getBookPageDataThoughTitle(0, 5, "Java");
         List<Book> pageData = pages.getPageData();
         for (Book book : pageData) {
             System.out.println(book);

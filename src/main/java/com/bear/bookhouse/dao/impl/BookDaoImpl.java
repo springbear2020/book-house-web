@@ -51,13 +51,13 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     @Override
-    public int updateBookDownloads(int addDownload, int bookId) {
+    public int updateBookDownloadsById(int addDownload, int bookId) {
         String sql = "UPDATE `t_book` SET `downloads` = `downloads` + ? WHERE `id` = ?;";
         return update(sql, addDownload, bookId);
     }
 
     @Override
-    public int updateBookFavorites(int addCollection, int bookId) {
+    public int updateBookFavoritesById(int addCollection, int bookId) {
         String sql = "UPDATE `t_book` SET `collections` = `collections` + ? WHERE `id` = ?;";
         return update(sql, addCollection, bookId);
     }

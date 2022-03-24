@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
 </head>
 <body>
-<%-- // TODO 前端，样式又不行了啦 --%>
 <%@include file="/pages/common/header.jsp"%>
     <table>
         <tr>

@@ -35,7 +35,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     }
 
     @Override
-    public int updateUserByEmail(String password, String email) {
+    public int updatePasswordByEmail(String password, String email) {
         String sql = "UPDATE `t_user` SET `password` = ? WHERE `email` = ?;";
         return update(sql, password, email);
     }

@@ -33,15 +33,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean updateBookDownloads(int bookId) {
+    public boolean addBookDownloads(int bookId) {
         // 下载量默认自增 1
-        return bookDao.updateBookDownloads(1, bookId) == 1;
+        return bookDao.updateBookDownloadsById(1, bookId) == 1;
     }
 
     @Override
-    public boolean updateBookFavorites(int bookId) {
+    public boolean addBookFavorites(int bookId) {
         // 收藏量默认自增 1
-        return bookDao.updateBookFavorites(1, bookId) == 1;
+        return bookDao.updateBookFavoritesById(1, bookId) == 1;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> getBookPageDateThoughTitle(int pageNum, int pageSize, String title) {
+    public Page<Book> getBookPageDataThoughTitle(int pageNum, int pageSize, String title) {
         Page<Book> bookPage = new Page<>();
 
         bookPage.setPageSize(pageSize);

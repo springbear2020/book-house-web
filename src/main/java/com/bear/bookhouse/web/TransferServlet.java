@@ -1,6 +1,5 @@
-package com.bear.bookhouse.servlet;
+package com.bear.bookhouse.web;
 
-import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Record;
 import com.bear.bookhouse.service.BookService;
@@ -73,8 +72,8 @@ public class TransferServlet extends BaseServlet {
         IOUtils.copy(inputStream, resp.getOutputStream());
 
         // 图书下载量增加 1，用户积分减少 10
-        bookService.updateBookDownloads(bookId);
-        userService.subUserScore(userId);
+        boolean b1 = bookService.addBookDownloads(bookId);
+        boolean b = userService.subUserScore(userId);
     }
 
     /**
@@ -83,7 +82,7 @@ public class TransferServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void userUploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Record record = new Record();
         if (ServletFileUpload.isMultipartContent(req)) {
             DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
@@ -117,7 +116,7 @@ public class TransferServlet extends BaseServlet {
                 if (recordService.addRecord(record)) {
                     req.setAttribute("userUploadMsg", "图书上传成功，感谢您的共享");
                     // 用户积分增加 10
-                    userService.addUserScore(record.getUserId());
+                    boolean b = userService.addUserScore(record.getUserId());
                 } else {
                     req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
                 }
@@ -125,88 +124,6 @@ public class TransferServlet extends BaseServlet {
             } catch (Exception e) {
                 req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 管理员图书上传
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     * @throws IOException exception
-     */
-    protected void adminUploadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Book book = new Book();
-        // 判断上传的文件是否为多段格式
-        if (ServletFileUpload.isMultipartContent(req)) {
-            // 创建用于解析上传数据的工具类
-            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
-
-            try {
-                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
-                // 逐条解析文件数据，分普通表单项和文件进行处理
-                for (FileItem fileItem : fileItemList) {
-                    // 普通表单项，读取 name - value 信息并封装为 Book 对象
-                    if (fileItem.isFormField()) {
-                        String name = fileItem.getFieldName();
-                        String value = fileItem.getString("UTF-8");
-                        switch (name) {
-                            case "title":
-                                book.setTitle(value);
-                                break;
-                            case "author":
-                                book.setAuthor(value);
-                                break;
-                            case "translator":
-                                book.setTranslator(value);
-                                break;
-                            case "keywords":
-                                book.setKeywords(value);
-                                break;
-                            case "comment":
-                                book.setComment(value);
-                                break;
-                            case "uploadUsername":
-                                book.setUploadUsername(value);
-                                break;
-                            default:
-                        }
-                    } else {
-                        // 非普通表单项，获取文件信息；获取文件表单项的 name 属性值
-                        String fieldName = fileItem.getFieldName();
-                        // 获取上传的文件名
-                        String uploadFileName = fileItem.getName();
-                        if ("book".equals(fieldName)) {
-                            // 将图书文件保存到磁盘真实路径下目录下 /WEB-INF/book/
-                            fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/book/" + uploadFileName));
-                            // 设置图书文件经服务器部署后的相对路径为 bookWebPath
-                            book.setBookPath("WEB-INF/book/" + uploadFileName);
-                        } else if ("cover".equals(fieldName)) {
-                            // 将封面文件保存到磁盘真实路径下
-                            fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/cover/" + uploadFileName));
-                            // 设置封面文件相对路径为 coverWebPath
-                            book.setCoverPath("static/picture/cover/" + uploadFileName);
-                        }
-                    }
-                }
-
-                // 设置图书默认下载量、收藏量和上传时间
-                book.setCollections(0);
-                book.setDownloads(0);
-                book.setUploadTime(new Date());
-                // 保存图书记录到数据库
-                if (bookService.saveBook(book)) {
-                    req.setAttribute("adminUploadMsg", "图书文件上传成功，感谢您的共享");
-                } else {
-                    req.setAttribute("adminUploadMsg", "图书文件上传失败，请您稍后重试");
-                }
-                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
-            } catch (Exception e) {
-                req.setAttribute("adminUploadMsg", "图书文件上传失败，请您稍后重试");
-                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }

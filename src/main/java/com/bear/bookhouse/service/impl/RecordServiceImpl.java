@@ -20,7 +20,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public List<Record> getRecords(int userId) {
-        return recordDao.getRecordByUserId(userId);
+    public List<Record> getRecord(int userId) {
+        return recordDao.listRecordByUserId(userId);
     }
 }

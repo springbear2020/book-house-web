@@ -42,7 +42,7 @@
         <div class="pwdFind">
             <%-- 找回密码表单 --%>
             <form action="userServlet" method="post">
-                <input type="hidden" name="action" value="updateUserPassword">
+                <input type="hidden" name="action" value="updatePassword">
                 <label><input class="input-text pwdFind-email" placeholder="请输入邮箱" name="email"></label>
                 <div class="little-tips tips-email">* 请输入您注册账号时使用的邮箱地址</div>
 

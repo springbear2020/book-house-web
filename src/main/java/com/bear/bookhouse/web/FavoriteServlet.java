@@ -1,4 +1,4 @@
-package com.bear.bookhouse.servlet;
+package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.Favorite;
 import com.bear.bookhouse.service.BookService;
@@ -54,7 +54,7 @@ public class FavoriteServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void addFavoriteRecord(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void addFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         String title = req.getParameter("title");
@@ -77,7 +77,7 @@ public class FavoriteServlet extends BaseServlet {
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
             // 图书收藏量增加 1
-            bookService.updateBookFavorites(bookId);
+            boolean b = bookService.addBookFavorites(bookId);
             resp.sendRedirect(req.getHeader("Referer"));
         }
     }
@@ -88,7 +88,7 @@ public class FavoriteServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void getFavoritesByUserId(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void showFavorites(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String userIdStr = req.getParameter("userId");
         int userId = NumberUtil.objectToInteger(userIdStr, -1);
         HttpSession session = req.getSession();

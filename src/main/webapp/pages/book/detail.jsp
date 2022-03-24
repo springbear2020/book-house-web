@@ -34,9 +34,9 @@
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-    <a class="ToLeft" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_left.png" alt=""></a>
-    <a class="ToRight" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_right.png"
-                                                                              alt=""></a>
+    <a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt=""></a>
+    <a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png"
+                                                                          alt=""></a>
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">

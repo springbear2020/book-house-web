@@ -1,6 +1,7 @@
-package com.bear.bookhouse.dao.impl;
+package com.bear.bookhouse.dao;
 
 import com.bear.bookhouse.dao.FavoriteDao;
+import com.bear.bookhouse.dao.impl.FavoriteDaoImpl;
 import com.bear.bookhouse.pojo.Favorite;
 import com.bear.bookhouse.pojo.User;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
  * @author Spring-_-Bear
  * @datetime 2022/3/23 16:33
  */
-public class FavoriteDaoImplTest {
+public class FavoriteDaoTest {
     private final FavoriteDao favoriteDao = new FavoriteDaoImpl();
 
     @Test
@@ -24,7 +25,7 @@ public class FavoriteDaoImplTest {
 
     @Test
     public void queryFavoritesByUserId() {
-        List<Favorite> favorites = favoriteDao.getFavoritesByUserId(1);
+        List<Favorite> favorites = favoriteDao.listFavoritesByUserId(1);
         for (Favorite favorite : favorites) {
             System.out.println(favorite);
         }

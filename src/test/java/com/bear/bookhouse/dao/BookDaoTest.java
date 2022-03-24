@@ -61,12 +61,12 @@ public class BookDaoTest {
 
     @Test
     public void bookDownloadsIncrease() {
-        System.out.println(bookDao.updateBookDownloads(10000, 2));
+        System.out.println(bookDao.updateBookDownloadsById(10000, 2));
     }
 
     @Test
     public void bookFavoritesIncrease() {
-        System.out.println(bookDao.updateBookFavorites(10000, 2));
+        System.out.println(bookDao.updateBookFavoritesById(10000, 2));
 
     }
 }

@@ -24,7 +24,7 @@ public class FavoriteDaoImpl extends BaseDao implements FavoriteDao {
     }
 
     @Override
-    public List<Favorite> getFavoritesByUserId(int userId) {
+    public List<Favorite> listFavoritesByUserId(int userId) {
         String sql = "SELECT `id`,`user_id` userId,`book_id` bookId,`title`,`author`,`translator`,`collect_time` collectTime FROM `t_favorite` WHERE `user_id` = ?;";
         return listRecord(Favorite.class, sql, userId);
     }

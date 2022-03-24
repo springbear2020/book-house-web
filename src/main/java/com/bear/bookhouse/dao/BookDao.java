@@ -66,7 +66,7 @@ public interface BookDao {
      * @param bookId      图书 id
      * @return 1 - 增加成功
      */
-    int updateBookDownloads(int addDownload, int bookId);
+    int updateBookDownloadsById(int addDownload, int bookId);
 
     /**
      * 通过图书 id 增加图书收藏量
@@ -75,5 +75,5 @@ public interface BookDao {
      * @param bookId        图书 id
      * @return 1 - 增加成功
      */
-    int updateBookFavorites(int addCollection, int bookId);
+    int updateBookFavoritesById(int addCollection, int bookId);
 }

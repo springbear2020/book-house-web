@@ -1,4 +1,4 @@
-package com.bear.bookhouse.servlet;
+package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class AjaxServlet extends BaseServlet {
     /**
-     * 用户注册时邮箱沿验证码
+     * 用户注册时邮箱验证码
      */
     private static String registerEmailCode;
     /**

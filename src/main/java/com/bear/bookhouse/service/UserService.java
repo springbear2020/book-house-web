@@ -59,7 +59,7 @@ public interface UserService {
 
     /**
      * 增加用户积分，默认增加 10 分
-     * // TODO 返回值
+     *
      * @param userId 用户 id
      * @return true - 增加成功
      */
@@ -67,7 +67,7 @@ public interface UserService {
 
     /**
      * 减少用户积分，默认减少 10 分
-     * // TODO 返回值
+     *
      * @param userId 用户 id
      * @return true - 减少成功
      */

@@ -23,5 +23,5 @@ public interface RecordDao {
      * @param userId 用户 id
      * @return Record or null
      */
-    List<Record> getRecordByUserId(int userId);
+    List<Record> listRecordByUserId(int userId);
 }

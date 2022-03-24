@@ -32,7 +32,7 @@ public interface FavoriteDao {
      * @param userId 用户 id
      * @return Favorites or null
      */
-    List<Favorite> getFavoritesByUserId(int userId);
+    List<Favorite> listFavoritesByUserId(int userId);
 
     /**
      * 通过用户 id 和图书 id 删除用户对应的收藏记录

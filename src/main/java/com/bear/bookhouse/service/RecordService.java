@@ -23,5 +23,5 @@ public interface RecordService {
      * @param userId 用户 id
      * @return 操作记录
      */
-    List<Record> getRecords(int userId);
+    List<Record> getRecord(int userId);
 }

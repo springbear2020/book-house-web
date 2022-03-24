@@ -1,4 +1,4 @@
-package com.bear.bookhouse.servlet;
+package com.bear.bookhouse.web;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

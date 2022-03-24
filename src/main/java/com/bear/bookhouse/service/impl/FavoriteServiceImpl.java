@@ -26,7 +26,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public List<Favorite> getFavorites(int userId) {
-        return favoriteDao.getFavoritesByUserId(userId);
+        return favoriteDao.listFavoritesByUserId(userId);
     }
 
     @Override

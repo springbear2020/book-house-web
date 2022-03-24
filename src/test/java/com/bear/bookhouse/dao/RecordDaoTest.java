@@ -1,6 +1,7 @@
-package com.bear.bookhouse.dao.impl;
+package com.bear.bookhouse.dao;
 
 import com.bear.bookhouse.dao.RecordDao;
+import com.bear.bookhouse.dao.impl.RecordDaoImpl;
 import com.bear.bookhouse.pojo.Record;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
  * @author Spring-_-Bear
  * @datetime 2022/3/24 10:03
  */
-public class RecordDaoImplTest {
+public class RecordDaoTest {
     private final RecordDao recordDao = new RecordDaoImpl();
 
     @Test
@@ -23,7 +24,7 @@ public class RecordDaoImplTest {
 
     @Test
     public void queryRecordByUserId() {
-        List<Record> records = recordDao.getRecordByUserId(2);
+        List<Record> records = recordDao.listRecordByUserId(2);
         for (Record record : records) {
             System.out.println(record);
         }

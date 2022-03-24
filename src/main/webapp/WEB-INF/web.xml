@@ -14,7 +14,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.UserServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.web.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>BookServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.BookServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.web.BookServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>FavoriteServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.FavoriteServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.web.FavoriteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FavoriteServlet</servlet-name>
@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>TransferServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.TransferServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.web.TransferServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TransferServlet</servlet-name>
@@ -46,11 +46,19 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>AjaxServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.servlet.AjaxServlet</servlet-class>
+        <servlet-class>com.bear.bookhouse.web.AjaxServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AjaxServlet</servlet-name>
         <url-pattern>/ajaxServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RecordServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.web.RecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecordServlet</servlet-name>
+        <url-pattern>/recordServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>

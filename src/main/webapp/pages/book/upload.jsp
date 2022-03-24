@@ -29,7 +29,7 @@
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
         <%-- 用户上传图书表单 --%>
-        <form action="transferServlet?action=userUploadBook" method="post" enctype="multipart/form-data">
+        <form action="transferServlet?action=uploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
             <div class="bookFile upload-label"><label class="bookFile-true"><span>上传图书</span>
                 <input type="file" name="book" accept="application/pdf" class="chooseFile"
@@ -46,7 +46,7 @@
                 </div>
                 <div class="img-border">
                     <div>封&nbsp;面</div>
-                    <img class="bookCover-img" alt="封面加载失败">
+                    <img class="bookCover-img" alt="封面加载失败" src="">
                 </div>
             </div>
             <label><input type="submit" value="立即上传" class="upload-btn"></label>

@@ -46,7 +46,7 @@
         <div class="search-container">
             <%-- 搜索框表单 --%>
             <form class="search-form" method="post" action="bookServlet">
-                <input type="hidden" name="action" value="listBooksByPageNum">
+                <input type="hidden" name="action" value="showBooks">
                 <label><input class="search-text" name="title" placeholder="请输入您要查找的书名"
                               value="${sessionScope.title}"></label>
                 <button type="submit" class="search-btn">搜索</button>
@@ -59,7 +59,7 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-                    <a href="bookServlet?action=showBookDetailsById&bookId=${book.id}" target="_blank"><img
+                    <a href="bookServlet?action=showBookDetails&bookId=${book.id}" target="_blank"><img
                             class="img-books" src="${book.coverPath}"
                             alt="封面加载失败"></a>
                     <div class="caption">
@@ -73,11 +73,10 @@
                                 <div>${book.collections}</div>
                             </div>
                         </div>
-                            <%-- // TODO 图书信息略改，等你啊，前端--%>
                         <div class="book-a">
                             <a href="transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}"
                                class="a-download">下载</a>
-                            <a href="favoriteServlet?action=addFavoriteRecord&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
+                            <a href="favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
                                class="a-collect">收藏</a>
                         </div>
 
@@ -93,10 +92,10 @@
         <ul class="pagination">
             <%-- 总页数大于 1 才显示首页和上一页 --%>
             <c:if test="${requestScope.bookPageData.pageTotal > 1 && requestScope.bookPageData.pageNum != 1}">
-                <li><a href="bookServlet?action=listBooksByPageNum&title=${sessionScope.title}" class="pag-num pag-fl">首页</a>
+                <li><a href="bookServlet?action=showBooks&title=${sessionScope.title}" class="pag-num pag-fl">首页</a>
                 </li>
                 <li>
-                    <a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum - 1}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum - 1}&title=${sessionScope.title}"
                        aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
             </c:if>
             <%-- 设置页码显示范围 --%>
@@ -135,7 +134,7 @@
                     <li><a class="pag-num" style="color: red">${i}</a></li>
                 </c:if>
                 <c:if test="${i != requestScope.bookPageData.pageNum}">
-                    <li><a href="bookServlet?action=listBooksByPageNum&pageNum=${i}&title=${sessionScope.title}"
+                    <li><a href="bookServlet?action=showBooks&pageNum=${i}&title=${sessionScope.title}"
                            class="pag-num">${i}</a></li>
                 </c:if>
             </c:forEach>
@@ -143,10 +142,10 @@
             <%-- 显示下一页和尾页 --%>
             <c:if test="${requestScope.bookPageData.pageNum < requestScope.bookPageData.pageTotal}">
                 <li>
-                    <a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageNum + 1}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum + 1}&title=${sessionScope.title}"
                        aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
                 <li>
-                    <a href="bookServlet?action=listBooksByPageNum&pageNum=${requestScope.bookPageData.pageTotal}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageTotal}&title=${sessionScope.title}"
                        class="pag-num pag-fl">尾页</a></li>
             </c:if>
             <div style="clear:both"></div>

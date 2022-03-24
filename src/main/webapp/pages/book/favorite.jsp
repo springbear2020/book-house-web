@@ -27,7 +27,7 @@
             <div class="fav-box">
                 <div class="fav-book">
                     <div class="fav-data">
-                        <img class="fav-img">
+                        <img class="fav-img" alt="" src="">
                         <p>恋恋世界第一！</p>
                         <p>刘阿伟</p>
                     </div>
@@ -52,7 +52,6 @@
 <%--        <th>取消收藏</th>--%>
 <%--        <th>立刻下载</th>--%>
 <%--    </tr>--%>
-    <%--    // TODO 样式呐，前端，快来--%>
     <c:forEach items="${requestScope.userFavoritesList}" var="favorite">
         <tr>
             <td>${favorite.bookId}</td>

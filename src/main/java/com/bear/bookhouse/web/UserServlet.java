@@ -1,4 +1,4 @@
-package com.bear.bookhouse.servlet;
+package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.UserService;
@@ -36,7 +36,7 @@ public class UserServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void updateUserPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void updatePassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String emailVerifyCode = req.getParameter("emailVerifyCode");
         String password = req.getParameter("password");
