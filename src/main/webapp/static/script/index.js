@@ -96,13 +96,13 @@ window.onload = function () {
     })
 
     // // 给搜索按钮绑定单击事件
-    // $("#searchBookByTitle").click(function () {
-    //     // 获取输入框中的内容，内容为空则阻止表单提交
-    //     let $searchText = $(".search-text").val();
-    //     if ($searchText.length === 0) {
-    //         alert("书名不能为空，请重新输入")
-    //         return false;
-    //     }
-    //     return true;
-    // });
+    $(".search-btn").click(function () {
+        // 获取输入框中的内容，内容为空则阻止表单提交
+        let $searchText = $(".search-text").val();
+        if ($searchText.length === 0) {
+            alert("书名不能为空，请重新输入")
+            return false;
+        }
+        return true;
+    });
 }

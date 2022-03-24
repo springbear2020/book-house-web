@@ -1,0 +1,39 @@
+.middle{
+    background-color: #ccffff;
+    padding: 0.1rem 0;
+}
+.middle-container{
+    /*display: table;*/
+    margin: 0.1rem auto;
+}
+.fav-frame{
+    position: relative;
+    margin: 0rem auto;
+    /*left: 50%;*/
+    /*margin-left: -8rem;*/
+    width: 16rem;
+    height: 3rem;
+}
+.fav-title{
+    position: relative;
+    width: 0.9rem;
+    padding: 0.1rem 0.2rem;
+    height: 0.4rem;
+    font-size: 0.3rem;
+    /*padding: 0.1rem;*/
+    background-color: #dddddd;
+    font-weight: bold;
+    border: 0.1rem solid deepskyblue;
+    border-bottom: 0;
+    border-radius: 10%;
+}
+.fav-box{
+    display: table;
+    width: 16rem;
+    background-color: #dddddd;
+    border-left: 0.1rem solid deepskyblue;
+    border-right: 0.1rem solid deepskyblue;
+    border-bottom: 0.1rem solid deepskyblue;
+    border-top: 0.05rem solid deepskyblue;
+    border-radius: 0.1rem;
+}

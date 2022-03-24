@@ -54,24 +54,12 @@
     background-color: grey;
     color: white;
 }
-.search-choose{
-    margin: 0.1rem 0 0.1rem -0.3rem;
-}
-.search-word{
-    padding: 0.05rem 0.1rem;
-    font-size:0.25rem;
-    border-radius: 10%;
-    cursor: pointer;
-}
-/*.search-word:hover{*/
-/*    background-color: grey;*/
-/*    color: white;*/
-/*}*/
+
 .search-list{
     display: none;
     position: absolute;
     margin-top: -0.02rem;
-    margin-left: 0.3rem;
+    margin-left: 1.6rem;
     padding-top: 0.05rem;
     padding-bottom: 0.05rem;
     width: 3.8rem;
@@ -102,10 +90,13 @@
     border-radius: 0.2rem;
     margin: 0.2rem 0.28rem;
     width: 3rem;
-    height: 5.5rem;
+    height: 6rem;
     text-align: center;
     font-size: 0.25rem;
     border: 0.2rem solid lightseagreen;
+}
+.bk-t{
+    height: 0.6rem;
 }
 .img-books{
     margin-top: 0.2rem;
@@ -128,8 +119,8 @@
     width: 100%;
     height: 0.3rem;
     /*text-align: center;*/
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.05rem;
+    margin-bottom: 0.4rem;
     font-size: 0.2rem;
     /*background-color: #4ea4dc;*/
     /*color: blue;*/
@@ -139,33 +130,40 @@
 }
 .book-download{
     float: left;
-    margin-left: 0.5rem;
+    margin-left: 0.4rem;
     /*margin-top: -0.1rem;*/
     /*width: 1rem;*/
     height: 0.3rem;
-    background-color: #4ea4dc;
+    background-color: skyblue;
     /*color: blue;*/
     font-weight: bold;
     padding: 0.05rem 0.1rem;
     text-align: center;
-    /*border-radius: 0.2rem;*/
+    border-radius: 1rem;
 }
 .book-collect{
     /*width: 1rem;*/
-    position: absolute;
-    left: 50%;
+    /*position: absolute;*/
+    float: left;
+    margin-left: 0.4rem;
+    /*left: 50%;*/
     height: 0.3rem;
-    background-color: #4ea4dc;
+    background-color: skyblue;
     /*color: blue;*/
     font-weight: bold;
     padding: 0.05rem 0.1rem;
     text-align: center;
-    /*border-radius: 0.2rem;*/
+    border-radius: 1rem;
 }
 .book-data span{
+    /*background-color: white;*/
     display: block;
     font-size: 0.2rem;
     float: left;
+    margin-bottom: 0.1rem;
+    width: 0.7rem;
+    /*background-color: skyblue;*/
+    border-radius: 1rem;
     /*margin-left: 0.1rem;*/
     /*background-color: #4ea4dc;*/
     /*color: blue;*/
@@ -178,11 +176,32 @@
 }
 .book-download div{
     /*float: left;*/
-    margin-left: 0.05rem;
+    position: absolute;
+    font-size: 0.25rem;
+    border-bottom: 0.05rem solid #4ea4dc;
+    border-radius: 0.2rem;
+    width: 0.7rem;
+    top: 0.4rem;
+    left: 0.4rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    /*margin-left: 0.05rem;*/
+    /*padding-top: 0.05rem;*/
+    /*margin-top: 0.1rem;*/
 }
 .book-collect div{
     /*float: left;*/
-    margin-left: 0.05rem;
+    position: absolute;
+    font-size: 0.25rem;
+    border-bottom: 0.05rem solid #4ea4dc;
+    border-radius: 0.2rem;
+    width: 0.7rem;
+    top: 0.4rem;
+    left: 1.7rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    /*margin-left: 0.05rem;*/
+    /*margin-top: 0.1rem;*/
 }
 /*.book-collect{*/
 /*    position: absolute;*/

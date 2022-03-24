@@ -45,7 +45,7 @@
     <div class="search">
         <div class="search-container">
             <%-- 搜索框表单 --%>
-            <form class="search-form" method="post" action="bookServlet" id="searchBookByTitle">
+            <form class="search-form" method="post" action="bookServlet">
                 <input type="hidden" name="action" value="listBooksByPageNum">
                 <label><input class="search-text" name="title" placeholder="请输入您要查找的书名"
                               value="${sessionScope.title}"></label>
@@ -64,7 +64,7 @@
                             alt="封面加载失败"></a>
                     <div class="caption">
                         <div><span class="book-id">${book.id}</span></div>
-                        <div><h5 class="book-title">《${book.title}》</h5></div>
+                        <div class="bk-t"><h5 class="book-title">《${book.title}》</h5></div>
                         <div class="book-data">
                             <div class="book-download"><span>下载量</span>
                                 <div>${book.downloads}</div>
