@@ -52,4 +52,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql = "UPDATE `t_user` SET `score` = `score` - ? WHERE `id` = ?;";
         return update(sql, subScore, userId);
     }
+
+    @Override
+    public int queryUserScoreByUserId(int userId) {
+        String sql = "SELECT `score` FROM `t_user` WHERE `id` = ?;";
+        return NumberUtil.objectToInteger(getSingleValue(sql, userId), -1);
+    }
 }

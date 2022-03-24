@@ -57,4 +57,9 @@ class UserDaoTest {
     public void addUserScoreByUserId() {
         System.out.println(userDao.addUserScoreByUserId(1000, 3));
     }
+
+    @Test
+    public void queryUserScoreByUserId() {
+        System.out.println(userDao.queryUserScoreByUserId(2));
+    }
 }

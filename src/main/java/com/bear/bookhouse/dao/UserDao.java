@@ -66,4 +66,12 @@ public interface UserDao {
      * @return 1 - 减少成功
      */
     int subUserScoreByUserId(int subScore, int userId);
+
+    /**
+     * 通过用户 id 查询用户积分
+     *
+     * @param userId 用户 id
+     * @return 用户积分
+     */
+    int queryUserScoreByUserId(int userId);
 }

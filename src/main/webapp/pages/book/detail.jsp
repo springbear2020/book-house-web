@@ -26,12 +26,17 @@
         <script type="text/javascript"> alert("${sessionScope.deleteFavoritesMsg}")</script>
         <% session.removeAttribute("deleteFavoritesMsg"); %>
     </c:if>
+    <c:if test="${not empty sessionScope.scoreMsg}">
+        <script type="text/javascript"> alert("${sessionScope.scoreMsg}")</script>
+        <% session.removeAttribute("scoreMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
     <a class="ToLeft" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_left.png" alt=""></a>
-    <a class="ToRight" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_right.png" alt=""></a>
+    <a class="ToRight" href="bookServlet?action=randomShowOneBookDetail"><img src="static/img/icon_right.png"
+                                                                              alt=""></a>
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">

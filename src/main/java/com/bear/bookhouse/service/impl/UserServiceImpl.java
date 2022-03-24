@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
     public boolean subUserScore(int userId) {
         return userDao.subUserScoreByUserId(10, userId) == 1;
     }
+
+    @Override
+    public int getUserScore(int userId) {
+        return userDao.queryUserScoreByUserId(userId);
+    }
 }

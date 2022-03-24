@@ -1,5 +1,6 @@
 package com.bear.bookhouse.servlet;
 
+import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Record;
 import com.bear.bookhouse.service.BookService;
@@ -18,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +46,15 @@ public class TransferServlet extends BaseServlet {
     protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        HttpSession session = req.getSession();
+
+        // 查询用户积分，积分不足则不准下载
+        int userScore = userService.getUserScore(userId);
+        if (userScore < 10) {
+            session.setAttribute("scoreMsg", "您的积分不足，暂时不能下载图书哦");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            return;
+        }
 
         Book book = bookService.getBookById(bookId);
         if (book == null) {
