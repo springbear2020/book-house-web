@@ -145,6 +145,7 @@ $(function () {
     })
 
     // 获取邮箱验证码按钮单击事件
+    // TODO 阻止获取，找密码处修改
     $("#emailCodeBtn").click(function () {
         // 邮箱地址无效则不允许获取验证码
         let email = $(".register-email").val();

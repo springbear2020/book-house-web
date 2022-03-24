@@ -3,8 +3,10 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.Favorite;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.FavoriteService;
+import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
 import com.bear.bookhouse.service.impl.FavoriteServiceImpl;
+import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
 import javax.servlet.ServletException;
@@ -21,32 +23,8 @@ import java.util.List;
  */
 public class FavoriteServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
+    private final UserService userService = new UserServiceImpl();
     private final FavoriteService favoriteService = new FavoriteServiceImpl();
-
-    /**
-     * 删除收藏记录
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void deleteFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
-        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
-        HttpSession session = req.getSession();
-        if (userId == -1 || bookId == -1) {
-            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
-            return;
-        }
-
-        if (favoriteService.deleteFavorite(userId, bookId)) {
-            session.setAttribute("deleteFavoritesMsg", "图书取消收藏成功");
-            resp.sendRedirect(req.getHeader("Referer"));
-        } else {
-            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
-        }
-    }
 
     /**
      * 添加收藏记录
@@ -55,29 +33,28 @@ public class FavoriteServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void addFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        // 客户端 favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title} 确保了 id 不会越界
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         String title = req.getParameter("title");
         String author = req.getParameter("author");
         String translator = req.getParameter("translator");
-
         HttpSession session = req.getSession();
-        if (userId == -1 || bookId == -1) {
-            session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
-            resp.sendRedirect(req.getHeader("Referer"));
-            return;
-        }
 
         // 查询用户图书收藏记录是否已经存在
         if (favoriteService.isFavoriteExists(userId, bookId)) {
-            session.setAttribute("addFavoriteMsg", "图书已收藏，不可重复收藏");
+            session.setAttribute("addFavoriteMsg", "图书收藏记录已存在，不可重复收藏");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
+        // 保存收藏记录
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, translator, new Date()))) {
-            session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
             // 图书收藏量增加 1
-            boolean b = bookService.addBookFavorites(bookId);
+            if (bookService.addBookFavorites(bookId)) {
+                session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
+            } else {
+                session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
+            }
             resp.sendRedirect(req.getHeader("Referer"));
         }
     }
@@ -89,24 +66,41 @@ public class FavoriteServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void showFavorites(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String userIdStr = req.getParameter("userId");
-        int userId = NumberUtil.objectToInteger(userIdStr, -1);
         HttpSession session = req.getSession();
-        if (userId == -1) {
-            session.setAttribute("getFavoritesMsg", "查询个人收藏夹失败，请稍后重试");
-            resp.sendRedirect(req.getHeader("Referer"));
-            return;
-        }
-
-        // 从数据库查询个人收藏记录
-        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
-        if (userFavorites == null || userFavorites.size() == 0) {
-            session.setAttribute("getFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        // 验证用户 id 是否合法
+        if (userId <= 0 || userService.isUserIdExists(userId)) {
+            session.setAttribute("showFavoritesMsg", "用户 id 不合法！！！");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
 
-        req.setAttribute("userFavoritesList", userFavorites);
-        req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
+        // 从数据库查询用户个人收藏记录
+        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
+        if (userFavorites == null || userFavorites.size() == 0) {
+            session.setAttribute("showFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        } else {
+            req.setAttribute("userFavoritesList", userFavorites);
+            req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
+        }
+    }
+
+    /**
+     * 删除收藏记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void deleteFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        // 客户端请求：favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId} 确保 id 不会越界
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
+        HttpSession session = req.getSession();
+
+        if (!favoriteService.deleteFavorite(userId, bookId)) {
+            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
+        }
+        resp.sendRedirect(req.getHeader("Referer"));
     }
 }

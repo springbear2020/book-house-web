@@ -19,21 +19,21 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
 
+    <%-- 用户修改密码成功提示信息 --%>
     <c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
         <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
         <% request.removeAttribute("updatePwdErrorMsg"); %>
-        <% request.removeAttribute("updatePwdErrorMsg"); %>
+        <% request.removeAttribute("updatePwdSuccessMsg"); %>
     </c:if>
-    <c:if test="${ not empty requestScope.updatePwdErrorMsg}">
-        <script type="text/javascript">alert("${requestScope.updatePwdErrorMsg}")</script>
-        <% request.removeAttribute("updatePwdErrorMsg"); %>
-        <% request.removeAttribute("updatePwdErrorMsg"); %>
+    <%-- 用户修改密码提示信息 --%>
+    <c:if test="${ not empty requestScope.updatePasswordMsg}">
+        <script type="text/javascript">alert("${requestScope.updatePasswordMsg}")</script>
+        <% request.removeAttribute("updatePasswordMsg"); %>
+        <% request.removeAttribute("updatePwdSuccessMsg"); %>
     </c:if>
 </head>
 <body>
 <%@include file="/pages/common/title.jsp" %>
-<div class="top-content">
-</div>
 <div class="middle">
     <div class="container">
         <ul class="frame-title">
@@ -43,12 +43,14 @@
             <%-- 找回密码表单 --%>
             <form action="userServlet" method="post">
                 <input type="hidden" name="action" value="updatePassword">
-                <label><input class="input-text pwdFind-email" placeholder="请输入邮箱" name="email"></label>
+                <label>
+                    <input class="input-text pwdFind-email" placeholder="请输入邮箱" name="email">
+                </label>
                 <div class="little-tips tips-email">* 请输入您注册账号时使用的邮箱地址</div>
-
                 <div class="input-ver">
-                    <label><input class="input-text-ver pwdFind-emailVerifyCode" placeholder="邮箱验证码"
-                                  name="emailVerifyCode"></label>
+                    <label>
+                        <input class="input-text-ver pwdFind-emailVerifyCode" placeholder="邮箱验证码" name="emailVerifyCode">
+                    </label>
                     <input type="button" id="pwdFind-code-btn" class="btn btn-ver" value="获取验证码">
                     <div class="little-tips tips-pwdFind">* 点击获取验证码，邮件会发送至您的邮箱</div>
                 </div>

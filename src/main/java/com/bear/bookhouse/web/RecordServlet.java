@@ -2,7 +2,9 @@ package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.Record;
 import com.bear.bookhouse.service.RecordService;
+import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
+import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
 import javax.servlet.ServletException;
@@ -18,21 +20,28 @@ import java.util.List;
  */
 public class RecordServlet extends BaseServlet {
     private final RecordService recordService = new RecordServiceImpl();
+    private final UserService userService = new UserServiceImpl();
 
     /**
-     * 显示图书记录
+     * 显示用户上传和下载记录
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
     protected void showRecord(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         HttpSession session = req.getSession();
-        // 图书下载记录
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        // 验证用户 id 是否合法
+        if (userId <= 0 || userService.isUserIdExists(userId)) {
+            session.setAttribute("showRecordMsg", "用户 id 不合法！！！");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            return;
+        }
+        // 查询用户个人图书下载和上传记录
         List<Record> recordList = recordService.getRecord(userId);
         if (recordList == null || recordList.size() == 0) {
-            session.setAttribute("queryRecordMsg", "暂无记录，快去下载或上传图书吧");
-            resp.sendRedirect(req.getHeader("Referer"));
+            session.setAttribute("showRecordMsg", "暂无记录，快去下载或上传图书吧");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
         req.setAttribute("recordList", recordList);

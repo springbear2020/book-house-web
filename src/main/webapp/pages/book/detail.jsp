@@ -18,25 +18,22 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/detail.js"></script>
 
+    <%-- 图书添加到收藏夹提示信息 --%>
     <c:if test="${not empty sessionScope.addFavoriteMsg}">
-        <script type="text/javascript"> alert("${sessionScope.addFavoriteMsg}")</script>
+        <script type="text/javascript">alert("${sessionScope.addFavoriteMsg}")</script>
         <% session.removeAttribute("addFavoriteMsg"); %>
     </c:if>
-    <c:if test="${not empty sessionScope.deleteFavoritesMsg}">
-        <script type="text/javascript"> alert("${sessionScope.deleteFavoritesMsg}")</script>
-        <% session.removeAttribute("deleteFavoritesMsg"); %>
-    </c:if>
-    <c:if test="${not empty sessionScope.scoreMsg}">
-        <script type="text/javascript"> alert("${sessionScope.scoreMsg}")</script>
-        <% session.removeAttribute("scoreMsg"); %>
+    <%-- 下载图书提示信息 --%>
+    <c:if test="${not empty sessionScope.downloadBookMsg}">
+        <script type="text/javascript">alert("${sessionScope.downloadBookMsg}")</script>
+        <% session.removeAttribute("downloadBookMsg"); %>
     </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-    <a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt=""></a>
-    <a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png"
-                                                                          alt=""></a>
+    <a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
+    <a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">
@@ -74,9 +71,9 @@
                     <div>上传时间</div>
                     <p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
                 <a class="button-a btn-down"
-                   href="transferServlet?action=downloadBook&bookId=${requestScope.book.id}">立即下载</a>
+                   href="transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
                 <a class="button-a btn-fav"
-                   href="favoriteServlet?action=addFavoriteRecord&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
+                   href="favoriteServlet?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&translator=${requestScope.book.translator}">收藏图书</a>
             </ul>
         </div>
     </div>

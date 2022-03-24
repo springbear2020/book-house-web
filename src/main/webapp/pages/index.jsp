@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: accelerater
@@ -6,49 +5,55 @@
   Time: 13:33
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
     <title>Book House</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/index.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/index.js"></script>
 
+    <%-- 根据书名查询图书提示信息 --%>
+    <c:if test="${not empty sessionScope.showBooksMsg}">
+        <script type="text/javascript">alert("${sessionScope.showBooksMsg}")</script>
+        <% session.removeAttribute("showBooksMsg"); %>
+    </c:if>
+    <%-- 图书添加到收藏夹提示信息 --%>
     <c:if test="${not empty sessionScope.addFavoriteMsg}">
-        <script type="text/javascript"> alert("${sessionScope.addFavoriteMsg}")</script>
+        <script type="text/javascript">alert("${sessionScope.addFavoriteMsg}")</script>
         <% session.removeAttribute("addFavoriteMsg"); %>
     </c:if>
-    <c:if test="${not empty sessionScope.getFavoritesMsg}">
-        <script type="text/javascript"> alert("${sessionScope.getFavoritesMsg}")</script>
-        <% session.removeAttribute("getFavoritesMsg"); %>
+    <%-- 显示用户收藏夹提示信息 --%>
+    <c:if test="${not empty sessionScope.showFavoritesMsg}">
+        <script type="text/javascript">alert("${sessionScope.showFavoritesMsg}")</script>
+        <% session.removeAttribute("showFavoritesMsg"); %>
     </c:if>
-    <c:if test="${not empty sessionScope.queryRecordMsg}">
-        <script type="text/javascript"> alert("${sessionScope.queryRecordMsg}")</script>
-        <% session.removeAttribute("queryRecordMsg"); %>
+    <%-- 显示用户上传和下载记录提示信息 --%>
+    <c:if test="${not empty sessionScope.showRecordMsg}">
+        <script type="text/javascript">alert("${sessionScope.showRecordMsg}")</script>
+        <% session.removeAttribute("showRecordMsg"); %>
     </c:if>
-    <c:if test="${not empty sessionScope.getBooksByTitleMsg}">
-        <script type="text/javascript"> alert("${sessionScope.getBooksByTitleMsg}")</script>
-        <% session.removeAttribute("getBooksByTitleMsg"); %>
-    </c:if>
-    <c:if test="${not empty sessionScope.scoreMsg}">
-        <script type="text/javascript"> alert("${sessionScope.scoreMsg}")</script>
-        <% session.removeAttribute("scoreMsg"); %>
+    <%-- 下载图书提示信息 --%>
+    <c:if test="${not empty sessionScope.downloadBookMsg}">
+        <script type="text/javascript">alert("${sessionScope.downloadBookMsg}")</script>
+        <% session.removeAttribute("downloadBookMsg"); %>
     </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
+    <%-- 搜索框表单 --%>
     <div class="search">
         <div class="search-container">
-            <%-- 搜索框表单 --%>
             <form class="search-form" method="post" action="bookServlet">
                 <input type="hidden" name="action" value="showBooks">
                 <label><input class="search-text" name="title" placeholder="请输入您要查找的书名"
-                              value="${sessionScope.title}"></label>
+                              value="${requestScope.title}"></label>
                 <button type="submit" class="search-btn">搜索</button>
             </form>
         </div>
@@ -59,9 +64,9 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-                    <a href="bookServlet?action=showBookDetails&bookId=${book.id}" target="_blank"><img
-                            class="img-books" src="${book.coverPath}"
-                            alt="封面加载失败"></a>
+                    <a href="bookServlet?action=showBookDetails&bookId=${book.id}" target="_self"><img class="img-books"
+                                                                                                       src="${book.coverPath}"
+                                                                                                       alt="图片加载失败"></a>
                     <div class="caption">
                         <div><span class="book-id">${book.id}</span></div>
                         <div class="bk-t"><h5 class="book-title">《${book.title}》</h5></div>
@@ -79,7 +84,6 @@
                             <a href="favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title}&author=${book.author}&translator=${book.translator}"
                                class="a-collect">收藏</a>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -87,15 +91,15 @@
         <div style="clear:both"></div>
     </div>
 
-    <%-- 设置分页条页码显示范围 --%>
+    <%-- 分页条 --%>
     <nav aria-label="Page navigation" class="pag-chs">
         <ul class="pagination">
             <%-- 总页数大于 1 才显示首页和上一页 --%>
             <c:if test="${requestScope.bookPageData.pageTotal > 1 && requestScope.bookPageData.pageNum != 1}">
-                <li><a href="bookServlet?action=showBooks&title=${sessionScope.title}" class="pag-num pag-fl">首页</a>
+                <li><a href="bookServlet?action=showBooks&title=${requestScope.title}" class="pag-num pag-fl">首页</a>
                 </li>
                 <li>
-                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum - 1}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum - 1}&title=${requestScope.title}"
                        aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
             </c:if>
             <%-- 设置页码显示范围 --%>
@@ -134,7 +138,7 @@
                     <li><a class="pag-num" style="color: red">${i}</a></li>
                 </c:if>
                 <c:if test="${i != requestScope.bookPageData.pageNum}">
-                    <li><a href="bookServlet?action=showBooks&pageNum=${i}&title=${sessionScope.title}"
+                    <li><a href="bookServlet?action=showBooks&pageNum=${i}&title=${requestScope.title}"
                            class="pag-num">${i}</a></li>
                 </c:if>
             </c:forEach>
@@ -142,10 +146,10 @@
             <%-- 显示下一页和尾页 --%>
             <c:if test="${requestScope.bookPageData.pageNum < requestScope.bookPageData.pageTotal}">
                 <li>
-                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum + 1}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageNum + 1}&title=${requestScope.title}"
                        aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
                 <li>
-                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageTotal}&title=${sessionScope.title}"
+                    <a href="bookServlet?action=showBooks&pageNum=${requestScope.bookPageData.pageTotal}&title=${requestScope.title}"
                        class="pag-num pag-fl">尾页</a></li>
             </c:if>
             <div style="clear:both"></div>

@@ -80,4 +80,12 @@ public interface UserService {
      * @return 用户积分
      */
     int getUserScore(int userId);
+
+    /**
+     * 验证用户 id 是否已存在
+     *
+     * @param userId 用户 id
+     * @return true - 已存在
+     */
+    boolean isUserIdExists(int userId);
 }

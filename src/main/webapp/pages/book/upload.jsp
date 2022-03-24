@@ -18,9 +18,10 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/upload.js"></script>
 
-    <c:if test="${not empty requestScope.userUploadMsg}">
-        <script type="text/javascript">alert("${requestScope.userUploadMsg}")</script>
-        <% request.removeAttribute("userUploadMsg");%>
+    <%-- 用户上传图书提示信息 --%>
+    <c:if test="${not empty sessionScope.uploadBookMsg}">
+        <script type="text/javascript">alert("${sessionScope.uploadBookMsg}")</script>
+        <% session.removeAttribute("uploadBookMsg"); %>
     </c:if>
 </head>
 <body>
@@ -29,6 +30,7 @@
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
         <%-- 用户上传图书表单 --%>
+        <%--        // TODO 写一个 js 管控文件选中状态，没选中文件则阻止表单提交 --%>
         <form action="transferServlet?action=uploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
             <div class="bookFile upload-label"><label class="bookFile-true"><span>上传图书</span>

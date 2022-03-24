@@ -74,4 +74,12 @@ public interface UserDao {
      * @return 用户积分
      */
     int getUserScoreById(int userId);
+
+    /**
+     * 通过用户 id 查询用户信息
+     *
+     * @param userId 用户 id
+     * @return User or null
+     */
+    User getUserById(int userId);
 }

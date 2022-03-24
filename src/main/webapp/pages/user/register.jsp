@@ -12,16 +12,18 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/register.js"></script>
 
+
+    <%-- 用户注册提示信息 --%>
+    <c:if test="${not empty requestScope.registerMsg}">
+        <script type="text/javascript">alert("${requestScope.registerMsg}")</script>
+        <% request.removeAttribute("registerMsg"); %>
+    </c:if>
+    <%-- 用户注册成功提示信息 --%>
     <c:if test="${ not empty requestScope.registerSuccessMsg}">
         <div class="success-tips">${requestScope.registerSuccessMsg}</div>
         <% request.removeAttribute("registerSuccessMsg"); %>
-        <% request.removeAttribute("registerErrorMsg"); %>
+        <% request.removeAttribute("registerMsg"); %>
         <% request.removeAttribute("user"); %>
-    </c:if>
-    <c:if test="${ not empty requestScope.registerErrorMsg}">
-        <script type="text/javascript">alert("${requestScope.registerErrorMsg}")</script>
-        <% request.removeAttribute("registerSuccessMsg"); %>
-        <% request.removeAttribute("registerErrorMsg"); %>
     </c:if>
 </head>
 <body>

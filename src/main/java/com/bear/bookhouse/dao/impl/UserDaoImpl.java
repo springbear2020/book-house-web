@@ -57,4 +57,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql = "SELECT `score` FROM `t_user` WHERE `id` = ?;";
         return NumberUtil.objectToInteger(getSingleValue(sql, userId), -1);
     }
+
+    @Override
+    public User getUserById(int userId) {
+        String sql = "SELECT `id`,`username`,`password`,`email`,`portrait_path` portraitPath, `score`,`register_date` registerDate FROM `t_user` WHERE `id` = ?;";
+        return getRecord(User.class, sql, userId);
+    }
 }

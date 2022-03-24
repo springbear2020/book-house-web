@@ -59,4 +59,9 @@ public class UserServiceImpl implements UserService {
     public int getUserScore(int userId) {
         return userDao.getUserScoreById(userId);
     }
+
+    @Override
+    public boolean isUserIdExists(int userId) {
+        return userDao.getUserById(userId) == null;
+    }
 }

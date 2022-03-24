@@ -62,4 +62,10 @@ class UserDaoTest {
     public void queryUserScoreByUserId() {
         System.out.println(userDao.getUserScoreById(2));
     }
+
+    @Test
+    public void getUserById() {
+        User userById = userDao.getUserById(2);
+        System.out.println(userById);
+    }
 }

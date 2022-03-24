@@ -25,9 +25,9 @@
         <table class="pure-table">
             <thead>
             <tr>
-                <th>操作类型</th>
-                <th>积分变化</th>
-                <th>操作时间</th>
+                <th>类型</th>
+                <th>积分</th>
+                <th>时间</th>
                 <th>书名</th>
             </tr>
             </thead>

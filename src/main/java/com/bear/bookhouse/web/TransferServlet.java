@@ -43,6 +43,11 @@ public class TransferServlet extends BaseServlet {
      * @throws IOException exception
      */
     protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        /*
+         * 客户端请求：transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}
+         *            transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}
+         * 确保了 userId 和 bookId 不会越界
+         */
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         HttpSession session = req.getSession();
@@ -50,16 +55,12 @@ public class TransferServlet extends BaseServlet {
         // 查询用户积分，积分不足则不准下载
         int userScore = userService.getUserScore(userId);
         if (userScore < 10) {
-            session.setAttribute("scoreMsg", "您的积分不足，暂时不能下载图书哦");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            session.setAttribute("downloadBookMsg", "您的积分不足，暂时不能下载图书哦，快去上传图书获取积分吧");
+            resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
 
         Book book = bookService.getBookById(bookId);
-        if (book == null) {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
-            return;
-        }
         // 读取文件类型
         String mimeType = getServletContext().getMimeType("/file/" + book.getBookPath());
         // 通过响应头通知客户端返回的数据类型
@@ -68,12 +69,10 @@ public class TransferServlet extends BaseServlet {
         resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.fileNameFormat(new Date()) + ".pdf", "UTF-8"));
         // 从磁盘读取想要下载的字节数据到流中
         InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
-        // 将文件字节流数据赋值给响应输出流
+        // 图书下载量增加 1，用户积分减少 10，将文件字节流数据赋值给响应输出流
+        bookService.addBookDownloads(bookId);
+        userService.subUserScore(userId);
         IOUtils.copy(inputStream, resp.getOutputStream());
-
-        // 图书下载量增加 1，用户积分减少 10
-        boolean b1 = bookService.addBookDownloads(bookId);
-        boolean b = userService.subUserScore(userId);
     }
 
     /**
@@ -84,12 +83,16 @@ public class TransferServlet extends BaseServlet {
      */
     protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Record record = new Record();
+        HttpSession session = req.getSession();
+        // 判断表单是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {
+            // 创建用于解析表单的工具类
             DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
             ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
             try {
                 List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
                 for (FileItem fileItem : fileItemList) {
+                    // 普通表单项，获取 name 和 value 属性值
                     if (fileItem.isFormField()) {
                         String name = fileItem.getFieldName();
                         String value = fileItem.getString("UTF-8");
@@ -97,6 +100,7 @@ public class TransferServlet extends BaseServlet {
                             record.setUserId(NumberUtil.objectToInteger(value, -1));
                         }
                     } else {
+                        // type="file" 表单项，获取文件数组
                         String fieldName = fileItem.getFieldName();
                         String uploadFileName = fileItem.getName();
                         if ("book".equals(fieldName)) {
@@ -113,16 +117,15 @@ public class TransferServlet extends BaseServlet {
                 record.setTime(new Date());
                 record.setOperation("上传图书");
                 record.setScoreChange("+10");
-                if (recordService.addRecord(record)) {
-                    req.setAttribute("userUploadMsg", "图书上传成功，感谢您的共享");
-                    // 用户积分增加 10
-                    boolean b = userService.addUserScore(record.getUserId());
+                // 用户积分增加 10 分
+                if (recordService.addRecord(record) && userService.addUserScore(record.getUserId())) {
+                    session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后下发积分到您的账号，感谢您的共享");
                 } else {
-                    req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
+                    session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
                 }
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
-                req.setAttribute("userUploadMsg", "图书文件上传失败，请您稍后重试");
+                req.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
