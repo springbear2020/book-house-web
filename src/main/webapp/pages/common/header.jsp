@@ -25,12 +25,14 @@
         <ul class="top-self">
             <li><a href="" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notifications"></a>
             </li>
-            <li><a href="pages/user/personal.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
+            <li><a href="pages/user/personal.jsp" class="head_img" title="个人详情"><img src="${sessionScope.user.portraitPath}"
                                                                             alt="Personal"></a></li>
-                <%-- // TODO 前端，将 *退出登录* 换成 static/img/logout.jpg 并调样式, wait for you--%>
-            <a href="userServlet?action=logout">
-                <li>退出</li>
-            </a>
+            <li>
+                <a class="logout" href="userServlet?action=logout" title="退出登录">
+                    <img src="static/img/logout.png" alt="退出登录">
+                </a>
+            </li>
+
         </ul>
     </c:if>
     <%-- 用户未登录才显示登录、注册入口 --%>

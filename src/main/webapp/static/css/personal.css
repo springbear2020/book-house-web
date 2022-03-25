@@ -1,0 +1,125 @@
+ul{
+    padding: 0;
+}
+.middle{
+    background-color: #ccffff;
+}
+.middle-container{
+    width: 14rem;
+    margin: 0 auto;
+    padding: 0.2rem 0;
+}
+
+.head-frame{
+    height: 4rem;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+.user-head{
+    float: left;
+    width: 3rem;
+    height: 4rem;
+    /*border: 1px solid blue;*/
+}
+.user-head img{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 0.1rem solid brown;
+    margin: 0.3rem auto;
+}
+.change-head{
+    display: block;
+    width: 1.2rem;
+    height: 0.6rem;
+    padding: 0.15rem 0.15rem 0;
+    background-color: lightskyblue;
+    font-size: 0.3rem;
+    font-weight: bold;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+}
+.change-head:hover{
+    background-color: deepskyblue;
+    color: white;
+}
+.chooseImg{
+    display: none;
+}
+
+.user-data-frame{
+    float: right;
+    width: 10.5rem;
+    height: 4rem;
+    /*border: 1px solid red;*/
+}
+.user-data-top{
+    height: 1.2rem;
+}
+.user-data-top-username{
+    float: left;
+    font-size: 0.6rem;
+    /*font-family: 宋体;*/
+    margin: 0.2rem;
+}
+.user-data-top p{
+    float: left;
+    font-size: 0.3rem;
+    margin: 0.2rem;
+    padding-top: 0.2rem;
+    color: grey;
+}
+.user-data-center{
+    height: 0.6rem;
+    padding-left: 0.2rem;
+}
+.user-data-center ul li{
+    float: left;
+}
+.user-data-center ul li div{
+    float: left;
+    margin: 0 0.1rem;
+}
+.user-data-center ul li .user-data-num{
+    font-size: 0.4rem;
+}
+.user-data-center ul li .user-data-name{
+    color: grey;
+    font-size: 0.3rem;
+    padding-top: 0.1rem;
+}
+.user-data-center ul li .sp{
+    height: 0.5rem;
+    width: 0;
+    border: 0.01rem solid grey;
+}
+.user-data-bottom{
+    /*height: 1.6rem;*/
+    /*width: 9rem;*/
+    /*border: 1px solid blue;*/
+}
+.user-Signature{
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    font-size: 0.3rem;
+    /*color: grey;*/
+}
+.user-Signature-data{
+    display: block;
+    line-height: 0;
+    /*margin: 0.2rem;*/
+    margin-top: 0;
+    padding: 0.2rem;
+    /*padding-top: 0;*/
+    width: 9rem;
+    height: 0.6rem;
+    font-size: 0.23rem;
+    border: 0.05rem solid white;
+    border-radius: 0.2rem;
+}
+.user-Signature-data:hover{
+    background-color: rgba(125,125,125,0.3);
+    /*border: 0.05rem solid white;*/
+}
+

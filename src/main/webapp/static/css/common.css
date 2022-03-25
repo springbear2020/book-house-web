@@ -82,25 +82,23 @@ a{
     content: url("../img/icon_bell_op.png");
 }
 .head_img{
-    /*border: 1px;*/
-    /*margin: -0.4rem 0.2rem 0.4rem;*/
     margin: 0 0.45rem;
     border-radius: 50%;
     overflow: hidden;
-    /*border: 0.1rem solid brown;*/
 }
 .head_img img{
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 50%;
     border: 0.05rem solid seagreen;
-    /*margin-top: -0.05rem;*/
     margin-bottom: 0.15rem;
-    /*border-width: 0.1rem;*/
-    /*-moz-border-bottom-colors: red orange yellow green cyan blue purple;*/
-    /*-moz-border-left-colors: red orange yellow green cyan blue purple;*/
-    /*-moz-border-right-colors: red orange yellow green cyan blue purple;*/
-    /*-moz-border-top-colors: red orange yellow green cyan blue purple;*/
+}
+.logout{
+    margin-left: 0.2rem;
+}
+.logout img{
+    width: 0.6rem;
+    margin-bottom: 0.2rem;
 }
 
 .self-frame{
