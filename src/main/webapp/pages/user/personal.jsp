@@ -73,7 +73,16 @@
                         </label>
                     </li>
                     <li><div class="per-data-name">出生日期</div><label><input name="birth" disabled class="per-data-text" type="date" value="2022-05-14"></label></li>
-                    <li><div class="per-data-name">所在地区</div><label><input name="area" disabled class="per-data-text" type="text" value="地灵殿"></label></li>
+                    <li class="area-whole">
+                        <div class="per-data-name">所在地区</div>
+                        <label><input name="area" disabled class="per-data-text area-data" type="text" value="未选择地区" readonly></label>
+                        <div class="area-frame">
+                            <ul class="area-left">
+                            </ul>
+                            <ul class="area-right">
+                            </ul>
+                        </div>
+                    </li>
                     <li id="per-data-sign"><div class="per-data-name">个性签名</div>
 <%--                        如果只有一行可以用input 如果是多行就得用textarea--%>
                         <label><textarea  name="signature" disabled class="per-data-text per-data-Signature" cols="40" rows="3"

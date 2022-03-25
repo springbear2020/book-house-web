@@ -1,5 +1,6 @@
 ul{
     padding: 0;
+    margin: 0;
 }
 .middle{
     background-color: #ccffff;
@@ -50,6 +51,7 @@ ul{
 /*}*/
 .change-hd{
     position: relative;
+    cursor: pointer;
 }
 .change-hd img{
     display: block;
@@ -68,7 +70,7 @@ ul{
     border-radius: 50%;
     background-color: rgba(120,120,120,0.4);
     text-align: center;
-    line-height: 2.4rem;
+    line-height: 2.5rem;
     font-size: 0.4rem;
     margin-left: 0.5rem;
     margin-top: -3rem;
@@ -81,6 +83,7 @@ ul{
     float: right;
     width: 10.5rem;
     height: 4rem;
+    /*margin-top: -0.2rem;*/
     /*border: 1px solid red;*/
 }
 .user-data-top{
@@ -102,6 +105,7 @@ ul{
 .user-data-center{
     height: 0.6rem;
     padding-left: 0.2rem;
+    /*margin-top: -0.2rem;*/
 }
 .user-data-center ul li{
     float: left;
@@ -147,10 +151,10 @@ ul{
     border: 0.02rem solid #dddddd;
     border-radius: 0.2rem;
 }
-.user-Signature-data:hover{
-    background-color: rgba(125,125,125,0.3);
-    /*border: 0.05rem solid white;*/
-}
+/*.user-Signature-data:hover{*/
+/*    background-color: rgba(125,125,125,0.3);*/
+/*    !*border: 0.05rem solid white;*!*/
+/*}*/
 
 .per-frame{
     background-color: white;
@@ -223,7 +227,7 @@ ul{
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
 }
 .per-data-text:hover{
-    background-color: #dddddd;
+    background-color: #f5f5f5;
 }
 .us-data-text{
     margin-left: 0.3rem;
@@ -232,6 +236,9 @@ ul{
     border-bottom: 0.02rem solid lightskyblue;
     border-radius: 0.1rem;
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+}
+.us-data-text:hover{
+    background-color: #f5f5f5;
 }
 .per-data-sex{
     float: left;
@@ -292,7 +299,7 @@ ul{
     background-color: #aaddff;
     border-radius: 0.2rem;
     padding: 0.05rem 0.1rem;
-    margin: 0.3rem 0 0 3.6rem;
+    margin: 0.6rem 0 0 3.6rem;
     cursor: pointer;
 }
 .change-sure:hover{
@@ -308,7 +315,7 @@ ul{
     background-color: #fff;
     border-radius: 0.2rem;
     padding: 0.05rem 0.1rem;
-    margin: -0.65rem 0rem 0 7.2rem;
+    margin: -0.68rem 0 0 7.2rem;
     text-align: center;
     cursor: pointer;
 }
@@ -321,4 +328,61 @@ ul{
     float: right;
     margin-right: 50%;
     width: 0.6rem;
+    cursor: pointer;
+}
+
+.area-frame{
+    position: absolute;
+    display: none;
+    left: 1.8rem;
+    width: 3.8rem;
+    height: 2rem;
+    padding: 0.1rem 0.1rem 0;
+    background-color: #fff;
+    font-size: 0.25rem;
+    border-radius: 0.2rem;
+    border: 0.02rem solid lightskyblue;
+}
+.area-left{
+    float: left;
+    width: 1.85rem;
+    height: 2rem;
+    /*border-radius: 0.2rem;*/
+    /*border: 0.05rem solid black;*/
+    overflow-y: auto;
+    overflow-x: auto;
+}
+/*.area-left::-webkit-scrollbar{*/
+/*    !*width: 0.1rem;*!*/
+/*    !*height: 0.05rem;*!*/
+/*}*/
+.area-right{
+    float: right;
+    width: 1.85rem;
+    height: 2rem;
+    /*border: 0.05rem solid black;*/
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.area-frame .area-left li{
+    height: 0.3rem;
+    width: 1.7rem;
+    margin-top: 0;
+    padding: 0.1rem 0 0.1rem 0.2rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.area-frame .area-left li:hover{
+    background-color: #f0f0f0;
+}
+.area-frame .area-right li{
+    height: 0.3rem;
+    width: 1.6rem;
+    margin-top: 0;
+    padding: 0.1rem 0 0.1rem 0.2rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.area-frame .area-right li:hover{
+    background-color: #f0f0f0;
 }

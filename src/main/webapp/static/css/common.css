@@ -5,6 +5,8 @@ body{
 
 ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 li {
@@ -38,10 +40,12 @@ a{
 
 .top-center{
     float: left;
+    padding-top: 0.3rem;
 }
 
 .top-right{
     float: right;
+    padding-top: 0.3rem;
     margin-right: 0.2rem;
 }
 
