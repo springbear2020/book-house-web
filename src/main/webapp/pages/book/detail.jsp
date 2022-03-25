@@ -32,8 +32,6 @@
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-    <a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
-    <a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">
@@ -78,6 +76,8 @@
         </div>
     </div>
 </div>
+<a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
+<a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
 <%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>
