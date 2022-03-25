@@ -21,28 +21,57 @@ ul{
     height: 4rem;
     /*border: 1px solid blue;*/
 }
-.user-head img{
+/*原方案 以防万一先留着*/
+/*.user-head img{*/
+/*    display: block;*/
+/*    width: 2rem;*/
+/*    height: 2rem;*/
+/*    border-radius: 50%;*/
+/*    border: 0.1rem solid brown;*/
+/*    margin: 0.3rem auto;*/
+/*}*/
+/*.change-head{*/
+/*    display: block;*/
+/*    width: 1.2rem;*/
+/*    height: 0.6rem;*/
+/*    padding: 0.15rem 0.15rem 0;*/
+/*    background-color: lightskyblue;*/
+/*    font-size: 0.3rem;*/
+/*    font-weight: bold;*/
+/*    border-radius: 0.25rem;*/
+/*    margin: 0 auto;*/
+/*}*/
+/*.change-head:hover{*/
+/*    background-color: deepskyblue;*/
+/*    color: white;*/
+/*}*/
+/*.chooseImg{*/
+/*    display: none;*/
+/*}*/
+.change-hd{
+    position: relative;
+}
+.change-hd img{
     display: block;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     border: 0.1rem solid brown;
-    margin: 0.3rem auto;
+    margin: 0.4rem auto;
 }
-.change-head{
-    display: block;
-    width: 1.2rem;
-    height: 0.6rem;
-    padding: 0.15rem 0.15rem 0;
-    background-color: lightskyblue;
-    font-size: 0.3rem;
-    font-weight: bold;
-    border-radius: 0.25rem;
-    margin: 0 auto;
-}
-.change-head:hover{
-    background-color: deepskyblue;
+.change-hd div{
+    position: absolute;
+    display: none;
     color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(120,120,120,0.4);
+    text-align: center;
+    line-height: 2.4rem;
+    font-size: 0.4rem;
+    margin-left: 0.5rem;
+    margin-top: -3rem;
 }
 .chooseImg{
     display: none;
@@ -115,7 +144,7 @@ ul{
     width: 9rem;
     height: 0.6rem;
     font-size: 0.23rem;
-    border: 0.05rem solid white;
+    border: 0.02rem solid #dddddd;
     border-radius: 0.2rem;
 }
 .user-Signature-data:hover{
@@ -136,6 +165,20 @@ ul{
     /*margin-top: 0.3rem;*/
     padding: 0;
 }
+.per-change-check{
+    float: right;
+    margin-top: -0.8rem;
+    margin-right: 0.6rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.3rem;
+    font-size: 0.3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.per-change-check:hover{
+    background-color: #dddddd;
+    color: blue;
+}
 .per-sp{
     height: 0;
     width: 95%;
@@ -144,6 +187,7 @@ ul{
 }
 .per-container{
     margin: 0.2rem 0.5rem;
+    position: relative;
 }
 .per-container li{
     display: block;
@@ -161,11 +205,32 @@ ul{
     padding: 0.1rem 0;
     margin-left: 0.3rem;
 }
+.us-data-name{
+    float: left;
+    font-size: 0.3rem;
+    width: 1.2rem;
+    height: 0.4rem;
+    color: #808080;
+    padding: 0.1rem 0;
+    margin-left: 0.3rem;
+}
 .per-data-text{
     margin-left: 0.3rem;
     font-size: 0.3rem;
     border: 0;
     border-bottom: 0.02rem solid lightskyblue;
+    border-radius: 0.1rem;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+}
+.per-data-text:hover{
+    background-color: #dddddd;
+}
+.us-data-text{
+    margin-left: 0.3rem;
+    font-size: 0.3rem;
+    border: 0;
+    border-bottom: 0.02rem solid lightskyblue;
+    border-radius: 0.1rem;
     padding: 0.1rem 0.2rem 0.1rem 0.2rem;
 }
 .per-data-sex{
@@ -185,4 +250,75 @@ ul{
 }
 .per-data-Signature{
     height: 1.6rem;
+    font-size: 0.3rem;
+}
+
+
+.data-frame{
+    background-color: white;
+    border-radius: 0.5rem;
+    margin-top: 0.2rem;
+    padding-top: 0.1rem;
+    padding-bottom: 1rem;
+}
+
+.log-btn{
+    font-size: 0.3rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.3rem;
+}
+.log-btn:hover{
+    background-color: #dddddd;
+    color: blue;
+}
+.log-record-li{
+    float: left;
+    margin: 0 0.2rem;
+}
+.log-out-li{
+    float: left;
+}
+.log-out-li div{
+    font-size: 0.25rem;
+    margin-left: 0.57rem;
+}
+
+.change-sure{
+    display: none;
+    width: 1.6rem;
+    font-size: 0.35rem;
+    font-weight: bold;
+    border: 0.05rem solid lightskyblue;
+    background-color: #aaddff;
+    border-radius: 0.2rem;
+    padding: 0.05rem 0.1rem;
+    margin: 0.3rem 0 0 3.6rem;
+    cursor: pointer;
+}
+.change-sure:hover{
+    background-color: deepskyblue;
+    color: white;
+}
+.change-cancel{
+    display: none;
+    width: 1.3rem;
+    font-size: 0.35rem;
+    font-weight: bold;
+    border: 0.05rem solid lightskyblue;
+    background-color: #fff;
+    border-radius: 0.2rem;
+    padding: 0.05rem 0.1rem;
+    margin: -0.65rem 0rem 0 7.2rem;
+    text-align: center;
+    cursor: pointer;
+}
+.change-cancel:hover{
+    background-color: deepskyblue;
+    color: white;
+}
+
+.pas-eye{
+    float: right;
+    margin-right: 50%;
+    width: 0.6rem;
 }
