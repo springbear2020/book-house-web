@@ -23,17 +23,14 @@
     </ul>
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
-            <li><a href="#" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notification"></a>
+            <li><a href="" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notifications"></a>
             </li>
-            <script type="text/javascript">${requestScope.user.portraitPath}</script>
-            <li><a href="pages/user/person.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
-                                                                      alt="Personal"></a></li>
-            <ul class="self-frame">
-                <li>积分:${sessionScope.user.score}</li>
-                <a href="userServlet?action=logout">
-                    <li>退出</li>
-                </a>
-            </ul>
+            <li><a href="pages/user/personal.jsp" class="head_img"><img src="${sessionScope.user.portraitPath}"
+                                                                            alt="Personal"></a></li>
+                <%-- // TODO 前端，将 *退出登录* 换成 static/img/logout.jpg 并调样式, wait for you--%>
+            <a href="userServlet?action=logout">
+                <li>退出</li>
+            </a>
         </ul>
     </c:if>
     <%-- 用户未登录才显示登录、注册入口 --%>
