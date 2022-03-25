@@ -36,11 +36,11 @@ public class BookServlet extends BaseServlet {
 
         if (title != null) {
             // 根据书名查询图书数据，在 bookService 中进行页码范围边界值检查
-            bookPageData = bookService.getBookPageDataThoughTitle(pageNum, 5, title);
+            bookPageData = bookService.getBookPageDataThoughTitle(pageNum, 25, title);
             req.setAttribute("title", title);
         } else {
             // 查询所有图书数据，在 bookService 中进行页码范围边界值检查
-            bookPageData = bookService.getBookPageData(pageNum, 5);
+            bookPageData = bookService.getBookPageData(pageNum, 25);
             req.removeAttribute("title");
         }
 

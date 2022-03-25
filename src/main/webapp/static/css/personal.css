@@ -17,7 +17,7 @@ ul{
 }
 .user-head{
     float: left;
-    width: 3rem;
+    width: 3.5rem;
     height: 4rem;
     /*border: 1px solid blue;*/
 }
@@ -121,5 +121,10 @@ ul{
 .user-Signature-data:hover{
     background-color: rgba(125,125,125,0.3);
     /*border: 0.05rem solid white;*/
+}
+
+.per-frame{
+    background-color: white;
+    border-radius: 0.5rem;
 }
 

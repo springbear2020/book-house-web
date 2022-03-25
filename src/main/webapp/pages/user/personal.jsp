@@ -50,9 +50,17 @@
             </div>
         </div>
         <div class="per-frame">
-            <ul>
-                <li><div>用户昵称</div><label><input></label></li>
-                <li><div>性别</div><label><input></label></li>
+            <ul class="per-container">
+                <li><div>用户昵称</div><label><input type="text" value="古明地恋"></label></li>
+                <li>
+                    <div>性别</div>
+                    <label>
+                        <input type="radio" checked="checked" name="Sex" value="male">
+                        <div>男</div>
+                        <input type="radio" name="Sex" value="female">
+                        <div>女</div>
+                    </label>
+                </li>
                 <li><div>出生日期</div><label><input></label></li>
                 <li><div>所在地区</div><label><input></label></li>
                 <li><div>个性签名</div><label><input></label></li>
@@ -61,14 +69,14 @@
         <div class="data-frame"></div>
     </div>
 </div>
-<img src="${requestScope.user.portraitPath}" alt="">
-<form>
-    用户名：<input type="text" value="${sessionScope.user.username}"><hr/>
-    密  码：<input type="password" value="${sessionScope.user.password}"><hr/>
-    邮  箱：<input type="text" value="${sessionScope.user.email}"><hr/>
-    个人积分：<input type="text" disabled="disabled" value="${sessionScope.user.score}"><hr/>
-    注册时间：<input type="text" disabled="disabled" value="${sessionScope.user.registerDate}"><hr/>
-</form>
+<%--<img src="${requestScope.user.portraitPath}" alt="">--%>
+<%--<form>--%>
+<%--    用户名：<input type="text" value="${sessionScope.user.username}"><hr/>--%>
+<%--    密  码：<input type="password" value="${sessionScope.user.password}"><hr/>--%>
+<%--    邮  箱：<input type="text" value="${sessionScope.user.email}"><hr/>--%>
+<%--    个人积分：<input type="text" disabled="disabled" value="${sessionScope.user.score}"><hr/>--%>
+<%--    注册时间：<input type="text" disabled="disabled" value="${sessionScope.user.registerDate}"><hr/>--%>
+<%--</form>--%>
 <%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>
