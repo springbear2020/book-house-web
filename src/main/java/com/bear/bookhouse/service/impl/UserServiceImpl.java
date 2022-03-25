@@ -14,9 +14,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean saveUser(User user) {
-        if (user == null) {
-            return false;
-        }
         return userDao.saveUser(user) == 1;
     }
 
@@ -46,13 +43,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUserScore(int userId) {
-        return userDao.addUserScoreById(10, userId) == 1;
+    public boolean addUserScore(int addScore, int userId) {
+        return userDao.addUserScoreById(addScore, userId) == 1;
     }
 
     @Override
-    public boolean subUserScore(int userId) {
-        return userDao.subUserScoreByUser(10, userId) == 1;
+    public boolean subUserScore(int subScore, int userId) {
+        return userDao.subUserScoreByUser(subScore, userId) == 1;
     }
 
     @Override

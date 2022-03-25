@@ -1,6 +1,5 @@
 package com.bear.bookhouse.dao;
 
-import com.bear.bookhouse.dao.RecordDao;
 import com.bear.bookhouse.dao.impl.RecordDaoImpl;
 import com.bear.bookhouse.pojo.Record;
 import org.junit.Test;
@@ -8,7 +7,6 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * @author Spring-_-Bear

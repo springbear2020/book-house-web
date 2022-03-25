@@ -1,14 +1,11 @@
 package com.bear.bookhouse.dao;
 
-import com.bear.bookhouse.dao.FavoriteDao;
 import com.bear.bookhouse.dao.impl.FavoriteDaoImpl;
 import com.bear.bookhouse.pojo.Favorite;
-import com.bear.bookhouse.pojo.User;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * @author Spring-_-Bear

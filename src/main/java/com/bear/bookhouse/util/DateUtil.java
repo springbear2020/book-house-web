@@ -22,11 +22,11 @@ public class DateUtil {
     /**
      * 时间格式化为指定格式
      *
-     * @param date 时间
+     * @param date 日期
      * @return 格式化的时间
      */
     public static String timeFormat(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(date);
     }
 }

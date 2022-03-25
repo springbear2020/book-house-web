@@ -3,6 +3,7 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
+import com.bear.bookhouse.util.DataUtil;
 import com.bear.bookhouse.util.WebUtil;
 import com.google.code.kaptcha.Constants;
 
@@ -51,7 +52,7 @@ public class UserServlet extends BaseServlet {
         }
 
         // 用户注册默认积分 100，保存用户信息到数据库
-        user.setScore(100);
+        user.setScore(DataUtil.getRegisterScore());
         user.setRegisterDate(new Date());
         if (userService.saveUser(user)) {
             req.setAttribute("registerSuccessMsg", "恭喜您注册成功！");

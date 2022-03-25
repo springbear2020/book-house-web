@@ -43,9 +43,9 @@ public class NumberUtil {
     }
 
     /**
-     * 随机生成验证码
+     * 随机生成数字验证码
      *
-     * @return 指定位数验证码字符串
+     * @return 指定位数数字验证码字符串
      */
     public static String randomGenerateCode(int len) {
         StringBuilder builder = new StringBuilder();
@@ -57,7 +57,7 @@ public class NumberUtil {
     }
 
     /**
-     * 随机生成一个指定范围的随机数
+     * 随机生成一个指定上限的随机数
      *
      * @param bound 上限
      * @return 随机值

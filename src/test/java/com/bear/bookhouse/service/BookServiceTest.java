@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * @author Spring-_-Bear
@@ -41,7 +40,7 @@ public class BookServiceTest {
 
     @Test
     public void addBookDownloads() {
-        boolean b = bookService.addBookDownloads(2);
+        boolean b = bookService.addBookDownloads(1,2);
         System.out.println(b);
     }
 }

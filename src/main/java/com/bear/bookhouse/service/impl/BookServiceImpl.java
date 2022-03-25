@@ -1,13 +1,11 @@
 package com.bear.bookhouse.service.impl;
 
 import com.bear.bookhouse.dao.BookDao;
-import com.bear.bookhouse.dao.UserDao;
 import com.bear.bookhouse.dao.impl.BookDaoImpl;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
 
-import java.util.List;
 
 
 /**
@@ -33,22 +31,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean addBookDownloads(int bookId) {
-        // 下载量默认自增 1
-        return bookDao.updateBookDownloadsById(1, bookId) == 1;
+    public boolean addBookDownloads(int addDownload,int bookId) {
+        return bookDao.updateBookDownloadsById(addDownload, bookId) == 1;
     }
 
     @Override
-    public boolean addBookFavorites(int bookId) {
-        // 收藏量默认自增 1
-        return bookDao.updateBookFavoritesById(1, bookId) == 1;
+    public boolean addBookFavorites(int addCollection,int bookId) {
+        return bookDao.updateBookFavoritesById(addCollection, bookId) == 1;
     }
 
     @Override
     public Page<Book> getBookPageData(int pageNum, int pageSize) {
         Page<Book> page = new Page<>();
 
-        // 设置每页显示的数量
         page.setPageSize(pageSize);
         // 获取图书总记录数
         int booksRecordTotalCount = bookDao.getBooksTotalCount();

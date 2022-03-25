@@ -52,18 +52,20 @@ public interface BookService {
     Page<Book> getBookPageDataThoughTitle(int pageNum, int pageSize, String title);
 
     /**
-     * 增加图书下载量，默认增加 1
+     * 增加图书下载量
      *
-     * @param bookId 图书 id
+     * @param addDownload 增加的下载量
+     * @param bookId      图书 id
      * @return true - 增加成功
      */
-    boolean addBookDownloads(int bookId);
+    boolean addBookDownloads(int addDownload, int bookId);
 
     /**
-     * 增加图书收藏量，默认增加 1
+     * 增加图书收藏量
      *
-     * @param bookId 图书 id
+     * @param addCollection 增加的图书收藏量
+     * @param bookId        图书 id
      * @return true - 增加成功
      */
-    boolean addBookFavorites(int bookId);
+    boolean addBookFavorites(int addCollection, int bookId);
 }

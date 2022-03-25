@@ -5,6 +5,7 @@ import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
+import com.bear.bookhouse.util.DataUtil;
 import com.bear.bookhouse.util.NumberUtil;
 
 import javax.servlet.ServletException;
@@ -36,11 +37,11 @@ public class BookServlet extends BaseServlet {
 
         if (title != null) {
             // 根据书名查询图书数据，在 bookService 中进行页码范围边界值检查
-            bookPageData = bookService.getBookPageDataThoughTitle(pageNum, 25, title);
+            bookPageData = bookService.getBookPageDataThoughTitle(pageNum, DataUtil.getPageSize(), title);
             req.setAttribute("title", title);
         } else {
             // 查询所有图书数据，在 bookService 中进行页码范围边界值检查
-            bookPageData = bookService.getBookPageData(pageNum, 25);
+            bookPageData = bookService.getBookPageData(pageNum, DataUtil.getPageSize());
             req.removeAttribute("title");
         }
 
@@ -60,7 +61,7 @@ public class BookServlet extends BaseServlet {
      */
     protected void showBookRandomly(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         int booksCount = bookService.getBooksTotalCount();
-        // 在 [1,booksCount] 之间随机生成一个整数并返回，以此作为 id 查询图书信息
+        // 在 [1,booksCount] 之间随机生成一个整数作为 id 查询图书信息
         int bookId = NumberUtil.randomGenerateNumber(booksCount);
         Book book = bookService.getBookById(bookId);
         req.setAttribute("book", book);

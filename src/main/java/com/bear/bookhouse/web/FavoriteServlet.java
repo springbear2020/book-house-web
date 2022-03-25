@@ -48,41 +48,15 @@ public class FavoriteServlet extends BaseServlet {
             return;
         }
         // 保存收藏记录
+        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date()))) {
             // 图书收藏量增加 1
-            if (bookService.addBookFavorites(bookId)) {
+            if (bookService.addBookFavorites(1, bookId)) {
                 session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
             } else {
                 session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
             }
             resp.sendRedirect(req.getHeader("Referer"));
-        }
-    }
-
-    /**
-     * 通过用户 id 查询用户收藏记录
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void showFavorites(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        HttpSession session = req.getSession();
-        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
-        // 验证用户 id 是否合法
-        if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("showFavoritesMsg", "用户 id 不合法！！！");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
-            return;
-        }
-
-        // 从数据库查询用户个人收藏记录
-        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
-        if (userFavorites == null || userFavorites.size() == 0) {
-            session.setAttribute("showFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
-        } else {
-            req.setAttribute("userFavoritesList", userFavorites);
-            req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
         }
     }
 
@@ -98,9 +72,38 @@ public class FavoriteServlet extends BaseServlet {
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         HttpSession session = req.getSession();
 
+        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
         if (!favoriteService.deleteFavorite(userId, bookId)) {
             session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
         }
         resp.sendRedirect(req.getHeader("Referer"));
+    }
+
+
+    /**
+     * 通过用户 id 查询用户收藏记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void showFavorites(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        // 验证用户 id 是否合法
+        if (userId <= 0 || userService.isUserIdExists(userId)) {
+            session.setAttribute("showFavoritesMsg", "用户 id 不合法");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            return;
+        }
+
+        // 从数据库查询用户个人收藏记录
+        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
+        if (userFavorites == null || userFavorites.size() == 0) {
+            session.setAttribute("showFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        } else {
+            req.setAttribute("userFavoritesList", userFavorites);
+            req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
+        }
     }
 }

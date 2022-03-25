@@ -8,6 +8,7 @@ import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
+import com.bear.bookhouse.util.DataUtil;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
 import org.apache.commons.fileupload.FileItem;
@@ -54,7 +55,7 @@ public class TransferServlet extends BaseServlet {
 
         // 查询用户积分，积分不足则不准下载
         int userScore = userService.getUserScore(userId);
-        if (userScore < 10) {
+        if (userScore < DataUtil.getScoreChange()) {
             session.setAttribute("downloadBookMsg", "您的积分不足，暂时不能下载图书哦，快去上传图书获取积分吧");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
@@ -66,13 +67,15 @@ public class TransferServlet extends BaseServlet {
         // 通过响应头通知客户端返回的数据类型
         resp.setContentType(mimeType);
         // 告知客户端数据用于下载
+        // TODO 下载文件名解决中文乱码问题
         resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.fileNameFormat(new Date()) + ".pdf", "UTF-8"));
         // 从磁盘读取想要下载的字节数据到流中
         InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
         // 图书下载量增加 1，用户积分减少 10，添加用户下载记录，将文件字节流数据赋值给响应输出流
-        bookService.addBookDownloads(bookId);
-        userService.subUserScore(userId);
-        recordService.addRecord(new Record(null, userId, "下载图书", "-10", new Date(), book.getTitle()));
+        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
+        bookService.addBookDownloads(1, bookId);
+        userService.subUserScore(10, userId);
+        recordService.addRecord(new Record(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
         IOUtils.copy(inputStream, resp.getOutputStream());
     }
 
@@ -98,35 +101,38 @@ public class TransferServlet extends BaseServlet {
                         String name = fileItem.getFieldName();
                         String value = fileItem.getString("UTF-8");
                         if ("userId".equals(name)) {
+                            // 客户端请求 userId = ${sessionScope.user.id} 确保了 userId 不会越界
                             record.setUserId(NumberUtil.objectToInteger(value, -1));
                         }
                     } else {
                         // type="file" 表单项，获取文件数组
                         String fieldName = fileItem.getFieldName();
-                        String uploadFileName = fileItem.getName();
                         if ("book".equals(fieldName)) {
-                            // 将用户上传的图书文件写入本地磁盘
-                            fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
-                            record.setTitle(uploadFileName);
+                            // 将用户上传的图书文件写入本地磁盘，文件名为用户名加当前时间加 book.pdf
+                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + record.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-book.pdf"));
+                            // 设置书名
+                            record.setTitle(fileItem.getName());
                         } else if ("cover".equals(fieldName)) {
-                            // 将用户上传的图书封面文件写入本地磁盘
-                            fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/upload/" + DateUtil.fileNameFormat(new Date()) + uploadFileName));
+                            // 将用户上传的封面文件写入本地磁盘，文件名为用户名加当前时间加 cover.png
+                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + record.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-cover.png"));
                         }
                     }
                 }
 
                 record.setTime(new Date());
                 record.setOperation("上传图书");
-                record.setScoreChange("+10");
-                // 用户积分增加 10 分 TODO 待管理员审核后下发积分
-                if (recordService.addRecord(record) && userService.addUserScore(record.getUserId())) {
+                record.setScoreChange("+" + DataUtil.getScoreChange());
+                // 添加用户下载记录，增加用户积分
+                // TODO 事务机制确保数据一致性，触发器完成对应数据的增减；
+                // TODO 待管理员审核后下发积分
+                if (recordService.addRecord(record) && userService.addUserScore(DataUtil.getScoreChange(), record.getUserId())) {
                     session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后下发积分到您的账号，感谢您的共享");
                 } else {
                     session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
                 }
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
-                req.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
+                session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }

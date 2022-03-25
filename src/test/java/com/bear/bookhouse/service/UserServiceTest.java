@@ -1,12 +1,9 @@
 package com.bear.bookhouse.service;
 
-import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import org.junit.Test;
 
-import java.util.Random;
 
-import static org.junit.Assert.*;
 
 /**
  * @author Spring-_-Bear
@@ -19,5 +16,11 @@ public class UserServiceTest {
     public void getUserScore() {
         int userScore = userService.getUserScore(2);
         System.out.println(userScore);
+    }
+
+    @Test
+    public void subUserScore() {
+        boolean b = userService.subUserScore(10,2);
+        System.out.println(b);
     }
 }

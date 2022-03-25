@@ -1,12 +1,15 @@
 package com.bear.bookhouse.util;
 
 
+import org.junit.Test;
+
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/15 17:25
  */
 public class EmailUtilTest {
-    public static void main(String[] args) {
+    @Test
+    public void sendEmail() {
         try {
             EmailUtil instance = EmailUtil.getInstance();
             instance.sendEmail("springbear2020@163.com");

@@ -68,6 +68,7 @@ public interface UserService {
 
     /**
      * 通过邮箱查询用户信息
+     *
      * @param email 邮箱
      * @return User or null
      */
@@ -76,18 +77,20 @@ public interface UserService {
     /**
      * 增加用户积分，默认增加 10 分
      *
-     * @param userId 用户 id
+     * @param addScore 增加的分数
+     * @param userId   用户 id
      * @return true - 增加成功
      */
-    boolean addUserScore(int userId);
+    boolean addUserScore(int addScore, int userId);
 
     /**
      * 减少用户积分，默认减少 10 分
      *
-     * @param userId 用户 id
+     * @param subScore 减少的分数
+     * @param userId   用户 id
      * @return true - 减少成功
      */
-    boolean subUserScore(int userId);
+    boolean subUserScore(int subScore, int userId);
 
     /**
      * 查询用户积分

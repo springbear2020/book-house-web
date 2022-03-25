@@ -1,10 +1,8 @@
 package com.bear.bookhouse.web;
 
-import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.EmailUtil;
-import com.bear.bookhouse.util.NumberUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -33,12 +33,12 @@ public class RecordServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("showRecordMsg", "用户 id 不合法！！！");
+            session.setAttribute("showRecordMsg", "用户 id 不合法");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
         // 查询用户个人图书下载和上传记录
-        List<Record> recordList = recordService.getRecord(userId);
+        List<Record> recordList = recordService.listRecord(userId);
         if (recordList == null || recordList.size() == 0) {
             session.setAttribute("showRecordMsg", "暂无记录，快去下载或上传图书吧");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
