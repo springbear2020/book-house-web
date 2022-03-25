@@ -50,21 +50,28 @@
             </div>
         </div>
         <div class="per-frame">
-            <ul class="per-container">
-                <li><div>用户昵称</div><label><input type="text" value="古明地恋"></label></li>
-                <li>
-                    <div>性别</div>
-                    <label>
-                        <input type="radio" checked="checked" name="Sex" value="male">
-                        <div>男</div>
-                        <input type="radio" name="Sex" value="female">
-                        <div>女</div>
-                    </label>
-                </li>
-                <li><div>出生日期</div><label><input></label></li>
-                <li><div>所在地区</div><label><input></label></li>
-                <li><div>个性签名</div><label><input></label></li>
-            </ul>
+            <h1 class="per-title">个人信息</h1>
+            <div class="per-sp"></div>
+            <form>
+                <ul class="per-container">
+                    <li><div class="per-data-name">用户昵称</div><label><input class="per-data-text" type="text" value="古明地恋"></label></li>
+                    <li>
+                        <div class="per-data-name">性别</div>
+                        <label>
+                            <input type="radio" checked="checked" name="Sex" value="male" class="per-data-sex sex-b">
+                            <div class="per-data-sex">男</div>
+                            <input type="radio" name="Sex" value="female" class="per-data-sex sex-b">
+                            <div class="per-data-sex">女</div>
+                        </label>
+                    </li>
+                    <li><div class="per-data-name">出生日期</div><label><input class="per-data-text" type="date" value="2022-05-14"></label></li>
+                    <li><div class="per-data-name">所在地区</div><label><input class="per-data-text" type="text"></label></li>
+                    <li id="per-data-sign"><div class="per-data-name">个性签名</div>
+<%--                        如果只有一行可以用input 如果是多行就得用textarea--%>
+                        <label><textarea class="per-data-text per-data-Signature" cols="40" rows="3" autocomplete="off" style="resize:none"></textarea></label>
+                    </li>
+                </ul>
+            </form>
         </div>
         <div class="data-frame"></div>
     </div>

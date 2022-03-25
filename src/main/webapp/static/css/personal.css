@@ -126,5 +126,63 @@ ul{
 .per-frame{
     background-color: white;
     border-radius: 0.5rem;
+    margin-top: 0.2rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.5rem;
 }
-
+.per-title{
+    font-size: 0.4rem;
+    margin-left: 0.8rem;
+    /*margin-top: 0.3rem;*/
+    padding: 0;
+}
+.per-sp{
+    height: 0;
+    width: 95%;
+    margin: 0 auto;
+    border: 0.02rem solid grey;
+}
+.per-container{
+    margin: 0.2rem 0.5rem;
+}
+.per-container li{
+    display: block;
+    height: 0.8rem;
+    /*width: 9rem;*/
+    /*background-color: #4ea4dc;*/
+    margin-top: 0.2rem;
+}
+.per-data-name{
+    float: left;
+    font-size: 0.3rem;
+    width: 1.2rem;
+    height: 0.4rem;
+    color: #808080;
+    padding: 0.1rem 0;
+    margin-left: 0.3rem;
+}
+.per-data-text{
+    margin-left: 0.3rem;
+    font-size: 0.3rem;
+    border: 0;
+    border-bottom: 0.02rem solid lightskyblue;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+}
+.per-data-sex{
+    float: left;
+    /*margin-left: 0.3rem;*/
+    font-size: 0.3rem;
+    margin-top: 0.1rem;
+    /*padding-top: 0.1rem;*/
+}
+.sex-b{
+    margin-top: 0.2rem;
+    margin-left: 0.4rem;
+    margin-right: 0.1rem;
+}
+#per-data-sign{
+    height: 1.6rem;
+}
+.per-data-Signature{
+    height: 1.6rem;
+}
