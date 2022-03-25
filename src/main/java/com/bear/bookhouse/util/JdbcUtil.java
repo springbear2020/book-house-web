@@ -16,7 +16,8 @@ import java.util.Properties;
  * @datetime 2022/3/16 18:56
  */
 public class JdbcUtil {
-    static DataSource dataSource;
+    private static int connections = 0;
+    private static DataSource dataSource;
 
     // 静态代码块从配置文件读取配置信息
     static {
@@ -38,6 +39,7 @@ public class JdbcUtil {
      * @throws SQLException exception
      */
     public static Connection getConnection() throws SQLException {
+        System.out.println("Database connections：" + (++connections));
         return dataSource.getConnection();
     }
 

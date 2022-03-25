@@ -50,6 +50,7 @@ public class TransferServlet extends BaseServlet {
          * 确保了 userId 和 bookId 不会越界
          */
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
+        // TODO 修改 Servlet 中 userId 直接从 session 域中获取，减少对应 jsp 页面中的请求参数
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         HttpSession session = req.getSession();
 
