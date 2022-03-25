@@ -17,14 +17,17 @@
 
     <%-- 根据 request 域中的 userInfo 信息显示用户性别 --%>
     <script type="text/javascript">
-        let $sex = "${requestScope.userInfo.sex}";
-        if ($sex === "男") {
-            $("input:radio:first").attr("checked", 'checked');
-        } else if ($sex === "女") {
-            $(".sex-female").attr("checked", 'checked');
-        } else {
-            $(".sex-secret").attr("checked", 'checked');
-        }
+        $(function (){
+            let $sex = "${requestScope.userInfo.sex}";
+            if ($sex === "男") {
+                // console.log($(".sex-male"));
+                $(".sex-male").attr("checked", true);
+            } else if ($sex === "女") {
+                $(".sex-female").attr("checked", 'checked');
+            } else {
+                $(".sex-secret").attr("checked", 'checked');
+            }
+        })
     </script>
 </head>
 <body>
