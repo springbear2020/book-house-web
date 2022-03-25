@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
@@ -41,9 +42,8 @@ public class TransferServlet extends BaseServlet {
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
-     * @throws IOException exception
      */
-    protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
         /*
          * 客户端请求：transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}
          *            transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}
@@ -57,7 +57,11 @@ public class TransferServlet extends BaseServlet {
         int userScore = userService.getUserScore(userId);
         if (userScore < DataUtil.getScoreChange()) {
             session.setAttribute("downloadBookMsg", "您的积分不足，暂时不能下载图书哦，快去上传图书获取积分吧");
-            resp.sendRedirect(req.getHeader("Referer"));
+            try {
+                resp.sendRedirect(req.getHeader("Referer"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return;
         }
 
@@ -67,16 +71,19 @@ public class TransferServlet extends BaseServlet {
         // 通过响应头通知客户端返回的数据类型
         resp.setContentType(mimeType);
         // 告知客户端数据用于下载
-        // TODO 下载文件名解决中文乱码问题
-        resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.fileNameFormat(new Date()) + ".pdf", "UTF-8"));
+        resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(book.getTitle() + ".pdf", "UTF-8"));
         // 从磁盘读取想要下载的字节数据到流中
         InputStream inputStream = getServletContext().getResourceAsStream("/" + book.getBookPath());
-        // 图书下载量增加 1，用户积分减少 10，添加用户下载记录，将文件字节流数据赋值给响应输出流
-        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
-        bookService.addBookDownloads(1, bookId);
-        userService.subUserScore(10, userId);
-        recordService.addRecord(new Record(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
-        IOUtils.copy(inputStream, resp.getOutputStream());
+        try {
+            // 复制流中数据到响应输出流，复制出错则抛出异常
+            IOUtils.copy(inputStream, resp.getOutputStream());
+            // 添加图书下载量、减少用户积分、添加用户图书下载记录
+            bookService.addBookDownloads(1, bookId);
+            userService.subUserScore(DataUtil.getScoreChange(), userId);
+            recordService.addRecord(new Record(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -86,7 +93,7 @@ public class TransferServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Record record = new Record();
+        Record record = new Record(null, null, "上传图书", "+" + DataUtil.getScoreChange(), new Date(), null);
         HttpSession session = req.getSession();
         // 判断表单是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {
@@ -119,14 +126,10 @@ public class TransferServlet extends BaseServlet {
                     }
                 }
 
-                record.setTime(new Date());
-                record.setOperation("上传图书");
-                record.setScoreChange("+" + DataUtil.getScoreChange());
-                // 添加用户下载记录，增加用户积分
-                // TODO 事务机制确保数据一致性，触发器完成对应数据的增减；
                 // TODO 待管理员审核后下发积分
+                // 添加用户下载记录、增加用户积分
                 if (recordService.addRecord(record) && userService.addUserScore(DataUtil.getScoreChange(), record.getUserId())) {
-                    session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后下发积分到您的账号，感谢您的共享");
+                    session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
                 } else {
                     session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
                 }

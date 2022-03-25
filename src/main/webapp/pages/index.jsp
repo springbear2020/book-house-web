@@ -64,9 +64,10 @@
         <c:forEach items="${requestScope.bookPageData.pageData}" var="book">
             <div class="one-book">
                 <div class="thumbnail">
-                    <a href="bookServlet?action=showBookDetails&bookId=${book.id}" target="_self"><img class="img-books"
-                                                                                                       src="${book.coverPath}"
-                                                                                                       alt="图片加载失败"></a>
+                    <a href="bookServlet?action=showBookDetails&bookId=${book.id}" target="_blank"><img
+                            class="img-books"
+                            src="${book.coverPath}"
+                            alt="图片加载失败"></a>
                     <div class="caption">
                         <div><span class="book-id">${book.id}</span></div>
                         <div class="bk-t"><h5 class="book-title">《${book.title}》</h5></div>

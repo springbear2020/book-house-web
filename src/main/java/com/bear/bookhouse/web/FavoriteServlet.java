@@ -47,17 +47,13 @@ public class FavoriteServlet extends BaseServlet {
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
-        // 保存收藏记录
-        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
-        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date()))) {
-            // 图书收藏量增加 1
-            if (bookService.addBookFavorites(1, bookId)) {
-                session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
-            } else {
-                session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
-            }
-            resp.sendRedirect(req.getHeader("Referer"));
+        // 保存收藏记录、增加图书收藏量
+        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(1, bookId)) {
+            session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
+        } else {
+            session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
         }
+        resp.sendRedirect(req.getHeader("Referer"));
     }
 
     /**
@@ -72,7 +68,6 @@ public class FavoriteServlet extends BaseServlet {
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         HttpSession session = req.getSession();
 
-        // TODO 事务机制确保数据一致性，触发器完成对应数据的增减
         if (!favoriteService.deleteFavorite(userId, bookId)) {
             session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
         }
