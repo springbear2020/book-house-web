@@ -17,13 +17,13 @@ window.onload = function () {
 
     // 用户名或密码为空则不允许提交表单
     $("#loginBtn").click(function () {
-        let usernameOrEmail = $(".login-username").val();
-        let password = $(".login-password").val();
-        if (usernameOrEmail.length === 0) {
+        let $usernameOrEmail = $(".login-username").val();
+        let $password = $(".login-password").val();
+        if ($usernameOrEmail.length === 0) {
             alert("用户名不允许为空")
             return false;
         }
-        if (password.length === 0) {
+        if ($password.length === 0) {
             alert("密码不允许为空")
             return false;
         }

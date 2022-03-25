@@ -30,7 +30,6 @@
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
         <%-- 用户上传图书表单 --%>
-        <%--        // TODO 写一个 js 管控文件选中状态，没选中文件则阻止表单提交 --%>
         <form action="transferServlet?action=uploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
             <div class="bookFile upload-label"><label class="bookFile-true"><span>上传图书</span>
@@ -48,10 +47,10 @@
                 </div>
                 <div class="img-border">
                     <div>封&nbsp;面</div>
-                    <img class="bookCover-img" alt="封面加载失败" src="">
+                    <img class="bookCover-img" alt="" src="">
                 </div>
             </div>
-            <label><input type="submit" value="立即上传" class="upload-btn"></label>
+            <label><input type="submit" value="立即上传" class="upload-btn" id="userUploadBook"></label>
         </form>
     </div>
 </div>
