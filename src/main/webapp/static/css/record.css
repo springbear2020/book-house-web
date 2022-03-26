@@ -21,8 +21,22 @@ td,th {
     padding: 0.4rem 0;
 }
 .middle-container{
-    width: 10rem;
+    width: 12rem;
     margin: 0 auto;
+}
+
+.table-choose{
+    display: -webkit-flex;
+    background-color: white;
+    font-size: 0.3rem;
+    font-weight: bold;
+    height: 0.6rem;
+}
+.choose-li{
+    display: flex;
+    width: 10rem;
+    padding: 0.1rem;
+    border: 0.02rem solid grey;
 }
 .pure-table {
     border-collapse: collapse;
