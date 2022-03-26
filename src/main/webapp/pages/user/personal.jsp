@@ -43,16 +43,17 @@
     <div class="middle-container">
         <div class="head-frame">
             <div class="user-head">
-                <label class="change-hd">
-                    <img src="${sessionScope.user.portraitPath}" alt="头像加载失败">
-                    <div>更换头像</div>
-                    <%-- 更换头像表单 --%>
-                    <form action="transferServlet?action=uploadPortrait&userId=${sessionScope.user.id}" method="post" enctype="multipart/form-data">
+                <form action="transferServlet?action=uploadPortrait&userId=${sessionScope.user.id}" method="post" enctype="multipart/form-data">
+                    <label class="change-hd">
+                        <img src="${sessionScope.user.portraitPath}" alt="头像加载失败">
+                        <div>更换头像</div>
+                        <%-- 更换头像表单 --%>
                         <input type="file" name="head_img" accept="image/jpeg,image/png" class="chooseImg"
                                style="opacity: 0">
-                        <button type="submit" class="updatePortraitBtn">确认更换</button>
-                    </form>
-                </label>
+                    </label>
+                    <button type="submit" class="updatePortraitBtn">确认更换</button>
+                </form>
+
             </div>
             <div class="user-data-frame">
                 <div class="user-data-top">
@@ -161,7 +162,7 @@
                     <li class="log-record-li"><a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}"
                                                  class="log-record log-btn">登录记录</a></li>
                     <li class="log-out-li"><a class="log-out log-btn">账号注销</a></li>
-                    <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-out log-btn">修改密码</a></li>
+                    <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-btn">修改密码</a></li>
                 </ul>
             </form>
         </div>

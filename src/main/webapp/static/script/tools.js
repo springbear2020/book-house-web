@@ -65,6 +65,13 @@ $(function () {
         $('.self-frame').css('display', 'none');
     })
 
+    $('.bell-fa').mouseover(function (){
+        $('.bell-frame').css('display','block');
+    })
+    $('.bell-fa').mouseleave(function (){
+        $('.bell-frame').css('display','none');
+    })
+
 });
 
 // 让提示信息滑动入场并自动退场的函数

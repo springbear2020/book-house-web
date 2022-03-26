@@ -212,5 +212,12 @@ $(function () {
             }
         });
     });
+
+    $(".log-out").mouseover(function () {
+        $(".log-out").html("Not allowed")
+    });
+    $(".log-out").mouseleave(function (){
+        $(".log-out").html("账号注销")
+    })
 });
 

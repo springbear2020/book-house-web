@@ -22,7 +22,17 @@
     </ul>
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
-            <li><a href="" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notifications"></a>
+            <li class="bell-fa"><a href="" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notifications"></a>
+                <div class="bell-frame">
+                    <ul class="bell-ul">
+                        <li>我也不知道可以塞多少字</li>
+                        <li>刻师傅</li>
+                        <li>心海</li>
+                        <li>甘雨</li>
+                        <li>胡桃</li>
+                        <li>八重神子</li>
+                    </ul>
+                </div>
             </li>
             <li><a href="userInfoServlet?action=showPersonal" class="head_img" title="个人信息"><img src="${sessionScope.user.portraitPath}"
                                                                             alt="Personal"></a></li>
