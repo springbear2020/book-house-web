@@ -147,3 +147,24 @@ a{
     /*animation:myFirst 5s linear alternate;*/
 }
 
+
+.bell-frame{
+    display: none;
+    position: absolute;
+    width: 4rem;
+    height: 2rem;
+    font-size:0.2rem;
+    /*margin: 0;*/
+    margin-left: -1.5rem;
+    margin-top: -0.1rem;
+    border: 0.02rem solid black;
+    background-color: rgba(120,120,120,0.5);
+    overflow-y: auto;
+}
+.bell-ul li{
+    display: block;
+    padding: 0.1rem 0.2rem;
+}
+.bell-ul li:hover{
+    background-color: #f5f5f5;
+}

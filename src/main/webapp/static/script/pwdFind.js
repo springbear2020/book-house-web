@@ -163,7 +163,4 @@ $(function () {
         return true;
     });
 
-    $(".log-out").mouseover(function () {
-        $(".log-out").val("Not allowed")
-    });
 });
