@@ -28,6 +28,7 @@
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
+<%@include file="/pages/common/notice.jsp" %>
 <div class="middle">
     <div class="frame-register">
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
