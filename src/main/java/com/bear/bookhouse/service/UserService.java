@@ -107,4 +107,21 @@ public interface UserService {
      * @return true - 已存在
      */
     boolean isUserIdExists(int userId);
+
+    /**
+     * 更新用户头像
+     *
+     * @param userId       用户 id
+     * @param portraitPath 用户头像路径
+     * @return true - 更新成功
+     */
+    boolean updatePortrait(String portraitPath, int userId);
+
+    /**
+     * 通过用户 id 查询用户
+     *
+     * @param userId 用户 id
+     * @return User or null
+     */
+    User getUserById(int userId);
 }

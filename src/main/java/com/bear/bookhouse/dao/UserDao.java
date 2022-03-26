@@ -91,4 +91,13 @@ public interface UserDao {
      * @return User or null
      */
     User getUserById(int userId);
+
+    /**
+     * 通过用户 id 更新用户头像保存路径
+     *
+     * @param userId       用户 id
+     * @param portraitPath 头像路径
+     * @return 1 - 更新成功
+     */
+    int updatePortraitByUserId(String portraitPath, int userId);
 }

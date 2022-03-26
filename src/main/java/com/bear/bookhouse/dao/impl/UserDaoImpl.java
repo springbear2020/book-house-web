@@ -69,4 +69,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql = "SELECT `id`,`username`,`password`,`email`,`portrait_path` portraitPath, `score`,`register_date` registerDate FROM `t_user` WHERE `id` = ?;";
         return getRecord(User.class, sql, userId);
     }
+
+    @Override
+    public int updatePortraitByUserId(String portraitPath, int userId) {
+        String sql = "UPDATE `t_user` SET `portrait_path` = ? WHERE `id` = ?";
+        return update(sql, portraitPath, userId);
+    }
 }

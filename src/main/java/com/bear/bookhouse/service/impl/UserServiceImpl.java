@@ -71,4 +71,14 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         return userDao.getUserByEmail(email);
     }
+
+    @Override
+    public boolean updatePortrait(String portraitPath, int userId) {
+        return userDao.updatePortraitByUserId(portraitPath, userId) == 1;
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        return userDao.getUserById(userId);
+    }
 }

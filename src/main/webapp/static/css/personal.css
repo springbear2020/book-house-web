@@ -398,3 +398,7 @@ ul{
 .area-frame .area-right li:hover{
     background-color: #f0f0f0;
 }
+
+.updatePortraitBtn{
+    display: none;
+}

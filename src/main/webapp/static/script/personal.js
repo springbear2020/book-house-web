@@ -7,6 +7,7 @@ $(function () {
         let src = window.URL.createObjectURL(this.files[0]);
         // 修改头像的图片
         $img.attr('src', src);
+        $(".updatePortraitBtn").css('display', 'block' );
     })
     // 头像的鼠标移入事件
     $imgTrue.mouseover(function () {
@@ -202,14 +203,12 @@ $(function () {
     // 监听表单内容是否变化
     $(function () {
         let initData = $("form").serialize();
-        console.log(initData);
         $("input").change(function () {
             let jsonFormCurr = $("form").serialize();
-            console.log(jsonFormCurr)
             if (jsonFormCurr !== initData) {
-                $("button[type='submit']").removeAttr("disabled");
+                $(".per-change-check").removeAttr("disabled");
             } else {
-                $("button[type='submit']").attr("disabled", "");
+                $(".per-change-check").attr("disabled", "");
             }
         });
     });

@@ -30,10 +30,11 @@ public class UserInfoServlet extends BaseServlet {
      */
     protected void showPersonal(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
+        HttpSession session = req.getSession();
         // 从域中获取的用户 id 确保了 id 不会非法
         int userId = NumberUtil.objectToInteger(user.getId(), -1);
         UserInfo userInfo = userInfoService.getUserInfoByUserId(userId);
-        req.setAttribute("userInfo", userInfo);
+        session.setAttribute("userInfo", userInfo);
         req.getRequestDispatcher("/pages/user/personal.jsp").forward(req, resp);
     }
 

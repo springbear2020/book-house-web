@@ -113,7 +113,7 @@ public class TransferServlet extends BaseServlet {
                             upload.setUserId(NumberUtil.objectToInteger(value, -1));
                         }
                     } else {
-                        // type="file" 表单项，获取文件数组
+                        // type="file" 表单项，获取文件数据
                         String fieldName = fileItem.getFieldName();
                         if ("book".equals(fieldName)) {
                             // 将用户上传的图书文件写入本地磁盘，文件名为用户名加当前时间加 book.pdf
@@ -138,6 +138,41 @@ public class TransferServlet extends BaseServlet {
             } catch (Exception e) {
                 session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 用户上传头像
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void uploadPortrait(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
+        // 判断表单是否为多段格式
+        if (ServletFileUpload.isMultipartContent(req)) {
+            // 创建用于解析表单的工具类
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            try {
+                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
+                for (FileItem fileItem : fileItemList) {
+                    // 非普通表单项即文件表单项，保存到 static/picture/portrait/userId.png
+                    if (!fileItem.isFormField()) {
+                        fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/portrait/" + userId + ".png"));
+                        // 更新用户头像数据库保存路径
+                        userService.updatePortrait("static/picture/portrait/" + userId + ".png", userId);
+                        session.setAttribute("noticeMsg", "头像更新成功");
+                        session.setAttribute("user", userService.getUserById(userId));
+                        req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
+                    }
+                }
+            } catch (Exception e) {
+                session.setAttribute("noticeMsg", "更新头像失败，请稍后重试");
+                req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
