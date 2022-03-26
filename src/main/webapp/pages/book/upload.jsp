@@ -18,10 +18,11 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/upload.js"></script>
 
-    <%-- 用户上传图书提示信息 --%>
-    <c:if test="${not empty sessionScope.uploadBookMsg}">
-        <script type="text/javascript">alert("${sessionScope.uploadBookMsg}")</script>
-        <% session.removeAttribute("uploadBookMsg"); %>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
     </c:if>
 </head>
 <body>

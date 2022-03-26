@@ -46,7 +46,7 @@ public class BookServlet extends BaseServlet {
         }
 
         if (bookPageData == null || bookPageData.getPageData() == null || bookPageData.getPageData().size() == 0) {
-            session.setAttribute("showBooksMsg", "您查询的图书暂无数据");
+            session.setAttribute("noticeMsg", "您查询的图书暂无数据");
         }
 
         req.setAttribute("bookPageData", bookPageData);

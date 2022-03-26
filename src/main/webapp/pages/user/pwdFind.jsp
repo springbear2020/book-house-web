@@ -19,17 +19,11 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
 
-    <%-- 用户修改密码成功提示信息 --%>
-    <c:if test="${ not empty requestScope.updatePwdSuccessMsg}">
-        <div class="success-tips">${requestScope.updatePwdSuccessMsg}</div>
-        <% request.removeAttribute("updatePwdErrorMsg"); %>
-        <% request.removeAttribute("updatePwdSuccessMsg"); %>
-    </c:if>
-    <%-- 用户修改密码提示信息 --%>
-    <c:if test="${ not empty requestScope.updatePasswordMsg}">
-        <script type="text/javascript">alert("${requestScope.updatePasswordMsg}")</script>
-        <% request.removeAttribute("updatePasswordMsg"); %>
-        <% request.removeAttribute("updatePwdSuccessMsg"); %>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
     </c:if>
 </head>
 <body>

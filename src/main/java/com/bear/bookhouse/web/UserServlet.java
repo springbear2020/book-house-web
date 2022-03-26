@@ -48,14 +48,14 @@ public class UserServlet extends BaseServlet {
 
         if (!emailVerifyCode.equalsIgnoreCase(AjaxServlet.getRegisterEmailCode())) {
             req.setAttribute("user", user);
-            req.setAttribute("registerMsg", "邮箱验证码有误");
+            req.setAttribute("noticeMsg", "邮箱验证码有误");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
             req.setAttribute("user", user);
             req.setAttribute("emailCode", emailVerifyCode);
-            req.setAttribute("registerMsg", "图片验证码有误");
+            req.setAttribute("noticeMsg", "图片验证码有误");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
             return;
         }
@@ -64,7 +64,7 @@ public class UserServlet extends BaseServlet {
         user.setScore(DataUtil.getRegisterScore());
         user.setRegisterDate(new Date());
         if (userService.saveUser(user)) {
-            req.setAttribute("registerSuccessMsg", "恭喜您注册成功！");
+            req.setAttribute("noticeMsg", "恭喜您注册成功！");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
@@ -124,12 +124,12 @@ public class UserServlet extends BaseServlet {
 
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(AjaxServlet.getPasswordFindEmailCode())) {
-            req.setAttribute("updatePasswordMsg", "邮箱验证码错误");
+            req.setAttribute("noticeMsg", "邮箱验证码错误");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
         if (userService.updateUserPasswordByEmail(password, email)) {
-            req.setAttribute("updatePwdSuccessMsg", "密码重置成功!");
+            req.setAttribute("noticeMsg", "密码重置成功!");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");

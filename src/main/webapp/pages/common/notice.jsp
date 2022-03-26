@@ -7,5 +7,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div class="notice">
-  喂？听得到吗？我在你身后。
+  ${sessionScope.noticeMsg}
 </div>

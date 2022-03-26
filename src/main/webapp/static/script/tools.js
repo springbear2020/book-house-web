@@ -70,9 +70,9 @@ $(function () {
 // 让提示信息滑动入场并自动退场的函数
 function noticeShow(){
     // 设置滑动入场的动画
-    $('.notice').animate({top:'3rem'});
-    // 设置定时器 让信息在5000毫秒后退场
+    $('.notice').animate({top:'0.3rem'});
+    // 设置定时器 让信息在指定时间后退场
     setTimeout(function (){
         $('.notice').animate({top:'-3rem'});
-    },5000)
+    },2000)
 }

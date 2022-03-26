@@ -57,7 +57,7 @@ public class TransferServlet extends BaseServlet {
         // 查询用户积分，积分不足则不准下载
         int userScore = userService.getUserScore(userId);
         if (userScore < DataUtil.getScoreChange()) {
-            session.setAttribute("downloadBookMsg", "您的积分不足，暂时不能下载图书哦，快去上传图书获取积分吧");
+            session.setAttribute("noticeMsg", "您的积分不足，暂时不能下载图书哦，快去上传图书获取积分吧");
             try {
                 resp.sendRedirect(req.getHeader("Referer"));
             } catch (IOException e) {
@@ -130,13 +130,13 @@ public class TransferServlet extends BaseServlet {
                 // TODO 待管理员审核后下发积分
                 // 添加用户上传记录、增加用户积分
                 if (recordService.saveUpload(upload) && userService.addUserScore(DataUtil.getScoreChange(), upload.getUserId())) {
-                    session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
+                    session.setAttribute("noticeMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
                 } else {
-                    session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
+                    session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
                 }
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
-                session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");
+                session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
                 req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }

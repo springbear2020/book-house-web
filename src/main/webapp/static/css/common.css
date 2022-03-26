@@ -132,8 +132,8 @@ a{
     position: absolute;
     color: green;
     font-weight: bold;
-    font-size: 0.3rem;
-    width: 3rem;
+    font-size: 0.2rem;
+    /*width: 5rem;*/
     /*height: 0.6rem;*/
     top: -3rem;
     z-index: 200;
@@ -141,7 +141,7 @@ a{
     left: 50%;
     margin-left: -1.55rem;
     padding: 0.1rem;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 0 0.3rem black;
     transition: top 1s;
     /*animation:myFirst 5s linear alternate;*/

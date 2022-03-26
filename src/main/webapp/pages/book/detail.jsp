@@ -18,15 +18,11 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/detail.js"></script>
 
-    <%-- 图书添加到收藏夹提示信息 --%>
-    <c:if test="${not empty sessionScope.addFavoriteMsg}">
-        <script type="text/javascript">alert("${sessionScope.addFavoriteMsg}")</script>
-        <% session.removeAttribute("addFavoriteMsg"); %>
-    </c:if>
-    <%-- 下载图书提示信息 --%>
-    <c:if test="${not empty sessionScope.downloadBookMsg}">
-        <script type="text/javascript">alert("${sessionScope.downloadBookMsg}")</script>
-        <% session.removeAttribute("downloadBookMsg"); %>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
     </c:if>
 </head>
 <body>

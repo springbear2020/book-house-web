@@ -13,17 +13,11 @@
     <script type="text/javascript" src="static/script/register.js"></script>
 
 
-    <%-- 用户注册提示信息 --%>
-    <c:if test="${not empty requestScope.registerMsg}">
-        <script type="text/javascript">alert("${requestScope.registerMsg}")</script>
-        <% request.removeAttribute("registerMsg"); %>
-    </c:if>
-    <%-- 用户注册成功提示信息 --%>
-    <c:if test="${ not empty requestScope.registerSuccessMsg}">
-        <div class="success-tips">${requestScope.registerSuccessMsg}</div>
-        <% request.removeAttribute("registerSuccessMsg"); %>
-        <% request.removeAttribute("registerMsg"); %>
-        <% request.removeAttribute("user"); %>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
     </c:if>
 </head>
 <body>

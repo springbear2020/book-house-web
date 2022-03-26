@@ -12,7 +12,6 @@
     <%@include file="/pages/common/base.jsp"%>
     <link rel="stylesheet" type="text/css" href="static/css/404.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
-
 </head>
 <body>
 <div class="notfound-img">

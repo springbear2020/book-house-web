@@ -43,15 +43,15 @@ public class FavoriteServlet extends BaseServlet {
 
         // 查询用户图书收藏记录是否已经存在
         if (favoriteService.isFavoriteExists(userId, bookId)) {
-            session.setAttribute("addFavoriteMsg", "图书收藏记录已存在，不可重复收藏");
+            session.setAttribute("noticeMsg", "图书收藏记录已存在，不可重复收藏");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
         // 保存收藏记录、增加图书收藏量、用户收藏量增加 1
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(1, bookId)) {
-            session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
+            session.setAttribute("noticeMsg", "图书加入收藏夹成功");
         } else {
-            session.setAttribute("addFavoriteMsg", "图书加入收藏夹失败，请稍后重试");
+            session.setAttribute("noticeMsg", "图书加入收藏夹失败，请稍后重试");
         }
         resp.sendRedirect(req.getHeader("Referer"));
     }
@@ -69,7 +69,7 @@ public class FavoriteServlet extends BaseServlet {
         HttpSession session = req.getSession();
 
         if (!favoriteService.deleteFavorite(userId, bookId)) {
-            session.setAttribute("deleteFavoritesMsg", "图书取消收藏失败，请稍后重试");
+            session.setAttribute("noticeMsg", "图书取消收藏失败，请稍后重试");
         }
         resp.sendRedirect(req.getHeader("Referer"));
     }
@@ -86,7 +86,7 @@ public class FavoriteServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("showFavoritesMsg", "用户 id 不合法");
+            session.setAttribute("noticeMsg", "用户 id 不合法");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
@@ -94,7 +94,7 @@ public class FavoriteServlet extends BaseServlet {
         // 从数据库查询用户个人收藏记录
         List<Favorite> userFavorites = favoriteService.getFavorites(userId);
         if (userFavorites == null || userFavorites.size() == 0) {
-            session.setAttribute("showFavoritesMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+            session.setAttribute("noticeMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             req.setAttribute("userFavoritesList", userFavorites);
