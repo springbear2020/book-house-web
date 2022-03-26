@@ -5,7 +5,10 @@ import com.bear.bookhouse.dao.impl.BookDaoImpl;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
+import com.bear.bookhouse.util.NumberUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,12 +34,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean addBookDownloads(int addDownload,int bookId) {
+    public boolean addBookDownloads(int addDownload, int bookId) {
         return bookDao.updateBookDownloadsById(addDownload, bookId) == 1;
     }
 
     @Override
-    public boolean addBookFavorites(int addCollection,int bookId) {
+    public boolean addBookFavorites(int addCollection, int bookId) {
         return bookDao.updateBookFavoritesById(addCollection, bookId) == 1;
     }
 
@@ -67,8 +70,14 @@ public class BookServiceImpl implements BookService {
         }
         page.setPageNum(pageNum);
 
-        // 获取当前页的图书数据
-        page.setPageData(bookDao.listBooksByBeginAndOffset((pageNum - 1) * pageSize, pageSize));
+        // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以达到随机展示图书
+        List<Book> bookList = new ArrayList<>();
+        Integer[] integers = NumberUtil.generateRandomNumbersInBound(pageSize, booksRecordTotalCount);
+        for (Integer bookId : integers) {
+            bookList.add(bookDao.getBookById(bookId));
+        }
+
+        page.setPageData(bookList);
         return page;
     }
 
