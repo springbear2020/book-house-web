@@ -48,8 +48,6 @@ $(function () {
         // 关闭地区锁
         // areaLock = true;
         // 让两个按钮出现
-        console.log('恋恋');
-        console.log($('.change-btn-li')[0]);
         $('.change-btn-li').css('display','block');
     })
     // 取消按钮的点击事件

@@ -22,13 +22,21 @@
 <%@include file="/pages/common/header.jsp"%>
 <div class="middle">
     <div class="middle-container">
+        <ul class="table-choose">
+            <li class="choose-upload choose-li">上传</li>
+            <li class="choose-download choose-li">下载</li>
+            <li class="choose-log choose-li">登录</li>
+        </ul>
+        <c:set var="section"  value="1" />
         <table class="pure-table">
             <thead>
             <tr>
-                <th>类型</th>
-                <th>积分</th>
-                <th>时间</th>
-                <th>书名</th>
+                <c:if test="${section==1}">
+                    <th>类型</th>
+                    <th>积分</th>
+                    <th>时间</th>
+                    <th>书名</th>
+                </c:if>
             </tr>
             </thead>
             <tbody>
