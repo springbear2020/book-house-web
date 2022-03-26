@@ -2,15 +2,11 @@ package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.LoginLog;
 import com.bear.bookhouse.pojo.User;
-import com.bear.bookhouse.pojo.UserInfo;
 import com.bear.bookhouse.service.RecordService;
-import com.bear.bookhouse.service.UserInfoService;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
-import com.bear.bookhouse.service.impl.UserInfoServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
-import com.bear.bookhouse.util.NumberUtil;
 import com.bear.bookhouse.util.WebUtil;
 import com.google.code.kaptcha.Constants;
 
@@ -27,7 +23,6 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private final UserInfoService userInfoService = new UserInfoServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
 
     /**
@@ -136,20 +131,5 @@ public class UserServlet extends BaseServlet {
         } else {
             resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
-    }
-
-    /**
-     * 显示用户个人信息
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void showPersonal(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        // 从域中获取的用户 id 确保了 id 不会非法
-        int userId = NumberUtil.objectToInteger(user.getId(), -1);
-        UserInfo userInfo = userInfoService.getUserInfoByUserId(userId);
-        req.setAttribute("userInfo", userInfo);
-        req.getRequestDispatcher("/pages/user/personal.jsp").forward(req, resp);
     }
 }

@@ -1,3 +1,7 @@
+body{
+    background-image: url("https://pixabay.com/get/g44329b962fab75359ad337c123b5090dd875e84daa59ad3aae3b918a1cf59a957f9f2af60ac45ad6a3884683572049e14b72c341b6863fa44878e850d7df9ea2_1920.jpg");
+}
+
 .img-preview-header{
     width: 100%;
     height: 3rem;
@@ -75,6 +79,7 @@
 }
 .page-img img{
     display: block;
+    width: 60em;
     /*height: 80em;*/
     margin: 0 auto;
 }

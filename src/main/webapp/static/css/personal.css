@@ -292,13 +292,13 @@ ul{
 }
 
 .per-container .change-btn-li{
-    display: none;
+    display: block;
     margin-top: -0.6rem;
     padding-bottom: 0.3rem;
     /*margin-bottom: 0.3rem;*/
 }
 .change-sure{
-    /*display: none;*/
+    display: block;
     float: left;
     width: 1.6rem;
     font-size: 0.35rem;

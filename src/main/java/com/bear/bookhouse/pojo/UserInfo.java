@@ -22,7 +22,7 @@ public class UserInfo {
    public UserInfo() {
    }
 
-   public UserInfo(Integer id, Integer userId, String nickname, String sex, Date birth, String location, String signature, Integer collections, Integer uploads, Integer downloads, Date lastUpdateTime) {
+   public UserInfo(Integer id, Integer userId, String nickname, String sex, Date birth, String location, String signature, Date lastUpdateTime) {
       this.id = id;
       this.userId = userId;
       this.nickname = nickname;
@@ -30,9 +30,6 @@ public class UserInfo {
       this.birth = birth;
       this.location = location;
       this.signature = signature;
-      this.collections = collections;
-      this.uploads = uploads;
-      this.downloads = downloads;
       this.lastUpdateTime = lastUpdateTime;
    }
 

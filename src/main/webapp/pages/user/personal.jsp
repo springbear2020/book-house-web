@@ -5,6 +5,7 @@
   Time: 21:04
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -29,6 +30,12 @@
             }
         })
     </script>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
+    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
@@ -80,53 +87,48 @@
             </div>
         </div>
         <div class="per-frame">
-            <h1 class="per-title">个人信息</h1>
-            <div class="per-change-check">修改资料</div>
+            <h1 class="per-title">个人资料</h1>
+            <%-- 个人资料修改表单 --%>
+            <form action="userInfoServlet" method="post">
+            <button type="submit" disabled="disabled" class="per-change-check">保存</button>
             <div class="per-sp"></div>
-            <form>
+
+                <input type="hidden" name="action" value="saveUserInfo">
+                <input type="hidden" name="userId" value="${sessionScope.user.id}">
                 <ul class="per-container">
                     <li>
                         <div class="per-data-name">用户昵称</div>
-                        <label><input name="nickName" disabled class="per-data-text" type="text"
-                                      value="${requestScope.userInfo.nickname}"></label>
+                        <label><input name="nickname"  class="per-data-text" type="text" value="${requestScope.userInfo.nickname}"></label>
                     </li>
                     <li>
                         <div class="per-data-name">性别</div>
                         <label>
-                            <input type="radio" name="sex" disabled value="male"
-                                   class="per-data-sex sex-b sex-male">
+                            <input type="radio" name="sex"  value="男" class="per-data-sex sex-b sex-male">
                             <div class="per-data-sex">男</div>
-                            <input type="radio" name="sex" disabled value="female"
-                                   class="per-data-sex sex-b sex-female">
+                            <input type="radio" name="sex"  value="女" class="per-data-sex sex-b sex-female">
                             <div class="per-data-sex">女</div>
-                            <input type="radio" name="sex" disabled value="secret"
-                                   class="per-data-sex sex-b sex-secret">
+                            <input type="radio" name="sex"  value="保密" class="per-data-sex sex-b sex-secret">
                             <div class="per-data-sex">保密</div>
                         </label>
                     </li>
                     <li>
                         <div class="per-data-name">出生日期</div>
-                        <label><input name="birth" disabled class="per-data-text" type="date"
-                                      value="${requestScope.userInfo.birth}"></label></li>
+                        <label><input name="birth"  class="per-data-text" type="date" value="${requestScope.userInfo.birth}"></label></li>
                     <li class="area-whole">
                         <div class="per-data-name">所在地区</div>
-                        <label><input name="area" disabled class="per-data-text area-data" type="text"
-                                      value="${requestScope.userInfo.location}"
-                                      readonly></label>
+                        <label><input name="location"  class="per-data-text area-data" type="text" value="${requestScope.userInfo.location}" readonly></label>
                         <div class="area-frame">
-                            <ul class="area-left">
-                            </ul>
-                            <ul class="area-right">
-                            </ul>
+                            <ul class="area-left"></ul>
+                            <ul class="area-right"></ul>
                         </div>
                     </li>
                     <li id="per-data-sign">
                         <div class="per-data-name">个性签名</div>
-                        <label><input name="signature" disabled type="text" maxlength="40" class="per-data-text per-data-Signature" value="${requestScope.userInfo.signature}"></label>
+                        <label><input name="signature"  type="text" maxlength="40" class="per-data-text per-data-Signature" value="${requestScope.userInfo.signature}"></label>
                     </li>
-                    <li class="change-btn-li"><button type="submit" class="change-sure">保&nbsp;存</button>
-                        <div class="change-cancel">取&nbsp;消</div></li>
-
+<%--                    <li class="change-btn-li">--%>
+<%--                        <input type="submit" class="change-sure" value="保&nbsp;存">--%>
+<%--                        <div class="change-cancel">取&nbsp;消</div></li>--%>
                 </ul>
             </form>
         </div>
@@ -150,9 +152,9 @@
                         <label><input name="email" class="us-data-text" type="text" disabled
                                       value="${sessionScope.user.email}"></label>
                     </li>
-                    <li class="log-record-li"><a href="#" class="log-record log-btn">登录记录</a></li>
-                    <li class="log-out-li"><a href="#" class="log-out log-btn">账号注销</a>
-                    </li>
+                    <li class="log-record-li"><a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}" class="log-record log-btn">登录记录</a></li>
+                    <li class="log-out-li"><a  class="log-out log-btn">账号注销</a></li>
+                    <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-out log-btn">修改密码</a></li>
                 </ul>
             </form>
         </div>

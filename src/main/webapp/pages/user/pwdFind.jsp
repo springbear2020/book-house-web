@@ -11,7 +11,7 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <title>找回密码</title>
+    <title>用户密码</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/pwdFind.css">
@@ -31,7 +31,7 @@
 <div class="middle">
     <div class="container">
         <ul class="frame-title">
-            <li class="title-pwdFind">忘记密码</li>
+            <li class="title-pwdFind">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</li>
         </ul>
         <div class="pwdFind">
             <%-- 找回密码表单 --%>

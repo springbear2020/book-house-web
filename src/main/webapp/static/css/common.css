@@ -130,7 +130,7 @@ a{
 .notice{
     /*display: none;*/
     position: absolute;
-    color: green;
+    color: blueviolet;
     font-weight: bold;
     font-size: 0.2rem;
     /*width: 5rem;*/
@@ -142,7 +142,7 @@ a{
     margin-left: -1.55rem;
     padding: 0.1rem;
     text-align: left;
-    box-shadow: 0 0 0.3rem black;
+    box-shadow: 0 0 0.5rem purple;
     transition: top 1s;
     /*animation:myFirst 5s linear alternate;*/
 }

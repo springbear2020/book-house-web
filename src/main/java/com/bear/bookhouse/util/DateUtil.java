@@ -1,5 +1,6 @@
 package com.bear.bookhouse.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,5 +29,21 @@ public class DateUtil {
     public static String timeFormat(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(date);
+    }
+
+    /**
+     * 将字符串 String 类型字符串转换为 Date
+     *
+     * @param date 时间字符串
+     * @return Date
+     */
+    public static Date stringFormatDate(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new Date();
+        }
     }
 }

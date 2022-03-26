@@ -60,6 +60,14 @@
         <servlet-name>RecordServlet</servlet-name>
         <url-pattern>/recordServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.web.UserInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserInfoServlet</servlet-name>
+        <url-pattern>/userInfoServlet</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>404</error-code>

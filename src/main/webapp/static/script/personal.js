@@ -1,7 +1,6 @@
 $(function () {
     let $img = $('.change-hd>img');
     let $imgTrue = $('.change-hd');
-    // 上传头像
     // 将上传的头像显示到页面
     $('.chooseImg').on('change', function () {
         // 获取上传的图片的文件路径
@@ -17,7 +16,7 @@ $(function () {
         $imgDiv.css('display', 'none');
     });
 
-    // 神奇的js允许你先调用再定义变量
+    // 神奇的 js 允许你先调用再定义变量
     let $imgDiv = $('.change-hd>div');
 
     let eyeClosed = false;
@@ -36,46 +35,46 @@ $(function () {
     })
 
 
-    let $btnSure = $('.change-sure');
-    let $btnCancel = $('.change-cancel');
+    // let $btnSure = $('.change-sure');
+    // let $btnCancel = $('.change-cancel');
     // 地区锁
     // let areaLock = false;
     // 点击修改资料
-    $('.per-change-check').click(function () {
-        // 让所有输入框都可以被修改
-        $('.per-data-text').attr('disabled', false);
-        $('.per-data-sex').attr('disabled', false);
-        // 关闭地区锁
-        // areaLock = true;
-        // 让两个按钮出现
-        $('.change-btn-li').css('display','block');
-    })
-    // 取消按钮的点击事件
-    $btnCancel.click(function () {
-        // 让所有输入框锁起来
-        $('.per-data-text').attr('disabled', true);
-        $('.per-data-sex').attr('disabled', true);
-        // 打开地区锁
-        // areaLock = false;
-        // 让两个按钮消失
-        $('.change-btn-li').css('display','none');
-    })
-    // 保存按钮的点击事件
-    $btnSure.click(function () {
-        // 让两个按钮消失
-        $('.change-btn-li').css('display','none');
-        // 让所有输入框锁起来
-        $('.per-data-text').attr('disabled', true);
-        $('.per-data-sex').attr('disabled', true);
-        // 打开地区锁
-        // areaLock = false;
-    })
+    // $('.per-change-check').click(function () {
+    //     // 让所有输入框都可以被修改
+    //     $('.per-data-text').attr('disabled', false);
+    //     $('.per-data-sex').attr('disabled', false);
+    //     // 关闭地区锁
+    //     // areaLock = true;
+    //     // 让两个按钮出现
+    //     $('.change-btn-li').css('display', 'block');
+    // })
+    // // 取消按钮的点击事件
+    // $btnCancel.click(function () {
+    //     // 让所有输入框锁起来
+    //     $('.per-data-text').attr('disabled', true);
+    //     $('.per-data-sex').attr('disabled', true);
+    //     // 打开地区锁
+    //     // areaLock = false;
+    //     // 让两个按钮消失
+    //     $('.change-btn-li').css('display','none');
+    // })
+    // // 保存按钮的点击事件
+    // $btnSure.click(function () {
+    //     // 让两个按钮消失
+    //     $('.change-btn-li').css('display','none');
+    //     // 让所有输入框锁起来
+    //     $('.per-data-text').attr('disabled', true);
+    //     $('.per-data-sex').attr('disabled', true);
+    //     // 打开地区锁
+    //     // areaLock = false;
+    // })
 
     // 地区输入框的点击事件
-    $('.area-data').click(function (){
+    $('.area-data').click(function () {
         // if(areaLock){
-            // 让地区的下拉框显示出来
-            $('.area-frame').css('display','block');
+        // 让地区的下拉框显示出来
+        $('.area-frame').css('display', 'block');
         // }
     })
     // 点击地区框以外的地方隐藏下拉框
@@ -96,13 +95,13 @@ $(function () {
 
     let china = {};
 
-    china['北京市'] = ['密云区','延庆区','朝阳区','丰台区','石景山区','海淀区','门头沟区','房山区','通州区','顺义区','昌平区','大兴区','怀柔区','平谷区','东城区','西城区']
+    china['北京市'] = ['密云区', '延庆区', '朝阳区', '丰台区', '石景山区', '海淀区', '门头沟区', '房山区', '通州区', '顺义区', '昌平区', '大兴区', '怀柔区', '平谷区', '东城区', '西城区']
 
-    china['上海市'] = ['黄浦区','徐汇区','长宁区','静安区','普陀区','虹口区','杨浦区','浦东新区','闵行区','宝山区','嘉定区','金山区','松江区','青浦区','奉贤区','崇明区'];
+    china['上海市'] = ['黄浦区', '徐汇区', '长宁区', '静安区', '普陀区', '虹口区', '杨浦区', '浦东新区', '闵行区', '宝山区', '嘉定区', '金山区', '松江区', '青浦区', '奉贤区', '崇明区'];
 
-    china['天津市'] = ['和平区','河东区','河西区','南开区','河北区','红桥区','滨海新区','东丽区','西青区','津南区','北辰区','武清区','宝坻区','宁河区','静海区','蓟州区'];
+    china['天津市'] = ['和平区', '河东区', '河西区', '南开区', '河北区', '红桥区', '滨海新区', '东丽区', '西青区', '津南区', '北辰区', '武清区', '宝坻区', '宁河区', '静海区', '蓟州区'];
 
-    china['重庆市'] = ['万州区', '黔江区', '涪陵区', '渝中区', '大渡口区','江北区','沙坪坝区','九龙坡区','南岸区','北碚区','渝北区','巴南区','长寿区','江津区', '合川区', '永川区', '南川区', '綦江区', '大足区', '铜梁区', '璧山区', '潼南区', '荣昌区','开州区','梁平区','武隆区'];
+    china['重庆市'] = ['万州区', '黔江区', '涪陵区', '渝中区', '大渡口区', '江北区', '沙坪坝区', '九龙坡区', '南岸区', '北碚区', '渝北区', '巴南区', '长寿区', '江津区', '合川区', '永川区', '南川区', '綦江区', '大足区', '铜梁区', '璧山区', '潼南区', '荣昌区', '开州区', '梁平区', '武隆区'];
 
     china['河北省'] = ['石家庄', '唐山市', '邯郸市', '秦皇市岛', '保市定', '张家市口', '承德市', '廊坊市', '沧州市', '衡水市', '邢台市'];
 
@@ -168,37 +167,51 @@ $(function () {
     // 立即执行函数
     // 将省的数据导入地区的左侧选择框
     (function () {
-        for(let i in china){
-            $areaLeft.append('<li class="area-clicked-false">'+i+'</li>');
+        for (let i in china) {
+            $areaLeft.append('<li class="area-clicked-false">' + i + '</li>');
         }
-        $('.area-left>li').click(function (){
+        $('.area-left>li').click(function () {
             // 获取之前所点击的元素
             let $clicked = $('.area-clicked-true');
             // 将js赋给该元素的 背景颜色修改 和 字体颜色修改 去除
-            $clicked.attr('style','');
+            $clicked.attr('style', '');
             // 将该元素重新标记为未点击过
-            $clicked.attr('class','area-clicked-false');
+            $clicked.attr('class', 'area-clicked-false');
             // 修改点击元素的样式
-            $(this).css('background-color','#f0f0f0');
-            $(this).css('color','blue');
+            $(this).css('background-color', '#f0f0f0');
+            $(this).css('color', 'blue');
             // 将所点击的元素标记
-            $(this).attr('class','area-clicked-true');
+            $(this).attr('class', 'area-clicked-true');
             // 清空右侧框的元素
             $areaRight.empty();
             let areaName = $(this).text();
-            for(let j in china[areaName]){
-                $areaRight.append('<li>'+china[areaName][j]+'</li>');
+            for (let j in china[areaName]) {
+                $areaRight.append('<li>' + china[areaName][j] + '</li>');
             }
             // 给框右侧的元素添加点击事件
-            $('.area-right>li').click(function (){
+            $('.area-right>li').click(function () {
                 // 获取省市的值
                 let province = $('.area-clicked-true').text();
                 let city = $(this).text();
                 // 将值赋予文本框
-                $('.area-data').attr('value',province+'/'+city);
+                $('.area-data').attr('value', province + '/' + city);
             })
         })
     })();
 
+    // 监听表单内容是否变化
+    $(function () {
+        let initData = $("form").serialize();
+        console.log(initData);
+        $("input").change(function () {
+            let jsonFormCurr = $("form").serialize();
+            console.log(jsonFormCurr)
+            if (jsonFormCurr !== initData) {
+                $("button[type='submit']").removeAttr("disabled");
+            } else {
+                $("button[type='submit']").attr("disabled", "");
+            }
+        });
+    });
 });
 

@@ -36,7 +36,7 @@ public class RecordServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 id 不合法");
+            session.setAttribute("noticeMsg", "用户 ID 不合法");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
@@ -62,7 +62,7 @@ public class RecordServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 id 不合法");
+            session.setAttribute("noticeMsg", "用户 ID 不合法");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
@@ -88,7 +88,7 @@ public class RecordServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 id 不合法");
+            session.setAttribute("noticeMsg", "用户 ID 不合法");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }

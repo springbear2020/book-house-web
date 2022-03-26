@@ -13,12 +13,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     private final UserInfoDao userInfoDao = new UserInfoImpl();
 
     @Override
-    public boolean saveUserInfo(UserInfo userInfo) {
-        return userInfoDao.saveUserInfo(userInfo) == 1;
+    public UserInfo getUserInfoByUserId(int userId) {
+        return userInfoDao.getUserInfoByUserId(userId);
     }
 
     @Override
-    public UserInfo getUserInfoByUserId(int userId) {
-        return userInfoDao.getUserInfoByUserId(userId);
+    public boolean updateUserInfo(UserInfo userInfo) {
+        return userInfoDao.updateUserInfoByUserId(userInfo) == 1;
     }
 }
