@@ -13,13 +13,13 @@ import java.util.List;
 public class LoginLogDaoImpl extends BaseDao implements LoginLogDao {
     @Override
     public int saveLoginLog(LoginLog loginLog) {
-        String sql = "INSERT INTO `log_user_login`(`user_id`,`username`,`ip`,`location`,`time`) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO `log_login`(`user_id`,`username`,`ip`,`location`,`time`) VALUES (?,?,?,?,?);";
         return update(sql, loginLog.getUserId(), loginLog.getUsername(), loginLog.getIp(), loginLog.getLocation(), loginLog.getTime());
     }
 
     @Override
     public List<LoginLog> listLoginLogsByUserId(int userId) {
-        String sql = "SELECT `id`,`user_id` userId,`username`,`ip`,`location`,`time` FROM `log_user_login` WHERE `user_id` = ?;";
+        String sql = "SELECT `id`,`user_id` userId,`username`,`ip`,`location`,`time` FROM `log_login` WHERE `user_id` = ?;";
         return listRecord(LoginLog.class, sql, userId);
     }
 }

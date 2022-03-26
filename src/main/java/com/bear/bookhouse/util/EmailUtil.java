@@ -16,19 +16,19 @@ public class EmailUtil {
     /**
      * 发件人邮箱账号
      */
-    private static String email;
+    public  static String email;
     /**
      * 发件人邮箱授权码
      */
-    private static String password;
+    public static String password;
     /**
      * 发件人邮箱服务器
      */
-    private static String smtpHost;
+    public static String smtpHost;
     /**
      * 验证码长度
      */
-    private static int codeLen;
+    public static int codeLen;
     /**
      * 验证码
      */
@@ -42,21 +42,8 @@ public class EmailUtil {
      */
     private static final EmailUtil EMAIL_UTIL_OBJ = new EmailUtil();
 
-    // 静态代码块从配置文件读取配置信息
-    static {
-        Properties properties = new Properties();
-        try {
-            InputStream resourceAsStream = EmailUtil.class.getClassLoader().getResourceAsStream("email.properties");
-            properties.load(resourceAsStream);
-            email = properties.getProperty("email");
-            password = properties.getProperty("password");
-            smtpHost = properties.getProperty("smtpHost");
-            codeLen = NumberUtil.objectToInteger(properties.getProperty("codeLen"), 6);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private EmailUtil() {
     }
-
 
     public String getVerifyCode() {
         return verifyCode;
@@ -66,20 +53,31 @@ public class EmailUtil {
         return EMAIL_UTIL_OBJ;
     }
 
-    /**
-     * 配置属性信息
-     */
-    private EmailUtil() {
-        Properties properties = new Properties();
-        // 使用的协议（JavaMail 规范要求）
-        properties.setProperty("mail.transport.protocol", "smtp");
-        // 发件人的邮箱的 SMTP 服务器地址
-        properties.setProperty("mail.smtp.host", smtpHost);
-        // 需要请求认证
-        properties.setProperty("mail.smtp.auth", "true");
-        session = Session.getInstance(properties);
-        // 设置为debug模式, 可以查看详细的发送 log
-        // session.setDebug(true);
+    static {
+        Properties fileProperties = new Properties();
+        try {
+            // 加载配置问价，读取配置信息
+            InputStream resourceAsStream = EmailUtil.class.getClassLoader().getResourceAsStream("email.properties");
+            fileProperties.load(resourceAsStream);
+            email = fileProperties.getProperty("email");
+            password = fileProperties.getProperty("password");
+            smtpHost = fileProperties.getProperty("smtpHost");
+            codeLen = NumberUtil.objectToInteger(fileProperties.getProperty("codeLen"), 6);
+
+            // 配置发送邮件需要的属性信息
+            Properties properties = new Properties();
+            // 使用的协议（JavaMail 规范要求）
+            properties.setProperty("mail.transport.protocol", "smtp");
+            // 发件人的邮箱的 SMTP 服务器地址
+            properties.setProperty("mail.smtp.host", smtpHost);
+            // 需要请求认证
+            properties.setProperty("mail.smtp.auth", "true");
+            session = Session.getInstance(properties);
+            // 设置为debug模式, 可以查看详细的发送
+            // log session.setDebug(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

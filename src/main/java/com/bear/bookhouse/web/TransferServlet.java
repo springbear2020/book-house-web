@@ -1,7 +1,8 @@
 package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.Book;
-import com.bear.bookhouse.pojo.Record;
+import com.bear.bookhouse.pojo.Download;
+import com.bear.bookhouse.pojo.Upload;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
@@ -50,7 +51,6 @@ public class TransferServlet extends BaseServlet {
          * 确保了 userId 和 bookId 不会越界
          */
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
-        // TODO 修改 Servlet 中 userId 直接从 session 域中获取，减少对应 jsp 页面中的请求参数
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), -1);
         HttpSession session = req.getSession();
 
@@ -81,7 +81,7 @@ public class TransferServlet extends BaseServlet {
             // 添加图书下载量、减少用户积分、添加用户图书下载记录
             bookService.addBookDownloads(1, bookId);
             userService.subUserScore(DataUtil.getScoreChange(), userId);
-            recordService.addRecord(new Record(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
+            recordService.saveDownload(new Download(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -94,7 +94,7 @@ public class TransferServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Record record = new Record(null, null, "上传图书", "+" + DataUtil.getScoreChange(), new Date(), null);
+        Upload upload = new Upload(null, null, "上传图书", "+" + DataUtil.getScoreChange(), new Date(), null);
         HttpSession session = req.getSession();
         // 判断表单是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {
@@ -110,26 +110,26 @@ public class TransferServlet extends BaseServlet {
                         String value = fileItem.getString("UTF-8");
                         if ("userId".equals(name)) {
                             // 客户端请求 userId = ${sessionScope.user.id} 确保了 userId 不会越界
-                            record.setUserId(NumberUtil.objectToInteger(value, -1));
+                            upload.setUserId(NumberUtil.objectToInteger(value, -1));
                         }
                     } else {
                         // type="file" 表单项，获取文件数组
                         String fieldName = fileItem.getFieldName();
                         if ("book".equals(fieldName)) {
                             // 将用户上传的图书文件写入本地磁盘，文件名为用户名加当前时间加 book.pdf
-                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + record.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-book.pdf"));
+                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + upload.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-book.pdf"));
                             // 设置书名
-                            record.setTitle(fileItem.getName());
+                            upload.setTitle(fileItem.getName());
                         } else if ("cover".equals(fieldName)) {
                             // 将用户上传的封面文件写入本地磁盘，文件名为用户名加当前时间加 cover.png
-                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + record.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-cover.png"));
+                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + upload.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-cover.png"));
                         }
                     }
                 }
 
                 // TODO 待管理员审核后下发积分
-                // 添加用户下载记录、增加用户积分
-                if (recordService.addRecord(record) && userService.addUserScore(DataUtil.getScoreChange(), record.getUserId())) {
+                // 添加用户上传记录、增加用户积分
+                if (recordService.saveUpload(upload) && userService.addUserScore(DataUtil.getScoreChange(), upload.getUserId())) {
                     session.setAttribute("uploadBookMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
                 } else {
                     session.setAttribute("uploadBookMsg", "图书文件上传失败，请您稍后重试");

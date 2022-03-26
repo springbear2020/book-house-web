@@ -47,7 +47,7 @@ public class FavoriteServlet extends BaseServlet {
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
-        // 保存收藏记录、增加图书收藏量
+        // 保存收藏记录、增加图书收藏量、用户收藏量增加 1
         if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(1, bookId)) {
             session.setAttribute("addFavoriteMsg", "图书加入收藏夹成功");
         } else {

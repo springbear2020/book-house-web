@@ -3,10 +3,8 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.LoginLog;
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.pojo.UserInfo;
-import com.bear.bookhouse.service.LoginLogService;
 import com.bear.bookhouse.service.UserInfoService;
 import com.bear.bookhouse.service.UserService;
-import com.bear.bookhouse.service.impl.LoginLogServiceImpl;
 import com.bear.bookhouse.service.impl.UserInfoServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
@@ -27,7 +25,6 @@ import java.util.Date;
  */
 public class UserServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
-    private final LoginLogService loginLogService = new LoginLogServiceImpl();
     private final UserInfoService userInfoService = new UserInfoServiceImpl();
 
     /**
@@ -99,12 +96,13 @@ public class UserServlet extends BaseServlet {
                 user = userService.getUserByUsername(usernameOrEmail);
             }
             // 用户名密码正确，保存用户登录日志、跳转到主页
-            session.setAttribute("user", user);
-            if (loginLogService.addLoginLog(new LoginLog(null, user.getId(), user.getUsername(), WebUtil.getIpAddress(req), WebUtil.parseIp(WebUtil.getIpAddress(req)), new Date()))) {
-                resp.sendRedirect(req.getContextPath() + "/index.jsp");
-            } else {
-                resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
-            }
+            // TODO 保存登录日志
+//            session.setAttribute("user", user);
+//            if () {
+//                resp.sendRedirect(req.getContextPath() + "/index.jsp");
+//            } else {
+//                resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+//            }
         } else {
             session.setAttribute("loginMsg", "用户名不存在或密码错误");
             resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
