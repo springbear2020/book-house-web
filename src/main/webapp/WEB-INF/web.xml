@@ -68,6 +68,14 @@
         <servlet-name>UserInfoServlet</servlet-name>
         <url-pattern>/userInfoServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.web.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/adminServlet</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>404</error-code>

@@ -7,7 +7,7 @@ $(function () {
         let src = window.URL.createObjectURL(this.files[0]);
         // 修改头像的图片
         $img.attr('src', src);
-        $(".updatePortraitBtn").css('display', 'block' );
+        $(".updatePortraitBtn").css('display', 'block');
     })
     // 头像的鼠标移入事件
     $imgTrue.mouseover(function () {
@@ -92,7 +92,7 @@ $(function () {
         $('.area-frame').css('display', 'none');
     })
 
-    // 地区相关的参数
+    // 地区相关的参数 TODO 增加复核地区参数信息
 
     let china = {};
 
@@ -213,11 +213,11 @@ $(function () {
         });
     });
 
-    let $cancelAccount =  $(".log-out");
+    let $cancelAccount = $(".log-out");
     $cancelAccount.mouseover(function () {
         $(".log-out").html("NOT ALLOWED")
     });
-    $cancelAccount.mouseleave(function (){
+    $cancelAccount.mouseleave(function () {
         $(".log-out").html("账号注销")
     });
 });

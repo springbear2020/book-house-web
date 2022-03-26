@@ -5,7 +5,7 @@
   Time: 12:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,20 +17,52 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
-<img class="bk-img" alt="" src="https://pixabay.com/get/g3bfa979e5a11fbda533f2cbe836b81d9481381a60bcf35c18607fee78a63d34dd48cc1a01c48cccb43740c82026b4647b82a927e6909432e8c99da6c471aae71d20ca9672f3666461b9cf0f0e5677031_1920.jpg">
-<%@include file="/pages/common/title.jsp"%>
+<a href="pages/user/login.jsp" class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></a>
 <main class="img-preview-main">
-<%--    <div>--%>
-        <!-- 用户输入 -->
-        <div class="users-input">
-            <form>
-                <label><input name="username" type="text" placeholder="username" ></label>
-                <label><input name="password" type="text" placeholder="password" ></label>
-                <label><input type="submit" value="login" class="btn"></label>
-            </form>
-        </div>
-    <div class="left"><a href="#"><img src="static/img/left_arrow.png" alt=""></a></div>
-    <div class="right"><a href="#"><img src="static/img/right_arrow.png" alt=""></a></div>
+
+    <!-- 用户输入 -->
+    <div class="users-input">
+
+        <div class="title">Book House</div>
+        <form>
+            <label><input name="username" type="text" placeholder="username"></label>
+            <label><input name="password" type="text" placeholder="password"></label>
+            <label><input type="submit" value="login" class="btn"></label>
+        </form>
+    </div>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/left_arrow.png" alt=""></a>
+    </div>
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/right_arrow.png"
+                                                                              alt=""></a></div>
 </main>
+<table border="1">
+    <tr >
+        <th>ID</th>
+        <th>Views</th>
+        <th>Likes</th>
+        <th>Downloads</th>
+        <th>Collections</th>
+        <th>Comments</th>
+        <th>Condition</th>
+        <th>Tags</th>
+        <th>Link</th>
+        <th>AddTime</th>
+        <th colspan="2">Manage</th>
+    </tr>
+    <tr>
+        <td>${requestScope.pixabay.id}</td>
+        <td>${requestScope.pixabay.views}</td>
+        <td>${requestScope.pixabay.likes}</td>
+        <td>${requestScope.pixabay.downloads}</td>
+        <td>${requestScope.pixabay.collections}</td>
+        <td>${requestScope.pixabay.comments}</td>
+        <td>${requestScope.pixabay.condition}</td>
+        <td>${requestScope.pixabay.tags}</td>
+        <td>${requestScope.pixabay.addTime}</td>
+        <td><a href="${requestScope.pixabay.url}">link</a></td>
+        <td><a href="#">Favorite</a></td>
+        <td><a href="#">Delete</a></td>
+    </tr>
+</table>
 </body>
 </html>

@@ -13,7 +13,8 @@
     </div>
     <ul class="top-center">
         <li><a href="index.jsp" class="example">首页</a></li>
-        <%-- 用户登录后才显示上传、收藏夹、通知、个人等入口 --%>
+        <li><a href="adminServlet?action=showPixabayRandomly" class="example">管理员</a></li>
+    <%-- 用户登录后才显示上传、收藏夹、通知、个人等入口 --%>
         <c:if test="${ not empty sessionScope.user}">
             <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
             <li><a href="favoriteServlet?action=showFavorites&userId=${sessionScope.user.id}" class="example">收藏</a></li>
