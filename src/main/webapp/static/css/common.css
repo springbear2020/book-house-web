@@ -126,6 +126,12 @@ a{
 .self-frame li:hover{
     background-color: #dddddd;
 }
+.title{
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: brown;
+    text-align: center;
+}
 
 .notice{
     /*display: none;*/
