@@ -26,7 +26,7 @@ public class DateUtil {
      * @param date 日期
      * @return 格式化的时间
      */
-    public static String timeFormat(Date date) {
+    public static String datetimeFormat(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(date);
     }
@@ -37,7 +37,7 @@ public class DateUtil {
      * @param date 时间字符串
      * @return Date
      */
-    public static Date stringFormatDate(String date) {
+    public static Date parseStringToDate(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             return dateFormat.parse(date);
@@ -45,5 +45,16 @@ public class DateUtil {
             e.printStackTrace();
             return new Date();
         }
+    }
+
+    /**
+     * 时间格式化为指定格式
+     *
+     * @param date 日期
+     * @return 格式化的时间
+     */
+    public static String timeFormat(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        return dateFormat.format(date);
     }
 }

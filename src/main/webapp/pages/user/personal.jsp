@@ -161,8 +161,8 @@
                     </li>
                     <li class="log-record-li"><a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}"
                                                  class="log-record log-btn">登录记录</a></li>
-                    <li class="log-out-li"><a class="log-out log-btn">账号注销</a></li>
                     <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-btn">修改密码</a></li>
+                    <li class="log-out-li"><a class="log-out log-btn">账号注销</a></li>
                 </ul>
             </form>
         </div>

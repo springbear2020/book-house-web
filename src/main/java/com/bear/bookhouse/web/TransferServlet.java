@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class TransferServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
+    private static final List<String> NOTIFICATIONS = new ArrayList<>();
 
     /**
      * 通过图书 id 下载对应的图书数据
@@ -78,6 +80,8 @@ public class TransferServlet extends BaseServlet {
         try {
             // 复制流中数据到响应输出流，复制出错则抛出异常
             IOUtils.copy(inputStream, resp.getOutputStream());
+            NOTIFICATIONS.add("您刚刚下载了《" + book.getTitle() + "》，积分 -10。" + DateUtil.timeFormat(new Date()));
+            session.setAttribute("notifications", NOTIFICATIONS);
             // 添加图书下载量、减少用户积分、添加用户图书下载记录
             bookService.addBookDownloads(1, bookId);
             userService.subUserScore(DataUtil.getScoreChange(), userId);
@@ -131,6 +135,8 @@ public class TransferServlet extends BaseServlet {
                 // 添加用户上传记录、增加用户积分
                 if (recordService.saveUpload(upload) && userService.addUserScore(DataUtil.getScoreChange(), upload.getUserId())) {
                     session.setAttribute("noticeMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
+                    NOTIFICATIONS.add("您刚刚上传了《" + upload.getTitle() + "》，积分 +10。" + DateUtil.timeFormat(new Date()));
+                    session.setAttribute("notifications", NOTIFICATIONS);
                 } else {
                     session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
                 }
@@ -165,13 +171,13 @@ public class TransferServlet extends BaseServlet {
                         fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/portrait/" + userId + ".png"));
                         // 更新用户头像数据库保存路径
                         userService.updatePortrait("static/picture/portrait/" + userId + ".png", userId);
-                        session.setAttribute("noticeMsg", "头像更新成功");
+                        session.setAttribute("noticeMsg", "头像更换成功");
                         session.setAttribute("user", userService.getUserById(userId));
                         req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
                     }
                 }
             } catch (Exception e) {
-                session.setAttribute("noticeMsg", "更新头像失败，请稍后重试");
+                session.setAttribute("noticeMsg", "头像更换失败，请稍后重试");
                 req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
                 e.printStackTrace();
             }

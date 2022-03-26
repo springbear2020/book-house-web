@@ -46,7 +46,7 @@ body{
     margin: 0.2rem auto;
 }
 .users-input .btn{
-    display: block;
+    display: none;
     width: 1.2rem;
     padding: 0;
     /*padding: 0.05rem;*/

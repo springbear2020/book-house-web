@@ -7,6 +7,7 @@ import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
+import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.WebUtil;
 import com.google.code.kaptcha.Constants;
 
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -118,6 +121,7 @@ public class UserServlet extends BaseServlet {
         String email = req.getParameter("email");
         String emailVerifyCode = req.getParameter("emailVerifyCode");
         String password = req.getParameter("password");
+        HttpSession session = req.getSession();
 
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(AjaxServlet.getPasswordFindEmailCode())) {

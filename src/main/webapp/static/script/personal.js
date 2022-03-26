@@ -213,11 +213,12 @@ $(function () {
         });
     });
 
-    $(".log-out").mouseover(function () {
-        $(".log-out").html("Not allowed")
+    let $cancelAccount =  $(".log-out");
+    $cancelAccount.mouseover(function () {
+        $(".log-out").html("NOT ALLOWED")
     });
-    $(".log-out").mouseleave(function (){
+    $cancelAccount.mouseleave(function (){
         $(".log-out").html("账号注销")
-    })
+    });
 });
 

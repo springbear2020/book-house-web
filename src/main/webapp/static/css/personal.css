@@ -280,6 +280,7 @@ ul{
     padding: 0.1rem 0.2rem;
     border-radius: 0.3rem;
 }
+
 .log-btn:hover{
     background-color: #dddddd;
     color: blue;

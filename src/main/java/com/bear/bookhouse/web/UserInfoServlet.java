@@ -6,7 +6,6 @@ import com.bear.bookhouse.service.UserInfoService;
 import com.bear.bookhouse.service.impl.UserInfoServiceImpl;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
-import com.bear.bookhouse.util.WebUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +51,7 @@ public class UserInfoServlet extends BaseServlet {
         String birth = req.getParameter("birth");
         String location = req.getParameter("location");
         String signature = req.getParameter("signature");
-        UserInfo userInfo = new UserInfo(null, NumberUtil.objectToInteger(userId, -1), nickname, sex, DateUtil.stringFormatDate(birth), location, signature, new Date());
+        UserInfo userInfo = new UserInfo(null, NumberUtil.objectToInteger(userId, -1), nickname, sex, DateUtil.parseStringToDate(birth), location, signature, new Date());
         if (userInfoService.updateUserInfo(userInfo)) {
             session.setAttribute("noticeMsg", "个人信息修改成功");
         } else {
