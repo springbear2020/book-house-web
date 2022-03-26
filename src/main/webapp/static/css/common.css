@@ -146,11 +146,4 @@ a{
     transition: top 1s;
     /*animation:myFirst 5s linear alternate;*/
 }
-/*@keyframes myFirst {*/
-/*    0%{top: -1rem;}*/
-/*    10%{top: 3rem;}*/
-/*    90%{top: 3rem;}*/
-/*    100%{top: -1rem;}*/
-/*}*/
-    
-}
+
