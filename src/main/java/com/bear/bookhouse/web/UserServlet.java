@@ -100,7 +100,9 @@ public class UserServlet extends BaseServlet {
             }
             // 用户名密码正确，保存用户登录日志、跳转到主页
             session.setAttribute("user", user);
-            if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), WebUtil.getIpAddress(req), WebUtil.parseIp(WebUtil.getIpAddress(req)), new Date()))) {
+            String ip = WebUtil.getIpAddress(req);
+            String location = WebUtil.parseIp(ip) == null ? "未知" : WebUtil.parseIp(ip);
+            if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } else {
                 resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");

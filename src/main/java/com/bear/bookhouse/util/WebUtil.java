@@ -44,7 +44,7 @@ public class WebUtil {
         try {
             cityResponse = cityReader.city(InetAddress.getByName(ip));
         } catch (IOException | GeoIp2Exception e) {
-            return "";
+            return null;
         }
         // 从响应中获取国家、省份、城市对象并获取响应信息
         return cityResponse.getCountry().getNames().get("zh-CN") + " " + cityResponse.getMostSpecificSubdivision().getNames().get("zh-CN") + " " + cityResponse.getCity().getNames().get("zh-CN");

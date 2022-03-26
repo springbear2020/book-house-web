@@ -27,7 +27,7 @@ public interface FavoriteService {
     boolean isFavoriteExists(int userId, int booId);
 
     /**
-     * 通过用户 id 查询用书收藏记录
+     * 通过用户 id 查询用户收藏记录
      *
      * @param userId 用户 id
      * @return Favorites or null
