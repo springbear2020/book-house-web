@@ -24,7 +24,7 @@
         <ul class="top-self">
             <li><a href="" class="top_bell"><img class="bell" src="static/img/icon_bell.png" alt="Notifications"></a>
             </li>
-            <li><a href="userInfoServlet?action=showPersonal" class="head_img"><img src="${sessionScope.user.portraitPath}"
+            <li><a href="userInfoServlet?action=showPersonal" class="head_img" title="个人信息"><img src="${sessionScope.user.portraitPath}"
                                                                             alt="Personal"></a></li>
             <li>
                 <a class="logout" href="userServlet?action=logout" title="退出登录">

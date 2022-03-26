@@ -50,7 +50,7 @@
                     <form action="transferServlet?action=uploadPortrait&userId=${sessionScope.user.id}" method="post" enctype="multipart/form-data">
                         <input type="file" name="head_img" accept="image/jpeg,image/png" class="chooseImg"
                                style="opacity: 0">
-                        <button type="submit" class="updatePortraitBtn">上传</button>
+                        <button type="submit" class="updatePortraitBtn">确认更换</button>
                     </form>
                 </label>
             </div>
