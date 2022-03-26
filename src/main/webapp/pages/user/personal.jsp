@@ -122,14 +122,11 @@
                     </li>
                     <li id="per-data-sign">
                         <div class="per-data-name">个性签名</div>
-                        <%--                        如果只有一行可以用input 如果是多行就得用textarea--%>
-                        <%--                        // TODO 文本框接收个性签名--%>
-                        <label><textarea name="signature" disabled class="per-data-text per-data-Signature" cols="40"
-                                         rows="3" placeholder="${requestScope.userInfo.signature}"
-                                         style="resize:none"></textarea></label>
+                        <label><input name="signature" disabled type="text" maxlength="40" class="per-data-text per-data-Signature" value="${requestScope.userInfo.signature}"></label>
                     </li>
-                    <button type="submit" class="change-sure">保&nbsp;存</button>
-                    <div class="change-cancel">取&nbsp;消</div>
+                    <li class="change-btn-li"><button type="submit" class="change-sure">保&nbsp;存</button>
+                        <div class="change-cancel">取&nbsp;消</div></li>
+
                 </ul>
             </form>
         </div>

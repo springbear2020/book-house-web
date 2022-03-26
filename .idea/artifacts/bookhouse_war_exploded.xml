@@ -13,15 +13,6 @@
         <element id="directory" name="classes">
           <element id="module-output" name="bookhouse" />
         </element>
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" />
-          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" />
-          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
-          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.15" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.2" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.3" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.3" />
-        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/bookhouse-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
