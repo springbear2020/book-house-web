@@ -143,12 +143,12 @@ ul{
     line-height: 0;
     /*margin: 0.2rem;*/
     margin-top: 0;
-    padding: 0.2rem;
+    padding: 0.4rem 0.3rem 0.3rem;
     /*padding-top: 0;*/
     width: 9rem;
-    height: 0.6rem;
+    height: 0.4rem;
     font-size: 0.23rem;
-    border: 0.02rem solid #dddddd;
+    /*border: 0.02rem solid #dddddd;*/
     border-radius: 0.2rem;
 }
 /*.user-Signature-data:hover{*/
@@ -161,7 +161,7 @@ ul{
     border-radius: 0.5rem;
     margin-top: 0.2rem;
     padding-top: 0.1rem;
-    padding-bottom: 0.5rem;
+    /*padding-bottom: 0.3rem;*/
 }
 .per-title{
     font-size: 0.4rem;
@@ -256,7 +256,8 @@ ul{
     height: 1.6rem;
 }
 .per-data-Signature{
-    height: 1.6rem;
+    /*height: 1.6rem;*/
+    width: 6rem;
     font-size: 0.3rem;
 }
 
@@ -290,8 +291,15 @@ ul{
     margin-left: 0.57rem;
 }
 
-.change-sure{
+.per-container .change-btn-li{
     display: none;
+    margin-top: -0.6rem;
+    padding-bottom: 0.3rem;
+    /*margin-bottom: 0.3rem;*/
+}
+.change-sure{
+    /*display: none;*/
+    float: left;
     width: 1.6rem;
     font-size: 0.35rem;
     font-weight: bold;
@@ -299,7 +307,9 @@ ul{
     background-color: #aaddff;
     border-radius: 0.2rem;
     padding: 0.05rem 0.1rem;
-    margin: 0.6rem 0 0 3.6rem;
+    /*margin: -0.3rem 0 0 3.6rem;*/
+    margin-left: 3.6rem;
+    margin-bottom: 0.6rem;
     cursor: pointer;
 }
 .change-sure:hover{
@@ -307,7 +317,8 @@ ul{
     color: white;
 }
 .change-cancel{
-    display: none;
+    /*display: none;*/
+    float: left;
     width: 1.3rem;
     font-size: 0.35rem;
     font-weight: bold;
@@ -315,7 +326,8 @@ ul{
     background-color: #fff;
     border-radius: 0.2rem;
     padding: 0.05rem 0.1rem;
-    margin: -0.68rem 0 0 7.2rem;
+    /*margin: -0.68rem 0 0 7.2rem;*/
+    margin-left: 2.4rem;
     text-align: center;
     cursor: pointer;
 }

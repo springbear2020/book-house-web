@@ -64,4 +64,15 @@ $(function () {
         //隐藏下拉框
         $('.self-frame').css('display', 'none');
     })
+
 });
+
+// 让提示信息滑动入场并自动退场的函数
+function noticeShow(){
+    // 设置滑动入场的动画
+    $('.notice').animate({top:'3rem'});
+    // 设置定时器 让信息在5000毫秒后退场
+    setTimeout(function (){
+        $('.notice').animate({top:'-3rem'});
+    },5000)
+}
