@@ -15,9 +15,10 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/admin.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/admin.js"></script>
 </head>
 <body>
-<a href="pages/user/login.jsp" class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></a>
+<div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></div>
 <main class="img-preview-main">
 
     <!-- 用户输入 -->
@@ -35,7 +36,7 @@
     <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/right_arrow.png"
                                                                               alt=""></a></div>
 </main>
-<table border="1">
+<table border="1" class="ad-table">
     <tr >
         <th>ID</th>
         <th>Views</th>
