@@ -44,13 +44,12 @@ public class RecordServlet extends BaseServlet {
             return;
         }
 
-
         // 根据 type 分别查询下载或上传记录
         String download = "download";
         String upload = "upload";
         if (download.equals(type)) {
             Page<Download> recordPage = recordService.listDownloadPageData(userId, pageNum, DataUtil.getRecordPageSize());
-            if (recordPage.getPageData() == null || recordPage.getPageData().size() == 0) {
+            if (recordPage == null || recordPage.getPageData() == null || recordPage.getPageData().size() == 0) {
                 session.setAttribute("noticeMsg", "暂无下载记录，快去下载图书吧");
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
                 return;
@@ -58,7 +57,7 @@ public class RecordServlet extends BaseServlet {
             req.setAttribute("recordPage", recordPage);
         } else if (upload.equals(type)) {
             Page<Upload> recordPage = recordService.listUploadPageData(userId, pageNum, DataUtil.getRecordPageSize());
-            if (recordPage.getPageData() == null || recordPage.getPageData().size() == 0) {
+            if (recordPage == null || recordPage.getPageData() == null || recordPage.getPageData().size() == 0) {
                 session.setAttribute("noticeMsg", "暂无上传记录，快去上传图书吧");
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
                 return;
