@@ -34,10 +34,14 @@
         </c:if>
     </div>
     <%-- 管理员登录后才显示 Upload 和 Logout --%>
-    <c:if test="${not empty sessionScope.admin}">
-        <a href="adminServlet?action=logout">Logout</a>
-        <a href="pages/admin/upload.jsp">Upload</a>
-    </c:if>
+<%--    <c:if test="${not empty sessionScope.admin}">--%>
+    <div class="img-a">
+        <a href="pages/admin/upload.jsp" class="upload-a"><img src="static/img/upload_admin.png"></a>
+        <a href="adminServlet?action=logout" class="logout-a"><img src="static/img/logout_admin.png"></a>
+    </div>
+
+
+<%--    </c:if>--%>
     <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
     </div>
     <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
