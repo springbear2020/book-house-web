@@ -73,3 +73,49 @@ td, th {
 .tb-title {
     overflow: hidden;
 }
+
+.pag-chs {
+    display: table;
+    margin: 0.2rem auto;
+    padding-bottom: 0.2rem;
+    height: 0.6rem;
+}
+
+.pagination {;
+    padding-left: 0;
+    height: 0.4rem;
+}
+
+.pag-num {
+    display: block;
+    float: left;
+    margin: 0 0.1rem;
+    padding-top: 0.08rem;
+    width: 0.5rem;
+    height: 0.42rem;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    background-color: lightskyblue;
+    border-radius: 20%;
+}
+
+.pag-fl {
+    width: 0.8rem;
+}
+
+.pag-num:hover {
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.pag-this{
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin: 0 0.1rem;
+    padding-top: 0.08rem;
+    width: 0.5rem;
+    height: 0.42rem;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    border-radius: 20%;
+}

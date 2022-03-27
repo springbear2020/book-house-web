@@ -61,7 +61,7 @@
                             <a href="recordServlet?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum - 1}"
                                aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
                     </c:if>
-                    <li><span aria-hidden="true">${requestScope.recordPage.pageNum}</span></li>
+                    <li><span aria-hidden="true" class="pag-this">${requestScope.recordPage.pageNum}</span></li>
                         <%-- 非最后一页显示下一页 --%>
                     <c:if test="${requestScope.recordPage.pageNum!=requestScope.recordPage.pageTotal}">
                         <li>

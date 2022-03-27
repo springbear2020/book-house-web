@@ -28,6 +28,9 @@
                                                                  alt="notifications"></a>
                 <div class="bell-frame">
                     <ul class="bell-ul">
+                        <c:if test="${empty sessionScope.notifications}">
+                            <p>这里还什么都没有</p>
+                        </c:if>
                         <c:forEach items="${sessionScope.notifications }" var="notice">
                             <li>${notice}</li>
                         </c:forEach>
