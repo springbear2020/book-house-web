@@ -104,7 +104,7 @@
                             <a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum - 1}"
                                aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
                     </c:if>
-                    <li><span aria-hidden="true">${requestScope.loginLogPage.pageNum}</span></li>
+                    <li><span aria-hidden="true" class="pag-this">${requestScope.loginLogPage.pageNum}</span></li>
                         <%-- 非最后一页显示下一页 --%>
                     <c:if test="${requestScope.loginLogPage.pageNum!=requestScope.loginLogPage.pageTotal}">
                         <li>

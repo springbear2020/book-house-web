@@ -116,6 +116,7 @@ td, th {
     width: 0.5rem;
     height: 0.42rem;
     text-align: center;
+    background-color: rgba(135, 206, 250, 0.4);
     border: 1px solid deepskyblue;
     border-radius: 20%;
 }

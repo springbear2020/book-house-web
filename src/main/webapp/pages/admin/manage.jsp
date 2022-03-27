@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/manage.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/manage.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -33,7 +34,7 @@
 <div class="middle">
     <div class="frame-left">
         <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>
-        <table border="1">
+        <table>
             <tr>
                 <td>id</td>
                 <td>user</td>
@@ -51,7 +52,7 @@
                     <td><a href="transferServlet?action=downloadFileByPath&path=${upload.bookPath}">get</a></td>
                     <td><a href="transferServlet?action=downloadFileByPath&path=${upload.coverPath}">get</a></td>
                     <td>
-                        <button id="autoFill">fill</button>
+                        <button class="autoFill">fill</button>
                     </td>
                     <td>
                         <a href="adminServlet?action=deleteBookAndCover&uploadId=${upload.id}&bookPath=${upload.bookPath}&coverPath=${upload.coverPath}">delete</a>
@@ -74,7 +75,7 @@
                                                class="up-input"></label>
             <label class="upload-label"><input placeholder="comments" type="text" name="comment"
                                                class="up-input"></label>
-            <label class="upload-label"><input placeholder="username" type="text" name="username"
+            <label class="upload-label"><input placeholder="username" type="text" name="username" disabled
                                                class="up-input form-username"></label>
             <div class="bookFile upload-label"><label class="bookFile-true"><span>choose book</span>
                 <input type="file" name="book" accept="application/pdf" class="chooseFile"
@@ -101,8 +102,8 @@
         <h2 class="right-up-title">Issue Points</h2>
         <form>
             <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
-            <label class="upload-label"><input placeholder="user id" type="text" name="userId" disabled="disabled" class="up-input form-userId"></label>
-            <label class="upload-label"><input placeholder="points" type="text" name="points" class="up-input" disabled="disabled" value="10"></label>
+            <label class="upload-label"><input placeholder="user id" type="text" name="userId" class="up-input form-userId" disabled></label>
+            <label class="upload-label"><input placeholder="points" type="text" name="points" class="up-input form-points" disabled value="10"></label>
             <label class="upload-label"><input type="submit" class="up-input" value="submit"></label>
         </form>
     </div>
