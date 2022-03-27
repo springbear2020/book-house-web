@@ -19,10 +19,10 @@
     <script type="text/javascript" src="static/script/admin.js"></script>
 </head>
 <body>
-<div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></div>
+<div class="pixabayManage"><img class="bk-img" alt="GET PICTURE FROM PIXABAY FAILED" src="${requestScope.pixabay.url}"/></div>
 <main class="img-preview-main">
     <div class="users-input">
-        <div class="title">Book House</div>
+        <div class="title"><a href="index.jsp">Book House</a> </div>
         <%-- Admin form --%>
         <c:if test="${ empty sessionScope.admin}">
             <form method="post" action="adminServlet">
@@ -35,14 +35,12 @@
     </div>
     <c:if test="${not empty sessionScope.admin}">
         <div class="img-a">
-            <a href="pages/admin/manage.jsp" class="upload-a"><img alt="" src="static/img/upload_admin.png"></a>
             <a href="adminServlet?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
+            <a href="pages/admin/manage.jsp" class="upload-a" target="_blank"><img alt="" src="static/img/upload_admin.png"></a>
         </div>
     </c:if>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
-    </div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
-                                                                              alt=""></a></div>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a></div>
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png" alt=""></a></div>
 </main>
 <table class="ad-table" border="1">
     <tr>

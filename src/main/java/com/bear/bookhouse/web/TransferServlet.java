@@ -3,6 +3,7 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.Book;
 import com.bear.bookhouse.pojo.Download;
 import com.bear.bookhouse.pojo.Upload;
+import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
@@ -39,6 +40,27 @@ public class TransferServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
     private static final List<String> NOTIFICATIONS = new ArrayList<>();
+
+    /**
+     * 通过路径下载文件
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void downloadFileByPath(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String path = req.getParameter("path");
+        String fileName = path.substring(path.lastIndexOf('/'));
+        // 读取文件类型
+        String mimeType = getServletContext().getMimeType("/file/" + path);
+        // 通过响应头通知客户端返回的数据类型
+        resp.setContentType(mimeType);
+        // 告知客户端数据用于下载
+        resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+        // 从磁盘读取想要下载的字节数据到流中
+        InputStream inputStream = getServletContext().getResourceAsStream("/" + path);
+        // 复制流中数据到响应输出流，复制出错则抛出异常
+        IOUtils.copy(inputStream, resp.getOutputStream());
+    }
 
     /**
      * 通过图书 id 下载对应的图书数据
@@ -98,8 +120,13 @@ public class TransferServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void uploadBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Upload upload = new Upload(null, null, "上传图书", "+" + DataUtil.getScoreChange(), new Date(), null);
         HttpSession session = req.getSession();
+        User user = new User();
+        Object obj = session.getAttribute("user");
+        if (obj instanceof User) {
+            user = (User) obj;
+        }
+        Upload upload = new Upload(null, user.getId(), user.getUsername(), "上传图书", "+" + DataUtil.getScoreChange(), new Date(), null, null, null, "未处理");
         // 判断表单是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {
             // 创建用于解析表单的工具类
@@ -108,32 +135,29 @@ public class TransferServlet extends BaseServlet {
             try {
                 List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
                 for (FileItem fileItem : fileItemList) {
-                    // 普通表单项，获取 name 和 value 属性值
-                    if (fileItem.isFormField()) {
-                        String name = fileItem.getFieldName();
-                        String value = fileItem.getString("UTF-8");
-                        if ("userId".equals(name)) {
-                            // 客户端请求 userId = ${sessionScope.user.id} 确保了 userId 不会越界
-                            upload.setUserId(NumberUtil.objectToInteger(value, -1));
-                        }
-                    } else {
+                    // 非普通表单项，进行文件下载
+                    if (!fileItem.isFormField()) {
                         // type="file" 表单项，获取文件数据
                         String fieldName = fileItem.getFieldName();
+                        String fileName = DateUtil.fileNameFormat(new Date());
                         if ("book".equals(fieldName)) {
+                            String bookPath = DataUtil.getUploadSavePath() + upload.getUserId() + "-" + fileName + ".pdf";
                             // 将用户上传的图书文件写入本地磁盘，文件名为用户名加当前时间加 book.pdf
-                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + upload.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-book.pdf"));
-                            // 设置书名
+                            fileItem.write(new File(getServletContext().getRealPath("/") + bookPath));
+                            // 设置书名和图书保存路径
                             upload.setTitle(fileItem.getName());
+                            upload.setBookPath(bookPath);
                         } else if ("cover".equals(fieldName)) {
+                            String coverPath = DataUtil.getUploadSavePath() + upload.getUserId() + "-" + fileName + ".png";
                             // 将用户上传的封面文件写入本地磁盘，文件名为用户名加当前时间加 cover.png
-                            fileItem.write(new File(getServletContext().getRealPath("/") + DataUtil.getUploadSavePath() + upload.getUserId() + "-" + DateUtil.fileNameFormat(new Date()) + "-cover.png"));
+                            fileItem.write(new File(getServletContext().getRealPath("/") + coverPath));
+                            upload.setCoverPath(coverPath);
                         }
                     }
                 }
 
-                // TODO 待管理员审核后下发积分
-                // 添加用户上传记录、增加用户积分
-                if (recordService.saveUpload(upload) && userService.addUserScore(DataUtil.getScoreChange(), upload.getUserId())) {
+                // 添加用户上传记录
+                if (recordService.saveUpload(upload)) {
                     session.setAttribute("noticeMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
                     NOTIFICATIONS.add("您刚刚上传了《" + upload.getTitle() + "》，积分 +10。" + DateUtil.timeFormat(new Date()));
                     session.setAttribute("notifications", NOTIFICATIONS);

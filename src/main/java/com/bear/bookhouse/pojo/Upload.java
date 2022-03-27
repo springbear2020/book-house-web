@@ -9,21 +9,29 @@ import java.util.Date;
 public class Upload {
    private Integer id;
    private Integer userId;
+   private String username;
    private String operation;
    private String scoreChange;
    private Date time;
    private String title;
+   private String bookPath;
+   private String coverPath;
+   private String state;
 
    public Upload() {
    }
 
-   public Upload(Integer id, Integer userId, String operation, String scoreChange, Date time, String title) {
+   public Upload(Integer id, Integer userId, String username, String operation, String scoreChange, Date time, String title, String bookPath, String coverPath, String state) {
       this.id = id;
       this.userId = userId;
+      this.username = username;
       this.operation = operation;
       this.scoreChange = scoreChange;
       this.time = time;
       this.title = title;
+      this.bookPath = bookPath;
+      this.coverPath = coverPath;
+      this.state = state;
    }
 
    public Integer getId() {
@@ -40,6 +48,14 @@ public class Upload {
 
    public void setUserId(Integer userId) {
       this.userId = userId;
+   }
+
+   public String getUsername() {
+      return username;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public String getOperation() {
@@ -74,15 +90,43 @@ public class Upload {
       this.title = title;
    }
 
+   public String getBookPath() {
+      return bookPath;
+   }
+
+   public void setBookPath(String bookPath) {
+      this.bookPath = bookPath;
+   }
+
+   public String getCoverPath() {
+      return coverPath;
+   }
+
+   public void setCoverPath(String coverPath) {
+      this.coverPath = coverPath;
+   }
+
+   public String getState() {
+      return state;
+   }
+
+   public void setState(String state) {
+      this.state = state;
+   }
+
    @Override
    public String toString() {
-      return "Record{" +
+      return "Upload{" +
               "id=" + id +
               ", userId=" + userId +
+              ", username='" + username + '\'' +
               ", operation='" + operation + '\'' +
               ", scoreChange='" + scoreChange + '\'' +
               ", time=" + time +
               ", title='" + title + '\'' +
+              ", bookPath='" + bookPath + '\'' +
+              ", coverPath='" + coverPath + '\'' +
+              ", state='" + state + '\'' +
               '}';
    }
 }

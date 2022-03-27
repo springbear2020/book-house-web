@@ -34,4 +34,21 @@ public interface UploadDao {
      * @return 上传总记录数
      */
     int getUserUploadCounts(int userId);
+
+    /**
+     * 获取指定状态的上传记录
+     *
+     * @param state 状态
+     * @return 图书上传记录
+     */
+    List<Upload> listUploadByState(String state);
+
+    /**
+     * 修改上传记录状态
+     *
+     * @param id    上传记录 id
+     * @param state 状态
+     * @return 1 - 修改成功
+     */
+    int updateUploadState(int id, String state);
 }

@@ -128,4 +128,14 @@ public class RecordServiceImpl implements RecordService {
         page.setPageData(loginLogDao.listLoginLogsByUserId(userId, pageNum, pageSize));
         return page;
     }
+
+    @Override
+    public List<Upload> listUploadForAdmin() {
+        return uploadDao.listUploadByState("未处理");
+    }
+
+    @Override
+    public int updateUploadState(int id) {
+        return uploadDao.updateUploadState(id, "已处理");
+    }
 }

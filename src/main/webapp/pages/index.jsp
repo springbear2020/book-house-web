@@ -138,6 +138,10 @@
         </ul>
     </nav>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<div class="bottom-content">
+    <div><a>免责声明</a><span class="separator">|</span><a>关于我们</a><span class="separator">|</span><a>联系我们</a><span
+            class="separator">|</span><a>友情链接</a></div>
+    <div>Copyright © 2022, <a href="adminServlet?action=showPixabayRandomly">Snake Nest.</a> All rights reserved.</div>
+</div>
 </body>
 </html>
