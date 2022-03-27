@@ -23,7 +23,7 @@
 <main class="img-preview-main">
     <div class="users-input">
         <div class="title">Book House</div>
-        <%-- 管理员登录表单 --%>
+        <%-- Admin form --%>
         <c:if test="${ empty sessionScope.admin}">
             <form method="post" action="adminServlet">
                 <input type="hidden" name="action" value="login">
@@ -33,10 +33,9 @@
             </form>
         </c:if>
     </div>
-    <%-- 管理员登录后才显示 Upload 和 Logout --%>
     <c:if test="${not empty sessionScope.admin}">
         <a href="adminServlet?action=logout">Logout</a>
-        <a href="pages/admin/upload.jsp">Upload</a>
+        <a href="pages/admin/manage.jsp">Upload</a>
     </c:if>
     <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
     </div>

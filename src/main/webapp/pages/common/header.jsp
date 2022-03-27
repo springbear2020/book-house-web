@@ -12,7 +12,6 @@
         <span class="top-left-title">Book House</span>
     </div>
     <ul class="top-center">
-        <li><a href="adminServlet?action=showPixabayRandomly" class="">admin</a></li>
         <li><a href="index.jsp" class="example">首页</a></li>
         <%-- 用户登录后才显示上传、收藏夹、通知、个人等入口 --%>
         <c:if test="${ not empty sessionScope.user}">

@@ -10,32 +10,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>上传图书</title>
+    <title>Upload</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="static/css/upload.css">
+    <link rel="stylesheet" type="text/css" href="static/css/manage.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
-    <script type="text/javascript" src="static/script/upload.js"></script>
-
 </head>
 <body>
+<div class="title">Book House</div>
 <div class="middle">
     <div class="middle-container">
-        <h2 class="up-title">图书上传</h2>
-        <a href="pages/admin/admin.jsp" target="_self" class="toBack"><img
-                src="static/img/icon_back.png" alt="图片加载失败"></a>
-        <%-- 图书文件上传表单 --%>
+        <h2 class="up-title">Upload Book</h2>
+        <a href="adminServlet?action=showPixabayRandomly" target="_self" class="toBack"><img
+                src="static/img/icon_back.png" alt=""></a>
+        <%-- Book file upload form --%>
         <form action="transferServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
-            <label class="upload-label"><span>书&nbsp;名：</span><input type="text" name="title" class="up-input"></label>
-            <label class="upload-label"><span>作&nbsp;者：</span><input type="text" name="author" class="up-input"></label>
-            <label class="upload-label"><span>译&nbsp;者：</span><input type="text" name="translator"
+            <label class="upload-label"><input placeholder="title" type="text" name="title" class="up-input"></label>
+            <label class="upload-label"><input placeholder="author" type="text" name="author" class="up-input"></label>
+            <label class="upload-label"><input  placeholder="translator" type="text" name="translator"
                                                                      class="up-input"></label>
-            <label class="upload-label"><span>关键词：</span><input type="text" name="keywords" class="up-input"></label>
-            <label class="upload-label"><span>评&nbsp;价：</span><input type="text" name="comment"
+            <label class="upload-label"><input placeholder="keywords" type="text" name="keywords" class="up-input"></label>
+            <label class="upload-label"><input placeholder="comments" type="text" name="comment"
                                                                      class="up-input"></label>
-            <div class="bookFile upload-label"><label class="bookFile-true"><span>上传图书</span>
+            <div class="bookFile upload-label"><label class="bookFile-true"><span>Choose Book</span>
                 <input type="file" name="book" accept="application/pdf" class="chooseFile"
                        style="display:block;opacity: 0"></label>
                 <div class="fileInf"></div>
@@ -43,17 +42,17 @@
             <div class="bookCover upload-label">
                 <div class="bookCover-left">
                     <label class="chooseImg-true">
-                        <div>上传封面</div>
+                        <div>Choose Cover</div>
                         <input type="file" name="cover" accept="image/jpeg,image/png" class="chooseImg"
                                style="display:block;opacity: 0">
                     </label>
                 </div>
                 <div class="img-border">
-                    <div>封&nbsp;面</div>
+                    <div>Cover</div>
                     <img class="bookCover-img" alt="" src="">
                 </div>
             </div>
-            <label><input type="submit" value="立即上传" class="upload-btn"></label>
+            <label><input type="submit" value="Upload" class="upload-btn"></label>
         </form>
     </div>
 </div>
