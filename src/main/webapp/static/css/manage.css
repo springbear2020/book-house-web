@@ -17,7 +17,7 @@
     width: 6rem;
     margin: 0 auto;
     background-color: rgba(240, 248, 255, 0.8);
-    border-radius: 10%;
+    border-radius: 1rem;
 }
 
 .up-title {
@@ -51,10 +51,11 @@
 .bookFile-true {
     display: block;
     overflow: hidden;
-    padding-top: 0.2rem;
+    padding-top: 0.1rem;
     margin-left: -0.3rem;
+    line-height: 0.27rem;
     width: 1.4rem;
-    height: 0.55rem;
+    height: 0.65rem;
     background-color: lightskyblue;
     font-size: 0.25rem;
     font-weight: bold;
@@ -107,14 +108,15 @@
     width: 2rem;
 }
 
-.chooseImg-true {
+.chooseImg-true{
     display: block;
     overflow: hidden;
-    padding-top: 0.2rem;
+    padding-top: 0.1rem;
+    line-height: 0.27rem;
     margin-top: 0.9rem;
     margin-left: -0.3rem;
     width: 1.4rem;
-    height: 0.55rem;
+    height: 0.65rem;
     background-color: lightskyblue;
     font-size: 0.25rem;
     font-weight: bold;
@@ -188,4 +190,31 @@
 
 .toBack img:hover {
     content: url("../img/icon_back_deep.png");
+}
+
+.frame-left{
+    position: absolute;
+    width: 6rem;
+    height: 8rem;
+    padding-top: 1rem;
+    background-color: rgba(255,255,255,0.8);
+    left: 1rem;
+    top: 2rem;
+    border-radius: 1rem;
+}
+.frame-right{
+    position: absolute;
+    width: 5rem;
+    height: 6rem;
+    padding-top: 1rem;
+    background-color: rgba(255,255,255,0.8);
+    right: 1.5rem;
+    top: 3rem;
+    border-radius: 0.5rem;
+}
+.frame-right input{
+    display: block;
+    width: 2.4rem;
+    margin-right: 1rem;
+    border-radius: 0.1rem;
 }

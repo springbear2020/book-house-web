@@ -20,6 +20,30 @@
 <body>
 <div class="title">Book House</div>
 <div class="middle">
+    <div class="frame-left">
+        <form>
+            <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
+            <label class="upload-label"><input placeholder="title" type="text" name="title" class="up-input"></label>
+            <label class="upload-label"><input placeholder="author" type="text" name="author" class="up-input"></label>
+            <label class="upload-label"><input  placeholder="translator" type="text" name="translator"
+                                                class="up-input"></label>
+            <label class="upload-label"><input placeholder="keywords" type="text" name="keywords" class="up-input"></label>
+            <label class="upload-label"><input placeholder="comments" type="text" name="comment"
+                                               class="up-input"></label>
+        </form>
+    </div>
+    <div class="frame-right">
+        <form>
+            <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
+            <label class="upload-label"><input placeholder="title" type="text" name="title" class="up-input"></label>
+            <label class="upload-label"><input placeholder="author" type="text" name="author" class="up-input"></label>
+            <label class="upload-label"><input  placeholder="translator" type="text" name="translator"
+                                                class="up-input"></label>
+            <label class="upload-label"><input placeholder="keywords" type="text" name="keywords" class="up-input"></label>
+            <label class="upload-label"><input placeholder="comments" type="text" name="comment"
+                                               class="up-input"></label>
+        </form>
+    </div>
     <div class="middle-container">
         <h2 class="up-title">Upload Book</h2>
         <a href="adminServlet?action=showPixabayRandomly" target="_self" class="toBack"><img
