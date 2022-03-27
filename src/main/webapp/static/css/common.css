@@ -159,7 +159,7 @@ a {
     width: 5rem;
     height: 1rem;
     font-size: 0.2rem;
-    margin-left: -1.5rem;
+    margin-left: -2rem;
     margin-top: -0.1rem;
     border: 0.02rem solid black;
     background-color: rgba(120, 120, 120, 0.5);
@@ -173,4 +173,10 @@ a {
 
 .bell-ul li:hover {
     background-color: #f5f5f5;
+}
+.bell-ul p{
+    display: block;
+    font-family: 微软雅黑, serif;
+    font-size: 0.3rem;
+    text-align: center;
 }
