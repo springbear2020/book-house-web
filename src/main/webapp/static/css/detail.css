@@ -4,70 +4,60 @@
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
 }
-.middle-frame{
+
+.middle-frame {
     display: table;
     width: 12rem;
-    /*height: 10rem;*/
     margin: 0.2rem auto;
-    /*border: 1px solid blue;*/
     background-color: #eee;
     border: 0.2rem solid lightseagreen;
     border-radius: 5%;
 }
 
-.inf-left{
+.inf-left {
     margin: 0.4rem;
     float: left;
-    /*border: 1px solid black;*/
 }
 
-.book_img{
+.book_img {
     width: 4.944rem;
     height: 8rem;
 }
 
-.inf-right{
+.inf-right {
     float: right;
     width: 5.6rem;
     padding: 0;
 }
-.inf-right li{
+
+.inf-right li {
     display: block;
-    /*float: left;*/
     width: 5rem;
     margin: 0.3rem 0 0.3rem -0.5rem;
 }
-.inf-right li div{
+
+.inf-right li div {
     margin-top: -0.05rem;
     font-size: 0.3rem;
     font-weight: bold;
     width: 1.2rem;
-    /*font-family: 微软雅黑, serif;*/
     text-align: right;
     float: left;
 }
-.inf-right li p{
+
+.inf-right li p {
     display: block;
-    /*height: 0.9rem;*/
     margin-left: 1.5rem;
     font-size: 0.25rem;
-    /*font-family: 微软雅黑, serif;*/
     word-break: break-all;
     text-overflow: ellipsis;
-    /*text-overflow: "哈哈";*/
     overflow: hidden;
     border-radius: 0.05rem;
     border-bottom: 0.05rem solid deepskyblue;
-    /*display: -webkit-box;*/
-    /*-webkit-line-clamp: 3;*/
-    /*-webkit-box-orient: vertical;*/
-    /*float: left;*/
-    /*float: right;*/
 }
-.inf-right li span{
+
+.inf-right li span {
     float: right;
-    /*display: block;*/
-    /*position: relative;*/
     margin-top: -0.6rem;
     margin-right: -0.7rem;
     font-size: 0.2rem;
@@ -77,12 +67,13 @@
     cursor: pointer;
     display: none;
 }
-.inf-right li span:hover{
+
+.inf-right li span:hover {
     background-color: #dddddd;
     color: blue;
 }
 
-#book-commit{
+#book-commit {
     background-color: white;
     border-radius: 0.2rem;
     border: 0.05rem solid grey;
@@ -91,8 +82,7 @@
     margin-right: -0.1rem;
 }
 
-.button-a{
-    /*display: block;*/
+.button-a {
     float: left;
     width: 1rem;
     background-color: deepskyblue;
@@ -103,14 +93,16 @@
     padding: 0.2rem;
     border-radius: 0.25rem;
 }
-.button-a:hover{
+
+.button-a:hover {
     background-color: #4ea4dc;
 }
-.btn-fav{
+
+.btn-fav {
     margin-left: 1rem;
 }
 
-.ToLeft{
+.ToLeft {
     position: fixed;
     top: 50%;
     left: 1rem;
@@ -118,13 +110,16 @@
     border-radius: 50%;
     border: 0.2rem solid lightseagreen;
 }
-.ToLeft img{
+
+.ToLeft img {
     width: 2rem;
 }
-.ToLeft img:hover{
-    content: url("../img/icon_left_d.png");
+
+.ToLeft img:hover {
+    content: url("../img/icon_left_deep.png");
 }
-.ToRight{
+
+.ToRight {
     position: fixed;
     top: 50%;
     right: 1rem;
@@ -132,9 +127,11 @@
     border-radius: 50%;
     border: 0.2rem solid lightseagreen;
 }
-.ToRight img{
+
+.ToRight img {
     width: 2rem;
 }
-.ToRight img:hover{
-    content: url("../img/icon_right_d.png");
+
+.ToRight img:hover {
+    content: url("../img/icon_right_deep.png");
 }

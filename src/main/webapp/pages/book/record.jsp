@@ -23,14 +23,15 @@
 <div class="middle">
     <div class="middle-container">
         <ul class="table-choose">
-            <a href="recordServlet?action=showUpload&userId=${sessionScope.user.id}"
+            <a href="recordServlet?action=showRecord&type=upload&userId=${sessionScope.user.id}"
                class="choose-upload choose-li">上传</a>
-            <a href="recordServlet?action=showDownload&userId=${sessionScope.user.id}"
+            <a href="recordServlet?action=showRecord&type=download&userId=${sessionScope.user.id}"
                class="choose-download choose-li">下载</a>
             <a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}"
                class="choose-log choose-li">登录</a>
         </ul>
-        <c:if test="${not empty requestScope.recordList}">
+        <%-- 上传和下载记录 --%>
+        <c:if test="${not empty requestScope.recordPage.pageData}">
             <table class="pure-table">
                 <thead>
                 <tr>
@@ -41,7 +42,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.recordList}" var="record">
+                <c:forEach items="${requestScope.recordPage.pageData}" var="record">
                     <tr class="pure-table-odd">
                         <td>${record.operation}</td>
                         <td>${record.scoreChange}</td>
@@ -51,8 +52,29 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <%-- 分页条 --%>
+            <nav aria-label="Page navigation" class="pag-chs">
+                <ul class="pagination">
+                        <%-- 非第一页显示上一页 --%>
+                    <c:if test="${requestScope.recordPage.pageNum!=1}">
+                        <li>
+                            <a href="recordServlet?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum - 1}"
+                               aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
+                    </c:if>
+                    <li><span aria-hidden="true">${requestScope.recordPage.pageNum}</span></li>
+                        <%-- 非最后一页显示下一页 --%>
+                    <c:if test="${requestScope.recordPage.pageNum!=requestScope.recordPage.pageTotal}">
+                        <li>
+                            <a href="recordServlet?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum + 1}"
+                               aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
+                    </c:if>
+                    <div style="clear:both"></div>
+                </ul>
+            </nav>
         </c:if>
-        <c:if test="${not empty requestScope.loginList}">
+
+        <%-- 登录记录 --%>
+        <c:if test="${not empty requestScope.loginLogPage.pageData}">
             <table class="pure-table">
                 <thead>
                 <tr>
@@ -63,7 +85,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.loginList}" var="login">
+                <c:forEach items="${requestScope.loginLogPage.pageData}" var="login">
                     <tr class="pure-table-odd">
                         <td>${login.username}</td>
                         <td>${login.ip}</td>
@@ -73,6 +95,25 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <%-- 分页条 --%>
+            <nav aria-label="Page navigation" class="pag-chs">
+                <ul class="pagination">
+                        <%-- 非第一页显示上一页 --%>
+                    <c:if test="${requestScope.loginLogPage.pageNum!=1}">
+                        <li>
+                            <a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum - 1}"
+                               aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
+                    </c:if>
+                    <li><span aria-hidden="true">${requestScope.loginLogPage.pageNum}</span></li>
+                        <%-- 非最后一页显示下一页 --%>
+                    <c:if test="${requestScope.loginLogPage.pageNum!=requestScope.loginLogPage.pageTotal}">
+                        <li>
+                            <a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum + 1}"
+                               aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
+                    </c:if>
+                    <div style="clear:both"></div>
+                </ul>
+            </nav>
         </c:if>
     </div>
 </div>

@@ -35,48 +35,10 @@ $(function () {
         }
     })
 
-
-    // let $btnSure = $('.change-sure');
-    // let $btnCancel = $('.change-cancel');
-    // 地区锁
-    // let areaLock = false;
-    // 点击修改资料
-    // $('.per-change-check').click(function () {
-    //     // 让所有输入框都可以被修改
-    //     $('.per-data-text').attr('disabled', false);
-    //     $('.per-data-sex').attr('disabled', false);
-    //     // 关闭地区锁
-    //     // areaLock = true;
-    //     // 让两个按钮出现
-    //     $('.change-btn-li').css('display', 'block');
-    // })
-    // // 取消按钮的点击事件
-    // $btnCancel.click(function () {
-    //     // 让所有输入框锁起来
-    //     $('.per-data-text').attr('disabled', true);
-    //     $('.per-data-sex').attr('disabled', true);
-    //     // 打开地区锁
-    //     // areaLock = false;
-    //     // 让两个按钮消失
-    //     $('.change-btn-li').css('display','none');
-    // })
-    // // 保存按钮的点击事件
-    // $btnSure.click(function () {
-    //     // 让两个按钮消失
-    //     $('.change-btn-li').css('display','none');
-    //     // 让所有输入框锁起来
-    //     $('.per-data-text').attr('disabled', true);
-    //     $('.per-data-sex').attr('disabled', true);
-    //     // 打开地区锁
-    //     // areaLock = false;
-    // })
-
     // 地区输入框的点击事件
     $('.area-data').click(function () {
-        // if(areaLock){
         // 让地区的下拉框显示出来
         $('.area-frame').css('display', 'block');
-        // }
     })
     // 点击地区框以外的地方隐藏下拉框
     $(document).bind('click', function (e) {
@@ -165,8 +127,7 @@ $(function () {
 
     let $areaLeft = $('.area-left');
     let $areaRight = $('.area-right');
-    // 立即执行函数
-    // 将省的数据导入地区的左侧选择框
+    // 立即执行函数,将省的数据导入地区的左侧选择框
     (function () {
         for (let i in china) {
             $areaLeft.append('<li class="area-clicked-false">' + i + '</li>');

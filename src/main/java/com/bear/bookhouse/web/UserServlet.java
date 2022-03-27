@@ -65,7 +65,7 @@ public class UserServlet extends BaseServlet {
             req.setAttribute("noticeMsg", "恭喜您注册成功！");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
         }
     }
 
@@ -103,7 +103,7 @@ public class UserServlet extends BaseServlet {
             if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+                resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
             }
         } else {
             session.setAttribute("loginMsg", "用户名不存在或密码错误");
@@ -133,7 +133,7 @@ public class UserServlet extends BaseServlet {
             req.setAttribute("noticeMsg", "密码重置成功!");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
         }
     }
 }

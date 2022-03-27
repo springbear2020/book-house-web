@@ -20,6 +20,6 @@ public class UploadDaoTest {
 
     @Test
     public void listUploadByUserId() {
-        System.out.println(uploadDao.listUploadByUserId(2));
+        System.out.println(uploadDao.listUploadByUserId(2,1,1));
     }
 }

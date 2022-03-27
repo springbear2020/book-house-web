@@ -18,14 +18,8 @@ public class NumberUtilTest {
     }
 
     @Test
-    public void generateIntegers() {
-        Integer[] integers = NumberUtil.generateIntegers(100, 10);
-        System.out.println(Arrays.toString(integers));
-    }
-
-    @Test
     public void randomGenerateCode() {
-        String s = NumberUtil.randomGenerateCode(6);
+        String s = NumberUtil.randomGenerateCodeInLength(6);
         System.out.println(s);
     }
 }

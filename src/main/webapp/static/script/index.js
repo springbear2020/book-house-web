@@ -3,7 +3,6 @@ window.onload = function () {
     let $srList = $('.search-list');
     // 搜索框的聚焦事件
     $srText.focus(function () {
-        // let value = $srText.val();
         // 如果框内没有输入东西就不显示下拉框
         // if(value !== ''){
         $srList.css('display', 'block');
@@ -11,25 +10,24 @@ window.onload = function () {
     })
 
     // 监听搜索框内容的变化
-    $srText.bind('input property change',function (){
+    $srText.bind('input property change', function () {
         let value = $srText.val();
         // 如果框内变成了空的就不显示下拉框
-        if(value !== ''){
-            $srList.css('display','block');
-        }else{
-            $srList.css('display','none');
+        if (value !== '') {
+            $srList.css('display', 'block');
+        } else {
+            $srList.css('display', 'none');
         }
     })
 
     // 搜索框的失焦事件
-    $srText.blur(function (){
+    $srText.blur(function () {
         // 隐藏下拉框
-        $('.search-list').css('opacity','0');
-        setTimeout(function (){
-            $srList.css('display','none');
-            $srList.css('opacity','1');
-        },100);
-        // $('.search-list').css('display','none');
+        $('.search-list').css('opacity', '0');
+        setTimeout(function () {
+            $srList.css('display', 'none');
+            $srList.css('opacity', '1');
+        }, 100);
     })
 
     // 点击搜索框以外的地方隐藏下拉框
@@ -85,14 +83,14 @@ window.onload = function () {
     })
 
     // 头像的鼠标覆盖事件
-    $('.head_img').mouseover(function (){
+    $('.head_img').mouseover(function () {
         //显示下拉框
-        $('.self-frame').css('display','block');
+        $('.self-frame').css('display', 'block');
     })
     // 鼠标离开事件
-    $('.top-self').mouseleave(function (){
+    $('.top-self').mouseleave(function () {
         //隐藏下拉框
-        $('.self-frame').css('display','none');
+        $('.self-frame').css('display', 'none');
     })
 
     // // 给搜索按钮绑定单击事件

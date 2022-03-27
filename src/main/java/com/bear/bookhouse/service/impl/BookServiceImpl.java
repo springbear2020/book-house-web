@@ -72,7 +72,7 @@ public class BookServiceImpl implements BookService {
 
         // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以达到随机展示图书
         List<Book> bookList = new ArrayList<>();
-        Integer[] integers = NumberUtil.generateRandomNumbersInBound(pageSize, booksRecordTotalCount);
+        Integer[] integers = NumberUtil.generateNumbersInBoundAndSize(pageSize, booksRecordTotalCount);
         for (Integer bookId : integers) {
             bookList.add(bookDao.getBookById(bookId));
         }

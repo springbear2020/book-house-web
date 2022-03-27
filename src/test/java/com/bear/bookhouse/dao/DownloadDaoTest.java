@@ -21,6 +21,6 @@ public class DownloadDaoTest {
 
     @Test
     public void listDownloadByUserId() {
-        System.out.println(downloadDao.listDownloadByUserId(2));
+        System.out.println(downloadDao.listDownloadByUserId(2, 1, 1));
     }
 }

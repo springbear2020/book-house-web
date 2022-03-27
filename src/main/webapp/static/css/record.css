@@ -1,43 +1,37 @@
-/*html {*/
-/*    font-family: sans-serif;*/
-/*    -ms-text-size-adjust: 100%;*/
-/*    -webkit-text-size-adjust: 100%;*/
-/*}*/
-
-/*body {*/
-/*    margin: 10px;*/
-/*}*/
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-td,th {
+td, th {
     padding: 0;
 }
 
-.middle{
+.middle {
     background-color: #4ea4dc;
     padding: 0.4rem 0;
 }
-.middle-container{
+
+.middle-container {
     width: 12rem;
     margin: 0 auto;
 }
 
-.table-choose{
+.table-choose {
     display: -webkit-flex;
     background-color: white;
     font-size: 0.3rem;
     font-weight: bold;
     height: 0.6rem;
 }
-.choose-li{
+
+.choose-li {
     display: flex;
     width: 10rem;
     padding: 0.1rem;
     border: 0.02rem solid grey;
 }
+
 .pure-table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -47,14 +41,13 @@ td,th {
 
 .pure-table caption {
     color: #000;
-    font: italic 85%/1 arial,sans-serif;
+    font: italic 85%/1 arial, sans-serif;
     padding: 1em 0;
     text-align: center;
 }
 
-.pure-table td,.pure-table th {
+.pure-table td, .pure-table th {
     border-left: 0.02rem solid #cbcbcb;
-    /*border-width: 0 0 0 1px;*/
     font-size: inherit;
     margin: 0;
     overflow: visible;
@@ -77,7 +70,6 @@ td,th {
     background-color: #f2f2f2;
 }
 
-.tb-title{
-    /*width: 2rem;*/
+.tb-title {
     overflow: hidden;
 }

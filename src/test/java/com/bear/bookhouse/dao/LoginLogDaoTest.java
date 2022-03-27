@@ -21,6 +21,6 @@ public class LoginLogDaoTest {
 
     @Test
     public void listLoginLogsByUserId() {
-        System.out.println(loginLogDao.listLoginLogsByUserId(2));
+        System.out.println(loginLogDao.listLoginLogsByUserId(2, 1, 15));
     }
 }

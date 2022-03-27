@@ -96,7 +96,7 @@ public class EmailUtil {
         // 邮件主题
         message.setSubject("欢迎使用 Book House 身份验证系统", "UTF-8");
         // 邮件正文
-        verifyCode = NumberUtil.randomGenerateCode(codeLen);
+        verifyCode = NumberUtil.randomGenerateCodeInLength(codeLen);
         message.setContent("您好！您的验证码是：" + verifyCode + "，您正在进行身份验证，打死都不要将验证码告诉别人哦！邮件发送时间：" + DateUtil.datetimeFormat(new Date()), "text/html;charset=UTF-8");
         // 设置发件时间
         message.setSentDate(new Date());

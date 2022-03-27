@@ -30,13 +30,14 @@
             <label><input type="submit" value="login" class="btn"></label>
         </form>
     </div>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/left_arrow.png" alt=""></a>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png"
+                                                                             alt=""></a>
     </div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/right_arrow.png"
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
                                                                               alt=""></a></div>
 </main>
 <table border="1">
-    <tr >
+    <tr>
         <th>ID</th>
         <th>Views</th>
         <th>Likes</th>

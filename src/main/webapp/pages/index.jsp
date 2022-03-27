@@ -28,7 +28,7 @@
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
-    <%-- 搜索框表单 --%>
+<%-- 搜索框表单 --%>
     <div class="search">
         <div class="search-container">
             <form class="search-form" method="post" action="bookServlet">

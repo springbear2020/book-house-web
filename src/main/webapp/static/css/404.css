@@ -1,15 +1,13 @@
-body{
+body {
     background-color: #FDE4D4;
 }
 
-.notfound-img{
+.notfound-img {
     width: 700px;
     height: 450px;
-    /* background-color: red; */
-    /* overflow: hidden; */
     margin: 50px auto;
 }
 
-.notfound-img img{
+.notfound-img img {
     width: 100%;
 }

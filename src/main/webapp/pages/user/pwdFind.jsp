@@ -27,7 +27,9 @@
     </c:if>
 </head>
 <body>
-<%@include file="/pages/common/title.jsp" %>
+<div class="title-container">
+    <h1 class="title">Book House</h1>
+</div>
 <div class="middle">
     <div class="container">
         <ul class="frame-title">

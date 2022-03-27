@@ -3,6 +3,7 @@ package com.bear.bookhouse.dao.impl;
 import com.bear.bookhouse.dao.BaseDao;
 import com.bear.bookhouse.dao.DownloadDao;
 import com.bear.bookhouse.pojo.Download;
+import com.bear.bookhouse.util.NumberUtil;
 
 import java.util.List;
 
@@ -18,8 +19,14 @@ public class DownloadDaoImpl extends BaseDao implements DownloadDao {
     }
 
     @Override
-    public List<Download> listDownloadByUserId(int userId) {
-        String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_download` WHERE `user_id` = ?;";
-        return listRecord(Download.class, sql, userId);
+    public List<Download> listDownloadByUserId(int userId, int begin, int offset) {
+        String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_download` WHERE `user_id` = ? ORDER BY `time` DESC LIMIT ?,?;";
+        return listRecord(Download.class, sql, userId, begin, offset);
+    }
+
+    @Override
+    public int getDownloadCounts(int userId) {
+        String sql = "SELECT COUNT(`id`) FROM `t_download` WHERE `user_id` = ?;";
+        return NumberUtil.objectToInteger(getSingleValue(sql, userId), 0);
     }
 }

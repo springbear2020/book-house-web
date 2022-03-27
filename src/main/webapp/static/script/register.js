@@ -271,7 +271,6 @@ $(function () {
             $imgCodeTips.css("color", "darkolivegreen");
             $imgCodeTips.css("font-weight", "normal");
         }
-        // return true;
+        return true;
     });
-
 });

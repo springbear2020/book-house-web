@@ -26,30 +26,11 @@ public class NumberUtil {
     }
 
     /**
-     * 在指定范围内生成指定个数的随机正整数
-     *
-     * @param bound  最大值
-     * @param counts 随机数个数
-     * @return 随机数数组 或 null
-     */
-    public static Integer[] generateIntegers(int bound, int counts) {
-        if (bound <= 0 || counts <= 0) {
-            return null;
-        }
-        Integer[] res = new Integer[counts];
-        Random random = new Random();
-        for (int i = 0; i < counts; i++) {
-            res[i] = random.nextInt(bound);
-        }
-        return res;
-    }
-
-    /**
      * 随机生成数字验证码
      *
      * @return 指定位数数字验证码字符串
      */
-    public static String randomGenerateCode(int len) {
+    public static String randomGenerateCodeInLength(int len) {
         StringBuilder builder = new StringBuilder();
         for (int j = 1; j <= len; j++) {
             int randomNum = new Random().nextInt(10);
@@ -77,7 +58,7 @@ public class NumberUtil {
      * @param bound 界限
      * @return integers or null
      */
-    public static Integer[] generateRandomNumbersInBound(int size, int bound) {
+    public static Integer[] generateNumbersInBoundAndSize(int size, int bound) {
         Set<Integer> integersSet = new HashSet<>();
         Random random = new Random();
 

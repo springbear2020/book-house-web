@@ -23,4 +23,9 @@ public class UserServiceTest {
         boolean b = userService.subUserScore(10,2);
         System.out.println(b);
     }
+
+    @Test
+    public void updatePortrait() {
+        System.out.println(userService.updatePortrait("static/picture/portrait/2.png", 1));
+    }
 }

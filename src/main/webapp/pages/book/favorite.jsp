@@ -36,7 +36,7 @@
                         <a title="取消收藏"
                            href="favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}"
                            class="fav-close">
-                            <img class="fav-close-img" src="static/img/icon_close_d.png" alt="取消收藏">
+                            <img class="fav-close-img" src="static/img/icon_no_deep.png" alt="取消收藏">
                         </a>
                         <div class="fav-data">
                             <a title="查看详情" href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">

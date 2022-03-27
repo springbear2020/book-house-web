@@ -1,39 +1,38 @@
-
-.middle{
+.middle {
     background-color: lightskyblue;
-    background-image: linear-gradient(to bottom right,blue,lightskyblue,deepskyblue);
+    background-image: linear-gradient(to bottom right, blue, lightskyblue, deepskyblue);
     padding: 0.5rem 0;
 }
-.middle-container{
+
+.middle-container {
     padding-top: 0.2rem;
     width: 6rem;
-    /*height: 12rem;*/
     margin: 0 auto;
-    /*border: 1px solid black;*/
     background-color: rgba(240, 248, 255, 0.8);
     border-radius: 10%;
 }
 
-.up-title{
+.up-title {
     width: 2rem;
     font-size: 0.4rem;
     margin: 0.2rem 2.2rem 0.4rem;
 }
 
-.upload-label{
+.upload-label {
     display: block;
     width: 4rem;
     height: 1rem;
     margin: 0 auto;
-    /*border: 1px solid grey;*/
 }
-.upload-label>span{
+
+.upload-label > span {
     display: inline-block;
     padding-top: 0.1rem;
     font-size: 0.25rem;
     font-weight: bold;
 }
-.up-input{
+
+.up-input {
     float: right;
     padding: 0 0.2rem;
     font-size: 0.25rem;
@@ -41,7 +40,7 @@
     height: 0.5rem;
 }
 
-.bookFile-true{
+.bookFile-true {
     display: block;
     overflow: hidden;
     padding-top: 0.2rem;
@@ -55,33 +54,34 @@
     border-radius: 20%;
     cursor: pointer;
 }
-.bookFile-true:hover{
+
+.bookFile-true:hover {
     color: white;
     background-color: #4ea4dc;
 }
-.fileInf{
+
+.fileInf {
     float: left;
     margin-top: -0.6rem;
     margin-left: 1.6rem;
     font-size: 0.25rem;
 }
-.chooseFile{
+
+.chooseFile {
     height: 0;
 }
 
-.bookCover{
+.bookCover {
     height: 3rem;
 }
 
-.bookCover-img{
-    /*display: inline-block;*/
-    /*float: right;*/
-    /*margin-right: 0.4rem;*/
+.bookCover-img {
     display: none;
     width: 1.854rem;
     height: 3rem;
 }
-.img-border{
+
+.img-border {
     border: 1px solid blue;
     float: right;
     margin-right: 0.4rem;
@@ -90,15 +90,16 @@
     height: 3rem;
     text-align: center;
 }
-.bookCover-sp{
+
+.bookCover-sp {
     display: inline-block;
     padding-top: 0.1rem;
     font-size: 0.25rem;
     font-weight: bold;
     width: 2rem;
 }
-.chooseImg-true{
-    /*display: inline-block;*/
+
+.chooseImg-true {
     display: block;
     overflow: hidden;
     padding-top: 0.2rem;
@@ -113,26 +114,30 @@
     border-radius: 20%;
     cursor: pointer;
 }
-.chooseImg-true:hover{
+
+.chooseImg-true:hover {
     color: white;
     background-color: #4ea4dc;
 }
-.chooseImg{
+
+.chooseImg {
     text-align: center;
     height: 0;
 }
-.bookCover-left{
+
+.bookCover-left {
     float: left;
     width: 1rem;
     height: 3rem;
 }
-.bookFile>input{
+
+.bookFile > input {
     margin-left: 1.2rem;
     margin-top: -0.3rem;
     font-size: 0.2rem;
 }
 
-.upload-btn{
+.upload-btn {
     margin: 0.4rem 2rem;
     width: 2rem;
     height: 1rem;
@@ -143,12 +148,13 @@
     border-radius: 20%;
     cursor: pointer;
 }
-.upload-btn:hover{
+
+.upload-btn:hover {
     background-color: #dddddd;
     color: blue;
 }
 
-.alert{
+.alert {
     position: absolute;
     z-index: 101;
     left: 48%;
@@ -162,14 +168,16 @@
     border: 0.03rem solid black;
 }
 
-.toBack{
+.toBack {
     float: right;
     margin-right: 0.5rem;
     margin-top: -1rem;
 }
-.toBack img{
+
+.toBack img {
     width: 0.6rem;
 }
-.toBack img:hover{
+
+.toBack img:hover {
     content: url("../img/icon_back_deep.png");
 }
