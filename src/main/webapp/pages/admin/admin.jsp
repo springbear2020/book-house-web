@@ -5,6 +5,7 @@
   Time: 12:53
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -20,35 +21,40 @@
 <body>
 <div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></div>
 <main class="img-preview-main">
-
-    <!-- 用户输入 -->
     <div class="users-input">
-
         <div class="title">Book House</div>
-        <form>
-            <label><input name="username" type="text" placeholder="username"></label>
-            <label><input name="password" type="text" placeholder="password"></label>
-            <label><input type="submit" value="login" class="btn"></label>
-        </form>
+        <%-- 管理员登录表单 --%>
+        <c:if test="${ empty sessionScope.admin}">
+            <form method="post" action="adminServlet">
+                <input type="hidden" name="action" value="login">
+                <label><input name="username" type="text" placeholder="username"></label>
+                <label><input name="password" type="password" placeholder="password"></label>
+                <label><input type="submit" value="login" class="btn"></label>
+            </form>
+        </c:if>
     </div>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/left_arrow.png" alt=""></a>
+    <%-- 管理员登录后才显示 Upload 和 Logout --%>
+    <c:if test="${not empty sessionScope.admin}">
+        <a href="adminServlet?action=logout">Logout</a>
+        <a href="pages/admin/upload.jsp">Upload</a>
+    </c:if>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
     </div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/right_arrow.png"
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
                                                                               alt=""></a></div>
 </main>
-<table border="1" class="ad-table">
-    <tr >
-        <th>ID</th>
-        <th>Views</th>
-        <th>Likes</th>
-        <th>Downloads</th>
-        <th>Collections</th>
-        <th>Comments</th>
-        <th>Condition</th>
-        <th>Tags</th>
-        <th>Link</th>
-        <th>AddTime</th>
-        <th colspan="2">Manage</th>
+<table class="ad-table" border="1">
+    <tr>
+        <th>id</th>
+        <th>views</th>
+        <th>likes</th>
+        <th>downloads</th>
+        <th>collections</th>
+        <th>comments</th>
+        <th>condition</th>
+        <th>tags</th>
+        <th>time</th>
+        <th colspan="2">manage</th>
     </tr>
     <tr>
         <td>${requestScope.pixabay.id}</td>
@@ -60,9 +66,8 @@
         <td>${requestScope.pixabay.condition}</td>
         <td>${requestScope.pixabay.tags}</td>
         <td>${requestScope.pixabay.addTime}</td>
-        <td><a href="${requestScope.pixabay.url}">link</a></td>
-        <td><a href="#">Favorite</a></td>
-        <td><a href="#">Delete</a></td>
+        <td><a href="${requestScope.pixabay.url}" target="_blank">link</a></td>
+        <td><a href="adminServlet?action=deletePixabay&id=${requestScope.pixabay.id}">delete</a></td>
     </tr>
 </table>
 </body>
