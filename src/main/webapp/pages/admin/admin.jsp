@@ -15,9 +15,10 @@
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/admin.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
+    <script type="text/javascript" src="static/script/admin.js"></script>
 </head>
 <body>
-<a href="pages/user/login.jsp" class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></a>
+<div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/></div>
 <main class="img-preview-main">
 
     <!-- 用户输入 -->
@@ -30,14 +31,13 @@
             <label><input type="submit" value="login" class="btn"></label>
         </form>
     </div>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png"
-                                                                             alt=""></a>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/left_arrow.png" alt=""></a>
     </div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/right_arrow.png"
                                                                               alt=""></a></div>
 </main>
-<table border="1">
-    <tr>
+<table border="1" class="ad-table">
+    <tr >
         <th>ID</th>
         <th>Views</th>
         <th>Likes</th>
