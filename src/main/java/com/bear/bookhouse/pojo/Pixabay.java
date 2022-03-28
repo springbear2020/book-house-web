@@ -18,6 +18,8 @@ public class Pixabay {
     private Date addTime;
     private String url;
 
+    public static final int ERROR = -1;
+
     public Pixabay() {
     }
 

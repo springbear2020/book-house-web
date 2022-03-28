@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface FavoriteDao {
     /**
-     * 保存收藏记录
+     * 保存用户收藏记录
      *
      * @param favorite 收藏记录
      * @return 1 - 保存成功
@@ -18,7 +18,8 @@ public interface FavoriteDao {
     int saveFavorite(Favorite favorite);
 
     /**
-     * 通过用户 id 和图书 id 查询收藏记录
+     * 通过用户 id 和图书 id 查询用户图书收藏记录,
+     * 以验证该条收藏记录是否已存在
      *
      * @param userId 用户 id
      * @param bookId 图书 id

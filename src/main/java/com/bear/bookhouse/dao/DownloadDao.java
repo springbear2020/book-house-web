@@ -18,14 +18,15 @@ public interface DownloadDao {
     int saveDownload(Download download);
 
     /**
-     * 通过用户 id 查询用户下载记录并指定所需页数据
+     * 通过用户 id 查询用户下载记录，
+     * 并根据起始位置和偏移量指定所需页数据
      *
      * @param userId 用户 id
      * @param begin  起始位置
      * @param offset 偏移量
      * @return Download or null
      */
-    List<Download> listDownloadByUserId(int userId, int begin, int offset);
+    List<Download> listDownloadThoughUserIdByBeginAndOffset(int userId, int begin, int offset);
 
     /**
      * 获取用户下载记录总数
@@ -33,5 +34,5 @@ public interface DownloadDao {
      * @param userId 用户 id
      * @return 下载记录总数
      */
-    int getDownloadCounts(int userId);
+    int getDownloadCountsByUserId(int userId);
 }

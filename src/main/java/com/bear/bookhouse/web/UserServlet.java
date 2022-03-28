@@ -7,7 +7,6 @@ import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
-import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.WebUtil;
 import com.google.code.kaptcha.Constants;
 
@@ -16,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -65,7 +62,7 @@ public class UserServlet extends BaseServlet {
             req.setAttribute("noticeMsg", "恭喜您注册成功！");
             req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
     }
 
@@ -103,7 +100,7 @@ public class UserServlet extends BaseServlet {
             if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
+                resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
             }
         } else {
             session.setAttribute("loginMsg", "用户名不存在或密码错误");
@@ -129,11 +126,11 @@ public class UserServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
-        if (userService.updateUserPasswordByEmail(password, email)) {
+        if (userService.updatePasswordByEmail(password, email)) {
             req.setAttribute("noticeMsg", "密码重置成功!");
             req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
     }
 }

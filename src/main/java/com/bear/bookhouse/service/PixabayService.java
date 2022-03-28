@@ -28,4 +28,11 @@ public interface PixabayService {
      * @return true - 删除成功
      */
     boolean deletePixabayById(int id);
+
+    /**
+     * 展示一张数据库表第一张图书
+     *
+     * @return Pixabay
+     */
+    Pixabay showFirstPixabay();
 }

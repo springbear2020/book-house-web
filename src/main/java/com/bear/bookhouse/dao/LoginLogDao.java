@@ -18,14 +18,15 @@ public interface LoginLogDao {
     int saveLoginLog(LoginLog loginLog);
 
     /**
-     * 通过用户 id 查询用户登录日志，并指定显示范围
+     * 通过用户 id 查询用户登录日志，
+     * 并指定起始位置和偏移量以获取分页数据
      *
      * @param userId 用户 id
      * @param begin  起始位置
      * @param offset 偏移量
      * @return 登录日志
      */
-    List<LoginLog> listLoginLogsByUserId(int userId, int begin, int offset);
+    List<LoginLog> listLoginLogsThoughUserIdByBeginAndOffset(int userId, int begin, int offset);
 
     /**
      * 获取用户的登录记录总记录数

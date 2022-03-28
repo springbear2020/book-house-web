@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +41,138 @@ public class TransferServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
     private static final List<String> NOTIFICATIONS = new ArrayList<>();
+
+    /**
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void adminUploadPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+        // 判断表单是否为多段格式
+        if (ServletFileUpload.isMultipartContent(req)) {
+            // 创建用于解析表单的工具类
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            try {
+                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
+                for (FileItem fileItem : fileItemList) {
+                    // 非普通表单项即文件表单项，保存到 static/picture/background/time.png
+                    if (!fileItem.isFormField()) {
+                        fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/background/" + DateUtil.fileNameFormat(new Date()) + ".png"));
+                        req.getRequestDispatcher("pages/admin/admin.jsp").forward(req, resp);
+                    }
+                }
+            } catch (Exception e) {
+                req.getRequestDispatcher("pages/error/400.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 图书上传
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws IOException exception
+     */
+    protected void adminUploadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        Book book = new Book(null, null, null, null, null, 0, 0, null, null, null, null, new Date());
+        int userId = -1;
+        int uploadId = -1;
+        String bookPath = "";
+        String coverPath = "";
+        HttpSession session = req.getSession();
+        // 判断上传的文件是否为多段格式
+        if (ServletFileUpload.isMultipartContent(req)) {
+            // 创建用于解析上传数据的工具类
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            try {
+                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
+                // 逐条解析文件数据，分普通表单项和文件进行处理
+                for (FileItem fileItem : fileItemList) {
+                    // 普通表单项，读取 name - value 信息并封装为 Book 对象
+                    if (fileItem.isFormField()) {
+                        String name = fileItem.getFieldName();
+                        String value = fileItem.getString("UTF-8");
+                        switch (name) {
+                            case "title":
+                                book.setTitle(value);
+                                break;
+                            case "author":
+                                book.setAuthor(value);
+                                break;
+                            case "translator":
+                                book.setTranslator(value);
+                                break;
+                            case "keywords":
+                                book.setKeywords(value);
+                                break;
+                            case "comment":
+                                book.setComment(value);
+                                break;
+                            case "uploadUsername":
+                                book.setUploadUsername(value);
+                                break;
+                            case "userId":
+                                userId = NumberUtil.objectToInteger(value, -1);
+                                break;
+                            case "uploadId":
+                                uploadId = NumberUtil.objectToInteger(value, -1);
+                                break;
+                            case "bookPath":
+                                bookPath = value;
+                                break;
+                            case "coverPath":
+                                coverPath = value;
+                                break;
+                            default:
+                        }
+                    } else {
+                        // 非普通表单项，获取文件信息；获取文件表单项的 name 属性值
+                        String fieldName = fileItem.getFieldName();
+                        // 获取上传的文件名
+                        String uploadFileName = fileItem.getName();
+                        if ("book".equals(fieldName)) {
+                            // 将图书文件保存到磁盘真实路径下目录下 /WEB-INF/book/
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/book/" + uploadFileName));
+                            // 设置图书文件经服务器部署后的相对路径为 bookWebPath
+                            book.setBookPath("WEB-INF/book/" + uploadFileName);
+                        } else if ("cover".equals(fieldName)) {
+                            // 将封面文件保存到磁盘真实路径下
+                            fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/cover/" + uploadFileName));
+                            // 设置封面文件相对路径为 coverWebPath
+                            book.setCoverPath("static/picture/cover/" + uploadFileName);
+                        }
+                    }
+                }
+
+                // 保存图书记录到数据库、增加用户积分、删除磁盘文件、修改上传记录状态为已处理
+                if (bookService.saveBook(book)) {
+                    bookPath = getServletContext().getRealPath("/" + bookPath);
+                    coverPath = getServletContext().getRealPath("/" + coverPath);
+                    File bookFile = new File(bookPath);
+                    File coverFile = new File(coverPath);
+                    // 删除磁盘文件、修改上传记录状态为已处理、增加用户积分
+                    if (bookFile.exists() && coverFile.exists() && bookFile.delete() && coverFile.delete() && recordService.updateUploadState(uploadId) && userService.addUserScore(10, userId)) {
+                        session.setAttribute("noticeMsg", "Process successfully");
+                        resp.sendRedirect(req.getContextPath() + "/pages/admin/manage.jsp");
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+                    }
+                } else {
+                    session.setAttribute("noticeMsg", "Process failed");
+                    req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
+                }
+            } catch (Exception e) {
+                session.setAttribute("noticeMsg", "Process failed");
+                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     /**
      * 通过路径下载文件
@@ -104,10 +237,10 @@ public class TransferServlet extends BaseServlet {
             IOUtils.copy(inputStream, resp.getOutputStream());
             NOTIFICATIONS.add("您刚刚下载了《" + book.getTitle() + "》，积分 -10。" + DateUtil.timeFormat(new Date()));
             session.setAttribute("notifications", NOTIFICATIONS);
-            // 添加图书下载量、减少用户积分、添加用户图书下载记录
-            bookService.addBookDownloads(1, bookId);
-            userService.subUserScore(DataUtil.getScoreChange(), userId);
-            recordService.saveDownload(new Download(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
+            // 添加图书下载量、减少用户积分、添加用户图书下载记录 TODO
+            boolean b = bookService.addBookDownloads(1, bookId);
+            boolean b2 = userService.subUserScore(DataUtil.getScoreChange(), userId);
+            boolean b1 = recordService.saveDownload(new Download(null, userId, "下载图书", "-" + DataUtil.getScoreChange(), new Date(), book.getTitle()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -193,8 +326,8 @@ public class TransferServlet extends BaseServlet {
                     // 非普通表单项即文件表单项，保存到 static/picture/portrait/userId.png
                     if (!fileItem.isFormField()) {
                         fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/portrait/" + userId + ".png"));
-                        // 更新用户头像数据库保存路径
-                        userService.updatePortrait("static/picture/portrait/" + userId + ".png", userId);
+                        // 更新用户头像数据库保存路径 TODO
+                        boolean b = userService.updateUserPortrait("static/picture/portrait/" + userId + ".png", userId);
                         session.setAttribute("noticeMsg", "头像更换成功");
                         session.setAttribute("user", userService.getUserById(userId));
                         req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);

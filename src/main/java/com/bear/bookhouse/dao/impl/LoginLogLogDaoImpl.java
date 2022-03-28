@@ -11,7 +11,7 @@ import java.util.List;
  * @author Spring-_-Bear
  * @datetime 2022/3/25 17:26
  */
-public class LoginLogDaoImpl extends BaseDao implements LoginLogDao {
+public class LoginLogLogDaoImpl extends BaseDao implements LoginLogDao {
     @Override
     public int saveLoginLog(LoginLog loginLog) {
         String sql = "INSERT INTO `log_login`(`user_id`,`username`,`ip`,`location`,`time`) VALUES (?,?,?,?,?);";
@@ -19,7 +19,7 @@ public class LoginLogDaoImpl extends BaseDao implements LoginLogDao {
     }
 
     @Override
-    public List<LoginLog> listLoginLogsByUserId(int userId, int begin, int offset) {
+    public List<LoginLog> listLoginLogsThoughUserIdByBeginAndOffset(int userId, int begin, int offset) {
         String sql = "SELECT `id`,`user_id` userId,`username`,`ip`,`location`,`time` FROM `log_login` WHERE `user_id` = ? ORDER BY `time` DESC LIMIT ?,?;";
         return listRecord(LoginLog.class, sql, userId, begin, offset);
     }
@@ -27,6 +27,6 @@ public class LoginLogDaoImpl extends BaseDao implements LoginLogDao {
     @Override
     public int getUserLoginLogCounts(int userId) {
         String sql = "SELECT COUNT(`id`) FROM `log_login` WHERE `user_id` = ?;";
-        return NumberUtil.objectToInteger(getSingleValue(sql, userId), 0);
+        return NumberUtil.objectToInteger(getSingleValue(sql, userId), LoginLog.ERROR);
     }
 }

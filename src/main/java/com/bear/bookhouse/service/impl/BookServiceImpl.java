@@ -25,7 +25,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public int getBooksTotalCount() {
-        return bookDao.getBooksTotalCount();
+        return bookDao.getBookCounts();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BookServiceImpl implements BookService {
 
         page.setPageSize(pageSize);
         // 获取图书总记录数
-        int booksRecordTotalCount = bookDao.getBooksTotalCount();
+        int booksRecordTotalCount = bookDao.getBookCounts();
         if (booksRecordTotalCount <= 0) {
             return null;
         }
@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
         }
         page.setPageNum(pageNum);
 
-        // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以达到随机展示图书
+        // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以随机展示图书
         List<Book> bookList = new ArrayList<>();
         Integer[] integers = NumberUtil.generateNumbersInBoundAndSize(pageSize, booksRecordTotalCount);
         for (Integer bookId : integers) {
@@ -82,12 +82,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> getBookPageDataThoughTitle(int pageNum, int pageSize, String title) {
+    public Page<Book> getBookPageDataByTitle(int pageNum, int pageSize, String title) {
         Page<Book> bookPage = new Page<>();
 
         bookPage.setPageSize(pageSize);
         // 获取符合书名的图书总记录数
-        int booksCount = bookDao.getBooksTotalCountThoughTitle(title);
+        int booksCount = bookDao.getBookCountsByTitle(title);
         if (booksCount <= 0) {
             return null;
         }

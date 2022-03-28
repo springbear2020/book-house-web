@@ -11,7 +11,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String portraitPath = "static/picture/portrait/default.jpg";
+    private String portraitPath;
     private Integer score;
     private Date registerDate;
 

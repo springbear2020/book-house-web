@@ -29,4 +29,11 @@ public interface PixabayDao {
      * @return 1 - 删除成功
      */
     int deletePixabayById(int id);
+
+    /**
+     * 获取数据库表第一种图片
+     *
+     * @return Pixabay or null
+     */
+    Pixabay getFirstPixabay();
 }

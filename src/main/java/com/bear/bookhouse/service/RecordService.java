@@ -1,9 +1,6 @@
 package com.bear.bookhouse.service;
 
-import com.bear.bookhouse.pojo.Download;
-import com.bear.bookhouse.pojo.LoginLog;
-import com.bear.bookhouse.pojo.Page;
-import com.bear.bookhouse.pojo.Upload;
+import com.bear.bookhouse.pojo.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public interface RecordService {
      * @param pageSize 每页显示的数量
      * @return Download or null
      */
-    Page<Download> listDownloadPageData(int userId, int pageNum, int pageSize);
+    Page<Download> getDownloadPageData(int userId, int pageNum, int pageSize);
 
     /**
      * 保存用户图书上传记录
@@ -46,7 +43,7 @@ public interface RecordService {
      * @param pageSize 每页显示的数量
      * @return Upload or null
      */
-    Page<Upload> listUploadPageData(int userId, int pageNum, int pageSize);
+    Page<Upload> getUploadPageData(int userId, int pageNum, int pageSize);
 
     /**
      * 保存登录日志
@@ -64,7 +61,7 @@ public interface RecordService {
      * @param pageSize 每页显示的数量
      * @return 登录日志
      */
-    Page<LoginLog> listLoginLogPageData(int userId, int pageNum, int pageSize);
+    Page<LoginLog> getLoginLogPageData(int userId, int pageNum, int pageSize);
 
     /**
      * 获取未处理的上传记录
@@ -76,9 +73,50 @@ public interface RecordService {
     /**
      * 修改上传记录状态为已处理
      *
-     * @param id    上传记录 id
-     * @return 1 - 修改成功
+     * @param id 上传记录 id
+     * @return true - 修改成功
      */
-    int updateUploadState(int id);
+    boolean updateUploadState(int id);
+
+    /**
+     * 获取第一条尚未处理的上传记录
+     *
+     * @return 上传记录 or null
+     */
+    Upload getFirstNotProcessedUpload(String state);
+
+    /**
+     * 添加用户图书收藏记录
+     *
+     * @param favorite 收藏记录
+     * @return true - 添加成功
+     */
+    boolean addFavorite(Favorite favorite);
+
+    /**
+     * 通过用户 id 和图书 id 判断收藏记录是否已存在
+     *
+     * @param userId 用户 id
+     * @param booId  图书 id
+     * @return true - 收藏记录已存在
+     */
+    boolean isFavoriteExists(int userId, int booId);
+
+    /**
+     * 通过用户 id 查询用户收藏记录
+     *
+     * @param userId 用户 id
+     * @return Favorites or null
+     */
+    List<Favorite> getUserFavorites(int userId);
+
+    /**
+     * 删除用户图书收藏记录
+     *
+     * @param userId 用户 id
+     * @param bookId 图书 id
+     * @return true - 删除成功
+     */
+    boolean deleteUserFavorite(int userId, int bookId);
 }
 

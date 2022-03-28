@@ -99,6 +99,8 @@
     font-size: 0.3rem;
     background-color: rgba(125, 125, 125, 0.8);
     text-align: center;
+    border: 1rem solid;
+    border-collapse: collapse;
 }
 
 .img-a{

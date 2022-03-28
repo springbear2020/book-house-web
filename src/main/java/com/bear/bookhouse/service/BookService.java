@@ -28,7 +28,7 @@ public interface BookService {
     /**
      * 图书数据分页显示
      *
-     * @param pageNum  页码
+     * @param pageNum  当前页码
      * @param pageSize 每页显示的数量
      * @return 图书分页对象
      */
@@ -49,7 +49,7 @@ public interface BookService {
      * @param title    书名
      * @return 图书分页对象
      */
-    Page<Book> getBookPageDataThoughTitle(int pageNum, int pageSize, String title);
+    Page<Book> getBookPageDataByTitle(int pageNum, int pageSize, String title);
 
     /**
      * 增加图书下载量

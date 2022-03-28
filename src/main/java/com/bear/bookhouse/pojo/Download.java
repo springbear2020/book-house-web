@@ -14,6 +14,8 @@ public class Download {
    private Date time;
    private String title;
 
+   public static final int ERROR = -1;
+
    public Download() {
    }
 

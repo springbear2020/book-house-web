@@ -21,7 +21,7 @@ public abstract class BaseDao {
     /**
      * 执行 insert、update、delete 语句
      *
-     * @param sql  sql
+     * @param sql    sql
      * @param params sql 实参
      * @return 受影响的行数
      */
@@ -41,10 +41,10 @@ public abstract class BaseDao {
     /**
      * 查询数据库表的一条记录
      *
-     * @param clazz JavaBean class 对象
-     * @param sql   sql
-     * @param params  sql 实参
-     * @param <T>   返回类型泛型
+     * @param clazz  JavaBean class 对象
+     * @param sql    sql
+     * @param params sql 实参
+     * @param <T>    返回类型泛型
      * @return 一条记录 or null
      */
     public <T> T getRecord(Class<T> clazz, String sql, Object... params) {
@@ -63,10 +63,10 @@ public abstract class BaseDao {
     /**
      * 查询返回多条数据库表记录
      *
-     * @param clazz JavaBean 的 class 对象
-     * @param sql   sql
-     * @param params  sql 实参
-     * @param <T>   返回类型的泛型
+     * @param clazz  JavaBean 的 class 对象
+     * @param sql    sql
+     * @param params sql 实参
+     * @param <T>    返回类型的泛型
      * @return 多条记录 or null
      */
     public <T> List<T> listRecord(Class<T> clazz, String sql, Object... params) {
@@ -85,7 +85,7 @@ public abstract class BaseDao {
     /**
      * 查询返回单个数值
      *
-     * @param sql  sql
+     * @param sql    sql
      * @param params sql 实参
      * @return 单个数值 or null
      */

@@ -25,9 +25,9 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     @Override
-    public int getBooksTotalCount() {
+    public int getBookCounts() {
         String sql = "SELECT COUNT(`id`) FROM `t_book`;";
-        return NumberUtil.objectToInteger(getSingleValue(sql), -1);
+        return NumberUtil.objectToInteger(getSingleValue(sql), Book.ERROR);
     }
 
     @Override
@@ -44,10 +44,10 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     @Override
-    public int getBooksTotalCountThoughTitle(String title) {
+    public int getBookCountsByTitle(String title) {
         String sql = "SELECT COUNT(`id`) FROM `t_book` WHERE `title` LIKE ?;";
         Object[] params = new Object[]{"%" + title + "%"};
-        return NumberUtil.objectToInteger(getSingleValue(sql, params), -1);
+        return NumberUtil.objectToInteger(getSingleValue(sql, params), Book.ERROR);
     }
 
     @Override

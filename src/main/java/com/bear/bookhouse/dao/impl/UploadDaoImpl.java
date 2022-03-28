@@ -19,15 +19,15 @@ public class UploadDaoImpl extends BaseDao implements UploadDao {
     }
 
     @Override
-    public List<Upload> listUploadByUserId(int userId, int begin, int offset) {
+    public List<Upload> listUploadThoughUserIdByBeginAndOffset(int userId, int begin, int offset) {
         String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_upload` WHERE `user_id` = ? ORDER BY `time` DESC LIMIT ?,?;";
         return listRecord(Upload.class, sql, userId, begin, offset);
     }
 
     @Override
-    public int getUserUploadCounts(int userId) {
+    public int getUploadCountsByUserId(int userId) {
         String sql = "SELECT COUNT(`id`) FROM `t_upload` WHERE `user_id` = ?;";
-        return NumberUtil.objectToInteger(getSingleValue(sql, userId), 0);
+        return NumberUtil.objectToInteger(getSingleValue(sql, userId), Upload.ERROR);
     }
 
     @Override
@@ -37,8 +37,20 @@ public class UploadDaoImpl extends BaseDao implements UploadDao {
     }
 
     @Override
-    public int updateUploadState(int id, String state) {
+    public int updateUploadStateById(int id, String state) {
         String sql = "UPDATE `t_upload` SET `state` = ? WHERE `id` = ?;";
         return update(sql, state, id);
+    }
+
+    @Override
+    public Upload getOneUploadByState(String state) {
+        String sql = "SELECT `id`,`user_id` userId,`username`,`book_path` bookPath,`cover_path` coverPath,`state` FROM `t_upload` WHERE `state` = ? LIMIT 0,1;";
+        return getRecord(Upload.class, sql, state);
+    }
+
+    @Override
+    public int getUploadCountsByState(String state) {
+        String sql = "SELECT COUNT(`id`) FROM `t_upload` WHERE `state` = ?;";
+        return NumberUtil.objectToInteger(getSingleValue(sql, state), Upload.ERROR);
     }
 }

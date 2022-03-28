@@ -2,8 +2,8 @@ package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.User;
 import com.bear.bookhouse.pojo.UserInfo;
-import com.bear.bookhouse.service.UserInfoService;
-import com.bear.bookhouse.service.impl.UserInfoServiceImpl;
+import com.bear.bookhouse.service.UserService;
+import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
 
@@ -19,7 +19,7 @@ import java.util.Date;
  * @datetime 2022/3/26 16:39
  */
 public class UserInfoServlet extends BaseServlet {
-    private final UserInfoService userInfoService = new UserInfoServiceImpl();
+    private final UserService userService = new UserServiceImpl();
 
     /**
      * 显示用户个人信息
@@ -32,7 +32,7 @@ public class UserInfoServlet extends BaseServlet {
         HttpSession session = req.getSession();
         // 从域中获取的用户 id 确保了 id 不会非法
         int userId = NumberUtil.objectToInteger(user.getId(), -1);
-        UserInfo userInfo = userInfoService.getUserInfoByUserId(userId);
+        UserInfo userInfo = userService.getUserInfoByUserId(userId);
         session.setAttribute("userInfo", userInfo);
         req.getRequestDispatcher("/pages/user/personal.jsp").forward(req, resp);
     }
@@ -52,7 +52,7 @@ public class UserInfoServlet extends BaseServlet {
         String location = req.getParameter("location");
         String signature = req.getParameter("signature");
         UserInfo userInfo = new UserInfo(null, NumberUtil.objectToInteger(userId, -1), nickname, sex, DateUtil.parseStringToDate(birth), location, signature, new Date());
-        if (userInfoService.updateUserInfo(userInfo)) {
+        if (userService.updateUserInfo(userInfo)) {
             session.setAttribute("noticeMsg", "个人信息修改成功");
         } else {
             session.setAttribute("noticeMsg", "个人信息修改失败，请稍后重试");

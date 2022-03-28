@@ -2,10 +2,10 @@ package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.Favorite;
 import com.bear.bookhouse.service.BookService;
-import com.bear.bookhouse.service.FavoriteService;
+import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
-import com.bear.bookhouse.service.impl.FavoriteServiceImpl;
+import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
@@ -24,7 +24,7 @@ import java.util.List;
 public class FavoriteServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
     private final UserService userService = new UserServiceImpl();
-    private final FavoriteService favoriteService = new FavoriteServiceImpl();
+    private final RecordService recordService = new RecordServiceImpl();
 
     /**
      * 添加收藏记录
@@ -42,13 +42,13 @@ public class FavoriteServlet extends BaseServlet {
         HttpSession session = req.getSession();
 
         // 查询用户图书收藏记录是否已经存在
-        if (favoriteService.isFavoriteExists(userId, bookId)) {
+        if (recordService.isFavoriteExists(userId, bookId)) {
             session.setAttribute("noticeMsg", "图书收藏记录已存在，不可重复收藏");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
         // 保存收藏记录、增加图书收藏量、用户收藏量增加 1
-        if (favoriteService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(1, bookId)) {
+        if (recordService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(1, bookId)) {
             session.setAttribute("noticeMsg", "图书加入收藏夹成功");
         } else {
             session.setAttribute("noticeMsg", "图书加入收藏夹失败，请稍后重试");
@@ -68,7 +68,7 @@ public class FavoriteServlet extends BaseServlet {
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), -1);
         HttpSession session = req.getSession();
 
-        if (!favoriteService.deleteFavorite(userId, bookId)) {
+        if (!recordService.deleteUserFavorite(userId, bookId)) {
             session.setAttribute("noticeMsg", "图书取消收藏失败，请稍后重试");
         }
         resp.sendRedirect(req.getHeader("Referer"));
@@ -92,7 +92,7 @@ public class FavoriteServlet extends BaseServlet {
         }
 
         // 从数据库查询用户个人收藏记录
-        List<Favorite> userFavorites = favoriteService.getFavorites(userId);
+        List<Favorite> userFavorites = recordService.getUserFavorites(userId);
         if (userFavorites == null || userFavorites.size() == 0) {
             session.setAttribute("noticeMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");

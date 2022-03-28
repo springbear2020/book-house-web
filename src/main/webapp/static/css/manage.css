@@ -228,7 +228,7 @@
     margin: 0 1.5rem 0.4rem;
 }
 
-.frame-left table{
+.frame-left table {
     width: 5rem;
     margin: 0 auto;
     font-size: 0.25rem;
@@ -237,20 +237,27 @@
     border: 0.01rem solid black;
     text-align: center;
 }
+
 /*.frame-left table td{*/
 /*    !*border-top: 0.01rem solid grey;*!*/
 /*    !*border-right: 0.01rem solid grey;*!*/
 /*    padding: 0;*/
 /*}*/
-.autoFill{
-    background-color: rgba(0,0,0,0);
+.autoFill {
+    background-color: rgba(0, 0, 0, 0);
     border: 0;
     font-size: 0.25rem;
     color: blue;
     padding: 0;
     margin: 0;
 }
-.autoFill:active{
+
+.autoFill:active {
     background-color: grey;
     color: white;
 }
+
+/*.waitProcess {*/
+/*    left: 50%;*/
+/*    font-size: 0.5rem;*/
+/*}*/

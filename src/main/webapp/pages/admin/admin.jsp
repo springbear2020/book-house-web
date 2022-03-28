@@ -19,30 +19,33 @@
     <script type="text/javascript" src="static/script/admin.js"></script>
 </head>
 <body>
-<div class="pixabayManage"><img class="bk-img" alt="GET PICTURE FROM PIXABAY FAILED" src="${requestScope.pixabay.url}"/></div>
+<div class="pixabayManage"><img class="bk-img" alt="GET PICTURE FROM PIXABAY FAILED" src="${requestScope.pixabay.url}"/>
+</div>
 <main class="img-preview-main">
     <div class="users-input">
-        <div class="title"><a href="index.jsp">Book House</a> </div>
+        <div class="title"><a href="index.jsp">Book House</a></div>
         <%-- Admin form --%>
         <c:if test="${ empty sessionScope.admin}">
             <form method="post" action="adminServlet">
-                <input type="hidden" name="action" value="login">
+                <input type="hidden" name="action" value="loginLog">
                 <label><input name="username" type="text" placeholder="username"></label>
                 <label><input name="password" type="password" placeholder="password"></label>
-                <label><input type="submit" value="login" class="btn"></label>
+                <label><input type="submit" value="loginLog" class="btn"></label>
             </form>
         </c:if>
     </div>
-    <c:if test="${not empty sessionScope.admin}">
-        <div class="img-a">
-            <a href="adminServlet?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
-            <a href="pages/admin/manage.jsp" class="upload-a" target="_blank"><img alt="" src="static/img/upload_admin.png"></a>
-        </div>
-    </c:if>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a></div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png" alt=""></a></div>
+    <%--    <c:if test="${not empty sessionScope.admin}">--%>
+    <div class="img-a">
+        <a href="adminServlet?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
+        <a href="pages/admin/manage.jsp" class="upload-a" target="_blank"><img alt="" src="static/img/upload_admin.png"></a>
+    </div>
+    <%--    </c:if>--%>
+    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
+    </div>
+    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
+                                                                              alt=""></a></div>
 </main>
-<table class="ad-table" border="1">
+<table class="ad-table" >
     <tr>
         <th>id</th>
         <th>views</th>
@@ -53,7 +56,7 @@
         <th>condition</th>
         <th>tags</th>
         <th>time</th>
-        <th colspan="2">manage</th>
+        <th colspan="3">manage</th>
     </tr>
     <tr>
         <td>${requestScope.pixabay.id}</td>
@@ -66,6 +69,7 @@
         <td>${requestScope.pixabay.tags}</td>
         <td>${requestScope.pixabay.addTime}</td>
         <td><a href="${requestScope.pixabay.url}" target="_blank">link</a></td>
+        <td><a href="pages/admin/background.jsp" target="_blank">upload</a></td>
         <td><a href="adminServlet?action=deletePixabay&id=${requestScope.pixabay.id}">delete</a></td>
     </tr>
 </table>

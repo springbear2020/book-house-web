@@ -1,8 +1,14 @@
 package com.bear.bookhouse.service.impl;
 
+import com.bear.bookhouse.dao.AdminDao;
 import com.bear.bookhouse.dao.UserDao;
+import com.bear.bookhouse.dao.UserInfoDao;
+import com.bear.bookhouse.dao.impl.AdminDaoImpl;
 import com.bear.bookhouse.dao.impl.UserDaoImpl;
+import com.bear.bookhouse.dao.impl.UserInfoImpl;
+import com.bear.bookhouse.pojo.Admin;
 import com.bear.bookhouse.pojo.User;
+import com.bear.bookhouse.pojo.UserInfo;
 import com.bear.bookhouse.service.UserService;
 
 /**
@@ -11,6 +17,8 @@ import com.bear.bookhouse.service.UserService;
  */
 public class UserServiceImpl implements UserService {
     private final UserDao userDao = new UserDaoImpl();
+    private final UserInfoDao userInfoDao = new UserInfoImpl();
+    private final AdminDao adminDao = new AdminDaoImpl();
 
     @Override
     public boolean saveUser(User user) {
@@ -33,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUserPasswordByEmail(String password, String email) {
+    public boolean updatePasswordByEmail(String password, String email) {
         return userDao.updatePasswordByEmail(password, email) == 1;
     }
 
@@ -44,17 +52,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean addUserScore(int addScore, int userId) {
-        return userDao.addUserScoreById(addScore, userId) == 1;
+        return userDao.addUserScoreByUserId(addScore, userId) == 1;
     }
 
     @Override
     public boolean subUserScore(int subScore, int userId) {
-        return userDao.subUserScoreByUser(subScore, userId) == 1;
+        return userDao.subUserScoreByUserId(subScore, userId) == 1;
     }
 
     @Override
     public int getUserScore(int userId) {
-        return userDao.getUserScoreById(userId);
+        return userDao.getUserScoreByUserId(userId);
     }
 
     @Override
@@ -73,12 +81,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updatePortrait(String portraitPath, int userId) {
-        return userDao.updatePortraitByUserId(portraitPath, userId) == 1;
+    public boolean updateUserPortrait(String portraitPath, int userId) {
+        return userDao.updatePortraitPathByUserId(portraitPath, userId) == 1;
     }
 
     @Override
     public User getUserById(int userId) {
         return userDao.getUserById(userId);
+    }
+
+    @Override
+    public UserInfo getUserInfoByUserId(int userId) {
+        return userInfoDao.getUserInfoByUserId(userId);
+    }
+
+    @Override
+    public boolean updateUserInfo(UserInfo userInfo) {
+        return userInfoDao.updateUserInfoByUserId(userInfo) == 1;
+    }
+
+    @Override
+    public Admin getAdminByUsernameAndPassword(String username, String password) {
+        return adminDao.getAdminByUsernameAndPassword(username, password);
     }
 }

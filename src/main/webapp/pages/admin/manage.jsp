@@ -18,21 +18,49 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/manage.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#autoFill").click(function () {
-                let $userIdText = $(".td-userId").val()
-                alert($userIdText)
-                // $(".form-userId").text();
-                // $(".form-username").text($(".td-username"));
-            });
-        });
-    </script>
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
+    <c:if test="${not empty sessionScope.noticeMsg}">
+        <script type="text/javascript">noticeShow()</script>
+        <% session.removeAttribute("noticeMsg"); %>
+    </c:if>
 </head>
 <body>
 <div class="title">Book House</div>
 <div class="middle">
-    <div class="frame-left">
+
+    <%--    <div class="frame-left">--%>
+    <%--        <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>--%>
+    <%--        <table>--%>
+    <%--            <tr>--%>
+    <%--                <td>id</td>--%>
+    <%--                <td>user</td>--%>
+    <%--                <td>username</td>--%>
+    <%--                <td>book</td>--%>
+    <%--                <td>cover</td>--%>
+    <%--                <td>fill</td>--%>
+    <%--                <td>delete</td>--%>
+    <%--            </tr>--%>
+    <%--            <c:forEach items="${requestScope.waitProcessBookList}" var="upload">--%>
+    <%--                <tr>--%>
+    <%--                    <td>${upload.id}</td>--%>
+    <%--                    <td class="td-userId">${upload.userId}</td>--%>
+    <%--                    <td class="td-username">${upload.username}</td>--%>
+    <%--                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.bookPath}">get</a></td>--%>
+    <%--                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.coverPath}">get</a></td>--%>
+    <%--                    <td>--%>
+    <%--                        <button class="autoFill">fill</button>--%>
+    <%--                    </td>--%>
+    <%--                    <td>--%>
+    <%--                        <a href="adminServlet?action=deleteBookAndCover&uploadId=${upload.id}&bookPath=${upload.bookPath}&coverPath=${upload.coverPath}">delete</a>--%>
+    <%--                    </td>--%>
+    <%--                </tr>--%>
+    <%--            </c:forEach>--%>
+    <%--        </table>--%>
+    <%--    </div>--%>
+
+    <div class="middle-container">
+        <%--        <h2 class="up-title">Process Book</h2>--%>
         <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>
         <table>
             <tr>
@@ -44,30 +72,31 @@
                 <td>fill</td>
                 <td>delete</td>
             </tr>
-            <c:forEach items="${requestScope.waitProcessBookList}" var="upload">
-                <tr>
-                    <td>${upload.id}</td>
-                    <td class="td-userId">${upload.userId}</td>
-                    <td class="td-username">${upload.username}</td>
-                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.bookPath}">get</a></td>
-                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.coverPath}">get</a></td>
-                    <td>
-                        <button class="autoFill">fill</button>
-                    </td>
-                    <td>
-                        <a href="adminServlet?action=deleteBookAndCover&uploadId=${upload.id}&bookPath=${upload.bookPath}&coverPath=${upload.coverPath}">delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
+            <tr>
+                <td>${requestScope.upload.id}</td>
+                <td class="td-userId">${requestScope.upload.userId}</td>
+                <td class="td-username">${requestScope.upload.username}</td>
+                <td><a href="transferServlet?action=downloadFileByPath&path=${requestScope.upload.bookPath}">get</a>
+                </td>
+                <td><a href="transferServlet?action=downloadFileByPath&path=${requestScope.upload.coverPath}">get</a>
+                </td>
+                <td>
+                    <button class="autoFill">fill</button>
+                </td>
+                <td>
+                    <a href="adminServlet?action=deleteBookAndCover&uploadId=${requestScope.upload.id}&bookPath=${requestScope.upload.bookPath}&coverPath=${requestScope.upload.coverPath}">delete</a>
+                </td>
+            </tr>
         </table>
-    </div>
-
-    <div class="middle-container">
-        <h2 class="up-title">Upload Book</h2>
         <a href="adminServlet?action=showPixabayRandomly" target="_self" class="toBack"><img
                 src="static/img/icon_back.png" alt=""></a>
         <%-- Book file upload form --%>
         <form action="transferServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="userId" value="${requestScope.upload.userId}">
+            <input type="hidden" name="uploadUsername" value="${requestScope.upload.username}">
+            <input type="hidden" name="uploadId" value="${requestScope.upload.id}">
+            <input type="hidden" name="bookPath" value="${requestScope.upload.bookPath}">
+            <input type="hidden" name="coverPath" value="${requestScope.upload.coverPath}">
             <label class="upload-label"><input placeholder="title" type="text" name="title" class="up-input"></label>
             <label class="upload-label"><input placeholder="author" type="text" name="author" class="up-input"></label>
             <label class="upload-label"><input placeholder="translator" type="text" name="translator" class="up-input"></label>
@@ -75,8 +104,6 @@
                                                class="up-input"></label>
             <label class="upload-label"><input placeholder="comments" type="text" name="comment"
                                                class="up-input"></label>
-            <label class="upload-label"><input placeholder="username" type="text" name="username" disabled
-                                               class="up-input form-username"></label>
             <div class="bookFile upload-label"><label class="bookFile-true"><span>choose book</span>
                 <input type="file" name="book" accept="application/pdf" class="chooseFile"
                        style="display:block;opacity: 0"></label>
@@ -98,15 +125,15 @@
         </form>
     </div>
 
-    <div class="frame-right">
-        <h2 class="right-up-title">Issue Points</h2>
-        <form>
-            <input type="hidden" name="uploadUsername" value="${sessionScope.user.username}">
-            <label class="upload-label"><input placeholder="user id" type="text" name="userId" class="up-input form-userId" disabled></label>
-            <label class="upload-label"><input placeholder="points" type="text" name="points" class="up-input form-points" disabled value="10"></label>
-            <label class="upload-label"><input type="submit" class="up-input" value="submit"></label>
-        </form>
-    </div>
+    <%--    <div class="frame-right">--%>
+    <%--        <h2 class="right-up-title">Issue Points</h2>--%>
+    <%--        <form method="get" action="adminServlet">--%>
+    <%--            <input type="hidden" name="action" value="issuePoints">--%>
+    <%--            <label class="upload-label"><input placeholder="user id" type="text" name="userId"--%>
+    <%--                                               class="up-input form-userId" ></label>--%>
+    <%--            <label class="upload-label"><input type="submit" class="up-input" value="submit"></label>--%>
+    <%--        </form>--%>
+    <%--    </div>--%>
 </div>
 </body>
 </html>

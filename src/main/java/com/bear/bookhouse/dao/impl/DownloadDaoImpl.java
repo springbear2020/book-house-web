@@ -19,14 +19,14 @@ public class DownloadDaoImpl extends BaseDao implements DownloadDao {
     }
 
     @Override
-    public List<Download> listDownloadByUserId(int userId, int begin, int offset) {
+    public List<Download> listDownloadThoughUserIdByBeginAndOffset(int userId, int begin, int offset) {
         String sql = "SELECT `id`,`user_id` userId,`operation`,`score_change` scoreChange,`time`,`title` FROM `t_download` WHERE `user_id` = ? ORDER BY `time` DESC LIMIT ?,?;";
         return listRecord(Download.class, sql, userId, begin, offset);
     }
 
     @Override
-    public int getDownloadCounts(int userId) {
+    public int getDownloadCountsByUserId(int userId) {
         String sql = "SELECT COUNT(`id`) FROM `t_download` WHERE `user_id` = ?;";
-        return NumberUtil.objectToInteger(getSingleValue(sql, userId), 0);
+        return NumberUtil.objectToInteger(getSingleValue(sql, userId), Download.ERROR);
     }
 }

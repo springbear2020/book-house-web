@@ -85,12 +85,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${requestScope.loginLogPage.pageData}" var="login">
+                <c:forEach items="${requestScope.loginLogPage.pageData}" var="loginLog">
                     <tr class="pure-table-odd">
-                        <td>${login.username}</td>
-                        <td>${login.ip}</td>
-                        <td>${login.time}</td>
-                        <td class="tb-title">${login.location}</td>
+                        <td>${loginLog.username}</td>
+                        <td>${loginLog.ip}</td>
+                        <td>${loginLog.time}</td>
+                        <td class="tb-title">${loginLog.location}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

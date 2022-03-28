@@ -153,7 +153,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="D:\Software\Python\Python3.8.2" />

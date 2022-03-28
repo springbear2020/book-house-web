@@ -1,6 +1,8 @@
 package com.bear.bookhouse.service;
 
+import com.bear.bookhouse.pojo.Admin;
 import com.bear.bookhouse.pojo.User;
+import com.bear.bookhouse.pojo.UserInfo;
 
 /**
  * @author Spring-_-Bear
@@ -56,7 +58,7 @@ public interface UserService {
      * @param password 密码
      * @return true - 更新成功
      */
-    boolean updateUserPasswordByEmail(String password, String email);
+    boolean updatePasswordByEmail(String password, String email);
 
     /**
      * 通过用户名查询用户信息
@@ -115,7 +117,7 @@ public interface UserService {
      * @param portraitPath 用户头像路径
      * @return true - 更新成功
      */
-    boolean updatePortrait(String portraitPath, int userId);
+    boolean updateUserPortrait(String portraitPath, int userId);
 
     /**
      * 通过用户 id 查询用户
@@ -124,4 +126,29 @@ public interface UserService {
      * @return User or null
      */
     User getUserById(int userId);
+
+    /**
+     * 通过用户 id 查询用户信息
+     *
+     * @param userId 用户 id
+     * @return UserInfo or null
+     */
+    UserInfo getUserInfoByUserId(int userId);
+
+    /**
+     * 更新用户信息
+     *
+     * @param userInfo 用户信息
+     * @return true - 更新成功
+     */
+    boolean updateUserInfo(UserInfo userInfo);
+
+    /**
+     * 通过用户名、密码查询管理员信息
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return Admin or null
+     */
+    Admin getAdminByUsernameAndPassword(String username, String password);
 }

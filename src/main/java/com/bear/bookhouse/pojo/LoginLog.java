@@ -14,6 +14,8 @@ public class LoginLog {
     private String location;
     private Date time;
 
+    public static final int ERROR = -1;
+
     public LoginLog() {
     }
 

@@ -47,19 +47,19 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     }
 
     @Override
-    public int addUserScoreById(int addScore, int userId) {
+    public int addUserScoreByUserId(int addScore, int userId) {
         String sql = "UPDATE `t_user` SET `score` = `score` + ? WHERE `id` = ?;";
         return update(sql, addScore, userId);
     }
 
     @Override
-    public int subUserScoreByUser(int subScore, int userId) {
+    public int subUserScoreByUserId(int subScore, int userId) {
         String sql = "UPDATE `t_user` SET `score` = `score` - ? WHERE `id` = ?;";
         return update(sql, subScore, userId);
     }
 
     @Override
-    public int getUserScoreById(int userId) {
+    public int getUserScoreByUserId(int userId) {
         String sql = "SELECT `score` FROM `t_user` WHERE `id` = ?;";
         return NumberUtil.objectToInteger(getSingleValue(sql, userId), -1);
     }
@@ -71,7 +71,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     }
 
     @Override
-    public int updatePortraitByUserId(String portraitPath, int userId) {
+    public int updatePortraitPathByUserId(String portraitPath, int userId) {
         String sql = "UPDATE `t_user` SET `portrait_path` = ? WHERE `id` = ?";
         return update(sql, portraitPath, userId);
     }

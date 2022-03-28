@@ -7,6 +7,23 @@ import com.bear.bookhouse.pojo.User;
  * @datetime 2022/3/16 19:11
  */
 public interface UserDao {
+
+    /**
+     * 保存用户信息
+     *
+     * @param user User
+     * @return -1 - 保存失败； 1 - 保存成功
+     */
+    int saveUser(User user);
+
+    /**
+     * 通过用户 id 查询用户信息
+     *
+     * @param userId 用户 id
+     * @return User or null
+     */
+    User getUserById(int userId);
+
     /**
      * 通过用户名查询用户信息
      *
@@ -34,15 +51,7 @@ public interface UserDao {
     User getUserByEmailAndPassword(String email, String password);
 
     /**
-     * 保存用户信息
-     *
-     * @param user User
-     * @return -1 - 保存失败； 1 - 保存成功
-     */
-    int saveUser(User user);
-
-    /**
-     * 通过邮箱地址查询用户信息
+     * 通过邮箱查询用户信息
      *
      * @param email 邮箱地址
      * @return User or null
@@ -65,7 +74,7 @@ public interface UserDao {
      * @param userId   用户 id
      * @return 1 - 增加成功
      */
-    int addUserScoreById(int addScore, int userId);
+    int addUserScoreByUserId(int addScore, int userId);
 
     /**
      * 通过用户 id 减少用户积分
@@ -74,7 +83,7 @@ public interface UserDao {
      * @param userId   用户 id
      * @return 1 - 减少成功
      */
-    int subUserScoreByUser(int subScore, int userId);
+    int subUserScoreByUserId(int subScore, int userId);
 
     /**
      * 通过用户 id 查询用户积分
@@ -82,15 +91,7 @@ public interface UserDao {
      * @param userId 用户 id
      * @return 用户积分
      */
-    int getUserScoreById(int userId);
-
-    /**
-     * 通过用户 id 查询用户信息
-     *
-     * @param userId 用户 id
-     * @return User or null
-     */
-    User getUserById(int userId);
+    int getUserScoreByUserId(int userId);
 
     /**
      * 通过用户 id 更新用户头像保存路径
@@ -99,5 +100,5 @@ public interface UserDao {
      * @param portraitPath 头像路径
      * @return 1 - 更新成功
      */
-    int updatePortraitByUserId(String portraitPath, int userId);
+    int updatePortraitPathByUserId(String portraitPath, int userId);
 }

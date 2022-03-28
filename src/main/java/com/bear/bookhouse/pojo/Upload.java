@@ -7,126 +7,130 @@ import java.util.Date;
  * @datetime 2022/3/26 10:28
  */
 public class Upload {
-   private Integer id;
-   private Integer userId;
-   private String username;
-   private String operation;
-   private String scoreChange;
-   private Date time;
-   private String title;
-   private String bookPath;
-   private String coverPath;
-   private String state;
+    private Integer id;
+    private Integer userId;
+    private String username;
+    private String operation;
+    private String scoreChange;
+    private Date time;
+    private String title;
+    private String bookPath;
+    private String coverPath;
+    private String state;
 
-   public Upload() {
-   }
+    public static final int ERROR = -1;
+    public static final String PROCESSED = "已处理";
+    public static final String NOT_PROCESSED = "未处理";
 
-   public Upload(Integer id, Integer userId, String username, String operation, String scoreChange, Date time, String title, String bookPath, String coverPath, String state) {
-      this.id = id;
-      this.userId = userId;
-      this.username = username;
-      this.operation = operation;
-      this.scoreChange = scoreChange;
-      this.time = time;
-      this.title = title;
-      this.bookPath = bookPath;
-      this.coverPath = coverPath;
-      this.state = state;
-   }
+    public Upload() {
+    }
 
-   public Integer getId() {
-      return id;
-   }
+    public Upload(Integer id, Integer userId, String username, String operation, String scoreChange, Date time, String title, String bookPath, String coverPath, String state) {
+        this.id = id;
+        this.userId = userId;
+        this.username = username;
+        this.operation = operation;
+        this.scoreChange = scoreChange;
+        this.time = time;
+        this.title = title;
+        this.bookPath = bookPath;
+        this.coverPath = coverPath;
+        this.state = state;
+    }
 
-   public void setId(Integer id) {
-      this.id = id;
-   }
+    public Integer getId() {
+        return id;
+    }
 
-   public Integer getUserId() {
-      return userId;
-   }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-   public void setUserId(Integer userId) {
-      this.userId = userId;
-   }
+    public Integer getUserId() {
+        return userId;
+    }
 
-   public String getUsername() {
-      return username;
-   }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-   public void setUsername(String username) {
-      this.username = username;
-   }
+    public String getUsername() {
+        return username;
+    }
 
-   public String getOperation() {
-      return operation;
-   }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-   public void setOperation(String operation) {
-      this.operation = operation;
-   }
+    public String getOperation() {
+        return operation;
+    }
 
-   public String getScoreChange() {
-      return scoreChange;
-   }
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
 
-   public void setScoreChange(String scoreChange) {
-      this.scoreChange = scoreChange;
-   }
+    public String getScoreChange() {
+        return scoreChange;
+    }
 
-   public Date getTime() {
-      return time;
-   }
+    public void setScoreChange(String scoreChange) {
+        this.scoreChange = scoreChange;
+    }
 
-   public void setTime(Date time) {
-      this.time = time;
-   }
+    public Date getTime() {
+        return time;
+    }
 
-   public String getTitle() {
-      return title;
-   }
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
-   public void setTitle(String title) {
-      this.title = title;
-   }
+    public String getTitle() {
+        return title;
+    }
 
-   public String getBookPath() {
-      return bookPath;
-   }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-   public void setBookPath(String bookPath) {
-      this.bookPath = bookPath;
-   }
+    public String getBookPath() {
+        return bookPath;
+    }
 
-   public String getCoverPath() {
-      return coverPath;
-   }
+    public void setBookPath(String bookPath) {
+        this.bookPath = bookPath;
+    }
 
-   public void setCoverPath(String coverPath) {
-      this.coverPath = coverPath;
-   }
+    public String getCoverPath() {
+        return coverPath;
+    }
 
-   public String getState() {
-      return state;
-   }
+    public void setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
+    }
 
-   public void setState(String state) {
-      this.state = state;
-   }
+    public String getState() {
+        return state;
+    }
 
-   @Override
-   public String toString() {
-      return "Upload{" +
-              "id=" + id +
-              ", userId=" + userId +
-              ", username='" + username + '\'' +
-              ", operation='" + operation + '\'' +
-              ", scoreChange='" + scoreChange + '\'' +
-              ", time=" + time +
-              ", title='" + title + '\'' +
-              ", bookPath='" + bookPath + '\'' +
-              ", coverPath='" + coverPath + '\'' +
-              ", state='" + state + '\'' +
-              '}';
-   }
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Upload{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", username='" + username + '\'' +
+                ", operation='" + operation + '\'' +
+                ", scoreChange='" + scoreChange + '\'' +
+                ", time=" + time +
+                ", title='" + title + '\'' +
+                ", bookPath='" + bookPath + '\'' +
+                ", coverPath='" + coverPath + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

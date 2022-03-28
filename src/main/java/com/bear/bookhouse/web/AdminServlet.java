@@ -3,12 +3,12 @@ package com.bear.bookhouse.web;
 import com.bear.bookhouse.pojo.Admin;
 import com.bear.bookhouse.pojo.Pixabay;
 import com.bear.bookhouse.pojo.Upload;
-import com.bear.bookhouse.service.AdminService;
 import com.bear.bookhouse.service.PixabayService;
 import com.bear.bookhouse.service.RecordService;
-import com.bear.bookhouse.service.impl.AdminServiceImpl;
+import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.PixabayServiceImpl;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
+import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
 import javax.servlet.ServletContext;
@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Spring-_-Bear
@@ -25,7 +24,7 @@ import java.util.List;
  */
 public class AdminServlet extends BaseServlet {
     private final PixabayService pixabayService = new PixabayServiceImpl();
-    private final AdminService adminService = new AdminServiceImpl();
+    private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
 
     /**
@@ -42,13 +41,14 @@ public class AdminServlet extends BaseServlet {
         File bookFile = new File(bookPath);
         File coverFile = new File(coverPath);
         if (bookFile.exists() && bookFile.isFile() && coverFile.exists() && coverFile.isFile()) {
-            bookFile.delete();
-            coverFile.delete();
-            // 修改对应上传记录为已处理
-            recordService.updateUploadState(id);
-            resp.sendRedirect(req.getContextPath() + "/pages/admin/manage.jsp");
+            if (bookFile.delete() && coverFile.delete()) {
+                // 修改对应上传记录为已处理
+                recordService.updateUploadState(id);
+                resp.sendRedirect(req.getContextPath() + "/pages/admin/manage.jsp");
+            }
+
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.html");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
         }
     }
 
@@ -59,8 +59,8 @@ public class AdminServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void obtainBooks(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Upload> waitProcessBookList = recordService.listUploadForAdmin();
-        req.setAttribute("waitProcessBookList", waitProcessBookList);
+        Upload upload = recordService.getFirstNotProcessedUpload("未处理");
+        req.setAttribute("upload", upload);
         req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
     }
 
@@ -84,12 +84,12 @@ public class AdminServlet extends BaseServlet {
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        Admin admin = adminService.getAdminByUsernameAndPassword(username, password);
+        Admin admin = userService.getAdminByUsernameAndPassword(username, password);
         if (admin != null) {
             req.getSession().setAttribute("admin", admin);
             resp.sendRedirect(req.getHeader("Referer"));
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/404.html");
+            resp.sendRedirect(req.getContextPath() + "/pages/error/404.jsp");
         }
     }
 
@@ -101,7 +101,7 @@ public class AdminServlet extends BaseServlet {
      * @throws IOException exception
      */
     protected void showPixabayRandomly(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Pixabay pixabay = pixabayService.getPixabayRandomly();
+        Pixabay pixabay = pixabayService.showFirstPixabay();
         req.setAttribute("pixabay", pixabay);
         req.getRequestDispatcher("/pages/admin/admin.jsp").forward(req, resp);
     }

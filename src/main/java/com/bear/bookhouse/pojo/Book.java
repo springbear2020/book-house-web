@@ -20,6 +20,8 @@ public class Book {
     private String uploadUsername;
     private Date uploadTime;
 
+    public static final int ERROR = -1;
+
     public Book() {
     }
 

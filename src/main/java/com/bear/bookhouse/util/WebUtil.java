@@ -93,4 +93,8 @@ public class WebUtil {
         }
         return bean;
     }
+
+    public static void main(String[] args) {
+        System.out.println("/WEB-INF/upload/2-20220327211337.png".substring("/WEB-INF/upload/2-20220327211337.png".lastIndexOf('/')));
+    }
 }

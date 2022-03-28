@@ -39,10 +39,19 @@ public interface BookDao {
      *
      * @return 图书总记录数
      */
-    int getBooksTotalCount();
+    int getBookCounts();
 
     /**
-     * 在指定书名作为过滤条件的基础上指定起始位置和偏移量查询图书数据
+     * 获取符合书名条件的图书记录数
+     *
+     * @param title 书名
+     * @return 记录数
+     */
+    int getBookCountsByTitle(String title);
+
+    /**
+     * 在指定书名作为过滤条件的基础上,
+     * 指定起始位置和偏移量查询图书分页数据
      *
      * @param begin  开始位置
      * @param offset 偏移量
@@ -52,17 +61,9 @@ public interface BookDao {
     List<Book> listBooksThoughTitleByBeginAndOffset(int begin, int offset, String title);
 
     /**
-     * 获取符合书名条件的图书记录数
-     *
-     * @param title 书名
-     * @return 记录数
-     */
-    int getBooksTotalCountThoughTitle(String title);
-
-    /**
      * 通过图书 id 增加图书下载量
      *
-     * @param addDownload 需要增加的下载量
+     * @param addDownload 增加的下载量
      * @param bookId      图书 id
      * @return 1 - 增加成功
      */
@@ -71,7 +72,7 @@ public interface BookDao {
     /**
      * 通过图书 id 增加图书收藏量
      *
-     * @param addCollection 需要增加的收藏量
+     * @param addCollection 增加的收藏量
      * @param bookId        图书 id
      * @return 1 - 增加成功
      */

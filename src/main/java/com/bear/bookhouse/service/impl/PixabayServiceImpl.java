@@ -27,4 +27,9 @@ public class PixabayServiceImpl implements PixabayService {
     public boolean deletePixabayById(int id) {
         return pixabayDao.deletePixabayById(id) == 1;
     }
+
+    @Override
+    public Pixabay showFirstPixabay() {
+        return pixabayDao.getFirstPixabay();
+    }
 }

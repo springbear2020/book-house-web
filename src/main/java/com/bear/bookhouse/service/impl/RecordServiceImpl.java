@@ -2,15 +2,14 @@ package com.bear.bookhouse.service.impl;
 
 
 import com.bear.bookhouse.dao.DownloadDao;
+import com.bear.bookhouse.dao.FavoriteDao;
 import com.bear.bookhouse.dao.LoginLogDao;
 import com.bear.bookhouse.dao.UploadDao;
 import com.bear.bookhouse.dao.impl.DownloadDaoImpl;
-import com.bear.bookhouse.dao.impl.LoginLogDaoImpl;
+import com.bear.bookhouse.dao.impl.FavoriteDaoImpl;
+import com.bear.bookhouse.dao.impl.LoginLogLogDaoImpl;
 import com.bear.bookhouse.dao.impl.UploadDaoImpl;
-import com.bear.bookhouse.pojo.Download;
-import com.bear.bookhouse.pojo.LoginLog;
-import com.bear.bookhouse.pojo.Page;
-import com.bear.bookhouse.pojo.Upload;
+import com.bear.bookhouse.pojo.*;
 import com.bear.bookhouse.service.RecordService;
 
 import java.util.List;
@@ -22,7 +21,8 @@ import java.util.List;
 public class RecordServiceImpl implements RecordService {
     private final DownloadDao downloadDao = new DownloadDaoImpl();
     private final UploadDao uploadDao = new UploadDaoImpl();
-    private final LoginLogDao loginLogDao = new LoginLogDaoImpl();
+    private final LoginLogDao loginLogDao = new LoginLogLogDaoImpl();
+    private final FavoriteDao favoriteDao = new FavoriteDaoImpl();
 
     @Override
     public boolean saveDownload(Download download) {
@@ -30,12 +30,12 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Page<Download> listDownloadPageData(int userId, int pageNum, int pageSize) {
+    public Page<Download> getDownloadPageData(int userId, int pageNum, int pageSize) {
         Page<Download> page = new Page<>();
         page.setPageSize(pageSize);
 
         // 获取用户下载登录总记录数
-        int downloadCounts = downloadDao.getDownloadCounts(userId);
+        int downloadCounts = downloadDao.getDownloadCountsByUserId(userId);
         if (downloadCounts <= 0) {
             return null;
         }
@@ -54,8 +54,8 @@ public class RecordServiceImpl implements RecordService {
             pageNum = pageTotal;
         }
         page.setPageNum(pageNum);
-        // 获取当前页的用户登录数据
-        page.setPageData(downloadDao.listDownloadByUserId(userId, pageNum, pageSize));
+        // 获取当前页的用户下载记录数据
+        page.setPageData(downloadDao.listDownloadThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
         return page;
     }
 
@@ -65,12 +65,12 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Page<Upload> listUploadPageData(int userId, int pageNum, int pageSize) {
+    public Page<Upload> getUploadPageData(int userId, int pageNum, int pageSize) {
         Page<Upload> page = new Page<>();
         page.setPageSize(pageSize);
 
         // 获取用户上传登录总记录数
-        int userUploadCounts = uploadDao.getUserUploadCounts(userId);
+        int userUploadCounts = uploadDao.getUploadCountsByUserId(userId);
         if (userUploadCounts <= 0) {
             return null;
         }
@@ -89,8 +89,8 @@ public class RecordServiceImpl implements RecordService {
             pageNum = pageTotal;
         }
         page.setPageNum(pageNum);
-        // 获取当前页的用户登录数据
-        page.setPageData(uploadDao.listUploadByUserId(userId, pageNum, pageSize));
+        // 获取当前页的用户上传记录数据
+        page.setPageData(uploadDao.listUploadThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
         return page;
     }
 
@@ -100,7 +100,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Page<LoginLog> listLoginLogPageData(int userId, int pageNum, int pageSize) {
+    public Page<LoginLog> getLoginLogPageData(int userId, int pageNum, int pageSize) {
         Page<LoginLog> page = new Page<>();
         page.setPageSize(pageSize);
 
@@ -125,17 +125,42 @@ public class RecordServiceImpl implements RecordService {
         }
         page.setPageNum(pageNum);
         // 获取当前页的用户登录数据
-        page.setPageData(loginLogDao.listLoginLogsByUserId(userId, pageNum, pageSize));
+        page.setPageData(loginLogDao.listLoginLogsThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
         return page;
     }
 
     @Override
     public List<Upload> listUploadForAdmin() {
-        return uploadDao.listUploadByState("未处理");
+        return uploadDao.listUploadByState(Upload.NOT_PROCESSED);
     }
 
     @Override
-    public int updateUploadState(int id) {
-        return uploadDao.updateUploadState(id, "已处理");
+    public boolean updateUploadState(int id) {
+        return uploadDao.updateUploadStateById(id, Upload.PROCESSED) == 1;
+    }
+
+    @Override
+    public Upload getFirstNotProcessedUpload(String state) {
+        return uploadDao.getOneUploadByState(Upload.NOT_PROCESSED);
+    }
+
+    @Override
+    public boolean addFavorite(Favorite favorite) {
+        return favoriteDao.saveFavorite(favorite) == 1;
+    }
+
+    @Override
+    public boolean isFavoriteExists(int userId, int booId) {
+        return favoriteDao.getFavoriteByUserIdAndBookId(userId, booId) != null;
+    }
+
+    @Override
+    public List<Favorite> getUserFavorites(int userId) {
+        return favoriteDao.listFavoritesByUserId(userId);
+    }
+
+    @Override
+    public boolean deleteUserFavorite(int userId, int bookId) {
+        return favoriteDao.deleteFavoriteByUserIdAndBookId(userId, bookId) == 1;
     }
 }

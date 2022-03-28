@@ -57,7 +57,7 @@
                 </label>
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
-            <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
+            <button class="btn-back" onclick="window.location.href='pages/user/loginLog.jsp'">返&nbsp;回</button>
         </div>
     </div>
 </div>
