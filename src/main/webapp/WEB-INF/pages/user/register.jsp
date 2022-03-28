@@ -6,21 +6,21 @@
     <meta charset="UTF-8">
     <title>用户注册</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/register.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/register.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<%@include file="/pages/common/header.jsp" %>
+<%@include file="/WEB-INF/pages/common/header.jsp" %>
 <div class="middle">
     <div class="frame-register">
         <div class="register-title">欢&nbsp;迎&nbsp;注&nbsp;册</div>
-        <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png" alt=""></a>
+        <a href="user?action=pageRedirect&type=login" class="backArrow" target="_self"><img src="static/img/icon_back.png" alt=""></a>
         <%--  注册表单  --%>
         <form class="register-box" action="user" method="post">
             <input type="hidden" name="action" value="register">
@@ -33,6 +33,6 @@
         </form>
     </div>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<%@include file="/WEB-INF/pages/common/footer.jsp" %>
 </body>
 </html>

@@ -47,7 +47,7 @@ public class TransferServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+    protected void downloadBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         /*
          * 客户端请求：transferServlet?action=downloadBook&bookId=${book.id}&userId=${sessionScope.user.id}
          * transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}
@@ -57,6 +57,12 @@ public class TransferServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
         HttpSession session = req.getSession();
 
+        // 用户为登录则跳转到登录页面
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("noticeMsg", "请您先登录账号哦");
+            req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
+            return;
+        }
         // 查询用户积分，积分不足不准下载
         int userScore = userService.getUserScore(userId);
         if (userScore < User.SCORE_CHANGE) {
@@ -83,7 +89,7 @@ public class TransferServlet extends BaseServlet {
             IOUtils.copy(inputStream, resp.getOutputStream());
             NOTIFICATIONS.add("您刚刚下载了《" + book.getTitle() + "》，积分 -10。" + DateUtil.dateFormatTime(new Date()));
             session.setAttribute("notifications", NOTIFICATIONS);
-            // TODO 添加图书下载量、减少用户积分、添加用户图书下载记录、用户下载量加 1（触发器完成）
+            // 添加图书下载量、减少用户积分、添加用户图书下载记录、用户下载量加 1（触发器完成）TODO
             boolean b = bookService.addBookDownloads(Book.ADD_DOWNLOAD, bookId);
             boolean b1 = userService.subUserScore(User.SCORE_CHANGE, userId);
             boolean b2 = recordService.saveDownload(new Download(null, userId, "下载图书", "-" + User.SCORE_CHANGE, new Date(), book.getTitle()));
@@ -164,10 +170,10 @@ public class TransferServlet extends BaseServlet {
                 } else {
                     session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
                 }
-                req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
                 session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
-                req.getRequestDispatcher("pages/book/upload.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
@@ -193,22 +199,24 @@ public class TransferServlet extends BaseServlet {
                     // 非普通表单项即文件表单项，保存到 static/picture/portrait/userId.png
                     if (!fileItem.isFormField()) {
                         fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/portrait/" + userId + ".png"));
-                        //  TODO 更新用户头像数据库保存路径
+                        // 更新用户头像数据库保存路径 TODO
                         boolean b = userService.updateUserPortrait("static/picture/portrait/" + userId + ".png", userId);
                         session.setAttribute("noticeMsg", "头像更换成功");
                         session.setAttribute("user", userService.getUserById(userId));
-                        req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/WEB-INF/pages/user/personal.jsp").forward(req, resp);
                     }
                 }
             } catch (Exception e) {
                 session.setAttribute("noticeMsg", "头像更换失败，请稍后重试");
-                req.getRequestDispatcher("pages/user/personal.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/user/personal.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
     }
 
     /**
+     * 上传 Pixabay 图片
+     *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
@@ -224,11 +232,11 @@ public class TransferServlet extends BaseServlet {
                     // 非普通表单项即文件表单项，保存到 static/picture/background/time.png
                     if (!fileItem.isFormField()) {
                         fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/background/" + DateUtil.dateFormatFilename(new Date()) + ".png"));
-                        req.getRequestDispatcher("pages/admin/admin.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
                     }
                 }
             } catch (Exception e) {
-                req.getRequestDispatcher("pages/error/400.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/error/400.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
@@ -322,17 +330,17 @@ public class TransferServlet extends BaseServlet {
                     // 删除磁盘文件、修改上传记录状态为已处理、增加用户积分
                     if (bookFile.exists() && coverFile.exists() && bookFile.delete() && coverFile.delete() && recordService.updateUploadState(uploadId) && userService.addUserScore(10, userId)) {
                         session.setAttribute("noticeMsg", "Process successfully");
-                        resp.sendRedirect(req.getContextPath() + "/pages/admin/manage.jsp");
+                        resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/admin/manage.jsp");
                     } else {
-                        resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+                        resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
                     }
                 } else {
                     session.setAttribute("noticeMsg", "Process failed");
-                    req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
                 }
             } catch (Exception e) {
                 session.setAttribute("noticeMsg", "Process failed");
-                req.getRequestDispatcher("/pages/admin/upload.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/admin/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }

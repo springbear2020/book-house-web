@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome</title>
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/admin.css">
@@ -19,7 +19,7 @@
     <script type="text/javascript" src="static/script/admin.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
 <div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.pixabay.url}"/>
@@ -37,7 +37,7 @@
     </div>
     <div class="img-a">
         <a href="admin?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
-        <a href="pages/admin/manage.jsp" class="upload-a" target="_self"><img alt="" src="static/img/upload_admin.png"></a>
+        <a href="user?action=pageRedirect&type=manage" class="upload-a" target="_self"><img alt="" src="static/img/upload_admin.png"></a>
     </div>
     <div class="left"><a href="admin?action=showPixabay"><img src="static/img/arrow_left.png" alt=""></a></div>
     <div class="right"><a href="admin?action=showPixabay"><img src="static/img/arrow_right.png" alt=""></a></div>

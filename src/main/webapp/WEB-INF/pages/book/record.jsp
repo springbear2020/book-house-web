@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>个人记录</title>
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/record.css">
@@ -19,10 +19,10 @@
     <script type="text/javascript" src="static/script/record.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<%@include file="/pages/common/header.jsp" %>
+<%@include file="/WEB-INF/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-container">
         <ul class="table-choose">
@@ -111,6 +111,6 @@
         </c:if>
     </div>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<%@include file="/WEB-INF/pages/common/footer.jsp" %>
 </body>
 </html>

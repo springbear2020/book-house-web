@@ -13,14 +13,14 @@
     <meta charset="UTF-8">
     <title>用户密码</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <link rel="stylesheet" type="text/css" href="static/css/pwdFind.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/pwdFind.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
 <div class="title-container"><h1 class="title">Book House</h1></div>
@@ -36,10 +36,11 @@
                 <label><input type="password" name="password" placeholder="请输入新密码" class="input-text reset-pwd"><input type="password" name="password" placeholder="请再次输入密码" class="input-text re-reset-pwd"><div class="little-tips tips-password">* 至少包含一个数字、字母和特殊字符，长度为 6~16</div></label>
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
+            <%--   // TODO 解决此按钮--%>
             <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
         </div>
     </div>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<%@include file="/WEB-INF/pages/common/footer.jsp" %>
 </body>
 </html>

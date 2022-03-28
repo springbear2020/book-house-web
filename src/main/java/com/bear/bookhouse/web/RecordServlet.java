@@ -56,7 +56,7 @@ public class RecordServlet extends BaseServlet {
                 return;
             }
             req.setAttribute("recordPage", recordPage);
-            req.getRequestDispatcher("/pages/book/record.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/book/record.jsp").forward(req, resp);
         } else if (Upload.TYPE.equals(type)) {
             // 查询用户上传记录
             Page<Upload> recordPage = recordService.getUploadPageData(userId, pageNum, DataUtil.getRecordPageSize());
@@ -66,7 +66,7 @@ public class RecordServlet extends BaseServlet {
                 return;
             }
             req.setAttribute("recordPage", recordPage);
-            req.getRequestDispatcher("/pages/book/record.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/book/record.jsp").forward(req, resp);
         } else {
             session.setAttribute("noticeMsg", "记录请求类型不合法");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -92,7 +92,7 @@ public class RecordServlet extends BaseServlet {
         // 查询用户个人登录记录
         Page<LoginLog> loginLogPage = recordService.getLoginLogPageData(userId, pageNum, DataUtil.getRecordPageSize());
         req.setAttribute("loginLogPage", loginLogPage);
-        req.getRequestDispatcher("/pages/book/record.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/book/record.jsp").forward(req, resp);
     }
 
     /**
@@ -101,7 +101,7 @@ public class RecordServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void addFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void addFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         // 客户端 favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title} 确保了 id 不会越界
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
         int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), Book.ERROR);
@@ -109,6 +109,13 @@ public class RecordServlet extends BaseServlet {
         String author = req.getParameter("author");
         String coverPath = req.getParameter("coverPath");
         HttpSession session = req.getSession();
+
+        // 用户为登录则跳转到登录页面
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("noticeMsg", "请您先登录账号哦");
+            req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
+            return;
+        }
 
         // 查询用户图书收藏记录是否已经存在
         if (recordService.isFavoriteExists(userId, bookId)) {
@@ -168,7 +175,7 @@ public class RecordServlet extends BaseServlet {
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             req.setAttribute("userFavoritesList", userFavorites);
-            req.getRequestDispatcher("/pages/book/favorite.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/book/favorite.jsp").forward(req, resp);
         }
     }
 }

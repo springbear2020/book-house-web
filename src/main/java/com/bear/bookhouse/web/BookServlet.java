@@ -49,7 +49,7 @@ public class BookServlet extends BaseServlet {
             session.setAttribute("noticeMsg", "您查询的图书暂无数据");
         }
         req.setAttribute("bookPageData", bookPageData);
-        req.getRequestDispatcher("/pages/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req, resp);
     }
 
     /**
@@ -60,7 +60,7 @@ public class BookServlet extends BaseServlet {
      */
     protected void showBookDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("book", bookService.getBookById(NumberUtil.objectToInteger(req.getParameter("bookId"), Book.ERROR)));
-        req.getRequestDispatcher("/pages/book/detail.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/book/detail.jsp").forward(req, resp);
     }
 
     /**
@@ -71,6 +71,6 @@ public class BookServlet extends BaseServlet {
      */
     protected void showBookRandomly(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.setAttribute("book", bookService.getOneBookRandomly());
-        req.getRequestDispatcher("/pages/book/detail.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/book/detail.jsp").forward(req, resp);
     }
 }

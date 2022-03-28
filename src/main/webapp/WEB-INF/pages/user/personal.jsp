@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>个人信息</title>
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/personal.js"></script>
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
@@ -31,10 +31,10 @@
         })
     </script>
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<%@include file="/pages/common/header.jsp" %>
+<%@include file="/WEB-INF/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-container">
         <%-- 顶部信息 --%>
@@ -87,12 +87,12 @@
                 <li><div class="us-data-name">密码</div><label><input name="password" class="us-data-text data-pwd" type="password" disabled value="${sessionScope.user.password}"></label><img class="pas-eye" src="static/img/eye.png" alt="图片加载失败"></li>
                 <li><div class="us-data-name">邮箱</div><label><input name="email" class="us-data-text" type="text" disabled value="${sessionScope.user.email}"></label></li>
                 <li class="log-record-li"><a href="record?action=showLog&userId=${sessionScope.user.id}" class="log-record log-btn">登录记录</a></li>
-                <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-btn">修改密码</a></li>
+                <li class="log-out-li"><a href="user?action=pageRedirect&type=pwdFind" class="log-btn">修改密码</a></li>
                 <li class="log-out-li"><a class="log-out log-btn">账号注销</a></li>
             </ul>
         </div>
     </div>
 </div>
-<%@include file="/pages/common/footer.jsp" %>
+<%@include file="/WEB-INF/pages/common/footer.jsp" %>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class AdminServlet extends BaseServlet {
         } else {
             session.setAttribute("noticeMsg", "用户名不存在或密码错误");
         }
-        req.getRequestDispatcher("/pages/admin/admin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
     }
 
     /**
@@ -60,7 +60,7 @@ public class AdminServlet extends BaseServlet {
      */
     protected void showPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.setAttribute("pixabay", pixabayService.showFirstPixabay());
-        req.getRequestDispatcher("/pages/admin/admin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
     }
 
     /**
@@ -83,6 +83,6 @@ public class AdminServlet extends BaseServlet {
      */
     protected void obtainBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("upload", recordService.getFirstNotProcessedUpload(Upload.NOT_PROCESSED));
-        req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
     }
 }

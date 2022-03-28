@@ -15,7 +15,7 @@
         <li><a href="index.jsp" class="example">首页</a></li>
         <%-- 用户登录后显示上传、收藏、记录入口 --%>
         <c:if test="${ not empty sessionScope.user}">
-            <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
+            <li><a href="user?action=pageRedirect&type=upload" class="example" target="_self">上传</a></li>
             <li><a href="record?action=showFavorites&userId=${sessionScope.user.id}" class="example">收藏</a></li>
             <li><a href="record?action=showLog&userId=${sessionScope.user.id}" class="example">记录</a></li>
         </c:if>
@@ -38,8 +38,8 @@
     <%-- 用户未登录显示登录、注册入口 --%>
     <c:if test="${empty sessionScope.user}">
         <ul class="top-right">
-            <li><a href="pages/user/login.jsp" class="example">登录</a></li>
-            <li><a href="pages/user/register.jsp" class="example">注册</a></li>
+            <li><a href="user?action=pageRedirect&type=login" class="example">登录</a></li>
+            <li><a href="user?action=pageRedirect&type=register" class="example">注册</a></li>
         </ul>
     </c:if>
 </div>

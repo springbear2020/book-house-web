@@ -53,14 +53,14 @@ public class UserServlet extends BaseServlet {
         if (!emailVerifyCode.equalsIgnoreCase(UserServlet.registerEmailCode)) {
             req.setAttribute("user", user);
             req.setAttribute("noticeMsg", "邮箱验证码有误");
-            req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
             req.setAttribute("user", user);
             req.setAttribute("emailCode", emailVerifyCode);
             req.setAttribute("noticeMsg", "图片验证码有误");
-            req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
             return;
         }
 
@@ -69,9 +69,9 @@ public class UserServlet extends BaseServlet {
         user.setRegisterDate(new Date());
         if (userService.saveUser(user)) {
             req.setAttribute("noticeMsg", "恭喜您注册成功！");
-            req.getRequestDispatcher("/pages/user/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+            resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
         }
     }
 
@@ -100,11 +100,11 @@ public class UserServlet extends BaseServlet {
             if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+                resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
             }
         } else {
             session.setAttribute("loginMsg", "用户名不存在或密码错误");
-            resp.sendRedirect(req.getContextPath() + "/pages/user/login.jsp");
+            resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/user/login.jsp");
         }
     }
 
@@ -134,14 +134,14 @@ public class UserServlet extends BaseServlet {
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(UserServlet.passwordFindEmailCode)) {
             session.setAttribute("noticeMsg", "邮箱验证码错误");
-            req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
         if (userService.updatePasswordByEmail(password, email)) {
             session.setAttribute("noticeMsg", "密码重置成功!");
-            req.getRequestDispatcher("/pages/user/pwdFind.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
+            resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
         }
     }
 
@@ -182,7 +182,7 @@ public class UserServlet extends BaseServlet {
         // 从域中获取的用户 id 确保了 id 不会非法
         int userId = NumberUtil.objectToInteger(user.getId(), User.ERROR);
         session.setAttribute("userInfo", userService.getUserInfoByUserId(userId));
-        req.getRequestDispatcher("/pages/user/personal.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/user/personal.jsp").forward(req, resp);
     }
 
     /**
@@ -253,4 +253,34 @@ public class UserServlet extends BaseServlet {
         }
     }
 
+    /**
+     * 请求页面转发
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void pageRedirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String type = req.getParameter("type");
+        switch (type) {
+            case "login":
+                req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
+                return;
+            case "register":
+                req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
+                return;
+            case "manage":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
+                return;
+            case "admin":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
+                return;
+            case "upload":
+                req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
+                return;
+            case "pwdFind":
+                req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
+                return;
+            default:
+        }
+    }
 }

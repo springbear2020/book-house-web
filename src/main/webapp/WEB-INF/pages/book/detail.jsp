@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>图书详情</title>
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/detail.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
@@ -19,10 +19,10 @@
     <script type="text/javascript" src="static/script/detail.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<%@include file="/pages/common/header.jsp" %>
+<%@include file="/WEB-INF/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-frame">
         <div class="book-inf">
@@ -48,6 +48,6 @@
 </div>
 <a class="ToLeft" href="book?action=showBookRandomly"><img src="static/img/icon_left.png" alt=""></a>
 <a class="ToRight" href="book?action=showBookRandomly"><img src="static/img/icon_right.png" alt=""></a>
-<%@include file="/pages/common/footer.jsp" %>
+<%@include file="/WEB-INF/pages/common/footer.jsp" %>
 </body>
 </html>

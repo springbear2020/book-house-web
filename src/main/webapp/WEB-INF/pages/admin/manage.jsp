@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload</title>
-    <%@include file="/pages/common/base.jsp" %>
+    <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/manage.css">
@@ -19,14 +19,14 @@
     <script type="text/javascript" src="static/script/manage.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/pages/common/notice.jsp" %>
+    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
 <div class="title"><a href="index.jsp">Book House</a></div>
 <div class="middle">
     <div class="middle-container">
         <a href="admin?action=obtainBook"><h2 class="right-up-title">Process Book</h2></a>
-        <a href="pages/admin/admin.jsp"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
+        <a href="user?action=pageRedirect&type=admin"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
         <table class="ma-table">
             <tr>
                 <td>uid</td>
