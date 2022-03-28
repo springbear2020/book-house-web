@@ -29,40 +29,42 @@
 <div class="title">Book House</div>
 <div class="middle">
 
-    <%--    <div class="frame-left">--%>
-    <%--        <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>--%>
-    <%--        <table>--%>
-    <%--            <tr>--%>
-    <%--                <td>id</td>--%>
-    <%--                <td>user</td>--%>
-    <%--                <td>username</td>--%>
-    <%--                <td>book</td>--%>
-    <%--                <td>cover</td>--%>
-    <%--                <td>fill</td>--%>
-    <%--                <td>delete</td>--%>
-    <%--            </tr>--%>
-    <%--            <c:forEach items="${requestScope.waitProcessBookList}" var="upload">--%>
-    <%--                <tr>--%>
-    <%--                    <td>${upload.id}</td>--%>
-    <%--                    <td class="td-userId">${upload.userId}</td>--%>
-    <%--                    <td class="td-username">${upload.username}</td>--%>
-    <%--                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.bookPath}">get</a></td>--%>
-    <%--                    <td><a href="transferServlet?action=downloadFileByPath&path=${upload.coverPath}">get</a></td>--%>
-    <%--                    <td>--%>
-    <%--                        <button class="autoFill">fill</button>--%>
-    <%--                    </td>--%>
-    <%--                    <td>--%>
-    <%--                        <a href="adminServlet?action=deleteBookAndCover&uploadId=${upload.id}&bookPath=${upload.bookPath}&coverPath=${upload.coverPath}">delete</a>--%>
-    <%--                    </td>--%>
-    <%--                </tr>--%>
-    <%--            </c:forEach>--%>
-    <%--        </table>--%>
-    <%--    </div>--%>
+<%--        <div class="frame-left">--%>
+<%--            <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>--%>
+<%--            <table>--%>
+<%--                <tr>--%>
+<%--                    <td>id</td>--%>
+<%--                    <td>user</td>--%>
+<%--                    <td>username</td>--%>
+<%--                    <td>book</td>--%>
+<%--                    <td>cover</td>--%>
+<%--                    <td>fill</td>--%>
+<%--                    <td>delete</td>--%>
+<%--                </tr>--%>
+<%--                <c:forEach items="${requestScope.waitProcessBookList}" var="upload">--%>
+<%--                    <tr>--%>
+<%--                        <td>${upload.id}</td>--%>
+<%--                        <td class="td-userId">${upload.userId}</td>--%>
+<%--                        <td class="td-username">${upload.username}</td>--%>
+<%--                        <td><a href="transferServlet?action=downloadFileByPath&path=${upload.bookPath}">get</a></td>--%>
+<%--                        <td><a href="transferServlet?action=downloadFileByPath&path=${upload.coverPath}">get</a></td>--%>
+<%--                        <td>--%>
+<%--                            <button class="autoFill">fill</button>--%>
+<%--                        </td>--%>
+<%--                        <td>--%>
+<%--                            <a href="adminServlet?action=deleteBookAndCover&uploadId=${upload.id}&bookPath=${upload.bookPath}&coverPath=${upload.coverPath}">delete</a>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                </c:forEach>--%>
+<%--            </table>--%>
+<%--        </div>--%>
 
     <div class="middle-container">
         <%--        <h2 class="up-title">Process Book</h2>--%>
         <a href="admin?action=obtainBook"><h2 class="right-up-title">Process Book</h2></a>
-        <table>
+            <div  class="toBack"><img
+                    src="static/img/icon_back.png" alt=""></div>
+        <table class="ma-table">
             <tr>
                 <td>id</td>
                 <td>user</td>
@@ -83,8 +85,6 @@
                 </td>
             </tr>
         </table>
-        <a href="admin?action=showPixabay" target="_self" class="toBack"><img
-                src="static/img/icon_back.png" alt=""></a>
         <%-- Book file upload form --%>
         <form action="transfer?action=processBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${requestScope.upload.userId}">
