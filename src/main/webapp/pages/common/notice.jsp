@@ -9,3 +9,7 @@
 <div class="notice">
     ${sessionScope.noticeMsg}
 </div>
+<c:if test="${not empty sessionScope.noticeMsg}">
+    <script type="text/javascript">noticeShow()</script>
+    <% session.removeAttribute("noticeMsg"); %>
+</c:if>

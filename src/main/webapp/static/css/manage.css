@@ -225,25 +225,18 @@
 .right-up-title {
     width: 3rem;
     font-size: 0.4rem;
-    margin: 0 1.5rem 0.4rem;
+    margin: 0 1rem 0.2rem;
+    padding: 0.2rem;
 }
 
 .ma-table {
-    display: none;
-    width: 5rem;
-    margin: 0.2rem auto;
+    width: 4rem;
+    margin: 0.5rem auto;
     font-size: 0.25rem;
-    /*background-color: rgba(120,120,120,0.8);*/
     background-image: linear-gradient(to bottom right, white, grey);
-    border: 0.01rem solid black;
     text-align: center;
 }
 
-/*.frame-left table td{*/
-/*    !*border-top: 0.01rem solid grey;*!*/
-/*    !*border-right: 0.01rem solid grey;*!*/
-/*    padding: 0;*/
-/*}*/
 .autoFill {
     background-color: rgba(0, 0, 0, 0);
     border: 0;
@@ -257,8 +250,3 @@
     background-color: grey;
     color: white;
 }
-
-/*.waitProcess {*/
-/*    left: 50%;*/
-/*    font-size: 0.5rem;*/
-/*}*/

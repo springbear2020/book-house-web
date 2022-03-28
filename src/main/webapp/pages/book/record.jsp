@@ -11,24 +11,24 @@
 <head>
     <meta charset="utf-8">
     <title>个人记录</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <link rel="stylesheet" type="text/css" href="static/css/record.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
     <script type="text/javascript" src="static/script/record.js"></script>
+
+    <%-- 提示信息 --%>
+    <%@include file="/pages/common/notice.jsp" %>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
 <div class="middle">
     <div class="middle-container">
         <ul class="table-choose">
-            <a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}"
-               class="choose-upload choose-li">上传</a>
-            <a href="record?action=showRecord&type=download&userId=${sessionScope.user.id}"
-               class="choose-download choose-li">下载</a>
-            <a href="record?action=showLog&userId=${sessionScope.user.id}"
-               class="choose-log choose-li">登录</a>
+            <a href="record?action=showLog&userId=${sessionScope.user.id}" class="choose-log choose-li">登录记录</a>
+            <a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}" class="choose-upload choose-li">上传记录</a>
+            <a href="record?action=showRecord&type=download&userId=${sessionScope.user.id}" class="choose-download choose-li">下载记录</a>
         </ul>
         <%-- 上传和下载记录 --%>
         <c:if test="${not empty requestScope.recordPage.pageData}">
@@ -52,27 +52,24 @@
                 </c:forEach>
                 </tbody>
             </table>
+
             <%-- 分页条 --%>
             <nav aria-label="Page navigation" class="pag-chs">
                 <ul class="pagination">
                         <%-- 非第一页显示上一页 --%>
                     <c:if test="${requestScope.recordPage.pageNum!=1}">
-                        <li>
-                            <a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum - 1}"
-                               aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li><a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum - 1}" aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
                     </c:if>
+                        <%-- 显示当前页 --%>
                     <li><span aria-hidden="true" class="pag-this">${requestScope.recordPage.pageNum}</span></li>
                         <%-- 非最后一页显示下一页 --%>
                     <c:if test="${requestScope.recordPage.pageNum!=requestScope.recordPage.pageTotal}">
-                        <li>
-                            <a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum + 1}"
-                               aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
+                        <li><a href="record?action=showRecord&type=upload&userId=${sessionScope.user.id}&pageNum=${requestScope.recordPage.pageNum + 1}" aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
                     </c:if>
                     <div style="clear:both"></div>
                 </ul>
             </nav>
         </c:if>
-
         <%-- 登录记录 --%>
         <c:if test="${not empty requestScope.loginLogPage.pageData}">
             <table class="pure-table">
@@ -95,21 +92,18 @@
                 </c:forEach>
                 </tbody>
             </table>
+
             <%-- 分页条 --%>
             <nav aria-label="Page navigation" class="pag-chs">
                 <ul class="pagination">
                         <%-- 非第一页显示上一页 --%>
                     <c:if test="${requestScope.loginLogPage.pageNum!=1}">
-                        <li>
-                            <a href="record?action=showLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum - 1}"
-                               aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li><a href="record?action=showLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum - 1}" aria-label="Previous" class="pag-num"><span aria-hidden="true">&laquo;</span></a></li>
                     </c:if>
                     <li><span aria-hidden="true" class="pag-this">${requestScope.loginLogPage.pageNum}</span></li>
                         <%-- 非最后一页显示下一页 --%>
                     <c:if test="${requestScope.loginLogPage.pageNum!=requestScope.loginLogPage.pageTotal}">
-                        <li>
-                            <a href="record?action=showLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum + 1}"
-                               aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
+                        <li><a href="record?action=showLog&userId=${sessionScope.user.id}&pageNum=${requestScope.loginLogPage.pageNum + 1}" aria-label="Next" class="pag-num"><span aria-hidden="true">&raquo;</span></a></li>
                     </c:if>
                     <div style="clear:both"></div>
                 </ul>

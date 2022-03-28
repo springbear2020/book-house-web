@@ -44,13 +44,13 @@ $(function () {
     })
 
     let table_check = true;
-    $('.toBack').click(function (){
+    $('.toBack').click(function () {
         let $table = $('.ma-table');
-        if(table_check){
-            $table.css('display','table');
+        if (table_check) {
+            $table.css('display', 'table');
             table_check = false;
-        }else{
-            $table.css('display','none');
+        } else {
+            $table.css('display', 'none');
             table_check = true;
         }
     })

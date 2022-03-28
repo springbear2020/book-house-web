@@ -94,13 +94,16 @@
 .ad-table {
     position: absolute;
     display: none;
-    left: 3rem;
-    bottom: 0.2rem;
+    left: 10rem;
+    top: 5rem;
     font-size: 0.3rem;
     background-color: rgba(125, 125, 125, 0.8);
     text-align: center;
-    /*border: 0.5rem solid;*/
-    /*border-collapse: collapse;*/
+}
+
+.ad-table td {
+    width: 1rem;
+    border-collapse: collapse;
 }
 
 .img-a {
@@ -111,8 +114,6 @@
 
 .upload-a {
     float: right;
-    /*position: absolute;*/
-    /*right: 0;*/
 }
 
 .upload-a img {
@@ -125,7 +126,6 @@
 
 .logout-a {
     float: right;
-    /*position: absolute;*/
 }
 
 .logout-a img {

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-
 <html lang="zh_CN">
 <head>
     <meta charset="utf-8">
@@ -11,12 +10,8 @@
 </head>
 <body>
 <div class="notfound-img">
-    <div class="notfound-img">
-        <img src="static/img/404.png" alt="404 not found">
-    </div>
+    <div class="notfound-img"><img src="static/img/404.png" alt=""></div>
 </div>
 </body>
 </html>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>

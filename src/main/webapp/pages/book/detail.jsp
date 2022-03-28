@@ -11,8 +11,8 @@
 <head>
     <meta charset="utf-8">
     <title>图书详情</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="/pages/common/base.jsp" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/detail.css">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
@@ -20,10 +20,6 @@
 
     <%-- 提示信息 --%>
     <%@include file="/pages/common/notice.jsp" %>
-    <c:if test="${not empty sessionScope.noticeMsg}">
-        <script type="text/javascript">noticeShow()</script>
-        <% session.removeAttribute("noticeMsg"); %>
-    </c:if>
 </head>
 <body>
 <%@include file="/pages/common/header.jsp" %>
@@ -31,49 +27,27 @@
     <div class="middle-frame">
         <div class="book-inf">
             <div class="inf-left">
-                <img src="${requestScope.book.coverPath}" class="book_img" alt="图片加载失败">
+                <img src="${requestScope.book.coverPath}" class="book_img" alt="">
             </div>
             <ul class="inf-right">
-                <li>
-                    <div>编号</div>
-                    <p>&nbsp;${requestScope.book.id}</p><span>显示</span></li>
-                <li>
-                    <div>书名</div>
-                    <p>&nbsp;${requestScope.book.title}</p><span>显示</span></li>
-                <li>
-                    <div>作者</div>
-                    <p>&nbsp;${requestScope.book.author}</p><span>显示</span></li>
-                <li>
-                    <div>译者</div>
-                    <p>&nbsp;${requestScope.book.translator}</p><span>显示</span></li>
-                <li>
-                    <div>关键字</div>
-                    <p>&nbsp;${requestScope.book.keywords}</p><span>显示</span></li>
-                <li>
-                    <div>下载量</div>
-                    <p>&nbsp;${requestScope.book.downloads}</p><span>显示</span></li>
-                <li>
-                    <div>收藏量</div>
-                    <p>&nbsp;${requestScope.book.collections}</p><span>显示</span></li>
-                <li>
-                    <div>图书评价</div>
-                    <p id="book-commit">&nbsp;${requestScope.book.comment}</p><span>显示</span></li>
-                <li>
-                    <div>上传用户</div>
-                    <p>&nbsp;${requestScope.book.uploadUsername}</p><span>显示</span></li>
-                <li>
-                    <div>上传时间</div>
-                    <p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
-                <a class="button-a btn-down"
-                   href="transfer?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
-                <a class="button-a btn-fav"
-                   href="record?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&coverPath=${requestScope.book.coverPath}">收藏图书</a>
+                <li><div>编号</div><p>&nbsp;${requestScope.book.id}</p><span>显示</span></li>
+                <li><div>书名</div><p>&nbsp;${requestScope.book.title}</p><span>显示</span></li>
+                <li><div>作者</div><p>&nbsp;${requestScope.book.author}</p><span>显示</span></li>
+                <li><div>译者</div><p>&nbsp;${requestScope.book.translator}</p><span>显示</span></li>
+                <li><div>关键字</div><p>&nbsp;${requestScope.book.keywords}</p><span>显示</span></li>
+                <li><div>下载量</div><p>&nbsp;${requestScope.book.downloads}</p><span>显示</span></li>
+                <li><div>收藏量</div><p>&nbsp;${requestScope.book.collections}</p><span>显示</span></li>
+                <li><div>图书评价</div><p id="book-commit">&nbsp;${requestScope.book.comment}</p><span>显示</span></li>
+                <li><div>上传用户</div><p>&nbsp;${requestScope.book.uploadUsername}</p><span>显示</span></li>
+                <li><div>上传时间</div><p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
+                <a class="button-a btn-down" href="transfer?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
+                <a class="button-a btn-fav" href="record?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&coverPath=${requestScope.book.coverPath}">收藏图书</a>
             </ul>
         </div>
     </div>
 </div>
-<a class="ToLeft" href="book?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
-<a class="ToRight" href="book?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
+<a class="ToLeft" href="book?action=showBookRandomly"><img src="static/img/icon_left.png" alt=""></a>
+<a class="ToRight" href="book?action=showBookRandomly"><img src="static/img/icon_right.png" alt=""></a>
 <%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>

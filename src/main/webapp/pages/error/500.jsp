@@ -9,8 +9,6 @@
     <script type="text/javascript" src="static/script/tools.js"></script>
 </head>
 <body>
-<div class="img-500">
-    <img src="static/img/500.png" alt="服务器开小差啦">
-</div>
+<div class="img-500"><img src="static/img/500.png" alt=""></div>
 </body>
 </html>
