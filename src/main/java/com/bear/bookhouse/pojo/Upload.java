@@ -21,6 +21,7 @@ public class Upload {
     public static final int ERROR = -1;
     public static final String PROCESSED = "已处理";
     public static final String NOT_PROCESSED = "未处理";
+    public static final String TYPE = "upload";
 
     public Upload() {
     }

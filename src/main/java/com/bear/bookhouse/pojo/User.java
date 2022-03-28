@@ -15,6 +15,10 @@ public class User {
     private Integer score;
     private Date registerDate;
 
+    public static final int REGISTER_SCORE = 100;
+    public static final int SCORE_CHANGE = 10;
+    public static final int ERROR = -1;
+
     public User() {
     }
 

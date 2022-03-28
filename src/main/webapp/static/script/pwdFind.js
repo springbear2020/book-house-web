@@ -19,7 +19,7 @@ $(function () {
 
         // 发起 AJAX 请求服务器验证邮箱存在性
         $.ajax({
-            url: "ajaxServlet",
+            url: "user",
             data: "action=ajaxVerifyEmail&email=" + $email,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
@@ -82,8 +82,8 @@ $(function () {
         $btn.attr('disabled', true);
         // 发起 ajax 请求让服务器发送随机验证码
         $.ajax({
-            url: "ajaxServlet",
-            data: "action=ajaxSendPasswordFindEmailCode&email=" + $email,
+            url: "user",
+            data: "action=ajaxSendPwdFindCode&email=" + $email,
             type: "POST",
             dataType: "text",
             success: function (data) {

@@ -37,7 +37,7 @@
         </ul>
         <div class="pwdFind">
             <%-- 找回密码表单 --%>
-            <form action="userServlet" method="post">
+            <form action="user" method="post">
                 <input type="hidden" name="action" value="updatePassword">
                 <label>
                     <input class="input-text pwdFind-email" placeholder="请输入邮箱" name="email">
@@ -57,7 +57,7 @@
                 </label>
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
-            <button class="btn-back" onclick="window.location.href='pages/user/loginLog.jsp'">返&nbsp;回</button>
+            <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
         </div>
     </div>
 </div>

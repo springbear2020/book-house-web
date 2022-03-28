@@ -68,4 +68,11 @@ public interface BookService {
      * @return true - 增加成功
      */
     boolean addBookFavorites(int addCollection, int bookId);
+
+    /**
+     * 随机获取一本图书
+     *
+     * @return Book or null
+     */
+    Book getOneBookRandomly();
 }

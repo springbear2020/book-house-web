@@ -30,6 +30,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(int id) {
+        // 图书 id 边界值检查
+        int booksTotalCount = bookDao.getBookCounts();
+        if (id <= 0) {
+            id = 1;
+        } else if (id > booksTotalCount) {
+            id = booksTotalCount;
+        }
         return bookDao.getBookById(id);
     }
 
@@ -72,7 +79,7 @@ public class BookServiceImpl implements BookService {
 
         // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以随机展示图书
         List<Book> bookList = new ArrayList<>();
-        Integer[] integers = NumberUtil.generateNumbersInBoundAndSize(pageSize, booksRecordTotalCount);
+        Integer[] integers = NumberUtil.generateNumbersInBoundAndSizeRandomly(pageSize, booksRecordTotalCount);
         for (Integer bookId : integers) {
             bookList.add(bookDao.getBookById(bookId));
         }
@@ -110,6 +117,14 @@ public class BookServiceImpl implements BookService {
         // 获取当前页图书分页数据
         bookPage.setPageData(bookDao.listBooksThoughTitleByBeginAndOffset((pageNum - 1) * pageSize, pageSize, title));
         return bookPage;
+    }
+
+    @Override
+    public Book getOneBookRandomly() {
+        int booksCount = bookDao.getBookCounts();
+        // 在 [1,booksCount] 之间随机生成一个整数作为 id 查询图书信息
+        int bookId = NumberUtil.generateOneNumberInBoundRandomly(booksCount);
+        return bookDao.getBookById(bookId);
     }
 }
 

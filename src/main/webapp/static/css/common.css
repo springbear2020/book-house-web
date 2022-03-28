@@ -174,7 +174,8 @@ a {
 .bell-ul li:hover {
     background-color: #f5f5f5;
 }
-.bell-ul p{
+
+.bell-ul p {
     display: block;
     font-family: 微软雅黑, serif;
     font-size: 0.3rem;

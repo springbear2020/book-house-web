@@ -16,7 +16,7 @@
         <%-- 用户登录后才显示上传、收藏夹、通知、个人等入口 --%>
         <c:if test="${ not empty sessionScope.user}">
             <li><a href="pages/book/upload.jsp" class="example" target="_self">上传</a></li>
-            <li><a href="favoriteServlet?action=showFavorites&userId=${sessionScope.user.id}" class="example">收藏</a>
+            <li><a href="record?action=showFavorites&userId=${sessionScope.user.id}" class="example">收藏</a>
             </li>
             <li><a href="pages/book/record.jsp" class="example">记录</a></li>
         </c:if>
@@ -37,11 +37,11 @@
                 </div>
             </li>
 
-            <li><a href="userInfoServlet?action=showPersonal" class="head_img" title="个人信息"><img
+            <li><a href="user?action=showPersonal" class="head_img" title="个人信息"><img
                     src="${sessionScope.user.portraitPath}"
                     alt="Personal"></a></li>
             <li>
-                <a class="logout" href="userServlet?action=logout" title="退出登录">
+                <a class="logout" href="user?action=logout" title="退出登录">
                     <img src="static/img/logout.png" alt="退出登录">
                 </a>
             </li>

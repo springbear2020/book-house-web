@@ -61,7 +61,7 @@
 
     <div class="middle-container">
         <%--        <h2 class="up-title">Process Book</h2>--%>
-        <a href="adminServlet?action=obtainBooks"><h2 class="right-up-title">Process Book</h2></a>
+        <a href="admin?action=obtainBook"><h2 class="right-up-title">Process Book</h2></a>
         <table>
             <tr>
                 <td>id</td>
@@ -69,29 +69,24 @@
                 <td>username</td>
                 <td>book</td>
                 <td>cover</td>
-                <td>fill</td>
-                <td>delete</td>
             </tr>
             <tr>
                 <td>${requestScope.upload.id}</td>
                 <td class="td-userId">${requestScope.upload.userId}</td>
                 <td class="td-username">${requestScope.upload.username}</td>
-                <td><a href="transferServlet?action=downloadFileByPath&path=${requestScope.upload.bookPath}">get</a>
+                <td><a href="transfer?action=downloadFile&path=${requestScope.upload.bookPath}">get</a>
                 </td>
-                <td><a href="transferServlet?action=downloadFileByPath&path=${requestScope.upload.coverPath}">get</a>
+                <td><a href="transfer?action=downloadFile&path=${requestScope.upload.coverPath}">get</a>
                 </td>
                 <td>
                     <button class="autoFill">fill</button>
                 </td>
-                <td>
-                    <a href="adminServlet?action=deleteBookAndCover&uploadId=${requestScope.upload.id}&bookPath=${requestScope.upload.bookPath}&coverPath=${requestScope.upload.coverPath}">delete</a>
-                </td>
             </tr>
         </table>
-        <a href="adminServlet?action=showPixabayRandomly" target="_self" class="toBack"><img
+        <a href="admin?action=showPixabay" target="_self" class="toBack"><img
                 src="static/img/icon_back.png" alt=""></a>
         <%-- Book file upload form --%>
-        <form action="transferServlet?action=adminUploadBook" method="post" enctype="multipart/form-data">
+        <form action="transfer?action=processBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${requestScope.upload.userId}">
             <input type="hidden" name="uploadUsername" value="${requestScope.upload.username}">
             <input type="hidden" name="uploadId" value="${requestScope.upload.id}">

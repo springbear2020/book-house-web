@@ -99,33 +99,39 @@
     font-size: 0.3rem;
     background-color: rgba(125, 125, 125, 0.8);
     text-align: center;
-    border: 1rem solid;
-    border-collapse: collapse;
+    /*border: 0.5rem solid;*/
+    /*border-collapse: collapse;*/
 }
 
-.img-a{
+.img-a {
     position: absolute;
     z-index: 1;
     right: 0;
 }
-.upload-a{
+
+.upload-a {
     float: right;
     /*position: absolute;*/
     /*right: 0;*/
 }
-.upload-a img{
+
+.upload-a img {
     height: 0.8rem;
 }
-.upload-a img:hover{
+
+.upload-a img:hover {
     content: url("../img/upload_admin_d.png");
 }
-.logout-a{
+
+.logout-a {
     float: right;
     /*position: absolute;*/
 }
-.logout-a img{
+
+.logout-a img {
     height: 0.8rem;
 }
-.logout-a img:hover{
+
+.logout-a img:hover {
     content: url("../img/logout_admin_d.png");
 }

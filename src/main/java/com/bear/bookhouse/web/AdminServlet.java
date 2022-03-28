@@ -1,8 +1,6 @@
 package com.bear.bookhouse.web;
 
-import com.bear.bookhouse.pojo.Admin;
-import com.bear.bookhouse.pojo.Pixabay;
-import com.bear.bookhouse.pojo.Upload;
+import com.bear.bookhouse.pojo.*;
 import com.bear.bookhouse.service.PixabayService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
@@ -11,11 +9,10 @@ import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.NumberUtil;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -28,94 +25,64 @@ public class AdminServlet extends BaseServlet {
     private final RecordService recordService = new RecordServiceImpl();
 
     /**
-     * 删除磁盘 book 和 cover 文件
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void deleteBookAndCover(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ServletContext servletContext = getServletContext();
-        String bookPath = servletContext.getRealPath("/" + req.getParameter("bookPath"));
-        String coverPath = servletContext.getRealPath("/" + req.getParameter("coverPath"));
-        int id = NumberUtil.objectToInteger(req.getParameter("uploadId"), -1);
-        File bookFile = new File(bookPath);
-        File coverFile = new File(coverPath);
-        if (bookFile.exists() && bookFile.isFile() && coverFile.exists() && coverFile.isFile()) {
-            if (bookFile.delete() && coverFile.delete()) {
-                // 修改对应上传记录为已处理
-                recordService.updateUploadState(id);
-                resp.sendRedirect(req.getContextPath() + "/pages/admin/manage.jsp");
-            }
-
-        } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/500.jsp");
-        }
-    }
-
-    /**
-     * 获取未处理图书
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void obtainBooks(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Upload upload = recordService.getFirstNotProcessedUpload("未处理");
-        req.setAttribute("upload", upload);
-        req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
-    }
-
-    /**
-     * 管理员注销
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.getSession().removeAttribute("admin");
-        resp.sendRedirect(req.getContextPath() + "/adminServlet?action=showPixabayRandomly");
-    }
-
-    /**
      * 管理员登录
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        Admin admin = userService.getAdminByUsernameAndPassword(username, password);
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+        Admin admin = userService.getAdminByUsernameAndPassword(req.getParameter("username"), req.getParameter("password"));
         if (admin != null) {
-            req.getSession().setAttribute("admin", admin);
-            resp.sendRedirect(req.getHeader("Referer"));
+            session.setAttribute("admin", admin);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/error/404.jsp");
+            session.setAttribute("noticeMsg", "用户名不存在或密码错误");
         }
-    }
-
-    /**
-     * 随机获取一张 Pixabay 图片
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     * @throws IOException exception
-     */
-    protected void showPixabayRandomly(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Pixabay pixabay = pixabayService.showFirstPixabay();
-        req.setAttribute("pixabay", pixabay);
         req.getRequestDispatcher("/pages/admin/admin.jsp").forward(req, resp);
     }
 
     /**
-     * 删除图书
+     * 管理员注销登录
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void deletePixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = NumberUtil.objectToInteger(req.getParameter("id"), -1);
-        if (pixabayService.deletePixabayById(id)) {
-            resp.sendRedirect(req.getHeader("Referer"));
+    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.getSession().removeAttribute("admin");
+        req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
+    }
+
+    /**
+     * 获取一张 Pixabay 图片
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void showPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.setAttribute("pixabay", pixabayService.showFirstPixabay());
+        req.getRequestDispatcher("/pages/admin/admin.jsp").forward(req, resp);
+    }
+
+    /**
+     * 删除 Pixabay 图书
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void deletePixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        if (pixabayService.deletePixabayById(NumberUtil.objectToInteger(req.getParameter("id"), Pixabay.ERROR))) {
+            req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
         }
+    }
+
+    /**
+     * 获取一条未处理的上传记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void obtainBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("upload", recordService.getFirstNotProcessedUpload(Upload.NOT_PROCESSED));
+        req.getRequestDispatcher("/pages/admin/manage.jsp").forward(req, resp);
     }
 }

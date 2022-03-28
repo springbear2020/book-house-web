@@ -13,31 +13,31 @@ public class DateUtil {
      * 时间格式化为文件名
      *
      * @param date java.util.Date
-     * @return 格式化后的文件名
+     * @return 格式化时间
      */
-    public static String fileNameFormat(Date date) {
+    public static String dateFormatFilename(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         return dateFormat.format(date);
     }
 
     /**
-     * 时间格式化为指定格式
+     * 时间格式化为 2022-03-03 03:03:03 格式
      *
      * @param date 日期
      * @return 格式化的时间
      */
-    public static String datetimeFormat(Date date) {
+    public static String dateFormatDatetime(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(date);
     }
 
     /**
-     * 将字符串 String 类型字符串转换为 Date
+     * 将 String 类型转换为 Date
      *
      * @param date 时间字符串
      * @return Date
      */
-    public static Date parseStringToDate(String date) {
+    public static Date stringFormatDate(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             return dateFormat.parse(date);
@@ -48,12 +48,12 @@ public class DateUtil {
     }
 
     /**
-     * 时间格式化为指定格式
+     * 时间格式化为 16:16 格式
      *
      * @param date 日期
      * @return 格式化的时间
      */
-    public static String timeFormat(Date date) {
+    public static String dateFormatTime(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         return dateFormat.format(date);
     }

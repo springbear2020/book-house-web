@@ -31,7 +31,7 @@
     <div class="middle-container">
         <h2 class="up-title">图书上传</h2>
         <%-- 用户上传图书表单 --%>
-        <form action="transferServlet?action=uploadBook" method="post" enctype="multipart/form-data">
+        <form action="transfer?action=uploadBook" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
             <div class="bookFile upload-label"><label class="bookFile-true"><span>选择图书</span>
                 <input type="file" name="book" accept="application/pdf" class="chooseFile"

@@ -33,7 +33,7 @@ public class WebUtil {
     }
 
     /**
-     * 解析 ip 地址，从 GeoLite2-City.mmdb 数据库中获取对应的国家、省份、城市等信息
+     * 解析 ip 地址，从 GeoLite2-City.mmdb 数据库中获取对应的国家、省份、城市信息
      *
      * @param ip ip
      * @return ip 所对应的国家、省份、城市信息
@@ -92,9 +92,5 @@ public class WebUtil {
             e.printStackTrace();
         }
         return bean;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("/WEB-INF/upload/2-20220327211337.png".substring("/WEB-INF/upload/2-20220327211337.png".lastIndexOf('/')));
     }
 }

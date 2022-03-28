@@ -12,7 +12,7 @@
     <%@include file="/pages/common/base.jsp" %>
 </head>
 <body>
-<form action="transferServlet?action=adminUploadPixabay" method="post" enctype="multipart/form-data">
+<form action="transfer?action=uploadPixabay" method="post" enctype="multipart/form-data">
     <input type="file" name="background">
     <input type="submit" value="upload">
 </form>

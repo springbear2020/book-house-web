@@ -34,18 +34,18 @@
                 <c:forEach items="${requestScope.userFavoritesList}" var="favorite">
                     <div class="fav-book">
                         <a title="取消收藏"
-                           href="favoriteServlet?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}"
+                           href="record?action=deleteFavorite&userId=${sessionScope.user.id}&bookId=${favorite.bookId}"
                            class="fav-close">
                             <img class="fav-close-img" src="static/img/icon_no_deep.png" alt="取消收藏">
                         </a>
                         <div class="fav-data">
-                            <a title="查看详情" href="bookServlet?action=showBookDetailsById&bookId=${favorite.bookId}">
+                            <a title="查看详情" href="book?action=showBookDetails&bookId=${favorite.bookId}">
                                 <img class="fav-img" src="${favorite.coverPath}" alt="封面加载失败">
                             </a>
                             <p class="fav-bk-t">${favorite.title}</p>
                             <p class="fav-author">${favorite.author}</p>
                             <a title="立即下载" class="fav-download"
-                               href="transferServlet?action=downloadBook&bookId=${favorite.bookId}&userId=${sessionScope.user.id}">立即下载</a>
+                               href="transfer?action=downloadBook&bookId=${favorite.bookId}&userId=${sessionScope.user.id}">立即下载</a>
                         </div>
                         <div class="fav-bottom">
                             <span>收藏于：</span>

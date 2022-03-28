@@ -147,6 +147,7 @@ li {
 .backArrow img:hover {
     content: url("../img/icon_back_deep.png");
 }
+
 .success-tips {
     position: absolute;
     top: 1.4rem;

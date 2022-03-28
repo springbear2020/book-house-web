@@ -21,6 +21,9 @@ public class Book {
     private Date uploadTime;
 
     public static final int ERROR = -1;
+    public static final int PAGE_SIZE = 5;
+    public static final int ADD_DOWNLOAD = 1;
+    public static final int ADD_Favorite = 1;
 
     public Book() {
     }

@@ -43,7 +43,7 @@
     <div class="middle-container">
         <div class="head-frame">
             <div class="user-head">
-                <form action="transferServlet?action=uploadPortrait&userId=${sessionScope.user.id}" method="post" enctype="multipart/form-data">
+                <form action="transfer?action=uploadPortrait&userId=${sessionScope.user.id}" method="post" enctype="multipart/form-data">
                     <label class="change-hd">
                         <img src="${sessionScope.user.portraitPath}" alt="头像加载失败">
                         <div>更换头像</div>
@@ -94,10 +94,9 @@
         <div class="per-frame">
             <h1 class="per-title">个人资料</h1>
             <%-- 个人资料修改表单 --%>
-            <form action="userInfoServlet" method="post">
+            <form action="user" method="post">
                 <button type="submit" disabled="disabled" class="per-change-check">保存</button>
                 <div class="per-sp"></div>
-
                 <input type="hidden" name="action" value="saveUserInfo">
                 <input type="hidden" name="userId" value="${sessionScope.user.id}">
                 <ul class="per-container">
@@ -159,7 +158,7 @@
                         <label><input name="email" class="us-data-text" type="text" disabled
                                       value="${sessionScope.user.email}"></label>
                     </li>
-                    <li class="log-record-li"><a href="recordServlet?action=showLoginLog&userId=${sessionScope.user.id}"
+                    <li class="log-record-li"><a href="record?action=showLog&userId=${sessionScope.user.id}"
                                                  class="log-record log-btn">登录记录</a></li>
                     <li class="log-out-li"><a href="pages/user/pwdFind.jsp" class="log-btn">修改密码</a></li>
                     <li class="log-out-li"><a class="log-out log-btn">账号注销</a></li>

@@ -13,7 +13,7 @@ $(function () {
         }
         // 发起 AJAX 请求服务器验证用户名存在性
         $.ajax({
-            url: "ajaxServlet",
+            url: "user",
             data: "action=ajaxVerifyUsername&username=" + username,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
@@ -69,7 +69,7 @@ $(function () {
 
         // 发起 AJAX 请求服务器验证用户名存在性
         $.ajax({
-            url: "ajaxServlet",
+            url: "user",
             data: "action=ajaxVerifyEmail&email=" + email,
             type: "POST",
             // function 函数中一定要有参数以接收来自服务器的数据
@@ -125,7 +125,7 @@ $(function () {
     // 图片验证码单击事件
     $("#imgCodeBtn").click(function () {
         // 加上时间戳作为参数以解决 Firefox、IE 等浏览器缓存导致不能刷新问题
-        this.src = "imgVerifyCode.jpg?date=" + new Date();
+        this.src = "code.jpg?date=" + new Date();
     });
 
     // 密码框眼睛图片单击事件
@@ -170,8 +170,8 @@ $(function () {
         $btn.attr('disabled', true);
         // 发起 ajax 请求让服务器发送随机验证码
         $.ajax({
-            url: "ajaxServlet",
-            data: "action=ajaxSendRegisterEmailCode&email=" + email,
+            url: "user",
+            data: "action=ajaxSendRegisterCode&email=" + email,
             type: "POST",
             dataType: "text",
             success: function (data) {

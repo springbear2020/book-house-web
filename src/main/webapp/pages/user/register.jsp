@@ -29,7 +29,7 @@
         <a href="pages/user/login.jsp" class="backArrow" target="_self"><img src="static/img/icon_back.png"
                                                                              alt="图片加载失败"></a>
         <%--  注册表单  --%>
-        <form class="register-box" action="userServlet" method="post">
+        <form class="register-box" action="user" method="post">
             <input type="hidden" name="action" value="register">
             <div class="register-input"><label>
                 <input type="text" name="username" placeholder="用户名" class="register-username register-text"
@@ -58,7 +58,7 @@
             <div class="register-input"><label>
                 <input type="text" name="imgVerifyCode" placeholder="图片验证码"
                        class="imgVerifyCode verifyCode img-text">
-                <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="imgVerifyCode.jpg"/>
+                <img id="imgCodeBtn" alt="验证码加载失败，点击刷新" src="code.jpg"/>
                 <div class="little-tips tips-verifyCode tips-imgCode">* 点击图片可刷新验证码</div>
             </label>
             </div>

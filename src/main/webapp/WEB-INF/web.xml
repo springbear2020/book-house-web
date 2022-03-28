@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>KaptchaServlet</servlet-name>
-        <url-pattern>/imgVerifyCode.jpg</url-pattern>
+        <url-pattern>/code.jpg</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/userServlet</url-pattern>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>BookServlet</servlet-name>
@@ -26,15 +26,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
-        <url-pattern>/bookServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>FavoriteServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.web.FavoriteServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FavoriteServlet</servlet-name>
-        <url-pattern>/favoriteServlet</url-pattern>
+        <url-pattern>/book</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>TransferServlet</servlet-name>
@@ -42,15 +34,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>TransferServlet</servlet-name>
-        <url-pattern>/transferServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AjaxServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.web.AjaxServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AjaxServlet</servlet-name>
-        <url-pattern>/ajaxServlet</url-pattern>
+        <url-pattern>/transfer</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>RecordServlet</servlet-name>
@@ -58,15 +42,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RecordServlet</servlet-name>
-        <url-pattern>/recordServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UserInfoServlet</servlet-name>
-        <servlet-class>com.bear.bookhouse.web.UserInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserInfoServlet</servlet-name>
-        <url-pattern>/userInfoServlet</url-pattern>
+        <url-pattern>/record</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
@@ -74,7 +50,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/adminServlet</url-pattern>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
 
     <!-- 错误默认页面 -->

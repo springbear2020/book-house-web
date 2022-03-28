@@ -15,6 +15,8 @@ public class LoginLog {
     private Date time;
 
     public static final int ERROR = -1;
+    public static final int RECORD_PAGE_SIZE = 11;
+    public static final String IP_ERROR = "未知";
 
     public LoginLog() {
     }

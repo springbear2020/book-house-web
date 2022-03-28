@@ -28,6 +28,8 @@ public class Page<T> {
      */
     private List<T> pageData;
 
+    public static final int DEFAULT_SHOW_PAGE = 1;
+
     public Page() {
     }
 

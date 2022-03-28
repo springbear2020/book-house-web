@@ -15,7 +15,7 @@ public class PixabayServiceImpl implements PixabayService {
 
     @Override
     public Pixabay getPixabayRandomly() {
-        return pixabayDao.getPixabayById(NumberUtil.randomGenerateNumber(pixabayDao.getPixabayCounts()));
+        return pixabayDao.getPixabayById(NumberUtil.generateOneNumberInBoundRandomly(pixabayDao.getPixabayCounts()));
     }
 
     @Override

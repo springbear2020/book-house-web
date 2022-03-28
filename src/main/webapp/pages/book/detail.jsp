@@ -65,15 +65,15 @@
                     <div>上传时间</div>
                     <p>&nbsp;${requestScope.book.uploadTime}</p><span>显示</span></li>
                 <a class="button-a btn-down"
-                   href="transferServlet?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
+                   href="transfer?action=downloadBook&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}">立即下载</a>
                 <a class="button-a btn-fav"
-                   href="favoriteServlet?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&coverPath=${requestScope.book.coverPath}">收藏图书</a>
+                   href="record?action=addFavorite&bookId=${requestScope.book.id}&userId=${sessionScope.user.id}&title=${requestScope.book.title}&author=${requestScope.book.author}&coverPath=${requestScope.book.coverPath}">收藏图书</a>
             </ul>
         </div>
     </div>
 </div>
-<a class="ToLeft" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
-<a class="ToRight" href="bookServlet?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
+<a class="ToLeft" href="book?action=showBookRandomly"><img src="static/img/icon_left.png" alt="图片加载失败"></a>
+<a class="ToRight" href="book?action=showBookRandomly"><img src="static/img/icon_right.png" alt="图书加载失败"></a>
 <%@include file="/pages/common/footer.jsp" %>
 </body>
 </html>

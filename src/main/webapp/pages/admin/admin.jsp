@@ -26,8 +26,8 @@
         <div class="title"><a href="index.jsp">Book House</a></div>
         <%-- Admin form --%>
         <c:if test="${ empty sessionScope.admin}">
-            <form method="post" action="adminServlet">
-                <input type="hidden" name="action" value="loginLog">
+            <form method="post" action="admin">
+                <input type="hidden" name="action" value="login">
                 <label><input name="username" type="text" placeholder="username"></label>
                 <label><input name="password" type="password" placeholder="password"></label>
                 <label><input type="submit" value="loginLog" class="btn"></label>
@@ -36,16 +36,16 @@
     </div>
     <%--    <c:if test="${not empty sessionScope.admin}">--%>
     <div class="img-a">
-        <a href="adminServlet?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
+        <a href="admin?action=logout" class="logout-a"><img alt="" src="static/img/logout_admin.png"></a>
         <a href="pages/admin/manage.jsp" class="upload-a" target="_blank"><img alt="" src="static/img/upload_admin.png"></a>
     </div>
     <%--    </c:if>--%>
-    <div class="left"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_left.png" alt=""></a>
+    <div class="left"><a href="admin?action=showPixabay"><img src="static/img/arrow_left.png" alt=""></a>
     </div>
-    <div class="right"><a href="adminServlet?action=showPixabayRandomly"><img src="static/img/arrow_right.png"
+    <div class="right"><a href="admin?action=showPixabay"><img src="static/img/arrow_right.png"
                                                                               alt=""></a></div>
 </main>
-<table class="ad-table" >
+<table class="ad-table">
     <tr>
         <th>id</th>
         <th>views</th>
@@ -70,7 +70,7 @@
         <td>${requestScope.pixabay.addTime}</td>
         <td><a href="${requestScope.pixabay.url}" target="_blank">link</a></td>
         <td><a href="pages/admin/background.jsp" target="_blank">upload</a></td>
-        <td><a href="adminServlet?action=deletePixabay&id=${requestScope.pixabay.id}">delete</a></td>
+        <td><a href="admin?action=deletePixabay&id=${requestScope.pixabay.id}">delete</a></td>
     </tr>
 </table>
 </body>

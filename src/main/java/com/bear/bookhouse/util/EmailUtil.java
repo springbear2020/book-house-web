@@ -13,22 +13,19 @@ import java.util.Properties;
  * @datetime 2022/3/15 16:56
  */
 public class EmailUtil {
+    public static final int VERIFY_CODE_LEN = 6;
     /**
      * 发件人邮箱账号
      */
-    public  static String email;
+    private static String email;
     /**
      * 发件人邮箱授权码
      */
-    public static String password;
-    /**
-     * 发件人邮箱服务器
-     */
-    public static String smtpHost;
+    private static String password;
     /**
      * 验证码长度
      */
-    public static int codeLen;
+    private static int codeLen;
     /**
      * 验证码
      */
@@ -56,13 +53,14 @@ public class EmailUtil {
     static {
         Properties fileProperties = new Properties();
         try {
-            // 加载配置问价，读取配置信息
+            // 加载配置文件，读取配置信息
             InputStream resourceAsStream = EmailUtil.class.getClassLoader().getResourceAsStream("email.properties");
             fileProperties.load(resourceAsStream);
             email = fileProperties.getProperty("email");
             password = fileProperties.getProperty("password");
-            smtpHost = fileProperties.getProperty("smtpHost");
-            codeLen = NumberUtil.objectToInteger(fileProperties.getProperty("codeLen"), 6);
+            /* 发件人邮箱服务器 */
+            String smtpHost = fileProperties.getProperty("smtpHost");
+            codeLen = NumberUtil.objectToInteger(fileProperties.getProperty("codeLen"), EmailUtil.VERIFY_CODE_LEN);
 
             // 配置发送邮件需要的属性信息
             Properties properties = new Properties();
@@ -96,8 +94,8 @@ public class EmailUtil {
         // 邮件主题
         message.setSubject("欢迎使用 Book House 身份验证系统", "UTF-8");
         // 邮件正文
-        verifyCode = NumberUtil.randomGenerateCodeInLength(codeLen);
-        message.setContent("您好！您的验证码是：" + verifyCode + "，您正在进行身份验证，打死都不要将验证码告诉别人哦！邮件发送时间：" + DateUtil.datetimeFormat(new Date()), "text/html;charset=UTF-8");
+        verifyCode = NumberUtil.generateCodeInLengthRandomly(codeLen);
+        message.setContent("您好！您的验证码是：" + verifyCode + "，您正在进行身份验证，打死都不要将验证码告诉别人哦！邮件发送时间：" + DateUtil.dateFormatDatetime(new Date()), "text/html;charset=UTF-8");
         // 设置发件时间
         message.setSentDate(new Date());
         // 保存设置
