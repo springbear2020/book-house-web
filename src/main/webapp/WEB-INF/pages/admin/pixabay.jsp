@@ -42,7 +42,7 @@
         <th>downloads</th>
         <th>condition</th>
         <th>tags</th>
-        <th colspan="4"><a href="admin?action=deletePixabay&type=all">manage</a></th>
+        <th colspan="4"><a href="picture?action=deletePixabay&type=all">manage</a></th>
     </tr>
     <tr>
         <td>${requestScope.pixabay.id}</td>
@@ -51,8 +51,8 @@
         <td>${requestScope.pixabay.condition}</td>
         <td>${requestScope.pixabay.tags}</td>
         <td><a href="${requestScope.pixabay.url}" target="_blank">url</a></td>
-        <td><a href="admin?action=deletePixabay&type=one&id=${requestScope.pixabay.id}">delete</a></td>
-        <td><a href="admin?action=showPixabay" >next</a></td>
+        <td><a href="picture?action=deletePixabay&type=one&id=${requestScope.pixabay.id}">delete</a></td>
+        <td><a href="picture?action=showPixabay" >next</a></td>
     </tr>
 </table>
 </body>

@@ -52,6 +52,14 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PictureServlet</servlet-name>
+        <servlet-class>com.bear.bookhouse.web.PictureServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PictureServlet</servlet-name>
+        <url-pattern>/picture</url-pattern>
+    </servlet-mapping>
 
     <!-- 错误默认页面 -->
     <error-page>

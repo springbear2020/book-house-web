@@ -20,9 +20,6 @@
 
     <%-- 提示信息 --%>
     <%@include file="/WEB-INF/pages/common/notice.jsp" %>
-    <script type="text/javascript">
-        alert(${requestScope.background.path})
-    </script>
 </head>
 <body>
 <div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.background.path}"/>
@@ -36,21 +33,20 @@
     </div>
 </main>
 <%--  TODO 样式呐 --%>
-<div></div>
+<span>Pixabay</span>
+<div>${requestScope.background.sentence}</div>
 <table class="ad-table">
     <tr>
         <th>id</th>
         <th>user</th>
-        <th>time</th>
         <th>url</th>
         <th>next</th>
     </tr>
     <tr>
         <td>${requestScope.background.id}</td>
         <td>${requestScope.background.uploadUser}</td>
-        <td>${requestScope.background.uploadTime}</td>
         <td><a href="${requestScope.background.path}" target="_blank">url</a></td>
-        <td><a href="admin?action=showBackground">next</a></td>
+        <td><a href="picture?action=showBackground">next</a></td>
     </tr>
 </table>
 </body>

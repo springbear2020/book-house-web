@@ -25,7 +25,7 @@
 <div class="middle">
     <div class="middle-container">
         <a href="record?action=obtainUpload"><h2 class="right-up-title">Process Book</h2></a>
-        <a href="admin?action=showPixabay"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
+        <a href="picture?action=showBackground"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
         <table class="ma-table">
             <tr>
                 <td>uid</td>
