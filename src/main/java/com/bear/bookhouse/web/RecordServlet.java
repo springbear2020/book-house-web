@@ -38,14 +38,12 @@ public class RecordServlet extends BaseServlet {
         int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
         int pageNum = NumberUtil.objectToInteger(req.getParameter("pageNum"), Page.DEFAULT_SHOW_PAGE);
         String type = req.getParameter("type");
-
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 ID 不合法");
+            session.setAttribute("noticeMsg", "用户 ID 不存在");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
             return;
         }
-
         // 根据 type 分别查询下载或上传记录
         if (Download.TYPE.equals(type)) {
             // 查询用户下载记录
@@ -85,7 +83,7 @@ public class RecordServlet extends BaseServlet {
         int pageNum = NumberUtil.objectToInteger(req.getParameter("pageNum"), Page.DEFAULT_SHOW_PAGE);
         // 验证用户 id 是否合法
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 ID 不合法");
+            session.setAttribute("noticeMsg", "用户 ID 不存在");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
             return;
         }
@@ -112,14 +110,14 @@ public class RecordServlet extends BaseServlet {
 
         // 用户为登录则跳转到登录页面
         if (session.getAttribute("user") == null) {
-            session.setAttribute("noticeMsg", "请您先登录账号哦");
+            session.setAttribute("noticeMsg", "请先登录账号哦");
             req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
             return;
         }
 
         // 查询用户图书收藏记录是否已经存在
         if (recordService.isFavoriteExists(userId, bookId)) {
-            session.setAttribute("noticeMsg", "图书收藏记录已存在，不可重复收藏");
+            session.setAttribute("noticeMsg", "图书收藏记录已存在，不可重复收藏哦");
             resp.sendRedirect(req.getHeader("Referer"));
             return;
         }
@@ -127,7 +125,7 @@ public class RecordServlet extends BaseServlet {
         if (recordService.addFavorite(new Favorite(null, userId, bookId, title, author, coverPath, new Date())) && bookService.addBookFavorites(Book.ADD_Favorite, bookId)) {
             session.setAttribute("noticeMsg", "图书加入收藏夹成功");
         } else {
-            session.setAttribute("noticeMsg", "图书加入收藏夹失败，请稍后重试");
+            session.setAttribute("noticeMsg", "图书加入收藏夹失败，请稍后重试哦");
         }
         resp.sendRedirect(req.getHeader("Referer"));
     }
@@ -146,7 +144,7 @@ public class RecordServlet extends BaseServlet {
 
         // 删除用户收藏记录，用户收藏量减 1（由触发器完成）
         if (!recordService.deleteUserFavorite(userId, bookId)) {
-            session.setAttribute("noticeMsg", "图书取消收藏失败，请稍后重试");
+            session.setAttribute("noticeMsg", "图书取消收藏失败，请稍后重试哦");
         }
         resp.sendRedirect(req.getHeader("Referer"));
     }
@@ -163,7 +161,7 @@ public class RecordServlet extends BaseServlet {
         // 验证用户 id 是否合法
 
         if (userId <= 0 || userService.isUserIdExists(userId)) {
-            session.setAttribute("noticeMsg", "用户 id 不合法");
+            session.setAttribute("noticeMsg", "用户 id 不存在");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
@@ -171,7 +169,7 @@ public class RecordServlet extends BaseServlet {
         // 从数据库查询用户个人收藏记录
         List<Favorite> userFavorites = recordService.getUserFavorites(userId);
         if (userFavorites == null || userFavorites.size() == 0) {
-            session.setAttribute("noticeMsg", "个人收藏夹暂无数据，赶快收藏图书吧");
+            session.setAttribute("noticeMsg", "个人收藏夹暂无数据，快去收藏图书吧");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             req.setAttribute("userFavoritesList", userFavorites);

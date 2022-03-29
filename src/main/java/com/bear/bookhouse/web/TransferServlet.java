@@ -1,9 +1,6 @@
 package com.bear.bookhouse.web;
 
-import com.bear.bookhouse.pojo.Book;
-import com.bear.bookhouse.pojo.Download;
-import com.bear.bookhouse.pojo.Upload;
-import com.bear.bookhouse.pojo.User;
+import com.bear.bookhouse.pojo.*;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
@@ -25,7 +22,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,10 +85,10 @@ public class TransferServlet extends BaseServlet {
             IOUtils.copy(inputStream, resp.getOutputStream());
             NOTIFICATIONS.add("您刚刚下载了《" + book.getTitle() + "》，积分 -10。" + DateUtil.dateFormatTime(new Date()));
             session.setAttribute("notifications", NOTIFICATIONS);
-            // 添加图书下载量、减少用户积分、添加用户图书下载记录、用户下载量加 1（触发器完成）TODO
-            boolean b = bookService.addBookDownloads(Book.ADD_DOWNLOAD, bookId);
-            boolean b1 = userService.subUserScore(User.SCORE_CHANGE, userId);
-            boolean b2 = recordService.saveDownload(new Download(null, userId, "下载图书", "-" + User.SCORE_CHANGE, new Date(), book.getTitle()));
+            // 添加图书下载量、减少用户积分、添加用户图书下载记录、用户下载量加 1（触发器完成）
+            bookService.addBookDownloads(Book.ADD_DOWNLOAD, bookId);
+            userService.subUserScore(User.SCORE_CHANGE, userId);
+            recordService.saveDownload(new Download(null, userId, "下载图书", "-" + User.SCORE_CHANGE, new Date(), book.getTitle()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -106,7 +102,8 @@ public class TransferServlet extends BaseServlet {
      */
     protected void downloadFile(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String path = req.getParameter("path");
-        String fileName = path.substring(path.lastIndexOf('/'));
+        // 截取字符串，获得文件名
+        String fileName = path.substring(path.lastIndexOf('/') + 1);
         // 读取文件类型
         String mimeType = getServletContext().getMimeType("/file/" + path);
         // 通过响应头通知客户端返回的数据类型
@@ -161,18 +158,17 @@ public class TransferServlet extends BaseServlet {
                         }
                     }
                 }
-
                 // 添加用户上传记录，用户上传量加 1（触发器完成）
                 if (recordService.saveUpload(upload)) {
                     session.setAttribute("noticeMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
                     NOTIFICATIONS.add("您刚刚上传了《" + upload.getTitle() + "》，积分 +10。" + DateUtil.dateFormatTime(new Date()));
                     session.setAttribute("notifications", NOTIFICATIONS);
                 } else {
-                    session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
+                    session.setAttribute("noticeMsg", "图书文件上传失败，请稍后重试哦");
                 }
                 req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
             } catch (Exception e) {
-                session.setAttribute("noticeMsg", "图书文件上传失败，请您稍后重试");
+                session.setAttribute("noticeMsg", "图书文件上传失败，请稍后重试哦");
                 req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
                 e.printStackTrace();
             }
@@ -199,15 +195,15 @@ public class TransferServlet extends BaseServlet {
                     // 非普通表单项即文件表单项，保存到 static/picture/portrait/userId.png
                     if (!fileItem.isFormField()) {
                         fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/portrait/" + userId + ".png"));
-                        // 更新用户头像数据库保存路径 TODO
-                        boolean b = userService.updateUserPortrait("static/picture/portrait/" + userId + ".png", userId);
+                        // 更新用户头像数据库保存路径
+                        userService.updateUserPortrait("static/picture/portrait/" + userId + ".png", userId);
                         session.setAttribute("noticeMsg", "头像更换成功");
                         session.setAttribute("user", userService.getUserById(userId));
-                        req.getRequestDispatcher("/WEB-INF/pages/user/personal.jsp").forward(req, resp);
+                        resp.sendRedirect(req.getHeader("Referer"));
                     }
                 }
             } catch (Exception e) {
-                session.setAttribute("noticeMsg", "头像更换失败，请稍后重试");
+                session.setAttribute("noticeMsg", "头像更换失败，请稍后重试哦");
                 req.getRequestDispatcher("/WEB-INF/pages/user/personal.jsp").forward(req, resp);
                 e.printStackTrace();
             }
@@ -215,44 +211,16 @@ public class TransferServlet extends BaseServlet {
     }
 
     /**
-     * 上传 Pixabay 图片
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void uploadPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        // 判断表单是否为多段格式
-        if (ServletFileUpload.isMultipartContent(req)) {
-            // 创建用于解析表单的工具类
-            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
-            try {
-                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
-                for (FileItem fileItem : fileItemList) {
-                    // 非普通表单项即文件表单项，保存到 static/picture/background/time.png
-                    if (!fileItem.isFormField()) {
-                        fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/background/" + DateUtil.dateFormatFilename(new Date()) + ".png"));
-                        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
-                    }
-                }
-            } catch (Exception e) {
-                req.getRequestDispatcher("/WEB-INF/pages/error/400.jsp").forward(req, resp);
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 管理员图书上传
+     * 管理员处理图书
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      * @throws IOException exception
      */
-    protected void processBook(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Book book = new Book(null, null, null, null, null, 0, 0, null, null, null, null, new Date());
-        int userId = -1;
-        int uploadId = -1;
+    protected void uploadBookAdmin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        Book book = new Book(null, null, null, null, null, UserInfo.REGISTER_DEFAULT, UserInfo.REGISTER_DEFAULT, null, null, null, null, new Date());
+        String userId = "";
+        String uploadId = "";
         String bookPath = "";
         String coverPath = "";
         HttpSession session = req.getSession();
@@ -265,7 +233,7 @@ public class TransferServlet extends BaseServlet {
                 List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
                 // 逐条解析文件数据，分普通表单项和文件进行处理
                 for (FileItem fileItem : fileItemList) {
-                    // 普通表单项，读取 name - value 信息并封装为 Book 对象
+                    // 普通表单项，读取 name - value 信息
                     if (fileItem.isFormField()) {
                         String name = fileItem.getFieldName();
                         String value = fileItem.getString("UTF-8");
@@ -289,10 +257,10 @@ public class TransferServlet extends BaseServlet {
                                 book.setUploadUsername(value);
                                 break;
                             case "userId":
-                                userId = NumberUtil.objectToInteger(value, User.ERROR);
+                                userId = value;
                                 break;
                             case "uploadId":
-                                uploadId = NumberUtil.objectToInteger(value, Upload.ERROR);
+                                uploadId = value;
                                 break;
                             case "bookPath":
                                 bookPath = value;
@@ -310,37 +278,47 @@ public class TransferServlet extends BaseServlet {
                         if ("book".equals(fieldName)) {
                             // 将图书文件保存到磁盘真实路径下目录下 /WEB-INF/book/
                             fileItem.write(new File(getServletContext().getRealPath("/") + "/WEB-INF/book/" + uploadFileName));
-                            // 设置图书文件经服务器部署后的相对路径为 bookWebPath
                             book.setBookPath("WEB-INF/book/" + uploadFileName);
                         } else if ("cover".equals(fieldName)) {
                             // 将封面文件保存到磁盘真实路径下
                             fileItem.write(new File(getServletContext().getRealPath("/") + "/static/picture/cover/" + uploadFileName));
-                            // 设置封面文件相对路径为 coverWebPath
                             book.setCoverPath("static/picture/cover/" + uploadFileName);
                         }
                     }
                 }
+                req.setAttribute("bookByAdmin", book);
+                req.getRequestDispatcher("/admin?action=processUpload&userId=" + userId + "&uploadId=" + uploadId + "&bookPath=" + bookPath + "&coverPath=" + coverPath).forward(req, resp);
+            } catch (Exception e) {
+                session.setAttribute("noticeMsg", "Save the book to the disk failed");
+                req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
+                e.printStackTrace();
+            }
+        }
+    }
 
-                // 保存图书记录到数据库、增加用户积分、删除磁盘文件、修改上传记录状态为已处理
-                if (bookService.saveBook(book)) {
-                    bookPath = getServletContext().getRealPath("/" + bookPath);
-                    coverPath = getServletContext().getRealPath("/" + coverPath);
-                    File bookFile = new File(bookPath);
-                    File coverFile = new File(coverPath);
-                    // 删除磁盘文件、修改上传记录状态为已处理、增加用户积分
-                    if (bookFile.exists() && coverFile.exists() && bookFile.delete() && coverFile.delete() && recordService.updateUploadState(uploadId) && userService.addUserScore(10, userId)) {
-                        session.setAttribute("noticeMsg", "Process successfully");
-                        resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/admin/manage.jsp");
-                    } else {
-                        resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
+    /**
+     * 上传 Pixabay 图片
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void uploadPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        // 判断表单是否为多段格式
+        if (ServletFileUpload.isMultipartContent(req)) {
+            // 创建用于解析表单的工具类
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            try {
+                List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
+                for (FileItem fileItem : fileItemList) {
+                    // 非普通表单项即文件表单项，保存到 static/picture/background/time.png
+                    if (!fileItem.isFormField()) {
+                        fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/background/" + DateUtil.dateFormatFilename(new Date()) + ".png"));
+                        req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
                     }
-                } else {
-                    session.setAttribute("noticeMsg", "Process failed");
-                    req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
                 }
             } catch (Exception e) {
-                session.setAttribute("noticeMsg", "Process failed");
-                req.getRequestDispatcher("/WEB-INF/pages/admin/upload.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/error/400.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }

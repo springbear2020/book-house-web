@@ -36,8 +36,8 @@
                 <label><input type="password" name="password" placeholder="请输入新密码" class="input-text reset-pwd"><input type="password" name="password" placeholder="请再次输入密码" class="input-text re-reset-pwd"><div class="little-tips tips-password">* 至少包含一个数字、字母和特殊字符，长度为 6~16</div></label>
                 <input type="submit" id="resetPwdBtn" value="重置密码" class="btn-next">
             </form>
-            <%--   // TODO 解决此按钮--%>
-            <button class="btn-back" onclick="window.location.href='pages/user/login.jsp'">返&nbsp;回</button>
+            <%--   // TODO 解决密码找回页面返回按钮跳转页面问题--%>
+            <button class="btn-back" onclick="user">返&nbsp;回</button>
         </div>
     </div>
 </div>

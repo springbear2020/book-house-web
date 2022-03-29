@@ -19,6 +19,8 @@ public class Pixabay {
     private String url;
 
     public static final int ERROR = -1;
+    public static final String DELETE_ONE = "one";
+    public static final String DELETE_ALL = "all";
 
     public Pixabay() {
     }

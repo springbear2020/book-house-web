@@ -65,11 +65,10 @@
         <div class="per-frame">
             <h1 class="per-title">个人资料</h1>
             <%-- 个人资料修改表单 --%>
-            <form action="user" method="post">
+            <form action="user?action=saveUserInfo" method="post">
+                <input type="hidden" name="userId" value="${sessionScope.user.id}">
                 <button type="submit" disabled="disabled" class="per-change-check">保存</button>
                 <div class="per-sp"></div>
-                <input type="hidden" name="action" value="saveUserInfo">
-                <input type="hidden" name="userId" value="${sessionScope.user.id}">
                 <ul class="per-container">
                     <li><div class="per-data-name">用户昵称</div><label><input name="nickname" class="per-data-text" type="text" value="${sessionScope.userInfo.nickname}"></label></li>
                     <li><div class="per-data-name">性别</div><label><input type="radio" name="sex" value="男" class="per-data-sex sex-b sex-male"><div class="per-data-sex">男</div><input type="radio" name="sex" value="女" class="per-data-sex sex-b sex-female"><div class="per-data-sex">女</div><input type="radio" name="sex" value="保密" class="per-data-sex sex-b sex-secret"><div class="per-data-sex">保密</div></label></li>
@@ -79,7 +78,7 @@
                 </ul>
             </form>
         </div>
-        <%-- 底部隐私信息 --%>
+        <%-- 底部账号信息 --%>
         <div class="data-frame">
             <h1 class="per-title">账号信息</h1><div class="per-sp"></div>
             <ul class="per-container">

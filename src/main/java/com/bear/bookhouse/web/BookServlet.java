@@ -46,7 +46,7 @@ public class BookServlet extends BaseServlet {
         }
         // 查询到的图书数据为空
         if (bookPageData == null || bookPageData.getPageData() == null || bookPageData.getPageData().size() == 0) {
-            session.setAttribute("noticeMsg", "您查询的图书暂无数据");
+            session.setAttribute("noticeMsg", "您查询的图书暂无数据哦");
         }
         req.setAttribute("bookPageData", bookPageData);
         req.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req, resp);

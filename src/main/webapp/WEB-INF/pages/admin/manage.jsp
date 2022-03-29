@@ -22,11 +22,10 @@
     <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<div class="title"><a href="index.jsp">Book House</a></div>
 <div class="middle">
     <div class="middle-container">
-        <a href="admin?action=obtainBook"><h2 class="right-up-title">Process Book</h2></a>
-        <a href="user?action=pageRedirect&type=admin"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
+        <a href="admin?action=obtainUpload"><h2 class="right-up-title">Process Book</h2></a>
+        <a href="admin?action=showPixabay"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
         <table class="ma-table">
             <tr>
                 <td>uid</td>
@@ -41,7 +40,7 @@
             </tr>
         </table>
         <%-- Book file upload form --%>
-        <form action="transfer?action=processBook" method="post" enctype="multipart/form-data">
+        <form action="transfer?action=uploadBookAdmin" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="${requestScope.upload.userId}">
             <input type="hidden" name="uploadUsername" value="${requestScope.upload.username}">
             <input type="hidden" name="uploadId" value="${requestScope.upload.id}">
@@ -53,19 +52,11 @@
             <label class="upload-label"><input placeholder="keywords" type="text" name="keywords" class="up-input"></label>
             <label class="upload-label"><input placeholder="comments" type="text" name="comment" class="up-input"></label>
             <div class="bookFile upload-label"><label class="bookFile-true"><span>choose book</span>
-                <input type="file" name="book" accept="application/pdf" class="chooseFile" style="display:block;opacity: 0"></label>
-                <div class="fileInf">please choose book</div>
+                <input type="file" name="book" accept="application/pdf" class="chooseFile" style="display:block;opacity: 0"></label><div class="fileInf">please choose book</div>
             </div>
             <div class="bookCover upload-label">
-                <div class="bookCover-left">
-                    <label class="chooseImg-true"><div>choose cover</div>
-                        <input type="file" name="cover" accept="image/jpeg,image/png" class="chooseImg" style="display:block;opacity: 0">
-                    </label>
-                </div>
-                <div class="img-border">
-                    <div>cover</div>
-                    <img class="bookCover-img" alt="" src="">
-                </div>
+                <div class="bookCover-left"><label class="chooseImg-true"><div>choose cover</div><input type="file" name="cover" accept="image/jpeg,image/png" class="chooseImg" style="display:block;opacity: 0"></label></div>
+                <div class="img-border"><div>cover</div><img class="bookCover-img" alt="" src=""></div>
             </div>
             <label><input type="submit" value="Upload" class="upload-btn"></label>
         </form>
@@ -73,4 +64,3 @@
 </div>
 </body>
 </html>
-

@@ -19,6 +19,8 @@ public class UserInfo {
    private Integer downloads;
    private Date lastUpdateTime;
 
+   public static final int REGISTER_DEFAULT = 0;
+
    public UserInfo() {
    }
 

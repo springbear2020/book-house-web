@@ -15,13 +15,6 @@ public interface PixabayService {
     Pixabay getPixabayRandomly();
 
     /**
-     * 获取图片总数
-     *
-     * @return 总数
-     */
-    int getPixabayCounts();
-
-    /**
      * 通过 id 删除图片
      *
      * @param id id
@@ -30,9 +23,9 @@ public interface PixabayService {
     boolean deletePixabayById(int id);
 
     /**
-     * 展示一张数据库表第一张图书
+     * 删除所有 pixabay 图书并重置自增 id 为 1
      *
-     * @return Pixabay
+     * @return boolean 删除成功且重置成功
      */
-    Pixabay showFirstPixabay();
+    boolean deleteAllPixabayAndReset();
 }

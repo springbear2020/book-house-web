@@ -19,17 +19,12 @@ public class PixabayServiceImpl implements PixabayService {
     }
 
     @Override
-    public int getPixabayCounts() {
-        return pixabayDao.getPixabayCounts();
-    }
-
-    @Override
     public boolean deletePixabayById(int id) {
         return pixabayDao.deletePixabayById(id) == 1;
     }
 
     @Override
-    public Pixabay showFirstPixabay() {
-        return pixabayDao.getFirstPixabay();
+    public boolean deleteAllPixabayAndReset() {
+        return pixabayDao.deleteAllPixabay() == 1 && pixabayDao.resetIncrement() == 1;
     }
 }

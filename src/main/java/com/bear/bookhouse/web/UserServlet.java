@@ -41,6 +41,7 @@ public class UserServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         // 将注册表单中的各参数封装成 User
         User user = WebUtil.copyParamsToBean(new User(), req.getParameterMap());
         // 获取客户端输入的图片验证码
@@ -52,14 +53,14 @@ public class UserServlet extends BaseServlet {
 
         if (!emailVerifyCode.equalsIgnoreCase(UserServlet.registerEmailCode)) {
             req.setAttribute("user", user);
-            req.setAttribute("noticeMsg", "邮箱验证码有误");
+            session.setAttribute("noticeMsg", "邮箱验证码有误哦，请检查后重新输入");
             req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
             return;
         }
         if (!imgVerifyCodeByGoogle.equals(imgVerifyCode)) {
             req.setAttribute("user", user);
             req.setAttribute("emailCode", emailVerifyCode);
-            req.setAttribute("noticeMsg", "图片验证码有误");
+            session.setAttribute("noticeMsg", "图片验证码有误哦，请检查后重新输入");
             req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
             return;
         }
@@ -67,11 +68,12 @@ public class UserServlet extends BaseServlet {
         // 用户注册默认积分 100，保存用户信息到数据库
         user.setScore(User.REGISTER_SCORE);
         user.setRegisterDate(new Date());
+        user.setPortraitPath(User.DEFAULT_PORTRAIT_PATH);
         if (userService.saveUser(user)) {
-            req.setAttribute("noticeMsg", "恭喜您注册成功！");
-            req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
+            session.setAttribute("noticeMsg", "恭喜您注册成功，赶快登录吧");
+            req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
+            req.getRequestDispatcher("/WEB-INF/pages/error/500.jsp").forward(req, resp);
         }
     }
 
@@ -82,7 +84,7 @@ public class UserServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String usernameOrEmail = req.getParameter("usernameOrEmail");
         String password = req.getParameter("password");
         HttpSession session = req.getSession();
@@ -98,13 +100,13 @@ public class UserServlet extends BaseServlet {
             String location = WebUtil.parseIp(ip) == null ? LoginLog.IP_ERROR : WebUtil.parseIp(ip);
             // 保存用户登录日志
             if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
-                resp.sendRedirect(req.getContextPath() + "/index.jsp");
+                req.getRequestDispatcher("/index.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
+                req.getRequestDispatcher("/WEB-INF/pages/error/500.jsp").forward(req, resp);
             }
         } else {
             session.setAttribute("loginMsg", "用户名不存在或密码错误");
-            resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/user/login.jsp");
+            req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
         }
     }
 
@@ -114,9 +116,9 @@ public class UserServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getSession().removeAttribute("user");
-        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        req.getRequestDispatcher("/WEB-INF/pages/user/login.jsp").forward(req, resp);
     }
 
     /**
@@ -133,18 +135,17 @@ public class UserServlet extends BaseServlet {
 
         // 用户输入的邮箱验证码错误，返回修改界面
         if (!emailVerifyCode.equalsIgnoreCase(UserServlet.passwordFindEmailCode)) {
-            session.setAttribute("noticeMsg", "邮箱验证码错误");
+            session.setAttribute("noticeMsg", "邮箱验证码有误哦，请检查后重新输入");
             req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
             return;
         }
         if (userService.updatePasswordByEmail(password, email)) {
-            session.setAttribute("noticeMsg", "密码重置成功!");
+            session.setAttribute("noticeMsg", "密码重置成功，赶快返回登录吧");
             req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/WEB-INF/pages/error/500.jsp");
         }
     }
-
 
     /**
      * 保存用户个人信息
@@ -154,14 +155,13 @@ public class UserServlet extends BaseServlet {
      */
     protected void saveUserInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        // TODO 使用 beanutils ？
-        String userId = req.getParameter("userId");
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
         String nickname = req.getParameter("nickname");
         String sex = req.getParameter("sex");
-        String birth = req.getParameter("birth");
+        Date birth = DateUtil.stringFormatDate(req.getParameter("birth"));
         String location = req.getParameter("location");
         String signature = req.getParameter("signature");
-        UserInfo userInfo = new UserInfo(null, NumberUtil.objectToInteger(userId, User.ERROR), nickname, sex, DateUtil.stringFormatDate(birth), location, signature, new Date());
+        UserInfo userInfo = new UserInfo(null, userId, nickname, sex, birth, location, signature, new Date());
         if (userService.updateUserInfo(userInfo)) {
             session.setAttribute("noticeMsg", "个人信息修改成功");
         } else {
@@ -271,8 +271,8 @@ public class UserServlet extends BaseServlet {
             case "manage":
                 req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
                 return;
-            case "admin":
-                req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
+            case "pixabay":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
                 return;
             case "upload":
                 req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);

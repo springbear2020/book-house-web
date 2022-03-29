@@ -29,8 +29,14 @@ public class PixabayDaoImpl extends BaseDao implements PixabayDao {
     }
 
     @Override
-    public Pixabay getFirstPixabay() {
-        String sql = "SELECT `id`,`condition`,`tags`,`views`,`downloads`,`collections`,`likes`,`comments`,`large_image_url` url, `add_time` addTime FROM `t_pixabay` LIMIT 0,1";
-        return getRecord(Pixabay.class, sql);
+    public int deleteAllPixabay() {
+        String sql = "DELETE FROM `t_pixabay`";
+        return update(sql);
+    }
+
+    @Override
+    public int resetIncrement() {
+        String sql = "ALTER TABLE t_pixabay SET AUTO_INCREMENT = 1";
+        return update(sql);
     }
 }

@@ -1,9 +1,11 @@
 package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.*;
+import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.service.PixabayService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
+import com.bear.bookhouse.service.impl.BookServiceImpl;
 import com.bear.bookhouse.service.impl.PixabayServiceImpl;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
@@ -13,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -23,34 +26,7 @@ public class AdminServlet extends BaseServlet {
     private final PixabayService pixabayService = new PixabayServiceImpl();
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
-
-    /**
-     * 管理员登录
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        HttpSession session = req.getSession();
-        Admin admin = userService.getAdminByUsernameAndPassword(req.getParameter("username"), req.getParameter("password"));
-        if (admin != null) {
-            session.setAttribute("admin", admin);
-        } else {
-            session.setAttribute("noticeMsg", "用户名不存在或密码错误");
-        }
-        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
-    }
-
-    /**
-     * 管理员注销登录
-     *
-     * @param req  HttpServletRequest
-     * @param resp HttpServletResponse
-     */
-    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.getSession().removeAttribute("admin");
-        req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
-    }
+    private final BookService bookService = new BookServiceImpl();
 
     /**
      * 获取一张 Pixabay 图片
@@ -59,8 +35,8 @@ public class AdminServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void showPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.setAttribute("pixabay", pixabayService.showFirstPixabay());
-        req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
+        req.setAttribute("pixabay", pixabayService.getPixabayRandomly());
+        req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
     }
 
     /**
@@ -70,9 +46,64 @@ public class AdminServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void deletePixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        if (pixabayService.deletePixabayById(NumberUtil.objectToInteger(req.getParameter("id"), Pixabay.ERROR))) {
-            req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
+        HttpSession session = req.getSession();
+        if (session.getAttribute("admin") == null) {
+            session.setAttribute("noticeMsg", "Dear admin, please log in first");
+            resp.sendRedirect(req.getContextPath());
+            return;
         }
+        String type = req.getParameter("type");
+        if (Pixabay.DELETE_ONE.equals(type)) {
+            // 清空 t_pixabay 表并将 auto_increment 重置为 1
+            if (pixabayService.deleteAllPixabayAndReset()) {
+                session.setAttribute("noticeMsg", "Delete all pixabay successfully");
+                req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
+                return;
+            }
+        } else if (Pixabay.DELETE_ALL.equals(type)) {
+            // 根据 id 删除图片
+            if (pixabayService.deletePixabayById(NumberUtil.objectToInteger(req.getParameter("id"), Pixabay.ERROR))) {
+                session.setAttribute("noticeMsg", "Delete one pixabay successfully");
+                req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
+                return;
+            }
+        }
+        req.getRequestDispatcher("/index.jsp");
+    }
+
+    /**
+     * 管理员登录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void adminLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+        // 管理员已登录直接转发到管理员界面
+        if (session.getAttribute("admin") != null) {
+            req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
+            return;
+        }
+        // 验证管理员账户密码
+        Admin admin = userService.getAdminByUsernameAndPassword(req.getParameter("username"), req.getParameter("password"));
+        if (admin != null) {
+            session.setAttribute("admin", admin);
+            req.getRequestDispatcher("/WEB-INF/pages/admin/admin.jsp").forward(req, resp);
+        } else {
+            session.setAttribute("noticeMsg", "The administrator does not exist or the password is wrong");
+            resp.sendRedirect(req.getHeader("Referer"));
+        }
+    }
+
+    /**
+     * 管理员注销登录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void adminLogout(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.getSession().removeAttribute("admin");
+        req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
     }
 
     /**
@@ -81,8 +112,36 @@ public class AdminServlet extends BaseServlet {
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void obtainBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void obtainUpload(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("upload", recordService.getFirstNotProcessedUpload(Upload.NOT_PROCESSED));
+        req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
+    }
+
+    /**
+     * 处理一条用户的图书上传记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void processUpload(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
+        int uploadId = NumberUtil.objectToInteger(req.getParameter("uploadId"), Upload.ERROR);
+        String bookPath = req.getParameter("bookPath");
+        String coverPath = req.getParameter("coverPath");
+        Book book = (Book) req.getAttribute("bookByAdmin");
+        HttpSession session = req.getSession();
+        // 保存图书记录到数据库、删除磁盘用户上传的文件、增加用户积分、修改上传记录状态为已处理
+        File bookFile = new File(getServletContext().getRealPath("/" + bookPath));
+        File coverFile = new File(getServletContext().getRealPath("/" + coverPath));
+        // 删除磁盘文件
+        if (bookFile.exists() && coverFile.exists() && bookFile.delete() && coverFile.delete()) {
+            // 保存图书、修改上传记录状态为已处理、增加用户积分
+            if (bookService.saveBook(book) && recordService.updateUploadState(uploadId) && userService.addUserScore(User.SCORE_CHANGE, userId)) {
+                session.setAttribute("noticeMsg", "Save book, delete files, update state, issue points successfully");
+            }
+        } else {
+            session.setAttribute("noticeMsg", "Delete the book or the cover file failed");
+        }
         req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
     }
 }

@@ -31,9 +31,16 @@ public interface PixabayDao {
     int deletePixabayById(int id);
 
     /**
-     * 获取数据库表第一种图片
+     * 删除所有 pixabay 图片
      *
-     * @return Pixabay or null
+     * @return 1 - 删除成功
      */
-    Pixabay getFirstPixabay();
+    int deleteAllPixabay();
+
+    /**
+     * 重置自增 id 为 1
+     *
+     * @return 1 - 重置成功
+     */
+    int resetIncrement();
 }

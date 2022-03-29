@@ -184,7 +184,7 @@ $(function () {
             }
         });
         // 获取验证码按钮倒计时，将这个事件锁起来
-        let secondsNode = 60;
+        let secondsNode = 120;
         let emailBtnObj = $("#emailCodeBtn");
         let time = setInterval(function () {
             secondsNode--;

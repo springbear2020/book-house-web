@@ -55,7 +55,7 @@ public class RecordServiceImpl implements RecordService {
         }
         page.setPageNum(pageNum);
         // 获取当前页的用户下载记录数据
-        page.setPageData(downloadDao.listDownloadThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
+        page.setPageData(downloadDao.listDownloadThoughUserIdByBeginAndOffset(userId, (pageNum - 1) * pageSize, pageSize));
         return page;
     }
 
@@ -90,7 +90,7 @@ public class RecordServiceImpl implements RecordService {
         }
         page.setPageNum(pageNum);
         // 获取当前页的用户上传记录数据
-        page.setPageData(uploadDao.listUploadThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
+        page.setPageData(uploadDao.listUploadThoughUserIdByBeginAndOffset(userId, (pageNum - 1) * pageSize, pageSize));
         return page;
     }
 
@@ -125,7 +125,7 @@ public class RecordServiceImpl implements RecordService {
         }
         page.setPageNum(pageNum);
         // 获取当前页的用户登录数据
-        page.setPageData(loginLogDao.listLoginLogsThoughUserIdByBeginAndOffset(userId, pageNum, pageSize));
+        page.setPageData(loginLogDao.listLoginLogsThoughUserIdByBeginAndOffset(userId, (pageNum - 1) * pageSize, pageSize));
         return page;
     }
 
