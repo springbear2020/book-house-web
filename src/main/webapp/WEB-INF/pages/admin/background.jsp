@@ -18,7 +18,7 @@
     <%@include file="/WEB-INF/pages/common/notice.jsp" %>
 </head>
 <body>
-<%--    // TODO 样式呐--%>
+<%--    // TODO 上课去了 溜了溜了--%>
 <form action="transfer?action=uploadBackground" enctype="multipart/form-data" method="post">
     <input type="hidden" name="uploadUser" value="${sessionScope.admin.username}">
     <label><input type="text" name="sentence" placeholder="some words hit the heart"/></label><hr/>
