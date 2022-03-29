@@ -76,15 +76,8 @@ public class BookServiceImpl implements BookService {
             pageNum = pageTotal;
         }
         page.setPageNum(pageNum);
-
-        // 随机生成 pageSize 个整数，并以此作为 id 从数据中查询图书数据以随机展示图书
-        List<Book> bookList = new ArrayList<>();
-        Integer[] integers = NumberUtil.generateNumbersInBoundAndSizeRandomly(pageSize, booksRecordTotalCount);
-        for (Integer bookId : integers) {
-            bookList.add(bookDao.getBookById(bookId));
-        }
-
-        page.setPageData(bookList);
+        // 查询当前页图书数据
+        page.setPageData(bookDao.listBooksByBeginAndOffset((pageNum - 1) * pageSize, pageSize));
         return page;
     }
 

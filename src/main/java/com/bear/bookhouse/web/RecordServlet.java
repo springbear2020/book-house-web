@@ -176,4 +176,15 @@ public class RecordServlet extends BaseServlet {
             req.getRequestDispatcher("/WEB-INF/pages/book/favorite.jsp").forward(req, resp);
         }
     }
+
+    /**
+     * 获取一条未处理的上传记录
+     *
+     * @param req  HttpServletRequest
+     * @param resp HttpServletResponse
+     */
+    protected void obtainUpload(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("upload", recordService.getFirstNotProcessedUpload(Upload.NOT_PROCESSED));
+        req.getRequestDispatcher("/WEB-INF/pages/admin/book.jsp").forward(req, resp);
+    }
 }

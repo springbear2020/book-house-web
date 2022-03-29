@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Welcome</title>
+    <title>Admin</title>
     <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
@@ -20,17 +20,38 @@
 
     <%-- 提示信息 --%>
     <%@include file="/WEB-INF/pages/common/notice.jsp" %>
+    <script type="text/javascript">
+        alert(${requestScope.background.path})
+    </script>
 </head>
 <body>
-<div class="pixabayManage"><img class="bk-img" alt="" src=""/>
+<div class="pixabayManage"><img class="bk-img" alt="" src="${requestScope.background.path}"/>
 </div>
 <main class="img-preview-main">
     <div class="img-a">
-        <a href="user?action=pageRedirect&type=manage" class="upload-a" target="_blank">process book</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%--        TODO CSS 样式呐--%>
+        <a href="user?action=pageRedirect&type=background" class="logout-a">background</a> |
+        <a href="user?action=pageRedirect&type=book" class="upload-a" target="_self">book</a> |
         <a href="admin?action=adminLogout" class="logout-a">logout</a>
     </div>
 </main>
+<%--  TODO 样式呐 --%>
+<div></div>
 <table class="ad-table">
+    <tr>
+        <th>id</th>
+        <th>user</th>
+        <th>time</th>
+        <th>url</th>
+        <th>next</th>
+    </tr>
+    <tr>
+        <td>${requestScope.background.id}</td>
+        <td>${requestScope.background.uploadUser}</td>
+        <td>${requestScope.background.uploadTime}</td>
+        <td><a href="${requestScope.background.path}" target="_blank">url</a></td>
+        <td><a href="admin?action=showBackground">next</a></td>
+    </tr>
 </table>
 </body>
 </html>

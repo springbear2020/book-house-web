@@ -268,17 +268,20 @@ public class UserServlet extends BaseServlet {
             case "register":
                 req.getRequestDispatcher("/WEB-INF/pages/user/register.jsp").forward(req, resp);
                 return;
-            case "manage":
-                req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
-                return;
-            case "pixabay":
-                req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
-                return;
             case "upload":
                 req.getRequestDispatcher("/WEB-INF/pages/book/upload.jsp").forward(req, resp);
                 return;
             case "pwdFind":
                 req.getRequestDispatcher("/WEB-INF/pages/user/pwdFind.jsp").forward(req, resp);
+                return;
+            case "book":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/book.jsp").forward(req, resp);
+                return;
+            case "pixabay":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
+                return;
+            case "background":
+                req.getRequestDispatcher("/WEB-INF/pages/admin/background.jsp").forward(req, resp);
                 return;
             default:
         }

@@ -14,9 +14,9 @@
     <%@include file="/WEB-INF/pages/common/base.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="static/css/manage.css">
+    <link rel="stylesheet" type="text/css" href="static/css/book.css">
     <script type="text/javascript" src="static/script/tools.js"></script>
-    <script type="text/javascript" src="static/script/manage.js"></script>
+    <script type="text/javascript" src="static/script/book.js"></script>
 
     <%-- 提示信息 --%>
     <%@include file="/WEB-INF/pages/common/notice.jsp" %>
@@ -24,7 +24,7 @@
 <body>
 <div class="middle">
     <div class="middle-container">
-        <a href="admin?action=obtainUpload"><h2 class="right-up-title">Process Book</h2></a>
+        <a href="record?action=obtainUpload"><h2 class="right-up-title">Process Book</h2></a>
         <a href="admin?action=showPixabay"><div class="toBack"><img src="static/img/icon_back.png" alt=""></div></a>
         <table class="ma-table">
             <tr>

@@ -2,14 +2,17 @@ package com.bear.bookhouse.web;
 
 import com.bear.bookhouse.pojo.*;
 import com.bear.bookhouse.service.BookService;
+import com.bear.bookhouse.service.PictureService;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.UserService;
 import com.bear.bookhouse.service.impl.BookServiceImpl;
+import com.bear.bookhouse.service.impl.PictureServiceImpl;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
 import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
+import javafx.scene.layout.BackgroundSize;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -35,6 +38,7 @@ public class TransferServlet extends BaseServlet {
     private final BookService bookService = new BookServiceImpl();
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
+    private final PictureService pictureService = new PictureServiceImpl();
     private static final List<String> NOTIFICATIONS = new ArrayList<>();
 
     /**
@@ -290,19 +294,21 @@ public class TransferServlet extends BaseServlet {
                 req.getRequestDispatcher("/admin?action=processUpload&userId=" + userId + "&uploadId=" + uploadId + "&bookPath=" + bookPath + "&coverPath=" + coverPath).forward(req, resp);
             } catch (Exception e) {
                 session.setAttribute("noticeMsg", "Save the book to the disk failed");
-                req.getRequestDispatcher("/WEB-INF/pages/admin/manage.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/admin/book.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }
     }
 
     /**
-     * 上传 Pixabay 图片
+     * 上传图片
      *
      * @param req  HttpServletRequest
      * @param resp HttpServletResponse
      */
-    protected void uploadPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void uploadBackground(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        Background background = new Background(null, null, null, null, new Date());
+        HttpSession session = req.getSession();
         // 判断表单是否为多段格式
         if (ServletFileUpload.isMultipartContent(req)) {
             // 创建用于解析表单的工具类
@@ -312,13 +318,27 @@ public class TransferServlet extends BaseServlet {
                 List<FileItem> fileItemList = servletFileUpload.parseRequest(req);
                 for (FileItem fileItem : fileItemList) {
                     // 非普通表单项即文件表单项，保存到 static/picture/background/time.png
-                    if (!fileItem.isFormField()) {
-                        fileItem.write(new File(getServletContext().getRealPath("/") + "static/picture/background/" + DateUtil.dateFormatFilename(new Date()) + ".png"));
-                        req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
+                    if (fileItem.isFormField()) {
+                        String name = fileItem.getFieldName();
+                        String value = fileItem.getString("UTF-8");
+                        if ("sentence".equals(name)) {
+                            background.setSentence(value);
+                        } else if ("uploadUser".equals(name)) {
+                            background.setUploadUser(value);
+                        }
+                    } else {
+                        String savePath = "static/picture/background/" + DateUtil.dateFormatFilename(new Date()) + ".png";
+                        background.setPath(savePath);
+                        fileItem.write(new File(getServletContext().getRealPath("/") + savePath));
                     }
                 }
+                if (pictureService.saveBackground(background)) {
+                    session.setAttribute("noticeMsg", "Background file upload successfully");
+                    req.getRequestDispatcher("/WEB-INF/pages/admin/background.jsp").forward(req, resp);
+                }
             } catch (Exception e) {
-                req.getRequestDispatcher("/WEB-INF/pages/error/400.jsp").forward(req, resp);
+                session.setAttribute("noticeMsg", "Upload failed");
+                req.getRequestDispatcher("/WEB-INF/pages/admin/background.jsp").forward(req, resp);
                 e.printStackTrace();
             }
         }

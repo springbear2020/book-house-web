@@ -20,7 +20,7 @@
             <li><a href="record?action=showLog&userId=${sessionScope.user.id}" class="example">记录</a></li>
         </c:if>
     </ul>
-    <%-- 用户登录后显示积分通知、个人信息、退出登录入口 TODO 小铃铛清空通知 --%>
+    <%-- 用户登录后显示积分通知、个人信息、退出登录入口 --%>
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
             <li class="bell-fa"><a class="top_bell" title="积分通知"><img class="bell" src="static/img/icon_bell.png" alt=""></a>

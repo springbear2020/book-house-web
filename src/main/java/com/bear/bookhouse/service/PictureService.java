@@ -1,12 +1,13 @@
 package com.bear.bookhouse.service;
 
+import com.bear.bookhouse.pojo.Background;
 import com.bear.bookhouse.pojo.Pixabay;
 
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/26 23:45
  */
-public interface PixabayService {
+public interface PictureService {
     /**
      * 随机获取一张图片
      *
@@ -28,4 +29,19 @@ public interface PixabayService {
      * @return boolean 删除成功且重置成功
      */
     boolean deleteAllPixabayAndReset();
+
+    /**
+     * 保存背景
+     *
+     * @param background 背景
+     * @return true - 保存成功
+     */
+    boolean saveBackground(Background background);
+
+    /**
+     * 随机获取一张背景
+     *
+     * @return Background or null
+     */
+    Background getBackgroundRandomly();
 }
