@@ -1,1 +1,59 @@
-/*TODO 上课去了 溜了溜了*/
+/*textarea{*/
+/*    resize: none;*/
+/*}*/
+
+.bk{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+.form{
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+}
+#img-choose{
+    display: none;
+}
+
+.img-true, .submit{
+    float: left;
+    border: 0.01rem solid black;
+    background-color: rgba(0,0,0,0.2);
+    padding: 0.05rem 0.2rem;
+    font-size: 0.25rem;
+    border-radius: 0.2rem;
+    margin-top: 0.1rem;
+    margin-right: 0.2rem;
+}
+.submit{
+    font-size: 0.3rem;
+}
+
+.input-textarea{
+    float: left;
+    width: 6rem;
+    /* 这个是字的颜色 */
+    color: white;
+    font-size: 0.25rem;
+    font-weight: bolder;
+    margin: 0 0.2rem 0 6rem;
+    padding: 0.05rem 0.2rem;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 0.2rem;
+}
+.input-text{
+    float: left;
+    width: 6rem;
+    /* 这个是字的颜色 */
+    color: white;
+    font-size: 0.35rem;
+    font-weight: bolder;
+    margin: 0 0.2rem 0 6rem;
+    padding: 0.1rem 0.2rem;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 0.2rem;
+}

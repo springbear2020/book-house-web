@@ -27,14 +27,13 @@
 <main class="img-preview-main">
     <div class="img-a">
         <%--        TODO CSS 样式呐--%>
-        <a href="user?action=pageRedirect&type=background" class="logout-a">background</a> |
-        <a href="user?action=pageRedirect&type=book" class="upload-a" target="_self">book</a> |
+        <a href="user?action=pageRedirect&type=background" class="a-bk">background</a>
+        <a href="user?action=pageRedirect&type=book" class="a-book" target="_self">book</a>
         <a href="admin?action=adminLogout" class="logout-a">logout</a>
     </div>
 </main>
-<%--  TODO 样式呐 --%>
-<span>Pixabay</span>
-<div>${requestScope.background.sentence}</div>
+<span class="title">Pixabay</span>
+<%--<div class="pic-word">${requestScope.background.sentence}</div>--%>
 <table class="ad-table">
     <tr>
         <th>id</th>
