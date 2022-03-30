@@ -24,12 +24,6 @@
     <c:if test="${ not empty sessionScope.user}">
         <ul class="top-self">
             <li class="bell-fa"><a class="top_bell" title="积分通知"><img class="bell" src="static/img/icon_bell.png" alt=""></a>
-                <div class="bell-frame">
-                    <ul class="bell-ul">
-                        <c:if test="${empty sessionScope.notifications}"><p>这里还什么都没有</p></c:if>
-                        <c:forEach items="${sessionScope.notifications }" var="notice"><li>${notice}</li></c:forEach>
-                    </ul>
-                </div>
             </li>
             <li><a href="user?action=showPersonal" class="head_img" title="个人信息"><img src="${sessionScope.user.portraitPath}" alt=""></a></li>
             <li><a class="logout" href="user?action=logout" title="退出登录"><img src="static/img/logout.png" alt=""></a></li>

@@ -12,7 +12,6 @@ import com.bear.bookhouse.service.impl.UserServiceImpl;
 import com.bear.bookhouse.util.DataUtil;
 import com.bear.bookhouse.util.DateUtil;
 import com.bear.bookhouse.util.NumberUtil;
-import javafx.scene.layout.BackgroundSize;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -39,7 +38,6 @@ public class TransferServlet extends BaseServlet {
     private final UserService userService = new UserServiceImpl();
     private final RecordService recordService = new RecordServiceImpl();
     private final PictureService pictureService = new PictureServiceImpl();
-    private static final List<String> NOTIFICATIONS = new ArrayList<>();
 
     /**
      * 通过图书 id 下载对应的图书数据
@@ -87,8 +85,6 @@ public class TransferServlet extends BaseServlet {
         try {
             // 复制流中数据到响应输出流，复制出错则抛出异常
             IOUtils.copy(inputStream, resp.getOutputStream());
-            NOTIFICATIONS.add("您刚刚下载了《" + book.getTitle() + "》，积分 -10。" + DateUtil.dateFormatTime(new Date()));
-            session.setAttribute("notifications", NOTIFICATIONS);
             // 添加图书下载量、减少用户积分、添加用户图书下载记录、用户下载量加 1（触发器完成）
             bookService.addBookDownloads(Book.ADD_DOWNLOAD, bookId);
             userService.subUserScore(User.SCORE_CHANGE, userId);
@@ -165,8 +161,6 @@ public class TransferServlet extends BaseServlet {
                 // 添加用户上传记录，用户上传量加 1（触发器完成）
                 if (recordService.saveUpload(upload)) {
                     session.setAttribute("noticeMsg", "图书上传成功，待管理员审核后发放积分到您的账号，感谢您的共享");
-                    NOTIFICATIONS.add("您刚刚上传了《" + upload.getTitle() + "》，积分 +10。" + DateUtil.dateFormatTime(new Date()));
-                    session.setAttribute("notifications", NOTIFICATIONS);
                 } else {
                     session.setAttribute("noticeMsg", "图书文件上传失败，请稍后重试哦");
                 }
