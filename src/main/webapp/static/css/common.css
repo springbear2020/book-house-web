@@ -74,10 +74,11 @@ a {
     padding-right: 0.1rem;
 }
 
-.footer-notice{
+.footer-notice {
 
 }
-.about-us-frame{
+
+.about-us-frame {
     position: absolute;
     display: none;
     left: 50%;
@@ -88,7 +89,8 @@ a {
     border: 0.01rem solid black;
     background-color: #f5f5f5;
 }
-.con-spring-frame{
+
+.con-spring-frame {
     position: absolute;
     display: none;
     left: 50%;
@@ -99,7 +101,8 @@ a {
     border: 0.01rem solid black;
     background-color: #f5f5f5;
 }
-.footer-notice:hover div{
+
+.footer-notice:hover div {
     display: block;
 }
 

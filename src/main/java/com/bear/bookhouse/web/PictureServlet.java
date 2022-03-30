@@ -44,14 +44,14 @@ public class PictureServlet extends BaseServlet {
             return;
         }
         String type = req.getParameter("type");
-        if (Pixabay.DELETE_ONE.equals(type)) {
+        if (Pixabay.DELETE_ALL.equals(type)) {
             // 清空 t_pixabay 表并将 auto_increment 重置为 1
             if (pictureService.deleteAllPixabayAndReset()) {
                 session.setAttribute("noticeMsg", "Delete all pixabay successfully");
                 req.getRequestDispatcher("/admin?action=showPixabay").forward(req, resp);
                 return;
             }
-        } else if (Pixabay.DELETE_ALL.equals(type)) {
+        } else if (Pixabay.DELETE_ONE.equals(type)) {
             // 根据 id 删除图片
             if (pictureService.deletePixabayById(NumberUtil.objectToInteger(req.getParameter("id"), Pixabay.ERROR))) {
                 session.setAttribute("noticeMsg", "Delete one pixabay successfully");

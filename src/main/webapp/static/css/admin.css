@@ -31,58 +31,46 @@
     position: absolute;
     z-index: 1;
     right: 0;
+    float: right;
+    margin-top: 0.2rem;
 }
-
-/*.upload-a {*/
-/*    float: left;*/
-/*}*/
 
 .upload-a img {
     height: 0.8rem;
-}
-
-.upload-a img:hover {
-    content: url("../img/upload_admin_d.png");
-}
-
-.img-a {
-    float: right;
-    margin-top: 0.2rem;
 }
 
 .logout-a img {
     height: 0.8rem;
 }
 
-.logout-a img:hover {
-    content: url("../img/logout_admin_d.png");
-}
-
-.img-a a{
+.img-a a {
     padding: 0.1rem 0.2rem;
     font-size: 0.3rem;
-    background-color: rgba(120,120,120,0.5);
+    background-color: rgba(120, 120, 120, 0.5);
     border: 0.01rem solid black;
     border-radius: 0.3rem;
     margin-right: 0.2rem;
 }
-.img-a a:hover{
-    background-color: rgba(60,60,60,0.5);
+
+.img-a a:hover {
+    background-color: rgba(60, 60, 60, 0.5);
     color: white;
 }
 
 .title{
-    display: block;
-    font-size: 0.6rem;
-    font-weight: bold;
-    width: 2.4rem;
-    padding: 0.05rem 0.1rem;
+    left: 0.2rem;
 }
-.title:hover{
-    background-color: rgba(0,0,0,0.2);
-    color: white;
-    border-radius: 0.2rem;
-}
-/*.pic-word{*/
-/*    font-size: 0.3rem;*/
+
+/*.title {*/
+/*    display: block;*/
+/*    font-size: 0.6rem;*/
+/*    font-weight: bold;*/
+/*    width: 2.4rem;*/
+/*    padding: 0.05rem 0.1rem;*/
+/*}*/
+
+/*.title:hover {*/
+/*    background-color: rgba(0, 0, 0, 0.2);*/
+/*    color: white;*/
+/*    border-radius: 0.2rem;*/
 /*}*/
