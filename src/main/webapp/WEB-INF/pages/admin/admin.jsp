@@ -26,7 +26,6 @@
 </div>
 <main class="img-preview-main">
     <div class="img-a">
-        <%--        TODO CSS 样式呐--%>
         <a href="user?action=pageRedirect&type=background" class="a-bk">background</a>
         <a href="user?action=pageRedirect&type=book" class="a-book" target="_self">book</a>
         <a href="admin?action=adminLogout" class="logout-a">logout</a>

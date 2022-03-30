@@ -35,13 +35,6 @@ public interface BookService {
     Page<Book> getBookPageData(int pageNum, int pageSize);
 
     /**
-     * 获取图书记录总数量
-     *
-     * @return 图书记录总数量
-     */
-    int getBooksTotalCount();
-
-    /**
      * 根据书名查询图书分页数据
      *
      * @param pageNum  页码

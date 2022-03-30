@@ -11,7 +11,7 @@ import java.util.List;
  * @author Spring-_-Bear
  * @datetime 2022/3/25 17:26
  */
-public class LoginLogLogDaoImpl extends BaseDao implements LoginLogDao {
+public class LoginLogDaoImpl extends BaseDao implements LoginLogDao {
     @Override
     public int saveLoginLog(LoginLog loginLog) {
         String sql = "INSERT INTO `log_login`(`user_id`,`username`,`ip`,`location`,`time`) VALUES (?,?,?,?,?);";

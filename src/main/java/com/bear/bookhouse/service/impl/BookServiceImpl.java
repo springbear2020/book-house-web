@@ -7,10 +7,6 @@ import com.bear.bookhouse.pojo.Page;
 import com.bear.bookhouse.service.BookService;
 import com.bear.bookhouse.util.NumberUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/20 22:02
@@ -21,11 +17,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public boolean saveBook(Book book) {
         return bookDao.saveBook(book) == 1;
-    }
-
-    @Override
-    public int getBooksTotalCount() {
-        return bookDao.getBookCounts();
     }
 
     @Override

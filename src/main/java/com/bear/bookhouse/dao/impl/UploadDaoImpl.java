@@ -31,12 +31,6 @@ public class UploadDaoImpl extends BaseDao implements UploadDao {
     }
 
     @Override
-    public List<Upload> listUploadByState(String state) {
-        String sql = "SELECT `id`,`user_id` userId,`username`,`book_path` bookPath,`cover_path` coverPath,`state` FROM `t_upload` WHERE `state` = ?;";
-        return listRecord(Upload.class, sql, state);
-    }
-
-    @Override
     public int updateUploadStateById(int id, String state) {
         String sql = "UPDATE `t_upload` SET `state` = ? WHERE `id` = ?;";
         return update(sql, state, id);
@@ -46,11 +40,5 @@ public class UploadDaoImpl extends BaseDao implements UploadDao {
     public Upload getOneUploadByState(String state) {
         String sql = "SELECT `id`,`user_id` userId,`username`,`book_path` bookPath,`cover_path` coverPath,`state` FROM `t_upload` WHERE `state` = ? LIMIT 0,1;";
         return getRecord(Upload.class, sql, state);
-    }
-
-    @Override
-    public int getUploadCountsByState(String state) {
-        String sql = "SELECT COUNT(`id`) FROM `t_upload` WHERE `state` = ?;";
-        return NumberUtil.objectToInteger(getSingleValue(sql, state), Upload.ERROR);
     }
 }

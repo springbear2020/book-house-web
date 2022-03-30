@@ -64,13 +64,6 @@ public interface RecordService {
     Page<LoginLog> getLoginLogPageData(int userId, int pageNum, int pageSize);
 
     /**
-     * 获取未处理的上传记录
-     *
-     * @return 图书上传记录
-     */
-    List<Upload> listUploadForAdmin();
-
-    /**
      * 修改上传记录状态为已处理
      *
      * @param id 上传记录 id

@@ -7,7 +7,7 @@ import com.bear.bookhouse.dao.LoginLogDao;
 import com.bear.bookhouse.dao.UploadDao;
 import com.bear.bookhouse.dao.impl.DownloadDaoImpl;
 import com.bear.bookhouse.dao.impl.FavoriteDaoImpl;
-import com.bear.bookhouse.dao.impl.LoginLogLogDaoImpl;
+import com.bear.bookhouse.dao.impl.LoginLogDaoImpl;
 import com.bear.bookhouse.dao.impl.UploadDaoImpl;
 import com.bear.bookhouse.pojo.*;
 import com.bear.bookhouse.service.RecordService;
@@ -21,7 +21,7 @@ import java.util.List;
 public class RecordServiceImpl implements RecordService {
     private final DownloadDao downloadDao = new DownloadDaoImpl();
     private final UploadDao uploadDao = new UploadDaoImpl();
-    private final LoginLogDao loginLogDao = new LoginLogLogDaoImpl();
+    private final LoginLogDao loginLogDao = new LoginLogDaoImpl();
     private final FavoriteDao favoriteDao = new FavoriteDaoImpl();
 
     @Override
@@ -127,11 +127,6 @@ public class RecordServiceImpl implements RecordService {
         // 获取当前页的用户登录数据
         page.setPageData(loginLogDao.listLoginLogsThoughUserIdByBeginAndOffset(userId, (pageNum - 1) * pageSize, pageSize));
         return page;
-    }
-
-    @Override
-    public List<Upload> listUploadForAdmin() {
-        return uploadDao.listUploadByState(Upload.NOT_PROCESSED);
     }
 
     @Override
