@@ -1,6 +1,8 @@
 > Gitee 项目：[Book House](https://gitee.com/Spring-_-Bear/bookhouse)  
 >
 > 访 问 地 址：[Book House](http://124.221.120.56:8080/bookhouse/)
+>
+> 免 责 声 明：本站所有 PDF 图书资源全部来源于用户上传或由站长收集于网络，本站只是搜录整理他人成果。若有违规侵权，请第一时间联系站长 springbear2020@163.com ，站长将会立即清除对应图书资源，感谢！本站图书资源仅作学习交流分享使用，不作任何商用用途。
 
 ## 一、应用背景描述
 
