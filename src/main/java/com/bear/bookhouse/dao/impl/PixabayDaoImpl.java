@@ -36,7 +36,7 @@ public class PixabayDaoImpl extends BaseDao implements PixabayDao {
 
     @Override
     public int resetIncrement() {
-        String sql = "ALTER TABLE t_pixabay AUTO_INCREMENT = 1";
+        String sql = "ALTER TABLE `t_pixabay` AUTO_INCREMENT = 1;";
         return update(sql);
     }
 }

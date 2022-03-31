@@ -29,7 +29,10 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public boolean deleteAllPixabayAndReset() {
-        return pixabayDao.deleteAllPixabay() == 1 && pixabayDao.resetIncrement() == 1;
+        int j = pixabayDao.deleteAllPixabay();
+        // alter table table_name auto_increment 返回值为 0
+        int i = pixabayDao.resetIncrement();
+        return (i + j) >= 0;
     }
 
     @Override
