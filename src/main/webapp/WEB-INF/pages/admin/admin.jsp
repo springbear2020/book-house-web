@@ -31,7 +31,7 @@
         <a href="admin?action=adminLogout" class="logout-a">logout</a>
     </div>
 </main>
-<span class="title img-a"><a href="user?action=pageRedirect&type=pixabay">Pixabay</a></span>
+<span class="title img-a"><a href="picture?action=showPixabay">Pixabay</a></span>
 <table class="ad-table">
     <tr>
         <th>id</th>
