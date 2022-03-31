@@ -45,4 +45,9 @@ public class PictureServiceImpl implements PictureService {
         int backgroundCounts = backgroundDao.getBackgroundCounts();
         return backgroundDao.getBackgroundById(NumberUtil.generateOneNumberInBoundRandomly(backgroundCounts));
     }
+
+    @Override
+    public Pixabay getFirstPixabay() {
+        return pixabayDao.getFirstPixabay();
+    }
 }

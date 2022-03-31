@@ -43,4 +43,11 @@ public interface PixabayDao {
      * @return 1 - 重置成功
      */
     int resetIncrement();
+
+    /**
+     * 展示第一张 Pixabay 图书
+     *
+     * @return 第一张 Pixabay
+     */
+    Pixabay getFirstPixabay();
 }

@@ -26,7 +26,7 @@ public class PictureServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void showPixabay(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Pixabay pixabay = pictureService.getPixabayRandomly();
+        Pixabay pixabay = pictureService.getFirstPixabay();
         req.setAttribute("pixabay", pixabay);
         req.getRequestDispatcher("/WEB-INF/pages/admin/pixabay.jsp").forward(req, resp);
     }

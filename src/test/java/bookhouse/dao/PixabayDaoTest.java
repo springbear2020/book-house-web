@@ -28,4 +28,10 @@ public class PixabayDaoTest {
     public void deletePixabayById() {
         System.out.println(pixabayDao.deletePixabayById(501));
     }
+
+    @Test
+    public void getFirstPixabay() {
+        Pixabay firstPixabay = pixabayDao.getFirstPixabay();
+        System.out.println(firstPixabay);
+    }
 }

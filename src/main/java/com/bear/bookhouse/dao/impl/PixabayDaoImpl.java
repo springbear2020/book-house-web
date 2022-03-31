@@ -5,6 +5,8 @@ import com.bear.bookhouse.dao.PixabayDao;
 import com.bear.bookhouse.pojo.Pixabay;
 import com.bear.bookhouse.util.NumberUtil;
 
+import java.util.Date;
+
 /**
  * @author Spring-_-Bear
  * @datetime 2022/3/26 23:21
@@ -38,5 +40,11 @@ public class PixabayDaoImpl extends BaseDao implements PixabayDao {
     public int resetIncrement() {
         String sql = "ALTER TABLE `t_pixabay` AUTO_INCREMENT = 1;";
         return update(sql);
+    }
+
+    @Override
+    public Pixabay getFirstPixabay() {
+        String sql = "SELECT `id`,`condition`,`tags`,`views`,`downloads`,`collections`,`likes`,`comments`,`add_time` addTime,`large_image_url` url FROM `t_pixabay` LIMIT 0,1;";
+        return getRecord(Pixabay.class, sql);
     }
 }

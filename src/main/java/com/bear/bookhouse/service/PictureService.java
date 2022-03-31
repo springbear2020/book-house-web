@@ -44,4 +44,11 @@ public interface PictureService {
      * @return Background or null
      */
     Background getBackgroundRandomly();
+
+    /**
+     * 展示第一张 Pixabay 图片
+     *
+     * @return Pixabay
+     */
+    Pixabay getFirstPixabay();
 }
