@@ -32,7 +32,7 @@ class UserDaoTest {
 
     @Test
     void saveUser() {
-        User user = new User(null, "admin5", "admin5", "admin5@admin5.com", "static/picture/portrait/default.jpg", 100, new Date());
+        User user = new User(null, "admin5", "admin5", "admin5@admin5.com", "static/picture/portrait/default.png", 100, new Date());
         int i = userDao.saveUser(user);
         System.out.println(i);
     }

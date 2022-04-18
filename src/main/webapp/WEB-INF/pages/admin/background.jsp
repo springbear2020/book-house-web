@@ -27,8 +27,8 @@
 <%--    <label><input type="text" name="sentence" placeholder="some words hit the heart" class="input-text"/></label>--%>
     <label><textarea placeholder="some words hit the heart" name="sentence" class="input-textarea"></textarea></label>
     <input type="file" name="background" id="img-choose"/>
-    <label for="img-choose" class="img-true">submit pic</label>
-    <input type="submit" value="submit" class="submit"/>
+    <label for="img-choose" class="img-true">choose</label>
+    <input type="submit" value="upload" class="submit"/>
 </form>
 </body>
 </html>

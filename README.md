@@ -1,6 +1,6 @@
 > Gitee 项目：[Book House](https://gitee.com/Spring-_-Bear/bookhouse)  
 >
-> 访 问 地 址：[Book House](http://124.221.120.56:8080/bookhouse/)
+> 访 问 地 址：[Book House](http://124.221.120.56:8080/book-house/)
 >
 > 免 责 声 明：本站所有 PDF 图书资源全部来源于用户上传或由站长收集于网络，本站只是搜录整理他人成果。若有违规侵权，请第一时间联系站长 springbear2020@163.com ，站长将会立即清除对应图书资源，感谢！本站图书资源仅作学习交流分享使用，不作任何商用用途。
 
@@ -187,8 +187,6 @@
 >
 > 2. 通过获取验证码按钮向服务器发起 AJAX 请求，请求服务器发送随机邮箱验证码到用户输入的邮箱地址，用户新密码使用正则表达式验证格式是否符合要求
 >
->    ![image-20220330094906895](C:\Users\SpringBear\Pictures\image-20220330094906895.png)
->
 > 3. 密码重置成功则提示用户前往登录
 >
 >    ![在这里插入图片描述](https://img-blog.csdnimg.cn/bfa57f05a80740e291b67457527b4aa1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
@@ -219,7 +217,6 @@
 >
 > 3. 图书下载或上传成功，将在首页的小铃铛里通知用户积分变化，下载一本图书减少 10 积分，上传一本图书增加 10 积分，用户注册时默认积分为 100 积分
 >
->    ​	![image-20220330100141886](C:\Users\SpringBear\Pictures\image-20220330100141886.png)
 
 #### 6. 图书收藏
 
@@ -241,7 +238,6 @@
 >
 >    ![在这里插入图片描述](https://img-blog.csdnimg.cn/84ed543948c54e3484b05dcc559c9c73.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 >
-> 3. ![image-20220330101523611](C:\Users\SpringBear\Pictures\image-20220330101523611.png)
 
 #### 8. 信息修改
 

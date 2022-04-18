@@ -50,4 +50,9 @@ public class PictureServiceImpl implements PictureService {
     public Pixabay getFirstPixabay() {
         return pixabayDao.getFirstPixabay();
     }
+
+    @Override
+    public int getPixabayCounts() {
+        return pixabayDao.getPixabayCounts();
+    }
 }

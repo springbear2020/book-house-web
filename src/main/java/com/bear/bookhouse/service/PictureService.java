@@ -51,4 +51,6 @@ public interface PictureService {
      * @return Pixabay
      */
     Pixabay getFirstPixabay();
+
+    int getPixabayCounts();
 }

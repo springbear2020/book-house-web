@@ -2,12 +2,8 @@ package bookhouse.dao;
 
 import com.bear.bookhouse.dao.UserInfoDao;
 import com.bear.bookhouse.dao.impl.UserInfoImpl;
-import com.bear.bookhouse.pojo.UserInfo;
 import org.junit.Test;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Spring-_-Bear

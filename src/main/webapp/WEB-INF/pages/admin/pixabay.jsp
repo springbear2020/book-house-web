@@ -38,18 +38,14 @@
 <table class="ad-table">
     <tr>
         <th>id</th>
-        <th>views</th>
-        <th>downloads</th>
         <th>condition</th>
-        <th>tags</th>
+        <th>remaining</th>
         <th colspan="4"><a href="picture?action=deletePixabay&type=all">manage</a></th>
     </tr>
     <tr>
         <td>${requestScope.pixabay.id}</td>
-        <td>${requestScope.pixabay.views}</td>
-        <td>${requestScope.pixabay.downloads}</td>
         <td>${requestScope.pixabay.condition}</td>
-        <td>${requestScope.pixabay.tags}</td>
+        <td>${requestScope.remain}</td>
         <td><a href="${requestScope.pixabay.url}" target="_blank">url</a></td>
         <td><a href="picture?action=deletePixabay&type=one&id=${requestScope.pixabay.id}">delete</a></td>
         <td><a href="picture?action=showPixabay" >next</a></td>

@@ -4,7 +4,6 @@ import com.bear.bookhouse.pojo.Download;
 import com.bear.bookhouse.pojo.Upload;
 import com.bear.bookhouse.service.RecordService;
 import com.bear.bookhouse.service.impl.RecordServiceImpl;
-import com.bear.bookhouse.web.RecordServlet;
 import org.junit.Test;
 
 import java.util.Date;

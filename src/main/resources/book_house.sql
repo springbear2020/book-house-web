@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: book_house
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +63,7 @@ CREATE TABLE `t_admin` (
   `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
   `register_date` date NOT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `t_admin` (
 
 LOCK TABLES `t_admin` WRITE;
 /*!40000 ALTER TABLE `t_admin` DISABLE KEYS */;
+INSERT INTO `t_admin` VALUES (1,'admin','admin','2022-04-19');
 /*!40000 ALTER TABLE `t_admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +99,7 @@ CREATE TABLE `t_background` (
 
 LOCK TABLES `t_background` WRITE;
 /*!40000 ALTER TABLE `t_background` DISABLE KEYS */;
-INSERT INTO `t_background` VALUES (1,'人生如逆旅，我亦是行人','static/picture/background/default.png','2022-03-30','root');
+INSERT INTO `t_background` VALUES (1,'人生如逆旅，我亦是行人','static/picture/background/default.png','2022-03-30','admin');
 /*!40000 ALTER TABLE `t_background` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,18 +261,8 @@ CREATE TABLE `t_pixabay` (
   `add_time` date DEFAULT NULL COMMENT '添加时间',
   `large_image_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '图片访问地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_pixabay`
---
-
-LOCK TABLES `t_pixabay` WRITE;
-/*!40000 ALTER TABLE `t_pixabay` DISABLE KEYS */;
-INSERT INTO `t_pixabay` VALUES (1,NULL,NULL,0,0,0,0,0,'2022-03-30','static/picture/background/default.png');
-/*!40000 ALTER TABLE `t_pixabay` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `t_upload`
@@ -409,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-30 12:15:18
+-- Dump completed on 2022-04-19  6:45:29

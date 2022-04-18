@@ -47,7 +47,7 @@ public class NumberUtil {
      */
     public static int generateOneNumberInBoundRandomly(int bound) {
         Random random = new Random();
-        int number = random.nextInt(bound);
+        int number = random.nextInt(bound + 1);
         return number == 0 ? number + 1 : number;
     }
 
