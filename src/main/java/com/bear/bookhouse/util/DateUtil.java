@@ -46,15 +46,4 @@ public class DateUtil {
             return new Date();
         }
     }
-
-    /**
-     * 时间格式化为 16:16 格式
-     *
-     * @param date 日期
-     * @return 格式化的时间
-     */
-    public static String dateFormatTime(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        return dateFormat.format(date);
-    }
 }

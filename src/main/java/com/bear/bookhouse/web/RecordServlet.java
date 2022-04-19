@@ -100,12 +100,6 @@ public class RecordServlet extends BaseServlet {
      * @param resp HttpServletResponse
      */
     protected void addFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        // 客户端 favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title} 确保了 id 不会越界
-        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
-        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), Book.ERROR);
-        String title = req.getParameter("title");
-        String author = req.getParameter("author");
-        String coverPath = req.getParameter("coverPath");
         HttpSession session = req.getSession();
 
         // 用户为登录则跳转到登录页面
@@ -115,10 +109,18 @@ public class RecordServlet extends BaseServlet {
             return;
         }
 
+        // 客户端 favoriteServlet?action=addFavorite&bookId=${book.id}&userId=${sessionScope.user.id}&title=${book.title} 确保了 id 不会越界
+        int userId = NumberUtil.objectToInteger(req.getParameter("userId"), User.ERROR);
+        int bookId = NumberUtil.objectToInteger(req.getParameter("bookId"), Book.ERROR);
+        String title = req.getParameter("title");
+        String author = req.getParameter("author");
+        String coverPath = req.getParameter("coverPath");
+
         // 查询用户图书收藏记录是否已经存在
+        String contextPath = req.getContextPath();
         if (recordService.isFavoriteExists(userId, bookId)) {
             session.setAttribute("noticeMsg", "图书收藏记录已存在，不可重复收藏哦");
-            resp.sendRedirect(req.getHeader("Referer"));
+            resp.sendRedirect(contextPath + "/index.jsp");
             return;
         }
         // 保存收藏记录、增加图书收藏量、用户收藏量增加 1（由触发器完成）
@@ -127,7 +129,7 @@ public class RecordServlet extends BaseServlet {
         } else {
             session.setAttribute("noticeMsg", "图书加入收藏夹失败，请稍后重试哦");
         }
-        resp.sendRedirect(req.getHeader("Referer"));
+        resp.sendRedirect(contextPath + "/index.jsp");
     }
 
     /**

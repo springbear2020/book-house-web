@@ -74,6 +74,7 @@ public interface RecordService {
     /**
      * 获取第一条尚未处理的上传记录
      *
+     * @param state 上传记录状态
      * @return 上传记录 or null
      */
     Upload getFirstNotProcessedUpload(String state);

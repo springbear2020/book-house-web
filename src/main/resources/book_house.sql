@@ -38,7 +38,7 @@ CREATE TABLE `log_login` (
   `location` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '登录位置',
   `time` timestamp NOT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `log_login` (
 
 LOCK TABLES `log_login` WRITE;
 /*!40000 ALTER TABLE `log_login` DISABLE KEYS */;
+INSERT INTO `log_login` VALUES (1,1,'bear','0:0:0:0:0:0:0:1','未知','2022-04-19 08:42:10');
 /*!40000 ALTER TABLE `log_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `t_book` (
   `upload_username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '上传用户名',
   `upload_time` date NOT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +134,7 @@ CREATE TABLE `t_book` (
 
 LOCK TABLES `t_book` WRITE;
 /*!40000 ALTER TABLE `t_book` DISABLE KEYS */;
+INSERT INTO `t_book` VALUES (1,'Java并发编程的艺术','方腾飞 / 魏鹏 / 程晓明',NULL,'计算机 编程 Java 并发编程',1,1,'并发编程领域的扛鼎之作，作者是阿里和1号店的资深Java技术专家，对并发编程有非常深入的研究，《Java并发编程的艺术》是他们多年一线开发经验的结晶。本书的部分内容在出版早期发表在Java并发编程网和InfoQ等技术社区，得到了非常高的评价。它选取了Java并发编程中最核心的技术进行讲解，从JDK源码、JVM、CPU等多角度全面剖析和讲解了Java并发编程的框架、工具、原理和方法，对Java并发编程进行了最为深入和透彻的阐述。','WEB-INF/book/Java并发编程的艺术.pdf','static/picture/cover/Java并发编程的艺术.png','admin','2022-04-19');
 /*!40000 ALTER TABLE `t_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +153,7 @@ CREATE TABLE `t_download` (
   `time` timestamp NOT NULL COMMENT '下载时间',
   `title` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '下载图书书名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,6 +162,7 @@ CREATE TABLE `t_download` (
 
 LOCK TABLES `t_download` WRITE;
 /*!40000 ALTER TABLE `t_download` DISABLE KEYS */;
+INSERT INTO `t_download` VALUES (1,1,'下载图书','-10','2022-04-19 08:10:03','Java并发编程的艺术');
 /*!40000 ALTER TABLE `t_download` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -196,7 +199,7 @@ CREATE TABLE `t_favorite` (
   `cover_path` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '图书封面路径',
   `collect_time` date NOT NULL COMMENT '收藏时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,6 +208,7 @@ CREATE TABLE `t_favorite` (
 
 LOCK TABLES `t_favorite` WRITE;
 /*!40000 ALTER TABLE `t_favorite` DISABLE KEYS */;
+INSERT INTO `t_favorite` VALUES (1,1,1,'Java并发编程的艺术','方腾飞 / 魏鹏 / 程晓明','static/picture/cover/Java并发编程的艺术.png','2022-04-19');
 /*!40000 ALTER TABLE `t_favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -261,8 +265,18 @@ CREATE TABLE `t_pixabay` (
   `add_time` date DEFAULT NULL COMMENT '添加时间',
   `large_image_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '图片访问地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_pixabay`
+--
+
+LOCK TABLES `t_pixabay` WRITE;
+/*!40000 ALTER TABLE `t_pixabay` DISABLE KEYS */;
+INSERT INTO `t_pixabay` VALUES (1,'default','default',0,0,0,0,0,'2022-03-30','static/picture/background/default.png');
+/*!40000 ALTER TABLE `t_pixabay` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `t_upload`
@@ -283,7 +297,7 @@ CREATE TABLE `t_upload` (
   `cover_path` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '封面保存路径',
   `state` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '该条上传记录状态：已处理或未处理',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,6 +306,7 @@ CREATE TABLE `t_upload` (
 
 LOCK TABLES `t_upload` WRITE;
 /*!40000 ALTER TABLE `t_upload` DISABLE KEYS */;
+INSERT INTO `t_upload` VALUES (1,1,'bear','上传图书','+10','2022-04-19 08:10:29','Java 8实战.pdf','/WEB-INF/upload/1-20220419161029.pdf','/WEB-INF/upload/1-20220419161029.png','未处理');
 /*!40000 ALTER TABLE `t_upload` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -330,7 +345,7 @@ CREATE TABLE `t_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_username` (`username`),
   UNIQUE KEY `uniq_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,6 +354,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
+INSERT INTO `t_user` VALUES (1,'bear','bear','bear@bear.com',989,'static/picture/portrait/default.png','2022-04-19');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -379,7 +395,7 @@ CREATE TABLE `t_user_info` (
   `downloads` int NOT NULL DEFAULT '0' COMMENT '图书下载量：新用户注册默认为0',
   `last_update_time` date DEFAULT NULL COMMENT '资料上次更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,6 +404,7 @@ CREATE TABLE `t_user_info` (
 
 LOCK TABLES `t_user_info` WRITE;
 /*!40000 ALTER TABLE `t_user_info` DISABLE KEYS */;
+INSERT INTO `t_user_info` VALUES (1,1,'你不懂我&我不怪你','男','2011-01-19','北京市/朝阳区','长相思兮长相忆，短相思兮无穷极',1,1,1,'2022-04-19');
 /*!40000 ALTER TABLE `t_user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -400,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19  6:45:29
+-- Dump completed on 2022-04-19 16:43:03

@@ -17,7 +17,7 @@
     <script type="text/javascript" src="static/script/background.js"></script>
 
     <%-- 提示信息 --%>
-    <%@include file="/WEB-INF/pages/common/notice.jsp" %>
+<%--    <%@include file="/WEB-INF/pages/common/notice.jsp" %>--%>
 </head>
 <body>
 <img src="static/img/500.png" class="bk" alt="this is background">

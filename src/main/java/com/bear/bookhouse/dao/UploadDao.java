@@ -48,6 +48,7 @@ public interface UploadDao {
     /**
      * 获取一条指定状态的上传记录
      *
+     * @param state 上传记录状态
      * @return 上传记录 or null
      */
     Upload getOneUploadByState(String state);

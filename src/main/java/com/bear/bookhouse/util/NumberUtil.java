@@ -1,8 +1,6 @@
 package com.bear.bookhouse.util;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * @author Spring-_-Bear
@@ -49,26 +47,5 @@ public class NumberUtil {
         Random random = new Random();
         int number = random.nextInt(bound + 1);
         return number == 0 ? number + 1 : number;
-    }
-
-    /**
-     * 在指定范围内生成指定个数的不重复的随机正整数
-     *
-     * @param size  随机数个数
-     * @param bound 界限
-     * @return integers or null
-     */
-    public static Integer[] generateNumbersInBoundAndSizeRandomly(int size, int bound) {
-        Set<Integer> integersSet = new HashSet<>();
-        Random random = new Random();
-
-        for (int i = 1; i <= size; i++) {
-            int number = random.nextInt(bound);
-            // 如果加入失败（数字已存在）则再次生成
-            if (number == 0 || !integersSet.add(number)) {
-                --i;
-            }
-        }
-        return integersSet.toArray(new Integer[]{});
     }
 }

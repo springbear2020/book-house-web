@@ -52,5 +52,10 @@ public interface PictureService {
      */
     Pixabay getFirstPixabay();
 
+    /**
+     * 获取所有 Pixabay 图片的数量
+     *
+     * @return 数量
+     */
     int getPixabayCounts();
 }
