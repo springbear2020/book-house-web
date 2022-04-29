@@ -1,0 +1,252 @@
+.title {
+    float: left;
+    font-size: 0.5rem;
+    font-weight: bold;
+    margin-right: 5rem;
+    color: grey;
+}
+
+.middle {
+    background-color: lightskyblue;
+    background-image: linear-gradient(to bottom right, blue, lightskyblue, deepskyblue);
+    padding: 0.5rem 0;
+}
+
+.middle-container {
+    padding-top: 0.2rem;
+    width: 6rem;
+    margin: 0 auto;
+    background-color: rgba(240, 248, 255, 0.8);
+    border-radius: 1rem;
+}
+
+.up-title {
+    width: 3rem;
+    font-size: 0.4rem;
+    margin: 0.2rem 2.0rem 0.4rem;
+}
+
+
+.upload-label {
+    display: block;
+    width: 4rem;
+    height: 1rem;
+    margin: 0 auto;
+}
+
+.upload-label > span {
+    display: inline-block;
+    padding-top: 0.1rem;
+    font-size: 0.25rem;
+    font-weight: bold;
+}
+
+.up-input {
+    float: right;
+    padding: 0 0.2rem;
+    font-size: 0.25rem;
+    width: 4rem;
+    height: 0.5rem;
+}
+
+.bookFile-true {
+    display: block;
+    overflow: hidden;
+    padding-top: 0.1rem;
+    margin-left: -0.3rem;
+    line-height: 0.27rem;
+    width: 1.6rem;
+    height: 0.65rem;
+    background-color: lightskyblue;
+    font-size: 0.25rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.bookFile-true:hover {
+    color: white;
+    background-color: #4ea4dc;
+}
+
+.fileInf {
+    float: left;
+    margin-top: -0.6rem;
+    margin-left: 1.6rem;
+    font-size: 0.25rem;
+}
+
+.chooseFile {
+    height: 0;
+}
+
+.bookCover {
+    height: 3rem;
+}
+
+.bookCover-img {
+    display: none;
+    width: 1.854rem;
+    height: 3rem;
+}
+
+.img-border {
+    border: 1px solid blue;
+    float: right;
+    margin-right: 0.4rem;
+    font-size: 0.25rem;
+    width: 1.854rem;
+    height: 3rem;
+    text-align: center;
+}
+
+.bookCover-sp {
+    display: inline-block;
+    padding-top: 0.1rem;
+    font-size: 0.25rem;
+    font-weight: bold;
+    width: 2rem;
+}
+
+.chooseImg-true {
+    display: block;
+    overflow: hidden;
+    padding-top: 0.1rem;
+    line-height: 0.27rem;
+    margin-top: 0.9rem;
+    margin-left: -0.3rem;
+    width: 1.4rem;
+    height: 0.65rem;
+    background-color: lightskyblue;
+    font-size: 0.25rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.chooseImg-true:hover {
+    color: white;
+    background-color: #4ea4dc;
+}
+
+.chooseImg {
+    text-align: center;
+    height: 0;
+}
+
+.bookCover-left {
+    float: left;
+    width: 1rem;
+    height: 3rem;
+}
+
+.bookFile > input {
+    margin-left: 1.2rem;
+    margin-top: -0.3rem;
+    font-size: 0.2rem;
+}
+
+.upload-btn {
+    margin: 0.4rem 2rem;
+    width: 2rem;
+    height: 1rem;
+    font-size: 0.3rem;
+    font-weight: bold;
+    background-color: aliceblue;
+    border: 0;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #dddddd;
+    color: blue;
+}
+
+.alert {
+    position: absolute;
+    z-index: 101;
+    left: 48%;
+    top: 1.15rem;
+    color: red;
+    margin-left: -1rem;
+    padding: 0.05rem 0.1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    border: 0.03rem solid black;
+}
+
+.toBack {
+    float: right;
+    margin-right: 0.5rem;
+    margin-top: -1rem;
+}
+
+.toBack img {
+    width: 0.6rem;
+}
+
+.toBack img:hover {
+    content: url("../img/icon_back_deep.png");
+}
+
+.frame-left {
+    position: absolute;
+    width: 6rem;
+    height: 8rem;
+    padding-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    left: 1rem;
+    top: 2rem;
+    border-radius: 1rem;
+}
+
+.frame-right {
+    position: absolute;
+    width: 5rem;
+    height: 6rem;
+    padding-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    right: 1.5rem;
+    top: 3rem;
+    border-radius: 0.5rem;
+}
+
+.frame-right input {
+    display: block;
+    width: 2.4rem;
+    margin-right: 1rem;
+    border-radius: 0.1rem;
+}
+
+.right-up-title {
+    width: 3rem;
+    font-size: 0.4rem;
+    margin: 0 1rem 0.2rem;
+    padding: 0.2rem;
+}
+
+.ma-table {
+    width: 4rem;
+    margin: 0.5rem auto;
+    font-size: 0.25rem;
+    background-image: linear-gradient(to bottom right, white, grey);
+    text-align: center;
+}
+
+.autoFill {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    font-size: 0.25rem;
+    color: blue;
+    padding: 0;
+    margin: 0;
+}
+
+.autoFill:active {
+    background-color: grey;
+    color: white;
+}

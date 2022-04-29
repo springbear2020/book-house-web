@@ -1,0 +1,136 @@
+.middle {
+    background-color: lightskyblue;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.middle-frame {
+    display: table;
+    width: 12rem;
+    margin: 0.2rem auto;
+    background-color: #eee;
+    border: 0.2rem solid lightseagreen;
+    border-radius: 5%;
+}
+
+.inf-left {
+    margin: 0.4rem;
+    float: left;
+}
+
+.book_img {
+    width: 4.944rem;
+    height: 8rem;
+}
+
+.inf-right {
+    float: right;
+    width: 5.6rem;
+    padding: 0;
+}
+
+.inf-right li {
+    display: block;
+    width: 5rem;
+    margin: 0.3rem 0 0.3rem -0.5rem;
+}
+
+.inf-right li div {
+    margin-top: -0.05rem;
+    font-size: 0.3rem;
+    font-weight: bold;
+    width: 1.2rem;
+    text-align: right;
+    float: left;
+}
+
+.inf-right li p {
+    display: block;
+    margin-left: 1.5rem;
+    font-size: 0.25rem;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-radius: 0.05rem;
+    border-bottom: 0.05rem solid deepskyblue;
+}
+
+.inf-right li span {
+    float: right;
+    margin-top: -0.6rem;
+    margin-right: -0.7rem;
+    font-size: 0.2rem;
+    font-weight: bold;
+    padding: 0.05rem 0.15rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    display: none;
+}
+
+.inf-right li span:hover {
+    background-color: #dddddd;
+    color: blue;
+}
+
+#book-commit {
+    background-color: white;
+    border-radius: 0.2rem;
+    border: 0.05rem solid grey;
+    padding: 0 0.1rem;
+    margin-left: 1.4rem;
+    margin-right: -0.1rem;
+}
+
+.button-a {
+    float: left;
+    width: 1rem;
+    background-color: deepskyblue;
+    color: white;
+    font-size: 0.25rem;
+    font-weight: bold;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+}
+
+.button-a:hover {
+    background-color: #4ea4dc;
+}
+
+.btn-fav {
+    margin-left: 1rem;
+}
+
+.ToLeft {
+    position: fixed;
+    top: 50%;
+    left: 1rem;
+    margin-top: -1.2rem;
+    border-radius: 50%;
+    border: 0.2rem solid lightseagreen;
+}
+
+.ToLeft img {
+    width: 2rem;
+}
+
+.ToLeft img:hover {
+    content: url("../img/icon_left_deep.png");
+}
+
+.ToRight {
+    position: fixed;
+    top: 50%;
+    right: 1rem;
+    margin-top: -1.2rem;
+    border-radius: 50%;
+    border: 0.2rem solid lightseagreen;
+}
+
+.ToRight img {
+    width: 2rem;
+}
+
+.ToRight img:hover {
+    content: url("../img/icon_right_deep.png");
+}

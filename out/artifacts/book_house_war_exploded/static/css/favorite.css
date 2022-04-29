@@ -1,0 +1,118 @@
+.middle {
+    background-color: #ccffff;
+    padding: 0.1rem 0;
+}
+
+.middle-container {
+    margin: 0.1rem auto;
+}
+
+.fav-frame {
+    position: relative;
+    margin: 0 auto;
+    width: 17rem;
+}
+
+.fav-title {
+    position: relative;
+    width: 0.9rem;
+    padding: 0.1rem 0.2rem;
+    height: 0.4rem;
+    font-size: 0.3rem;
+    background-color: #dddddd;
+    font-weight: bold;
+    border: 0.1rem solid deepskyblue;
+    border-bottom: 0;
+    border-radius: 10%;
+}
+
+.fav-box {
+    display: table;
+    width: 17rem;
+    background-color: #dddddd;
+    border-left: 0.1rem solid deepskyblue;
+    border-right: 0.1rem solid deepskyblue;
+    border-bottom: 0.1rem solid deepskyblue;
+    border-top: 0.05rem solid deepskyblue;
+    border-radius: 0.1rem;
+}
+
+.fav-book {
+    float: left;
+    margin: 0.2rem;
+    width: 3.2rem;
+    height: 2.4rem;
+    padding: 0.2rem;
+    background-color: white;
+    border: 0.1rem solid cadetblue;
+    border-radius: 0.1rem;
+}
+
+.fav-data a img {
+    float: left;
+    width: 1.4832rem;
+    height: 2.4rem;
+}
+
+.fav-data p {
+    display: inline-block;
+    margin: 0 0.1rem 0.1rem;
+    width: 1.5rem;
+    font-size: 0.25rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 黑体, serif;
+    border-radius: 0.05rem;
+    border-bottom: 0.03rem solid deepskyblue;
+}
+
+.fav-bk-t {
+    height: 0.6rem;
+}
+
+.fav-author {
+    height: 0.3rem;
+}
+
+.fav-download {
+    display: inline-block;
+    margin: 0 0.1rem 0.1rem;
+    width: 1.5rem;
+    font-size: 0.2rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 黑体, serif;
+}
+
+.fav-bottom {
+    color: grey;
+    font-size: 0.2rem;
+}
+
+.fav-bottom span {
+    display: inline-block;
+    margin-bottom: -0.1rem;
+    margin-left: 0.1rem;
+}
+
+.fav-bottom p {
+    display: inline-block;
+    margin-left: 0.1rem;
+}
+
+.fav-close {
+    margin-top: -0.15rem;
+    margin-right: -0.15rem;
+    float: right;
+    cursor: pointer;
+}
+
+.fav-close-img {
+    width: 0.4rem;
+}
+
+.fav-close-img:hover {
+    content: url("../img/icon_no_deep.png");
+}

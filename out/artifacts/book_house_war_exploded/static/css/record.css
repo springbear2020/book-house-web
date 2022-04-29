@@ -1,0 +1,123 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td, th {
+    padding: 0;
+}
+
+.middle {
+    background-color: #4ea4dc;
+    padding: 0.4rem 0;
+}
+
+.middle-container {
+    width: 12rem;
+    margin: 0 auto;
+}
+
+.table-choose {
+    display: -webkit-flex;
+    background-color: white;
+    font-size: 0.3rem;
+    font-weight: bold;
+    height: 0.6rem;
+    text-align: center;
+}
+
+.choose-li {
+    display: flex;
+    width: 10rem;
+    padding: 0.1rem;
+    border: 0.02rem solid grey;
+}
+
+.pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 0.02rem solid #cbcbcb;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td, .pure-table th {
+    border-left: 0.02rem solid #cbcbcb;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+    width: 3rem;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.pure-table td {
+    background-color: transparent;
+}
+
+.pure-table-odd td {
+    background-color: #f2f2f2;
+}
+
+.tb-title {
+    overflow: hidden;
+}
+
+.pag-chs {
+    display: table;
+    margin: 0.2rem auto;
+    padding-bottom: 0.2rem;
+    height: 0.6rem;
+}
+
+.pagination {;
+    padding-left: 0;
+    height: 0.4rem;
+}
+
+.pag-num {
+    display: block;
+    float: left;
+    margin: 0 0.1rem;
+    padding-top: 0.08rem;
+    width: 0.5rem;
+    height: 0.42rem;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    background-color: lightskyblue;
+    border-radius: 20%;
+}
+
+.pag-fl {
+    width: 0.8rem;
+}
+
+.pag-num:hover {
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.pag-this {
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin: 0 0.1rem;
+    padding-top: 0.08rem;
+    width: 0.5rem;
+    height: 0.42rem;
+    text-align: center;
+    background-color: rgba(135, 206, 250, 0.4);
+    border: 1px solid deepskyblue;
+    border-radius: 20%;
+}

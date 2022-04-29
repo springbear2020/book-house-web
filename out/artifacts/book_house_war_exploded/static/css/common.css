@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-content {
+    height: 1rem;
+}
+
+.top-left {
+    margin-left: 0.3rem;
+    float: left;
+    width: 3rem;
+}
+
+.top-left-title {
+    display: block;
+    float: left;
+    padding-top: 0.2rem;
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: brown;
+}
+
+.top-center {
+    float: left;
+    padding-top: 0.3rem;
+}
+
+.top-right {
+    float: right;
+    padding-top: 0.3rem;
+    margin-right: 0.2rem;
+}
+
+.example {
+    padding: 0.08rem 0.3rem;
+    font-size: 0.3rem;
+    color: #111;
+    font-weight: bold;
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    border-radius: 0.25rem;
+}
+
+.example:hover {
+    background-color: #4ea4dc;
+    color: darkred;
+}
+
+.bottom-content {
+    font-size: 0.25rem;
+    text-align: center;
+}
+
+.separator {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+}
+
+.footer-notice {
+
+}
+
+.about-us-frame {
+    position: absolute;
+    display: none;
+    left: 50%;
+    margin-left: -4rem;
+    width: 6rem;
+    /*height: 2rem;*/
+    font-size: 0.25rem;
+    border: 0.01rem solid black;
+    background-color: #f5f5f5;
+}
+
+.con-spring-frame {
+    position: absolute;
+    display: none;
+    left: 50%;
+    margin-left: -1.7rem;
+    padding: 0.05rem 0.1rem;
+    width: 3.2rem;
+    font-size: 0.25rem;
+    border: 0.01rem solid black;
+    background-color: #f5f5f5;
+}
+
+.footer-notice:hover div {
+    display: block;
+}
+
+.top-self {
+    float: right;
+    margin-right: 0.2rem;
+    margin-top: 0;
+}
+
+.bell {
+    width: 0.6rem;
+    margin: 0.2rem 0.2rem;
+}
+
+.bell:hover {
+    content: url("../img/icon_bell_op.png");
+}
+
+.head_img {
+    margin: 0 0.45rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.head_img img {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    border: 0.05rem solid seagreen;
+    margin-bottom: 0.15rem;
+}
+
+.logout {
+    margin-left: 0.2rem;
+}
+
+.logout img {
+    width: 0.6rem;
+    margin-bottom: 0.2rem;
+}
+
+.self-frame {
+    margin-top: -0.1rem;
+    display: none;
+    position: absolute;
+    right: 0.2rem;
+    width: 1rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    background-color: white;
+}
+
+.self-frame li {
+    display: block;
+    text-align: center;
+    margin-left: -0.4rem;
+    padding: 0.05rem 0;
+    font-size: 0.25rem;
+    width: 1.2rem;
+}
+
+.self-frame li:hover {
+    background-color: #dddddd;
+}
+
+.notice {
+    position: absolute;
+    color: blueviolet;
+    font-weight: bold;
+    font-size: 0.2rem;
+    top: -3rem;
+    z-index: 200;
+    background-color: #f5f5f5;
+    left: 55%;
+    margin-left: -1.55rem;
+    padding: 0.1rem;
+    text-align: left;
+    box-shadow: 0 0 0.5rem purple;
+    transition: top 1s;
+}
+
+
+.bell-frame {
+    display: none;
+    position: absolute;
+    width: 5rem;
+    height: 1rem;
+    font-size: 0.2rem;
+    margin-left: -2rem;
+    margin-top: -0.1rem;
+    border: 0.02rem solid black;
+    background-color: rgba(120, 120, 120, 0.5);
+    overflow-y: auto;
+}
+
+.bell-ul li {
+    display: block;
+    padding: 0.1rem 0.2rem;
+}
+
+.bell-ul li:hover {
+    background-color: #f5f5f5;
+}
+
+.bell-ul p {
+    display: block;
+    font-family: 微软雅黑, serif;
+    font-size: 0.3rem;
+    text-align: center;
+}
