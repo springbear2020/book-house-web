@@ -19,37 +19,6 @@ import java.util.Objects;
  * @datetime 2022/3/16 19:42
  */
 public class WebUtil {
-    private static DatabaseReader cityReader;
-
-    // 读取配置文件，加载 GeoLite2-City.mmdb 数据库资源文件
-    static {
-        URL cityFileUrl = WebUtil.class.getClassLoader().getResource("GeoLite2-City.mmdb");
-        File cityFile = new File(Objects.requireNonNull(cityFileUrl).getPath());
-        try {
-            cityReader = (new DatabaseReader.Builder(cityFile).withCache(new CHMCache())).build();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 解析 ip 地址，从 GeoLite2-City.mmdb 数据库中获取对应的国家、省份、城市信息
-     *
-     * @param ip ip
-     * @return ip 所对应的国家、省份、城市信息
-     */
-    public static String parseIp(String ip) {
-        // 根据 ip 从 GeoLite2-City.mmdb 数据库中获得响应
-        CityResponse cityResponse;
-        try {
-            cityResponse = cityReader.city(InetAddress.getByName(ip));
-        } catch (IOException | GeoIp2Exception e) {
-            return null;
-        }
-        // 从响应中获取国家、省份、城市对象并获取响应信息
-        return cityResponse.getCountry().getNames().get("zh-CN") + " " + cityResponse.getMostSpecificSubdivision().getNames().get("zh-CN") + " " + cityResponse.getCity().getNames().get("zh-CN");
-    }
-
     /**
      * 从请求头中获取请求 ip 地址
      *

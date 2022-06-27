@@ -97,7 +97,8 @@ public class UserServlet extends BaseServlet {
             // 设置用户登录日志信息
             session.setAttribute("user", user);
             String ip = WebUtil.getIpAddress(req);
-            String location = WebUtil.parseIp(ip) == null ? LoginLog.IP_ERROR : WebUtil.parseIp(ip);
+            String location = "未知地点";
+            // String location = WebUtil.parseIp(ip) == null ? LoginLog.IP_ERROR : WebUtil.parseIp(ip);
             // 保存用户登录日志
             if (recordService.saveLoginLog(new LoginLog(null, user.getId(), user.getUsername(), ip, location, new Date()))) {
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);

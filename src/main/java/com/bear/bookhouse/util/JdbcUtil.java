@@ -39,7 +39,7 @@ public class JdbcUtil {
      * @throws SQLException exception
      */
     public static Connection getConnection() throws SQLException {
-        System.out.println("Database connections：" + (++connections));
+        // System.out.println("Database connections：" + (++connections));
         return dataSource.getConnection();
     }
 

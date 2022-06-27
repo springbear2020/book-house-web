@@ -151,4 +151,12 @@ public interface UserService {
      * @return Admin or null
      */
     Admin getAdminByUsernameAndPassword(String username, String password);
+
+    /**
+     * 保存用户信息
+     *
+     * @param userId 用户 ID
+     * @return true - 保存成功
+     */
+    boolean saveUseInfo(Integer userId);
 }

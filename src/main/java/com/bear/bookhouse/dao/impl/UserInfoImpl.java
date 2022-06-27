@@ -20,4 +20,10 @@ public class UserInfoImpl extends BaseDao implements UserInfoDao {
         String sql = "UPDATE `t_user_info` SET `nickname` = ?, `sex` = ?, `birth` = ?,`location` = ?,`signature` = ?,`last_update_time` = ? WHERE `user_id` = ?;";
         return update(sql, userInfo.getNickname(), userInfo.getSex(), userInfo.getBirth(), userInfo.getLocation(), userInfo.getSignature(), userInfo.getLastUpdateTime(), userInfo.getUserId());
     }
+
+    @Override
+    public int saveUseInfo(Integer userId) {
+        String sql = "INSERT INTO t_user_info(`user_id`) VALUES ?;";
+        return update(sql, userId);
+    }
 }

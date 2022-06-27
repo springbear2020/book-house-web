@@ -20,7 +20,7 @@
 <%--    <%@include file="/WEB-INF/pages/common/notice.jsp" %>--%>
 </head>
 <body>
-<img src="static/img/500.png" class="bk" alt="this is background">
+<img src="static/picture/background/20220627183053.png" class="bk" alt="this is background">
 <form action="transfer?action=uploadBackground" enctype="multipart/form-data" method="post" class="form">
     <input type="hidden" name="uploadUser" value="${sessionScope.admin.username}">
     <%--    如果文本域不行就直接注释掉 两个都写了样式--%>

@@ -22,11 +22,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book getBookById(int id) {
         // 图书 id 边界值检查
-        int booksTotalCount = bookDao.getBookCounts();
         if (id <= 0) {
             id = 1;
-        } else if (id > booksTotalCount) {
-            id = booksTotalCount;
         }
         return bookDao.getBookById(id);
     }

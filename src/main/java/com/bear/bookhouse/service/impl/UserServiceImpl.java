@@ -104,4 +104,9 @@ public class UserServiceImpl implements UserService {
     public Admin getAdminByUsernameAndPassword(String username, String password) {
         return adminDao.getAdminByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public boolean saveUseInfo(Integer userId) {
+        return userInfoDao.saveUseInfo(userId) == 1;
+    }
 }

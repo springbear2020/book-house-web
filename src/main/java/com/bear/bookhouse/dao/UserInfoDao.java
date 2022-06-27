@@ -22,4 +22,12 @@ public interface UserInfoDao {
      * @return 1 - 更新成功
      */
     int updateUserInfoByUserId(UserInfo userInfo);
+
+    /**
+     * 保存用户信息
+     *
+     * @param userId 用户 ID
+     * @return 1 - 保存成功
+     */
+    int saveUseInfo(Integer userId);
 }
