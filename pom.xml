@@ -7,7 +7,6 @@
     <groupId>com.bear</groupId>
     <artifactId>book-house</artifactId>
     <version>1.0</version>
-    <name>BookHouse</name>
     <packaging>war</packaging>
 
     <properties>
