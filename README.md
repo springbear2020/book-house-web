@@ -4,12 +4,12 @@
 > 方案一：
 >
 > 1. 克隆仓库：使用 Git 克隆仓库或直接下载仓库压缩包到您的计算机
-> 2. 打开工程：使用 IntelliJ IDEA  打开克隆的仓库或解压的工程文件
+> 2. 打开工程：使用 `IntelliJ IDEA`  打开克隆的仓库或解压的工程文件
 > 3. 创建数据库和表并插入数据：登录 MySQL ，创建 `book_house` 数据库，将 `src/main/resources/book_house.sql` 文件中的数据库表导入 book_house 数据库中
 > 4. 修改数据库连接信息：修改 `src/main/resources/jdbc.properties` 中的数据库连接信息，设置你自己的用户名和密码 
-> 5. 修改邮箱服务器信息（可选）：修改 `src/main/resources/email.properties` 中的邮箱连接信息，设置你自己的邮箱账号和服务器（不设置则注册时获取邮箱验证码功能不可用）个人邮箱开启 smtp 功能指导博客：[smtp 开启](https://blog.csdn.net/smilehappiness/article/details/108145215)
+> 5. 修改邮箱服务器信息（可选，不设置则用户注册时邮箱验证码功能不可用）：修改 `src/main/resources/email.properties` 中的邮箱连接信息，设置你自己的邮箱账号和服务器（个人邮箱开启 smtp 功能指导博客：[smtp 开启](https://blog.csdn.net/smilehappiness/article/details/108145215)）
 > 6. 部署访问：在 IntelliJ IDEA 中部署 Tomcat 即可访问网上书屋首页
-> 7. 登录：账号登录默认用户名和密码均为 `admin`，管理员登录账号和密码也为 `admin`
+> 7. 登录系统：用户、管理员登录默认用户名和密码均为 `admin`
 >
 > 方案二：
 >
@@ -30,7 +30,7 @@
 >
 > 6. 访问首页：在浏览器地址栏输入 `http://localhost:8080/book-house/` 即可访问网上书屋首页
 >
-> 7. 登录：账号登录默认用户名和密码均为 `admin`，管理员登录账号和密码也为 `admin`
+> 7. 登录系统：用户、管理员登录默认用户名和密码均为 `admin`
 
 # 一、应用背景描述
 
@@ -183,57 +183,57 @@
 ## 3.1 用户功能
 ### 1. 用户注册
 
-> 给用户名、邮箱输入框绑定失去焦点事件，失去焦点时向服务器发起 AJAX 请求以验证用户名和邮箱的存在性，存在则友好提示用户更换用户名或邮箱。用户注册时给每个输入框绑定失去焦点事件，使用正则表达式初步验证各表单项是否符合格式要求，不符合要求则阻止表单提交。
+给用户名、邮箱输入框绑定失去焦点事件，失去焦点时向服务器发起 AJAX 请求以验证用户名和邮箱的存在性，存在则友好提示用户更换用户名或邮箱。用户注册时给每个输入框绑定失去焦点事件，使用正则表达式初步验证各表单项是否符合格式要求，不符合要求则阻止表单提交。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/3ae89ab7b82d43e990f9dac5dce69bdf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 2. 邮箱验证码 
 
->使用 `javax.mail.jar` 第三方工具包，实现当用户点击获取按钮时向用户输入的邮箱地址发送验证码，验证码时由后台随机生成的六位长字符串，使用 AJAX 发起异步请求。使用 Google `kaptcha-2.3.2.jar` 第三方工具包实现图片验证码的自动生成与刷新，当用户点击图片时刷新验证码，使用 AJAX 发起异步请求。
+使用 `javax.mail.jar` 第三方工具包，实现当用户点击获取按钮时向用户输入的邮箱地址发送验证码，验证码时由后台随机生成的六位长字符串，使用 AJAX 发起异步请求。使用 Google `kaptcha-2.3.2.jar` 第三方工具包实现图片验证码的自动生成与刷新，当用户点击图片时刷新验证码，使用 AJAX 发起异步请求。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b43d7e08c307471fa46c5394756c1ccb.png)
 
 ### 3. 用户登录
 
-> 用户登录时可选择用户名或邮箱进行登录，使用正则表达式验证用户名或密码不允许为空，验证通过则跳转到系统主页面，验证失败则提示用户用户名或密码错误。
+用户登录时可选择用户名或邮箱进行登录，使用正则表达式验证用户名或密码不允许为空，验证通过则跳转到系统主页面，验证失败则提示用户用户名或密码错误。
 
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d4ef1c395f9c4f7892c4acabbe5b14b0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 4. 重置密码
 
-> 密码重置时需通过邮箱验证用户正确性，向服务器发起 AJAX 请求验证邮箱是否已注册账号，未注册则提示用户此邮箱未注册账号。通过获取验证码按钮向服务器发起 AJAX 请求，请求服务器发送随机邮箱验证码到用户输入的邮箱地址，用户新密码使用正则表达式验证格式是否符合要求。
+密码重置时需通过邮箱验证用户正确性，向服务器发起 AJAX 请求验证邮箱是否已注册账号，未注册则提示用户此邮箱未注册账号。通过获取验证码按钮向服务器发起 AJAX 请求，请求服务器发送随机邮箱验证码到用户输入的邮箱地址，用户新密码使用正则表达式验证格式是否符合要求。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2b34702530ac4ffca5486135fb960266.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 5. 图书上传
 
-> 用户登录后可在系统主要上传入口进行电子图书资源的上传.图书上传过程中使用 JavaScript 验证图书文件格式必须为 PDF，图书封面文件格式必须为 JPG 或 PNG，不是正确的格式则不允许上传。用户图书资源上传成功后，提示用户需待管理员审核并发布图书资源后才给用户发放积分，每本图书下发 10 积分。
-> 
+用户登录后可在系统主要上传入口进行电子图书资源的上传.图书上传过程中使用 JavaScript 验证图书文件格式必须为 PDF，图书封面文件格式必须为 JPG 或 PNG，不是正确的格式则不允许上传。用户图书资源上传成功后，提示用户需待管理员审核并发布图书资源后才给用户发放积分，每本图书下发 10 积分。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/63ef04bf6c054e5fbeb61614cb812bd1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/11e88502d7204e90af12791d289be1a5.png)
 
 ### 6. 图书下载
 
-> 用户可在图书首页或图书详情页进行图书的下载，请求服务器将对应的图书资源发送到用户计算机中。图书下载或上传成功，将在首页的小铃铛里通知用户积分变化，下载一本图书减少 10 积分，上传一本图书增加 10 积分，用户注册时默认积分为 100 积分
+用户可在图书首页或图书详情页进行图书的下载，请求服务器将对应的图书资源发送到用户计算机中。图书下载或上传成功，将在首页的小铃铛里通知用户积分变化，下载一本图书减少 10 积分，上传一本图书增加 10 积分，用户注册时默认积分为 100 积分
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/58896c66d85941a5b72b9d0ab8043953.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_7,color_FFFFFF,t_70,g_se,x_16)
 ### 7. 图书详情
 
-> 在图书首页，用户点击对应图书的封面可跳转到图书详情页，在详情页中展示了图书的更多信息，也提供了下载功能，在详情页中也可通过左右箭头图片查看下一本或上一本图书
+在图书首页，用户点击对应图书的封面可跳转到图书详情页，在详情页中展示了图书的更多信息，也提供了下载功能，在详情页中也可通过左右箭头图片查看下一本或上一本图书
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f0d664230d564daea6903450ce3e1dfe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
 ### 8. 图书收藏
 
-> 首页和图书详情页均提供用户收藏图书的功能，在图书收藏页面中展示用户收藏夹中的图书，并提供取消收藏和立即下载图书资源的功能。用户图书收藏记录唯一，即用户不可重复收藏同一本图书，若对应图书用户已收藏，则友好提示用户。
+首页和图书详情页均提供用户收藏图书的功能，在图书收藏页面中展示用户收藏夹中的图书，并提供取消收藏和立即下载图书资源的功能。用户图书收藏记录唯一，即用户不可重复收藏同一本图书，若对应图书用户已收藏，则友好提示用户。
 
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/afa80b137b894c6191b220c0cd6208bd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 9. 记录查看
 
-> 用户可在首页和个人资料页查看个人历史登录记录，包含了登录 ip、登录时间、登录地点等信息（从开源数据库 [GeoIP](https://www.maxmind.com/en/geoip-demo) 获取）。用户可在首页入口查看个人图书上传和下载记录
+用户可在首页和个人资料页查看个人历史登录记录，包含了登录 ip、登录时间、登录地点等信息（从开源数据库 [GeoIP](https://www.maxmind.com/en/geoip-demo) 获取）。用户可在首页入口查看个人图书上传和下载记录
 
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/5f32e77aa606447aa5943f0026bac0cb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
@@ -241,15 +241,17 @@
 
 ### 10. 用户资料
 
-> 用户可点击首页的头像按钮以实现个人用户信息的维护和修改，点击退出按钮可以退出系统。在用户个人信息首页展示用户昵称、用户头像、注册时间、图书下载量、收藏量、上传量、个性签名等信息，用户也可以选择更换个人头像。
+用户可点击首页的头像按钮以实现个人用户信息的维护和修改，点击退出按钮可以退出系统。在用户个人信息首页展示用户昵称、用户头像、注册时间、图书下载量、收藏量、上传量、个性签名等信息，用户也可以选择更换个人头像。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ac79046f6663476faf9d51ac0651cf3b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
->
-> 提供用户对个人基本资料的修改，可以修改用户昵称、出生年月、所在地区、个人签名等信息
+
+
+提供用户对个人基本资料的修改，可以修改用户昵称、出生年月、所在地区、个人签名等信息
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/31cecdc7971f487babf414b6e45e233c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
->
-> 用户隐私信息显示，包含了用户名、密码、邮箱等信息
+
+
+用户隐私信息显示，包含了用户名、密码、邮箱等信息
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/df1c0ab0598d4973b1a0b16277fea907.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
@@ -257,23 +259,24 @@
 
 ### 1. Pixabay 网站图片获取
 
-> 利用 pixabay 网站提供的 API 以及 Python 爬虫技术，定期定量从网站获取精美图片作为背景图。对获取到的 pixabay 网站图书资源进行管理时，需要管理员进行登录，未登录则提示管理员。 管理员登录时验证用户名及密码是否正确。
+利用 pixabay 网站提供的 API 以及 Python 爬虫技术，定期定量从网站获取精美图片作为背景图。对获取到的 pixabay 网站图书资源进行管理时，需要管理员进行登录，未登录则提示管理员。 管理员登录时验证用户名及密码是否正确。
 
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/60b3f5963a784b7ba2ef4ade31d61531.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 2. 管理员页面背景图管理
 
-> 管理员可将心仪的图片上传作为管理员登录成功后的背景图
+管理员可将心仪的图片上传作为管理员登录成功后的背景图
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/bd7ef46a44f54df08631bb828c3a5301.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
->
-> 管理员可以选择上传背景图片并提交到服务器保存，以作为管理员登录的主页面
+
+
+管理员可以选择上传背景图片并提交到服务器保存，以作为管理员登录的主页面
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b76d600cabae478a8d9a02aabc9d8078.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 3. 用户上传图书进行管理
 
-> 管理员需对用户上传的图书文件进行管理，录入图书文件、上传文件到服务器、删除服务器的图书文件、下发用户积分、修改上传记录状态
+管理员需对用户上传的图书文件进行管理，录入图书文件、上传文件到服务器、删除服务器的图书文件、下发用户积分、修改上传记录状态
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/82ed4666f1af4b8e9881ce4a13098c13.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
@@ -282,7 +285,7 @@
 ## 1. 第三方工具库
 
 | 第三发 jar 包                   | 功能                             |
-| ------------------------------- | -------------------------------- |
+| :------------------------------ | :------------------------------- |
 | commons-beanutils-1.8.0.jar     | 表单请求参数转换为 JavaBean 对象 |
 | commons-logging-1.1.1.jar       | 表单请求参数转换为 JavaBean 对象 |
 | commons-fileupload-1.2.1.jar    | 文件上传、下载服务               |
@@ -308,4 +311,4 @@
 > IDEA 2021.3.3、MySQL 8.0.26、Maven-4.0.0、Git 2.34.1、Tomcat 8.0.50、jdk 1.8.0_311、XShell 6、Typora 0.11.13、Snipaste  、ioDraw、SQLyog
 
 # 六、免责声明
-> 本站所有 PDF 图书资源均来源于用户上传或由站长收集于网络，本站只是搜录整理他人成果。若有违规侵权，请第一时间联系站长 springbear2020@163.com ，站长将第一时间清除对应图书资源，感谢！本站图书资源仅作学习交流分享使用，不作任何商用用途。
+本站所有 PDF 图书资源均来源于用户上传或由站长收集于网络，本站只是搜录整理他人成果。若有违规侵权，请第一时间联系站长 springbear2020@163.com ，站长将第一时间清除对应图书资源，感谢！本站图书资源仅作学习交流分享使用，不作任何商用用途。
