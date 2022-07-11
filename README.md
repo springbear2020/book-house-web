@@ -1,45 +1,46 @@
+> 开发时间：2022.03.14 - 2022.03.31
 
-> 项目部署运行步骤如下：
->
-> 方案一：
->
-> 1. 克隆仓库：使用 Git 克隆仓库或直接下载仓库压缩包到您的计算机
-> 2. 打开工程：使用 `IntelliJ IDEA`  打开克隆的仓库或解压的工程文件
-> 3. 创建数据库和表并插入数据：登录 MySQL ，创建 `book_house` 数据库，将 `src/main/resources/book_house.sql` 文件中的数据库表导入 book_house 数据库中
-> 4. 修改数据库连接信息：修改 `src/main/resources/jdbc.properties` 中的数据库连接信息，设置你自己的用户名和密码 
-> 5. 修改邮箱服务器信息（可选，不设置则用户注册时邮箱验证码功能不可用）：修改 `src/main/resources/email.properties` 中的邮箱连接信息，设置你自己的邮箱账号和服务器（个人邮箱开启 smtp 功能指导博客：[smtp 开启](https://blog.csdn.net/smilehappiness/article/details/108145215)）
-> 6. 部署访问：在 IntelliJ IDEA 中部署 Tomcat 即可访问网上书屋首页
-> 7. 登录系统：用户、管理员登录默认用户名和密码均为 `admin`
->
-> 方案二：
->
-> 1. 克隆仓库：使用 Git 克隆仓库或直接下载仓库压缩包到您的计算机
->
-> 2. 拷贝 war 包：将 `RELEASE` 目录下的 `book-house.war` 包拷贝到 `Tomcat` 安装目录下的 `webapps` 目录中
->
-> 3. 创建数据库和表并插入数据：登录 `MySQL`，创建 `book_house` 数据库，将 `RELEASE/book_house.sql` 文件中的数据库表导入 book_house 数据库中
->
-> 4. 创建数据库用户：在 MySQL 控制台创建 `admin` 用户，密码也为 `admin`，并赋予 admin 用户所有操作权限
->
->    ```sql
->    create user 'admin'@'localhost' identified by 'admin';
->    grant all on book_house.* to 'admin'@'localhost' with grant option;
->    ```
->
-> 5. 启动 Tomcat：双击 Tomcat 安装目录下 `bin` 目录中的 `startup.bat` 启动 Tomcat
->
-> 6. 访问首页：在浏览器地址栏输入 `http://localhost:8080/book-house/` 即可访问网上书屋首页
->
-> 7. 登录系统：用户、管理员登录默认用户名和密码均为 `admin`
+# 一、快速开始
 
-# 一、应用背景描述
+方案一：
+
+1. 克隆仓库：使用 Git 克隆仓库或直接下载仓库压缩包到您的计算机
+2. 打开工程：使用 `IntelliJ IDEA`  打开克隆的仓库或解压的工程文件
+3. 创建数据库和表并插入数据：登录 MySQL ，创建 `book_house` 数据库，将 `src/main/resources/book_house.sql` 文件中的数据库表导入 book_house 数据库中
+4. 修改数据库连接信息：修改 `src/main/resources/jdbc.properties` 中的数据库连接信息，设置你自己的用户名和密码 
+5. 修改邮箱服务器信息（可选，不设置则用户注册时邮箱验证码功能不可用）：修改 `src/main/resources/email.properties` 中的邮箱连接信息，设置你自己的邮箱账号和服务器（[smtp 开启](https://blog.csdn.net/smilehappiness/article/details/108145215)）
+6. 部署访问：在 IntelliJ IDEA 中部署 `Tomcat` 即可访问网上书屋首页
+7. 登录系统：默认用户名和密码均为 `admin`
+
+方案二：
+
+1. 克隆仓库：使用 Git 克隆仓库或直接下载仓库压缩包到您的计算机
+
+2. 拷贝 war 包：将 `RELEASE` 目录下的 `book-house.war` 包拷贝到 `Tomcat` 安装目录下的 `webapps` 目录中
+
+3. 创建数据库和表并插入数据：登录 `MySQL`，创建 `book_house` 数据库，将 `RELEASE/book_house.sql` 文件中的数据库表导入 book_house 数据库中
+
+4. 创建数据库用户：在 MySQL 控制台创建 `admin` 用户，密码也为 `admin`，并赋予 admin 用户所有操作权限
+
+   ```sql
+   create user 'admin'@'localhost' identified by 'admin';
+   grant all on book_house.* to 'admin'@'localhost' with grant option;
+   ```
+
+5. 启动 Tomcat：双击 Tomcat 安装目录下 `bin` 目录中的 `startup.bat` 启动 Tomcat
+
+6. 访问首页：在浏览器地址栏输入 `http://localhost:8080/book-house/` 即可访问网上书屋首页
+
+7. 登录系统：默认用户名和密码均为 `admin`
+
+# 二、背景调查
 
 随着互联网技术的不断发展，网络上遍布着越来越多的有用或无用的资源，要在不计其数的资源中筛选出自己亟需的资源，需要耗费巨大的精力。尤其是各种电子图书资源（主要为 PDF）还涉及到知识产权的法律性问题，导致截至目前几乎没有哪个产品能完全满足快速检索电子图书资源和提供相关服务。一般情况下用户所需的电子图书资源都存放在用户的个人云盘中，现有的网站系统几乎是将所有的下载链接进行糅合，杂乱无章的整合让普通用户无所适从、望而却步。对于急需查找电子图书的用户，需要到从繁杂的网页中检索出需要的图书的链接，再根据链接跳转到对应的云盘应用进行下载。不得不说，这样的方式对一般用户极其不友好，图书资源也不够规范化、有的是盗版图书、有的甚至不能算是图书、有的下载链接早已失效······ 极大程度浪费了用户的精力和时间。更甚的是，某盘下载速度实在堪忧，还得成为会员方可提高下载速度，步骤繁多、代价太大。所以我们的 Book House 电子图书资源服务系统应运而生，本着开源共享的精神，本站所有的图书资源均由用户上传，站长负责整理发布，只为用户提供一个 PDF 的 Book House（书屋）。
-#  二、系统功能描述
+#  三、功能描述
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/8bc3fea9a2d34656bb3a8956e48f17cd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-## 2.1 用户功能
+## 1、用户功能
 
 1. 用户注册：用户需要使用邮箱进行注册，注册过程中需要邮箱验证码。每个用户注册成功网站默认积分为 100 分
 2. 用户登录：用户登录时可使用注册时使用的邮箱或是自定义的用户名进行登录
@@ -51,20 +52,20 @@
 8. 下载记录：用户每下载一本图书对应一条图书下载记录，记录包含了下载时间、积分变换、下载图书名等信息
 9. 图书上传：用户每上传一本图书对应一条图书上传记录，记录包含了上传时间、积分变化、上传图书名等信息
 
-## 2.2 管理员功能
+## 2、管理员功能
 
 1. Pixabay 图片获取：管理员需利用爬虫技术从 Pixabay 网站获取精美图片并作为管理员登录页面的背景
 2. 管理员登录：只提供管理员登录功能，管理员身份信息直接由站长进行下发
 3. Background：管理员管理页面背景图片信息上传及维护
 4. 图书管理：管理员需对用户上传的电子图书进行管理，包括了保存新的图书记录、上传图书、下发积分给用户等操作
 
-# 三、数据库表设计
+# 四、数据库设计
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/65eb7fe9c5a942c1a4a86fbc07b7fb2d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 
 
-## 3.1 数据库表
+## 1、数据库表
 
 1. log_login：用户登录日志表，包含了日志 id、用户 id、用户名、登录 ip、登录地点、登录时间信息
 2. t_admin：管理员信息表，包含了管理员 id、用户名、密码、注册时间信息
@@ -77,7 +78,7 @@
 9. t_user：用户信息表，包含了用户 id、用户名、密码、邮箱地址、用户积分、头像保存路径、注册时间信息
 10. t_user_info：用户基本信息表，包含了记录 id、用户 id、用户昵称、用户性别、用户出生年月日、用户所在地区、用户个性签名、图书收藏量、下载量、上传量、上次修改时间信息
 
-## 3.2 数据库触发器
+## 2、数据库触发器
 
 1. add_user_id_to_user_info_when_user_insert：当 t_user 表新增一条记录的时候自动将用户 id 插入到 t_user_info 表中
 
@@ -179,8 +180,8 @@
    DELIMITER ;
    ```
 
-# 四、系统功能演示
-## 3.1 用户功能
+# 五、功能演示
+## 5.1、用户功能
 ### 1. 用户注册
 
 给用户名、邮箱输入框绑定失去焦点事件，失去焦点时向服务器发起 AJAX 请求以验证用户名和邮箱的存在性，存在则友好提示用户更换用户名或邮箱。用户注册时给每个输入框绑定失去焦点事件，使用正则表达式初步验证各表单项是否符合格式要求，不符合要求则阻止表单提交。
@@ -255,7 +256,7 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/df1c0ab0598d4973b1a0b16277fea907.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-## 3.2 管理员功能
+## 5.2、管理员功能
 
 ### 1. Pixabay 网站图片获取
 
@@ -276,11 +277,11 @@
 
 ### 3. 用户上传图书进行管理
 
-管理员需对用户上传的图书文件进行管理，录入图书文件、上传文件到服务器、删除服务器的图书文件、下发用户积分、修改上传记录状态
+管理员对用户上传的图书文件进行管理，录入图书文件、上传文件到服务器、删除服务器的图书文件、下发用户积分、修改上传记录状态
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/82ed4666f1af4b8e9881ce4a13098c13.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-# 五、技术选型说明
+# 六、技术选型
 
 ## 1. 第三方工具库
 
