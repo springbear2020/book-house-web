@@ -1,18 +1,9 @@
 package com.bear.bookhouse.util;
 
-import com.maxmind.db.CHMCache;
-import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CityResponse;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.InetAddress;
-import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author Spring-_-Bear
