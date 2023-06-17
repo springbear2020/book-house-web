@@ -1,10 +1,10 @@
 <p align="center">
-    <img src="https://img.shields.io/static/v1?label=开发时间&message=22/03/14-22/03/31&color=007bff"/>
+    <img src="https://img.shields.io/static/v1?label=%E5%BC%80%E5%8F%91%E6%97%B6%E9%97%B4&message=22/03/14-22/03/31&color=007bff"/>
     <img src="https://img.shields.io/static/v1?label=Servlet&message=4.0.1&color=dc3545"/>
     <img src="https://img.shields.io/static/v1?label=Java&message=1.8.0_311&color=ffc107"/>
     <img src="https://img.shields.io/static/v1?label=MySQL&message=8.0.28&color=17a2b8"/> 
     <a href="https://github.com/springbear2020/book-house-web" target="_blank">
-        <img src="https://img.shields.io/static/v1?label=开源项目&message=book-house-web&color=18a745"/>
+        <img src="https://img.shields.io/static/v1?label=%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE&message=book-house-web&color=18a745"/>
     </a>
 </p>
 
