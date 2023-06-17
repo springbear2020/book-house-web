@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 80028
  Source Host           : localhost:3306
- Source Schema         : book_house
+ Source Schema         : book_house_web
 
  Target Server Type    : MySQL
  Target Server Version : 80028
@@ -17,10 +17,10 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE DATABASE IF NOT EXISTS `book_house`;
+CREATE DATABASE IF NOT EXISTS `book_house_web`;
 
 
-USE `book_house`;
+USE `book_house_web`;
 
 -- ----------------------------
 -- Table structure for log_login

@@ -1,14 +1,10 @@
-﻿﻿﻿﻿## 一、Pixabay 介绍
+﻿> [Pixabay.com](https://pixabay.com/) is a free stock photography and royalty-free stock media website. It is used for sharing photos, illustrations, vector graphics, film footage, and music, exclusively under the custom Pixabay license, which generally allows the free use of the material with some restrictions.
 
-> [Pixabay.com](https://pixabay.com/) is a free stock photography and royalty-free stock media website. It is used for sharing photos, illustrations, vector graphics, film footage, and music, exclusively under the custom Pixabay license, which generally allows the free use of the material with some restrictions. Wikipedia
-> 
-> Pixabay 是一个免费的图像摄影、免版权的媒体网站。 它用于共享照片、插图、矢量图形、电影镜头和音乐。在 Pixabay 官方的许可下，一定限制范围内通常可以免费使用网站上的资源。
+Pixabay 是一个免费的图像摄影、免版权的媒体网站。 它用于共享照片、插图、矢量图形、电影镜头和音乐。在 Pixabay 官方的许可下，一定限制范围内通常可以免费使用网站上的资源。
 
-## 二、图片爬取源码
+# 一、版本一
 
-### 2.1 版本一
-
-#### 1. 建立 MySQL 数据库保存图片信息
+## 1.1 SQL 脚本
 
 ```sql
 CREATE DATABASE pixabay;
@@ -24,7 +20,7 @@ CREATE TABLE t_picture(
 `likes` INT                                   /* 喜欢的人数 */
 );
 ```
-#### 2. Python 爬虫代码实现图片爬取
+## 1.2 Python 代码
 
 ```python
 import requests
@@ -85,22 +81,22 @@ for page in range(0, int(number)):
 cursor.close()
 db.close()
 ```
-#### 3. 运行示例
+## 1.3 运行示例
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/229b920d53f14036a2ed966f06e5f1cf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](img/1.3-运行示例.png)
 
-#### 4. 响应参数展示
+## 1.4 响应参数
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/5b1241bc2f444c4ca5afb0758873c09f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](img/1.4-响应参数.png)
 
-#### 5. 爬取结果展示
+## 1.5 结果展示
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/3728a0be40ea4c7eaa019a8f52f54c0a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAU3ByaW5nLV8tQmVhcg==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](img/1.5-结果展示.png)
 
-### 2.2 版本二
+# 二、版本二
 
-#### 1. MySQL 数据库表
+## 2.1 SQL 脚本
 
 ```sql
 CREATE TABLE `t_pixabay` (
@@ -131,7 +127,7 @@ CREATE TABLE `t_pixabay` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-#### 2. Python 爬虫代码
+## 2.2 Python 代码
 
 ```python
 from datetime import date
@@ -178,7 +174,7 @@ for i in range(0, int(page)):
 cursor.close()
 db.close()
 ```
-#### 3. POJO 类
+## 2.3 POJO 类
 
 ```java
 package com.bear.bookhouse.pojo;
@@ -337,7 +333,7 @@ public class Picture {
 }
 ```
 
-#### 4. DAO 类
+## 2.4 DAO 类
 
 ```java
 package com.bear.bookhouse.dao.impl;
@@ -367,9 +363,9 @@ public class PictureDaoImpl extends BaseDao implements PictureDao {
 }
 ```
 
-### 2.3 版本三
+# 三、版本三
 
-#### 1. MySQL 数据库表
+## 3.1 SQL 脚本
 
 ```sql
 CREATE TABLE `t_pixabay` (
@@ -387,7 +383,7 @@ CREATE TABLE `t_pixabay` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-#### 2. Python 爬虫代码
+## 3.2 Python 代码
 
 ```python
 from datetime import date
@@ -429,7 +425,7 @@ cursor.close()
 db.close()
 ```
 
-#### 3. POJO 类
+## 3.3 POJO 类
 
 ```java
 package com.bear.bookhouse.pojo;
@@ -570,7 +566,7 @@ public class Pixabay {
 }
 ```
 
-#### 4. DAO 类
+## 3.4 DAO 类
 
 ```java
 package com.bear.bookhouse.dao;
