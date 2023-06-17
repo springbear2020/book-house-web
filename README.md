@@ -319,12 +319,12 @@ DMS
 			├── service		-- 业务服务类
 			├── util		-- 通用工具类
 			├── web			-- Servlet 请求类
-		├── resources		-- 配置文件
+		├── resources			-- 配置文件
 		├── webapp
 			├── static		-- 静态资源，如 js、css
 			├── WEB-INF		-- 受服务器保护的目录，包含页面、jar 包和 web.xml 等
-			├── index.jsp	-- 首页
-	├── test		-- 测试类目录
+			├── index.jsp		-- 首页
+	├── test
 ```
 
 # 八、许可证
