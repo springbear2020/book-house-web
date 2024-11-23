@@ -29,8 +29,8 @@
         <div class="title"><a href="index.jsp">Book House</a></div>
             <form method="post" action="admin" class="users-form">
                 <input type="hidden" name="action" value="adminLogin">
-                <label><input name="username" type="text" placeholder="username"></label>
-                <label><input name="password" type="password" placeholder="password"></label>
+                <label><input name="username" value="admin" type="text" placeholder="username"></label>
+                <label><input name="password" value="admin" type="password" placeholder="password"></label>
                 <label><input type="submit" value="login" class="btn"></label>
             </form>
     </div>

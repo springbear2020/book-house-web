@@ -161,6 +161,7 @@
     </dependencies>
 
     <build>
+        <finalName>book-house-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
